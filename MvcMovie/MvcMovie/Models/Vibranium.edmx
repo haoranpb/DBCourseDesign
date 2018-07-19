@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CustomerSet" EntityType="Model1.Customer" />
+          <EntitySet Name="CreditCardSet" EntityType="Model1.CreditCard" />
+          <EntitySet Name="ReceivingInfoSet" EntityType="Model1.ReceivingInfo" />
+          <EntitySet Name="CartSet" EntityType="Model1.Cart" />
+          <EntitySet Name="BrowsingSet" EntityType="Model1.Browsing" />
+          <EntitySet Name="ItemSet" EntityType="Model1.Item" />
+          <EntitySet Name="ShopSet" EntityType="Model1.Shop" />
+          <EntitySet Name="SalerSet" EntityType="Model1.Saler" />
+          <EntitySet Name="OrderSet" EntityType="Model1.Order" />
+          <EntitySet Name="OrderItemSet" EntityType="Model1.OrderItem" />
+          <EntitySet Name="CommentSet" EntityType="Model1.Comment" />
+          <AssociationSet Name="ReceivingInfoCustomer" Association="Model1.ReceivingInfoCustomer">
+            <End Role="ReceivingInfo" EntitySet="ReceivingInfoSet" />
+            <End Role="Customer" EntitySet="CustomerSet" />
+          </AssociationSet>
+          <EntitySet Name="AdminSet" EntityType="Model1.Admin" />
+          <AssociationSet Name="CreditCardCustomer" Association="Model1.CreditCardCustomer">
+            <End Role="CreditCard" EntitySet="CreditCardSet" />
+            <End Role="Customer" EntitySet="CustomerSet" />
+          </AssociationSet>
+          <AssociationSet Name="CartCustomer" Association="Model1.CartCustomer">
+            <End Role="Cart" EntitySet="CartSet" />
+            <End Role="Customer" EntitySet="CustomerSet" />
+          </AssociationSet>
+          <AssociationSet Name="BrowsingCustomer" Association="Model1.BrowsingCustomer">
+            <End Role="Browsing" EntitySet="BrowsingSet" />
+            <End Role="Customer" EntitySet="CustomerSet" />
+          </AssociationSet>
+          <AssociationSet Name="ItemShop" Association="Model1.ItemShop">
+            <End Role="Item" EntitySet="ItemSet" />
+            <End Role="Shop" EntitySet="ShopSet" />
+          </AssociationSet>
+          <AssociationSet Name="CartItem" Association="Model1.CartItem">
+            <End Role="Cart" EntitySet="CartSet" />
+            <End Role="Item" EntitySet="ItemSet" />
+          </AssociationSet>
+          <AssociationSet Name="BrowsingItem" Association="Model1.BrowsingItem">
+            <End Role="Browsing" EntitySet="BrowsingSet" />
+            <End Role="Item" EntitySet="ItemSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrderCustomer" Association="Model1.OrderCustomer">
+            <End Role="Order" EntitySet="OrderSet" />
+            <End Role="Customer" EntitySet="CustomerSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrderShop" Association="Model1.OrderShop">
+            <End Role="Order" EntitySet="OrderSet" />
+            <End Role="Shop" EntitySet="ShopSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrderItemOrder" Association="Model1.OrderItemOrder">
+            <End Role="OrderItem" EntitySet="OrderItemSet" />
+            <End Role="Order" EntitySet="OrderSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrderItemItem" Association="Model1.OrderItemItem">
+            <End Role="OrderItem" EntitySet="OrderItemSet" />
+            <End Role="Item" EntitySet="ItemSet" />
+          </AssociationSet>
+          <AssociationSet Name="CommentOrder" Association="Model1.CommentOrder">
+            <End Role="Comment" EntitySet="CommentSet" />
+            <End Role="Order" EntitySet="OrderSet" />
+          </AssociationSet>
+          <AssociationSet Name="CommentItem" Association="Model1.CommentItem">
+            <End Role="Comment" EntitySet="CommentSet" />
+            <End Role="Item" EntitySet="ItemSet" />
+          </AssociationSet>
+          <AssociationSet Name="ShopSaler" Association="Model1.ShopSaler">
+            <End Role="Shop" EntitySet="ShopSet" />
+            <End Role="Saler" EntitySet="SalerSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="CustomerAge" Type="String" Nullable="false" />
+          <Property Name="CustomerPassword" Type="String" Nullable="false" />
+          <Property Name="CustomerGender" Type="String" Nullable="false" />
+          <Property Name="CustomerPhone" Type="String" Nullable="false" />
+          <Property Name="CustomerCredit" Type="String" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Model1.OrderCustomer" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="CreditID" />
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="String" Nullable="false" />
+          <Property Name="CreditID" Type="String" Nullable="false" />
+          <Property Name="ReceivingInfoCustomerID" Type="String" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Model1.CreditCardCustomer" FromRole="CreditCard" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="ReceivingInfo">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="ReceivingName" Type="String" Nullable="false" />
+          <Property Name="ReceivingPhone" Type="String" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Model1.ReceivingInfoCustomer" FromRole="ReceivingInfo" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="ItemID" Type="String" Nullable="false" />
+          <Property Name="ItemCount" Type="String" Nullable="false" />
+          <Property Name="CartPrice" Type="String" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Model1.CartCustomer" FromRole="Cart" ToRole="Customer" />
+          <NavigationProperty Name="Item" Relationship="Model1.CartItem" FromRole="Cart" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Browsing">
+          <Key>
+            <PropertyRef Name="BrowsingTime" />
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="String" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Model1.BrowsingCustomer" FromRole="Browsing" ToRole="Customer" />
+          <NavigationProperty Name="Item" Relationship="Model1.BrowsingItem" FromRole="Browsing" ToRole="Item" />
+          <Property Name="ItemID" Type="String" Nullable="false" />
+          <Property Name="BrowsingTime" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="String" Nullable="false" />
+          <Property Name="ShopID" Type="String" Nullable="false" />
+          <Property Name="ItemPrice" Type="String" Nullable="false" />
+          <Property Name="ItemName" Type="String" Nullable="false" />
+          <Property Name="ItemInfo" Type="String" Nullable="false" />
+          <Property Name="ItemPic" Type="String" Nullable="false" />
+          <Property Name="ItemSales" Type="String" Nullable="false" />
+          <Property Name="ItemRemain" Type="String" Nullable="false" />
+          <NavigationProperty Name="Shop" Relationship="Model1.ItemShop" FromRole="Item" ToRole="Shop" />
+          <NavigationProperty Name="Comment" Relationship="Model1.CommentItem" FromRole="Item" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="Shop">
+          <Key>
+            <PropertyRef Name="ShopID" />
+          </Key>
+          <Property Name="ShopID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="ShopName" Type="String" Nullable="false" />
+          <Property Name="SalerCredit" Type="String" Nullable="false" />
+          <NavigationProperty Name="Saler" Relationship="Model1.ShopSaler" FromRole="Shop" ToRole="Saler" />
+          <Property Name="SalerID" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Saler">
+          <Key>
+            <PropertyRef Name="SalerID" />
+          </Key>
+          <Property Name="SalerID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="SalerPassword" Type="String" Nullable="false" />
+          <Property Name="SalerInfo" Type="String" Nullable="false" />
+          <Property Name="SalerPhone" Type="String" Nullable="false" />
+          <NavigationProperty Name="Shop" Relationship="Model1.ShopSaler" FromRole="Saler" ToRole="Shop" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ShopID" Type="String" Nullable="false" />
+          <Property Name="CustomerID" Type="String" Nullable="false" />
+          <Property Name="OrderPrice" Type="String" Nullable="false" />
+          <Property Name="OrderCount" Type="String" Nullable="false" />
+          <Property Name="OrderTime" Type="Time" Nullable="false" />
+          <Property Name="OrderState" Type="String" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Model1.OrderCustomer" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="OrderItem" Relationship="Model1.OrderItemOrder" FromRole="Order" ToRole="OrderItem" />
+          <NavigationProperty Name="Comment" Relationship="Model1.CommentOrder" FromRole="Order" ToRole="Comment" />
+        </EntityType>
+        <EntityType Name="OrderItem">
+          <Key>
+            <PropertyRef Name="OrderDetailID" />
+          </Key>
+          <Property Name="OrderDetailID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="ItemID" Type="String" Nullable="false" />
+          <Property Name="OrderDetailCount" Type="String" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Model1.OrderItemOrder" FromRole="OrderItem" ToRole="Order" />
+          <NavigationProperty Name="Item" Relationship="Model1.OrderItemItem" FromRole="OrderItem" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="ItemItemID" />
+          </Key>
+          <Property Name="OrderID" Type="String" Nullable="false" />
+          <Property Name="ItemItemID" Type="String" Nullable="false" />
+          <Property Name="CommentInfo" Type="String" Nullable="false" />
+          <Property Name="Reply" Type="String" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Model1.CommentOrder" FromRole="Comment" ToRole="Order" />
+          <NavigationProperty Name="Item" Relationship="Model1.CommentItem" FromRole="Comment" ToRole="Item" />
+        </EntityType>
+        <Association Name="ReceivingInfoCustomer">
+          <End Type="Model1.ReceivingInfo" Role="ReceivingInfo" Multiplicity="0..1" />
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ReceivingInfo">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="String" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="AdminPassword" Type="String" Nullable="false" />
+          <Property Name="AdminInfo" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="CreditCardCustomer">
+          <End Type="Model1.CreditCard" Role="CreditCard" Multiplicity="*" />
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CartCustomer">
+          <End Type="Model1.Cart" Role="Cart" Multiplicity="1" />
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+        </Association>
+        <Association Name="BrowsingCustomer">
+          <End Type="Model1.Browsing" Role="Browsing" Multiplicity="*" />
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Browsing">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ItemShop">
+          <End Type="Model1.Item" Role="Item" Multiplicity="*" />
+          <End Type="Model1.Shop" Role="Shop" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Shop">
+              <PropertyRef Name="ShopID" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="ShopID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CartItem">
+          <End Type="Model1.Cart" Role="Cart" Multiplicity="*" />
+          <End Type="Model1.Item" Role="Item" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BrowsingItem">
+          <End Type="Model1.Browsing" Role="Browsing" Multiplicity="*" />
+          <End Type="Model1.Item" Role="Item" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Browsing">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderCustomer">
+          <End Type="Model1.Order" Role="Order" Multiplicity="*" />
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderShop">
+          <End Type="Model1.Order" Role="Order" Multiplicity="*" />
+          <End Type="Model1.Shop" Role="Shop" Multiplicity="*" />
+        </Association>
+        <Association Name="OrderItemOrder">
+          <End Type="Model1.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <End Type="Model1.Order" Role="Order" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderItem">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrderItemItem">
+          <End Type="Model1.OrderItem" Role="OrderItem" Multiplicity="*" />
+          <End Type="Model1.Item" Role="Item" Multiplicity="*" />
+        </Association>
+        <Association Name="CommentOrder">
+          <End Type="Model1.Comment" Role="Comment" Multiplicity="1" />
+          <End Type="Model1.Order" Role="Order" Multiplicity="1" />
+        </Association>
+        <Association Name="CommentItem">
+          <End Type="Model1.Comment" Role="Comment" Multiplicity="*" />
+          <End Type="Model1.Item" Role="Item" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="ItemItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ShopSaler">
+          <End Type="Model1.Shop" Role="Shop" Multiplicity="*" />
+          <End Type="Model1.Saler" Role="Saler" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Saler">
+              <PropertyRef Name="SalerID" />
+            </Principal>
+            <Dependent Role="Shop">
+              <PropertyRef Name="SalerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="CopyToOutputDirectory" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
