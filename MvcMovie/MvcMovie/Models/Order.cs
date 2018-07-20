@@ -11,15 +11,11 @@ namespace MvcMovie.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
+
     public partial class Order
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Order()
-        {
-            this.OrderItem = new HashSet<OrderItem>();
-        }
-    
+        
         public int OrderID { get; set; }
         public string ShopID { get; set; }
         public string CustomerID { get; set; }
@@ -27,10 +23,9 @@ namespace MvcMovie.Models
         public string OrderCount { get; set; }
         public System.TimeSpan OrderTime { get; set; }
         public string OrderState { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItem { get; set; }
-        public virtual Comment Comment { get; set; }
+    }
+    public class OrderDBContext : DbContext
+    {
+        public DbSet<Order> Orders { get; set; }
     }
 }

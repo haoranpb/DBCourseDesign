@@ -11,7 +11,7 @@ namespace MvcMovie.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
     public partial class Shop
     {
         public string ShopID { get; set; }
@@ -19,6 +19,9 @@ namespace MvcMovie.Models
         public string SalerCredit { get; set; }
         public string SalerID { get; set; }
     
-        public virtual Saler Saler { get; set; }
+    }
+    public class ShopDBContext : DbContext
+    {
+        public DbSet<Shop> Shops { get; set; }
     }
 }

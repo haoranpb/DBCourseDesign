@@ -11,14 +11,16 @@ namespace MvcMovie.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
     public partial class Browsing
     {
-        public string CustomerID { get; set; }
+        public string ID { get; set; }//CUSTOMERID
         public string ItemID { get; set; }
         public string BrowsingTime { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        public virtual Item Item { get; set; }
+    }
+
+    public class BrowsingDBContext : DbContext
+    {
+        public DbSet<Browsing> Browsings { get; set; }
     }
 }

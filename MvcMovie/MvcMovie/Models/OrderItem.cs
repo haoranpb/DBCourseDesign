@@ -11,22 +11,19 @@ namespace MvcMovie.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
+
     public partial class OrderItem
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OrderItem()
-        {
-            this.Item = new HashSet<Item>();
-        }
-    
-        public string OrderDetailID { get; set; }
+       
+        public string OrderItemID { get; set; }
         public int OrderID { get; set; }
         public string ItemID { get; set; }
         public string OrderDetailCount { get; set; }
     
-        public virtual Order Order { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Item> Item { get; set; }
+    }
+    public class OrderItemDBContext : DbContext
+    {
+        public DbSet<OrderItem> OrderItems { get; set; }
     }
 }

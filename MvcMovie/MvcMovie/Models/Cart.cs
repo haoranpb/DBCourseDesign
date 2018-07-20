@@ -11,15 +11,16 @@ namespace MvcMovie.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
     public partial class Cart
     {
         public string CustomerID { get; set; }
-        public string ItemID { get; set; }
+        public string CartID { get; set; }//itemid
         public string ItemCount { get; set; }
         public string CartPrice { get; set; }
-    
-        public virtual Customer Customer { get; set; }
-        public virtual Item Item { get; set; }
+    }
+    public class CartDBContext : DbContext
+    {
+        public DbSet<Cart> Carts { get; set; }
     }
 }

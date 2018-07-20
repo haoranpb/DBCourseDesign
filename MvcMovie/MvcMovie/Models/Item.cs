@@ -11,15 +11,13 @@ namespace MvcMovie.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity;
+
+
     public partial class Item
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Item()
-        {
-            this.Comment = new HashSet<Comment>();
-        }
-    
         public string ItemID { get; set; }
         public string ShopID { get; set; }
         public string ItemPrice { get; set; }
@@ -27,10 +25,13 @@ namespace MvcMovie.Models
         public string ItemInfo { get; set; }
         public string ItemPic { get; set; }
         public string ItemSales { get; set; }
-        public string ItemRemain { get; set; }
+        public int ItemRemain { get; set; }
     
-        public virtual Shop Shop { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comment { get; set; }
+
+    }
+
+    public class ItemDBContext : DbContext
+    {
+        public DbSet<Item> Items { get; set; }
     }
 }

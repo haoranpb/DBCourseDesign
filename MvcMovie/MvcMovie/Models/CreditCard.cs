@@ -11,13 +11,17 @@ namespace MvcMovie.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Data.Entity;
+
     public partial class CreditCard
     {
         public string CustomerID { get; set; }
-        public string CreditID { get; set; }
+        public string CreditCardID { get; set; }
         public string ReceivingInfoCustomerID { get; set; }
-    
-        public virtual Customer Customer { get; set; }
+   
+    }
+    public class CreditCardDBContext : DbContext
+    {
+        public DbSet<CreditCard> CreditCards { get; set; }
     }
 }
