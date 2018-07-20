@@ -13,10 +13,10 @@ namespace MvcMovie.Models
     using System.Collections.Generic;
     using System.Data.Entity;
 
-    public partial class OrderItem
+    public partial class OrderDetail
     {
        
-        public string OrderItemID { get; set; }
+        public string OrderDetailID { get; set; }
         public int OrderID { get; set; }
         public string ItemID { get; set; }
         public string OrderDetailCount { get; set; }
@@ -24,6 +24,6 @@ namespace MvcMovie.Models
     }
     public class OrderItemDBContext : DbContext
     {
-        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<OrderDetail> OrderDetailIDs { get; set; }
     }
 }
