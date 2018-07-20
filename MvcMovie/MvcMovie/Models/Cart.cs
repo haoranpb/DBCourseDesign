@@ -12,8 +12,5 @@ namespace MvcMovie.Models
         public int ItemCount { get; set; }
         public int CartPrice { get; set; }
     }
-    public class CartDBContext : DbContext
-    {
-        public DbSet<Cart> Carts { get; set; }
-    }
+    
 }

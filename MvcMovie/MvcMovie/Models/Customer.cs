@@ -16,8 +16,5 @@ namespace MvcMovie.Models
         public string CustomerPhone { get; set; }
         public string CustomerCredit { get; set; }
     }
-    public class CustomerDBContext : DbContext
-    {
-        public DbSet<Customer> Customers { get; set; }
-    }
+   
 }

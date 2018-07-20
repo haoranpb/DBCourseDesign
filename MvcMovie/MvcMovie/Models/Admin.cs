@@ -13,8 +13,5 @@ namespace MvcMovie.Models
         public string AdminInfo { get; set; }
     }
 
-    public class AdminDBContext : DbContext
-    {
-        public DbSet<Admin> Admins { get; set; }
-    }
+   
 }

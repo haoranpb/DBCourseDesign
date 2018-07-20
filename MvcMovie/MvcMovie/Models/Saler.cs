@@ -14,8 +14,5 @@ namespace MvcMovie.Models
         public string SalerPhone { get; set; }
     }
     
-    public class SalerDBContext : DbContext
-    {
-        public DbSet<Saler> Salers { get; set; }
-    }
+   
 }

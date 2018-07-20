@@ -13,9 +13,6 @@ namespace MvcMovie.Models
         public string ReceivingName { get; set; }
         public string ReceivingPhone { get; set; }
         
-        public class ReceivingInfoDBContext : DbContext
-        {
-            public DbSet<ReceivingInfo> ReceivingInfos { get; set; }
-        }
+      
     }
 }

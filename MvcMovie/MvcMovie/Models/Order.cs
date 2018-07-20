@@ -17,8 +17,5 @@ namespace MvcMovie.Models
         public DateTime OrderTime { get; set; }
         public string OrderState { get; set; }
     }
-    public class OrderDBContext : DbContext
-    {
-        public DbSet<Order> Orders { get; set; }
-    }
+  
 }

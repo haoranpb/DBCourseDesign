@@ -12,8 +12,5 @@ namespace MvcMovie.Models
         public string BrowsingTime { get; set; }
     }
 
-    public class BrowsingDBContext : DbContext
-    {
-        public DbSet<Browsing> Browsings { get; set; }
-    }
+    
 }

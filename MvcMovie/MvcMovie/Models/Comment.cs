@@ -14,8 +14,5 @@ namespace MvcMovie.Models
         public string Reply { get; set; }
     }
 
-    public class CommentDBContext : DbContext
-    {
-        public DbSet<Comment> Comments { get; set; }
-    }
+  
 }

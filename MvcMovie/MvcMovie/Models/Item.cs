@@ -23,8 +23,4 @@ namespace MvcMovie.Models
 
     }
 
-    public class ItemDBContext : DbContext
-    {
-        public DbSet<Item> Items { get; set; }
-    }
 }

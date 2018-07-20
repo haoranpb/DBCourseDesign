@@ -13,8 +13,5 @@ namespace MvcMovie.Models
         public string ReceivingInfoCustomerID { get; set; }
    
     }
-    public class CreditCardDBContext : DbContext
-    {
-        public DbSet<CreditCard> CreditCards { get; set; }
-    }
+    
 }

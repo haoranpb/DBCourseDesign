@@ -22,8 +22,5 @@ namespace MvcMovie.Models
         public int OrderDetailCount { get; set; }
     
     }
-    public class OrderItemDBContext : DbContext
-    {
-        public DbSet<OrderDetail> OrderDetailIDs { get; set; }
-    }
+    
 }

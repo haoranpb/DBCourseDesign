@@ -13,8 +13,5 @@ namespace MvcMovie.Models
         public string SalerID { get; set; }
     }
 
-    public class ShopDBContext : DbContext
-    {
-        public DbSet<Shop> Shops { get; set; }
-    }
+   
 }
