@@ -1,0 +1,856 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shop Details</title>
+  <!--[if IE]>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+  <![endif]-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="">
+
+  <!-- Google Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Questrial:400%7CMontserrat:300,400,700,700i' rel='stylesheet'>
+
+  <!-- Css -->
+  <link rel="stylesheet" type="text/css"href="css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css"href="css/font-icons.css" />
+  <link rel="stylesheet" type="text/css"href="css/styleshop.css" />
+  <link rel="stylesheet" type="text/css"href="css/color.css" />
+  <link rel="stylesheet" type="text/css"href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all">
+  <link rel="stylesheet" type="text/css" href="css/simple-line-icons.css" media="all">
+  <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+  <link rel="stylesheet" type="text/css" href="css/owl.theme.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery.mobile-menu.css">
+  <link rel="stylesheet" type="text/css" href="css/revslider.css" >
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div class="loader-mask">
+    <div class="loader">
+      <div></div>
+    </div>
+  </div>
+
+<div id="page"> 
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="header-top">
+        <div class="container">
+          <div class="row"> 
+            <!-- Header Language -->
+            <div class="col-xs-7 col-sm-6">
+              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="images/english.png" alt="language"> English <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/english.png" alt="language"> English </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/francais.png" alt="language"> French </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/german.png" alt="language"> German </a></li>
+                </ul>
+              </div>
+              <!-- End Header Language --> 
+              
+              <!-- Header Currency -->
+              <div class="dropdown block-currency-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
+                </ul>
+              </div>
+              <!-- End Header Currency -->
+              
+              <div class="welcome-msg hidden-xs"> Welcome to Vibranium! </div>
+            </div>
+            <div class="col-xs-5 col-sm-6"> 
+              <div class="top-cart-contain pull-right"> 
+                <!-- Top Cart -->
+                <div class="mini-cart">
+                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
+                    <div>
+                      <div class="top-cart-content" style="display: none;">
+                        <div class="actions">
+                          <!-- THIS VIEWCART BUTTON CAN SWITCH THE PAGES. -->
+                          <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
+                          <a href="#" class="view-cart" ><span>View Cart</span></a>
+                        </div>
+                        <!--block-subtitle-->
+                        <ul class="mini-products-list" id="cart-sidebar">
+                          <li class="item first">
+                            <div class="item-inner">
+                              <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="products-images/p4.jpg"></a>
+                              <div class="product-details">
+                                <div class="access">
+                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+                                </div>
+                                <!--access-->
+                                <strong>1</strong> x <span class="price">$179.99</span>
+                                <p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item last">
+                            <div class="item-inner">
+                              <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="products-images/p3.jpg"></a>
+                              <div class="product-details">
+                                <div class="access">
+                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+                                </div>
+                                <!--access-->
+                                <strong>1</strong> x <span class="price">$80.00</span>
+                                <p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      <!--actions--> 
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Top Cart -->
+                  <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
+                    <input value="" type="hidden">
+                    <input id="enable_module" value="1" type="hidden">
+                    <input class="effect_to_cart" value="1" type="hidden">
+                    <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
+                  </div>
+                </div>
+          
+                <div class="top-search">
+                  <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
+                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="images/interstitial-close.png" alt="close"> </button>
+                          </div>
+                          <div class="modal-body">
+                            <form class="navbar-form">
+                              <div id="search">
+                                <div class="input-group">
+                                  <input name="search" placeholder="Search" class="form-control" type="text">
+                                  <!-- SEARCH BUTTON. SWITCH TO INPUT TYPE PRODUCTS -->
+                                  <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>                 
+                 <!-- Header Top Links -->
+                <div class="toplinks">
+                  <div class="links">    
+                    <!-- SWITCH TO MY ACCOUNT DETAILS. -->          
+                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">My Account</span></a></div>
+                  </div>           
+                </div>
+                <!-- End Header Top Links -->      
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </header>
+  <!-- end header --> 
+
+  <main class="main oh" id="main">
+    <!-- Navigation -->
+    <header class="nav" style="position:relative; top:-64px;">
+      <div class="nav__holder nav--sticky" style="height: 56px">
+        <div class="container relative">
+          <div class="flex-parent">
+
+            <!-- Mobile Menu Button -->
+            <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open mobile menu">
+              <span class="nav-icon-toggle__box">
+                <span class="nav-icon-toggle__inner"></span>
+              </span>
+            </button> <!-- end mobile menu button -->
+
+            <!-- Logo -->
+            <a href="index.html" class="logo" style="position: relative;top:-8px">
+              <img class="logo__img" src="img/logo_light.png" alt="logo">
+            </a>
+
+            <!-- Nav-wrap -->
+            <nav class="flex-child nav__wrap d-none d-lg-block" style="vertical-align: center">              
+              <ul class="nav__menu">
+
+                <li class="nav__dropdown active">
+                  <a href="catalog.html">Men</a>
+                  <ul class="nav__dropdown-menu">
+                    <li><a href="#">T-shirt</a></li>
+                    <li><a href="#">Hoodie &amp; Jackets</a></li>
+                    <li><a href="#">Suits</a></li>
+                    <li><a href="#">Shorts</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav__dropdown">
+                  <a href="catalog.html">Women</a>
+                  <ul class="nav__dropdown-menu">
+                    <li><a href="#">Underwear</a></li>
+                    <li><a href="#">Hipster</a></li>
+                    <li><a href="#">Dress</a></li>
+                    <li><a href="#">Hoodie &amp; Jackets</a></li>
+                    <li><a href="#">Tees</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav__dropdown">
+                  <a href="#">News</a>
+                  <ul class="nav__dropdown-menu">
+                    <li><a href="#">Blog Standard</a></li>
+                    <li><a href="#">Single Post</a></li>
+                  </ul>
+                </li>
+                
+                <li class="nav__dropdown">
+                  <a href="#">Pages</a>
+                  <ul class="nav__dropdown-menu">
+                    <li><a href="catalog.html">Catalog</a></li>
+                    <li><a href="single-product.html">Single Product</a></li>
+                    <li><a href="#">Cart</a></li>
+                    <li><a href="#">Checkout</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                  </ul>
+                </li>
+
+              </ul> <!-- end menu -->
+            </nav> <!-- end nav-wrap -->
+
+
+            <!-- Search -->
+            <div class="flex-child nav__search d-none d-lg-block" style="position: relative;top: 6px">
+              <form method="get" class="nav__search-form">
+                <input type="search" class="nav__search-input" placeholder="Search">
+                <button type="submit" class="nav__search-submit">
+                  <i class="ui-search"></i>
+                </button>
+              </form>
+            </div>
+          </div> 
+          <!-- end flex-parent -->
+        </div> 
+        <!-- end container -->
+      </div>
+    </header> 
+    <!-- end navigation -->
+
+    <!-- Hero Slider -->
+    <section class="hero" style="position: relative; top: -88px">
+      <div id="owl-hero" class="owl-carousel owl-theme owl-carousel--dots-inside">        
+        <div class="hero__slide" style="background-image: url(img/hero/1.jpg)">
+          <div class="container text-center">
+            <h1 class="hero__title">Got the style? Show us</h1>
+            <a href="single-product.html" class="hero__link">Shop Now</a>
+          </div>          
+        </div>
+        <div class="hero__slide" style="background-image: url(img/hero/2.jpg)">
+          <div class="container relative">
+            <div class="hero__holder">
+              <h1 class="hero__title-1">dope<br>street<br>wear</h1>
+              <a href="single-product.html" class="hero__link-1 btn btn-lg btn-dark"><span>New Arrivals</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="hero__slide" style="background-image: url(img/hero/3.jpg)">
+          <div class="container text-center">
+            <div class="hero__holder-1">
+              <h1 class="hero__title-2">new lookbook</h1>
+              <h3 class="hero__subtitle">Sale 50% off. Get only trendy items</h3>
+              <a href="single-product.html" class="hero__link-1 btn btn-lg btn-color"><span>Shop the trend</span></a>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <!-- end owl -->
+    </section> 
+    <!-- end hero slider -->
+
+    <!-- Features -->
+    <div class="container" style="position: relative; left:158px">
+      <div class="row justify-content-center">
+        <div class="col-md-3 feature">
+          <i class="ui-cube feature__icon"></i>
+          <div class="feature__holder">
+            <h6 class="feature__title">Free Shipping</h6>
+            <span class="feature__text">On orders over $100</span>
+          </div>            
+        </div>
+        <div class="col-md-3 feature">
+          <i class="ui-plane feature__icon"></i>
+          <div class="feature__holder">
+            <h6 class="feature__title">Fast Delivery</h6>
+            <span class="feature__text">Get your item within 1 week</span>
+          </div>
+        </div>
+        <div class="col-md-3 feature">
+          <i class="ui-pricetag feature__icon"></i>
+          <div class="feature__holder">
+            <h6 class="feature__title"><span class="feature__promo">50% Off</span> winter sale</h6>
+            <span class="feature__text">Use code Namira50</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Features -->
+
+    <!-- Best Seller -->
+    <section class="section-wrap pb-30">
+      <div class="container">
+        <div class="heading-row">
+          <div class="text-center">
+            <h2 class="heading bottom-line">best seller</h2>
+          </div>
+        </div>
+
+        <div class="row row-8">
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_11.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_11.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Floral Mini Strappy</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$15.99</span>
+              </ins>
+              <del>
+                <span>$27.00</span>
+              </del>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_12.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_12.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Hooded Jacket</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$34.00</span>
+              </ins>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_5.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_5.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Maxi dress</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$19.00</span>
+              </ins>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_6.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_6.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Casual Jacket</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$17.99</span>
+              </ins>
+              <del>
+                <span>$30.00</span>
+              </del>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_7.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_7.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Bounce Elegant Dress</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$15.99</span>
+              </ins>
+              <del>
+                <span>$27.00</span>
+              </del>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_8.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_8.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Classic White Tailored Shirt</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$19.99</span>
+              </ins>
+              <del>
+                <span>$32.00</span>
+              </del>
+            </span>
+          </div> 
+          <!-- end product -->
+        </div> 
+        <!-- end row -->
+      </div> 
+      <!-- end container -->
+      <div align="center">
+      	<p><a href="#">View more ... </a></p>
+      </div>
+    </section> 
+    <!-- end best seller -->
+
+    <!-- New Arrivals -->
+    <section class="section-wrap no-padding">
+      <div class="container">
+        <div class="heading-row">
+          <div class="text-center">
+            <h2 class="heading bottom-line">New arrivals</h2>
+          </div>
+        </div>
+
+        <div class="row row-8">
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_1.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_1.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Joeby Tailored Trouser</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$17.99</span>
+              </ins>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_9.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_9.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Men’s Belt</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$9.90</span>
+              </ins>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_10.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_10.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Sport Hi Adidas</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$29.00</span>
+              </ins>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_2.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_2.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Denim Hooded</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$30.00</span>
+              </ins>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_3.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_3.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Mint Maxi Dress</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$17.99</span>
+              </ins>
+              <del>
+                <span>$30.00</span>
+              </del>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link" aria-label="Product">
+                <img src="img/shop/product_4.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_4.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">White Flounce Dress</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$15.99</span>
+              </ins>
+              <del>
+                <span>$27.00</span>
+              </del>
+            </span>
+          </div> 
+          <!-- end product -->
+    
+        </div> 
+        <!-- end row -->
+      </div> 
+      <!-- end container -->
+      <div align="center">
+      	<p><a href="#">View more ... </a></p>
+      </div>
+    </section> 
+    <!-- end new arrivals -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-lg-8">
+              <div class="footer-column pull-left">
+                <h4>CUSTOMMER SERVICE</h4>
+                <ul class="links">
+                  <li class="first"><a href="#" title="Contact us">My Account</a></li>
+                  <li><a href="#" title="About us">Order History</a></li>
+                  <li><a href="#" title="faq">FAQ</a></li>
+                  <li><a href="#" title="Popular Searches">Specials</a></li>
+                  <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
+                </ul>
+              </div>
+              <div class="footer-column pull-left">
+                <h4>Corporation</h4>
+                <ul class="links">
+                  <li class="first"><a title="Your Account" href="#">About us</a></li>
+                  <li><a title="Information" href="#">Customer Service</a></li>
+                  <li><a title="Addresses" href="#">Company</a></li>
+                  <li><a title="Addresses" href="#">Investor Relations</a></li>
+                  <li class="last"><a title="Orders History" href="#">Advanced Search</a></li>             
+                </ul>
+              </div>
+              <div class="footer-column pull-left">
+                <h4>Why choose Us</h4>
+                <ul class="links">
+                  <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
+                  <li><a href="#" title="Company">Company</a></li>
+                  <li><a href="#" title="Investor Relations">Investor Relations</a></li>
+                  <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xs-12 col-lg-4">
+              <div class="footer-column-last">
+                <div class="newsletter-wrap">
+                  <h4>Sign up for emails</h4>
+                  <form id="newsletter-validate-detail" method="post" action="#">
+                    <div id="container_form_news">
+                      <div id="container_form_news2">
+                        <input type="text" class="input-text required-entry validate-email" value="Enter your email address" onFocus=" this.value='' " title="Sign up for our newsletter" id="newsletter" name="email">
+                      <!-- HERE. ONE BOX OR WINDOW NEEDED. SHOW SOME REACTION. -->
+                        <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <br>
+                <div class="social">
+                  <h4>Follow Us</h4>
+                  <ul class="link">
+                    <li class="fb pull-left"><a href="#"></a></li>
+                    <li class="tw pull-left"><a href="#"></a></li>
+                    <li class="googleplus pull-left"><a href="#"></a></li>
+                    <li class="rss pull-left"><a href="#"></a></li>
+                    <li class="pintrest pull-left"><a href="#"></a></li>
+                    <li class="linkedin pull-left"><a href="#"></a></li>
+                    <li class="youtube pull-left"><a href="#"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="images/logo.png"></div>
+          <address>
+            <!-- CHANGE THE ADDRESS AND CONTACT INFORMATION!!! -->
+            <i class="fa fa-map-marker"></i>ThemesGround, 789 Main rd, Anytown, CA 12345  USA <i class="fa fa-mobile"></i><span> +(888) 123-4567</span> <i class="fa fa-envelope"></i><span> superb@themesground.com</span>
+          </address>
+        </div>
+      </div>
+    
+      <!-- COPYRIGHT -->
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 coppyright">Copyright &copy; 2018. All rights reserved.</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer --> 
+
+    <div id="back-to-top">
+      <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
+    </div>
+
+  </main> 
+  <!-- end main-wrapper -->
+</div>
+
+<!-- jQuery Scripts -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/easing.min.js"></script>
+<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="js/owl-carousel.min.js"></script>  
+<script type="text/javascript" src="js/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="js/modernizr.min.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+
+</body>
+</html>
