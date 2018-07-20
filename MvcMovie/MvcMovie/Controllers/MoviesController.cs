@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MvcMovie.Models;
+using Oracle.ManagedDataAccess.Client;
+using MvcMovie.DAL;
 
 namespace MvcMovie.Controllers
 {
