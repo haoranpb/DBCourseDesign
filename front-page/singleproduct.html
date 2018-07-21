@@ -1,0 +1,799 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Single Product</title>
+
+  <meta charset="utf-8">
+  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="">
+
+  <!-- Google Fonts -->
+  <link href='http://fonts.googleapis.com/css?family=Questrial:400%7CMontserrat:300,400,700,700i' rel='stylesheet'>
+
+  <!-- Css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all">
+	<link rel="stylesheet" type="text/css" href="css/simple-line-icons.css" media="all">
+	<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="css/owl.theme.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
+	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-menu.css">
+	<link rel="stylesheet" type="text/css" href="css/revslider.css" >
+	<link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/font-icons.css" />
+  <link rel="stylesheet" href="css/styleshop.css" />
+  <link rel="stylesheet" href="css/color.css" />
+</head>
+
+<body>
+<!-- Preloader -->
+<div class="loader-mask">
+  <div class="loader">
+    <div></div>
+  </div>
+</div>
+  
+<div id="page"> 
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="header-top">
+        <div class="container">
+          <div class="row"> 
+            <!-- Header Language -->
+            <div class="col-xs-7 col-sm-6">
+              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="images/english.png" alt="language"> English <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/english.png" alt="language"> English </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/francais.png" alt="language"> French </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/german.png" alt="language"> German </a></li>
+                </ul>
+              </div>
+              <!-- End Header Language --> 
+              
+              <!-- Header Currency -->
+              <div class="dropdown block-currency-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
+                </ul>
+              </div>
+              <!-- End Header Currency -->
+              
+              <div class="welcome-msg hidden-xs"> Welcome to Vibranium! </div>
+            </div>
+            <div class="col-xs-5 col-sm-6"> 
+              <div class="top-cart-contain pull-right"> 
+                <!-- Top Cart -->
+                <div class="mini-cart">
+                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
+                    <div>
+                      <div class="top-cart-content" style="display: none;">
+                        <div class="actions">
+                          <!-- THIS VIEWCART BUTTON CAN SWITCH THE PAGES. -->
+                          <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
+                          <a href="#" class="view-cart" ><span>View Cart</span></a>
+                        </div>
+                        <!--block-subtitle-->
+                        <ul class="mini-products-list" id="cart-sidebar">
+                          <li class="item first">
+                            <div class="item-inner">
+                              <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="products-images/p4.jpg"></a>
+                              <div class="product-details">
+                                <div class="access">
+                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+                                </div>
+                                <!--access-->
+                                <strong>1</strong> x <span class="price">$179.99</span>
+                                <p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item last">
+                            <div class="item-inner">
+                              <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="products-images/p3.jpg"></a>
+                              <div class="product-details">
+                                <div class="access">
+                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+                                </div>
+                                <!--access-->
+                                <strong>1</strong> x <span class="price">$80.00</span>
+                                <p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      <!--actions--> 
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Top Cart -->
+                  <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
+                    <input value="" type="hidden">
+                    <input id="enable_module" value="1" type="hidden">
+                    <input class="effect_to_cart" value="1" type="hidden">
+                    <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
+                  </div>
+                </div>
+          
+                <div class="top-search">
+                  <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
+                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="images/interstitial-close.png" alt="close"> </button>
+                          </div>
+                          <div class="modal-body">
+                            <form class="navbar-form">
+                              <div id="search">
+                                <div class="input-group">
+                                  <input name="search" placeholder="Search" class="form-control" type="text">
+                                  <!-- SEARCH BUTTON. SWITCH TO INPUT TYPE PRODUCTS -->
+                                  <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>                 
+                 <!-- Header Top Links -->
+                <div class="toplinks">
+                  <div class="links">    
+                    <!-- SWITCH TO MY ACCOUNT DETAILS. -->          
+                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">My Account</span></a></div>
+                  </div>           
+                </div>
+                <!-- End Header Top Links -->      
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </header>
+  <!-- end header --> 
+
+  <main class="main oh" id="main">
+    <!-- Navigation -->
+    <header class="nav" style="position:relative; top:-64px;">
+      <div class="nav__holder nav--sticky" style="height: 64px">
+        <div class="container relative">
+          <div class="flex-parent">
+
+            <!-- Mobile Menu Button -->
+            <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open mobile menu">
+              <span class="nav-icon-toggle__box">
+                <span class="nav-icon-toggle__inner"></span>
+              </span>
+            </button> <!-- end mobile menu button -->
+
+            <!-- Logo -->
+            <a href="index.html" class="logo" style="position: relative;top:-4px;left: 20px">
+              <img class="logo__img" src="img/logo_light.png" alt="logo">
+            </a>
+
+            <!-- Nav-wrap -->
+            <nav class="flex-child nav__wrap d-none d-lg-block" style="vertical-align: center">              
+              <ul class="nav__menu">
+
+                <li class="nav__dropdown active">
+                  <a href="catalog.html">Men</a>
+                  <ul class="nav__dropdown-menu">
+                    <li><a href="#">T-shirt</a></li>
+                    <li><a href="#">Hoodie &amp; Jackets</a></li>
+                    <li><a href="#">Suits</a></li>
+                    <li><a href="#">Shorts</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav__dropdown">
+                  <a href="catalog.html">Women</a>
+                  <ul class="nav__dropdown-menu">
+                    <li><a href="#">Underwear</a></li>
+                    <li><a href="#">Hipster</a></li>
+                    <li><a href="#">Dress</a></li>
+                    <li><a href="#">Hoodie &amp; Jackets</a></li>
+                    <li><a href="#">Tees</a></li>
+                  </ul>
+                </li>
+
+                <li class="nav__dropdown">
+                  <a href="#">News</a>
+                  <ul class="nav__dropdown-menu">
+                    <li><a href="#">Blog Standard</a></li>
+                    <li><a href="#">Single Post</a></li>
+                  </ul>
+                </li>
+                
+                <li class="nav__dropdown">
+                  <a href="#">Pages</a>
+                  <ul class="nav__dropdown-menu">
+                    <li><a href="catalog.html">Catalog</a></li>
+                    <li><a href="single-product.html">Single Product</a></li>
+                    <li><a href="#">Cart</a></li>
+                    <li><a href="#">Checkout</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                  </ul>
+                </li>
+
+              </ul> <!-- end menu -->
+            </nav> <!-- end nav-wrap -->
+
+
+            <!-- Search -->
+            <div class="flex-child nav__search d-none d-lg-block" style="position: relative;top: 10px">
+              <form method="get" class="nav__search-form">
+                <input type="search" class="nav__search-input" placeholder="Search">
+                <button type="submit" class="nav__search-submit">
+                  <i class="ui-search"></i>
+                </button>
+              </form>
+            </div>
+          </div> 
+          <!-- end flex-parent -->
+        </div> 
+        <!-- end container -->
+      </div>
+    </header> 
+    <!-- end navigation -->
+
+    <!-- Single Product -->
+    <section class="section-wrap pb-20 product-single" style="position: relative; top: -88px">
+      <div class="container">
+
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumbs">
+          <li>
+            <a href="index.html">Home</a>
+          </li>
+          <li>
+            <a href="index.html">Women</a>
+          </li>
+          <li class="active">
+            Casual Jacket
+          </li>
+        </ol>
+
+        <div class="row">
+
+          <div class="col-md-6 product-slider mb-50">
+
+            <div class="flickity flickity-slider-wrap mfp-hover" id="gallery-main">
+
+              <div class="gallery-cell">
+                <a href="img/shop/item_lg_1.jpg" class="lightbox-img">
+                  <img src="img/shop/item_lg_1.jpg" alt="" />
+                </a>
+              </div>
+              <div class="gallery-cell">
+                <a href="img/shop/item_lg_2.jpg" class="lightbox-img">
+                  <img src="img/shop/item_lg_2.jpg" alt="" />
+                </a>
+              </div>
+              <div class="gallery-cell">
+                <a href="img/shop/item_lg_3.jpg" class="lightbox-img">
+                  <img src="img/shop/item_lg_3.jpg" alt="" />
+                </a>
+              </div>
+              <div class="gallery-cell">
+                <a href="img/shop/item_lg_4.jpg" class="lightbox-img">
+                  <img src="img/shop/item_lg_4.jpg" alt="" />
+                </a>
+              </div>
+              <div class="gallery-cell">
+                <a href="img/shop/item_lg_5.jpg" class="lightbox-img">
+                  <img src="img/shop/item_lg_5.jpg" alt="" />
+                </a>
+              </div>
+            </div> <!-- end gallery main -->
+
+            <div class="gallery-thumbs" id="gallery-thumbs">
+              <div class="gallery-cell">
+                <img src="img/shop/item_thumb_1.jpg" alt="" />
+              </div>
+              <div class="gallery-cell">
+                <img src="img/shop/item_thumb_2.jpg" alt="" />
+              </div>
+              <div class="gallery-cell">
+                <img src="img/shop/item_thumb_3.jpg" alt="" />
+              </div>
+              <div class="gallery-cell">
+                <img src="img/shop/item_thumb_4.jpg" alt="" />
+              </div>
+              <div class="gallery-cell">
+                <img src="img/shop/item_thumb_5.jpg" alt="" />
+              </div>
+            </div> <!-- end gallery thumbs -->
+
+          </div> <!-- end col img slider -->
+
+          <div class="col-md-6 product-single">
+            <h1 class="product-single__title uppercase">Casual jacket</h1>
+
+            <div class="rating">
+              <a href="#">3 Reviews</a>
+            </div>
+
+            <span class="product-single__price">
+              <ins>
+                <span class="amount">$17.99</span>
+              </ins>
+              <del>
+                <span>$30.00</span>
+              </del>
+            </span>            
+
+            <div class="colors clearfix">
+              <span class="colors__label">Color: <span class="colors__label-selected">Fadaed Blue</span></span>
+              <a href="#" class="colors__item colors__item--selected blue"></a>
+              <a href="#" class="colors__item black"></a>
+              <a href="#" class="colors__item pink"></a>
+            </div>
+
+            <div class="size-quantity clearfix">
+              <div class="size">
+                <label>Size</label>
+                <select name="size" id="size__select" class="size__select">
+                  <option value="xs">XS</option>
+                  <option value="s">S</option>
+                  <option value="m">M</option>
+                  <option value="l">L</option>
+                  <option value="xl">XL</option>
+                </select>
+              </div>
+              
+              <div class="quantity">
+                <label>Quantity</label>                 
+                <select name="quantity" id="quantity__select" class="quantity__select">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+            </div>            
+
+            <div class="row row-10 product-single__actions clearfix">
+              <div class="col">
+                <a href="#" class="btn btn-lg btn-color product-single__add-to-cart">
+                  <i class="ui-bag"></i>
+                  <span>Add to Cart</span>
+                </a>
+              </div>
+              <div class="col">
+                <a href="#" class="btn btn-lg btn-dark product-single__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>            
+
+            <div class="product_meta">
+              <ul>
+                <li>
+                  <span class="product-code">Product Code: <span>111763</span></span>
+                </li>
+                <li>
+                  <span class="product-material">Material: <span>Cotton 100%</span></span>
+                </li>
+                <li>
+                  <span class="product-country">Country: <span>Made in Canada</span></span>
+                </li>
+              </ul>                              
+            </div>
+
+            <!-- Accordion -->
+            <div class="accordion mb-50" id="accordion">
+              <div class="accordion__panel">
+                <div class="accordion__heading" id="headingOne">
+                  <a data-toggle="collapse" href="#collapseOne" class="accordion__link accordion--is-closed" aria-expanded="false" aria-controls="collapseOne">Description<span class="accordion__toggle">&nbsp;</span>
+                  </a>
+                </div>
+                <div id="collapseOne" class="collapse" data-parent="#accordion" role="tabpanel" aria-labelledby="headingOne">
+                  <div class="accordion__body">
+                    Namira is a very slick and clean e-commerce template with endless possibilities. Creating an awesome clothes store with this Theme is easy than you can imagine.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion__panel">
+                <div class="accordion__heading" id="headingTwo">
+                  <a data-toggle="collapse" href="#collapseTwo" class="accordion__link accordion--is-closed" aria-expanded="false" aria-controls="collapseTwo">Information<span class="accordion__toggle">&nbsp;</span>
+                  </a>
+                </div>
+                <div id="collapseTwo" class="collapse" data-parent="#accordion" role="tabpanel" aria-labelledby="headingTwo">
+                  <div class="accordion__body">
+                    <table class="table shop_attributes">
+                      <tbody>
+                        <tr>
+                          <th>Size:</th>
+                          <td>EU 41 (US 8), EU 42 (US 9), EU 43 (US 10), EU 45 (US 12)</td>
+                        </tr>
+                        <tr>
+                          <th>Colors:</th>
+                          <td>Violet, Black, Blue</td>
+                        </tr>
+                        <tr>
+                          <th>Fabric:</th>
+                          <td>Cotton (100%)</td>
+                        </tr>                                     
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion__panel">
+                <div class="accordion__heading" id="headingThree">
+                  <a data-toggle="collapse" href="#collapseThree" class="accordion__link accordion--is-closed" aria-expanded="false" aria-controls="collapseThree">Reviews<span class="accordion__toggle">&nbsp;</span>
+                  </a>
+                </div>
+                <div id="collapseThree" class="collapse" data-parent="#accordion" role="tabpanel" aria-labelledby="headingThree">
+                  <div class="accordion__body">
+                    <div class="reviews">
+                      <ul class="reviews__list">
+                        <li class="reviews__list-item">
+                          <div class="reviews__body">
+                            <div class="reviews__content">
+                              <p class="reviews__author"><strong>Alexander Samokhin</strong> - May 6, 2017 at 12:48 pm</p>
+                              <div class="rating">
+                                <a href="#"></a>
+                              </div>
+                              <p>This template is so awesome. I didn’t expect so many features inside. E-commerce pages are very useful, you can launch your online store in few seconds. I will rate 5 stars.</p>
+                            </div>
+                          </div>
+                        </li>
+
+                        <li class="reviews__list-item">
+                          <div class="reviews__body">
+                            <div class="reviews__content">
+                              <p class="reviews__author"><strong>Christopher Robins</strong> - May 7, 2014 at 12:48 pm</p>
+                              <div class="rating">
+                                <a href="#"></a>
+                              </div>
+                              <p>This template is so awesome. I didn’t expect so many features inside. E-commerce pages are very useful, you can launch your online store in few seconds. I will rate 5 stars.</p>
+                            </div>
+                          </div>
+                        </li>
+
+                      </ul>         
+                    </div> <!--  end reviews -->
+                  </div>
+                </div>
+              </div>
+            </div> <!-- end accordion -->
+
+          </div> <!-- end col product description -->
+        </div> <!-- end row -->
+       
+      </div> <!-- end container -->
+    </section> <!-- end single product -->
+
+
+    <!-- Related Products -->
+    <section class="section-wrap pt-0 pb-40">
+      <div class="container">
+
+        <div class="heading-row">
+          <div class="text-center">
+            <h2 class="heading bottom-line">
+              Shop the look
+            </h2>
+          </div>
+        </div>
+
+        <div class="row row-8">
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link">
+                <img src="img/shop/product_1.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_1.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Joeby Tailored Trouser</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$17.99</span>
+              </ins>
+            </span>
+          </div> <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link">
+                <img src="img/shop/product_9.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_9.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Men’s Belt</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$9.90</span>
+              </ins>
+            </span>
+          </div> <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link">
+                <img src="img/shop/product_10.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_10.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Sport Hi Adidas</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$29.00</span>
+              </ins>
+            </span>
+          </div> <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link">
+                <img src="img/shop/product_2.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_2.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Denim Hooded</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$30.00</span>
+              </ins>
+            </span>
+          </div> <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link">
+                <img src="img/shop/product_3.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_3.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">Mint Maxi Dress</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$17.99</span>
+              </ins>
+              <del>
+                <span>$30.00</span>
+              </del>
+            </span>
+          </div> <!-- end product -->
+
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a href="single-product.html" class="product__link">
+                <img src="img/shop/product_4.jpg" alt="" class="product__img">
+                <img src="img/shop/product_back_4.jpg" alt="" class="product__img-back">
+              </a>
+              <div class="product__actions">
+                <a href="#" class="product__quickview">
+                  <i class="ui-eye"></i>
+                  <span>Quick View</span>
+                </a>
+                <a href="#" class="product__add-to-wishlist">
+                  <i class="ui-heart"></i>
+                  <span>Wishlist</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="product__details">
+              <h3 class="product__title">
+                <a href="single-product.html">White Flounce Dress</a>
+              </h3>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span class="amount">$15.99</span>
+              </ins>
+              <del>
+                <span>$27.00</span>
+              </del>
+            </span>
+          </div> <!-- end product -->
+    
+        </div> <!-- end row -->
+      </div> <!-- end container -->
+    </section> <!-- end related products -->
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 col-lg-8">
+            <div class="footer-column pull-left">
+              <h4>CUSTOMMER SERVICE</h4>
+              <ul class="links">
+                <li class="first"><a href="#" title="Contact us">My Account</a></li>
+                <li><a href="#" title="About us">Order History</a></li>
+                <li><a href="#" title="faq">FAQ</a></li>
+                <li><a href="#" title="Popular Searches">Specials</a></li>
+                <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
+              </ul>
+            </div>
+            <div class="footer-column pull-left">
+              <h4>Corporation</h4>
+              <ul class="links">
+                <li class="first"><a title="Your Account" href="#">About us</a></li>
+                <li><a title="Information" href="#">Customer Service</a></li>
+                <li><a title="Addresses" href="#">Company</a></li>
+                <li><a title="Addresses" href="#">Investor Relations</a></li>
+                <li class="last"><a title="Orders History" href="#">Advanced Search</a></li>             
+              </ul>
+            </div>
+            <div class="footer-column pull-left">
+              <h4>Why choose Us</h4>
+              <ul class="links">
+                <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
+                <li><a href="#" title="Company">Company</a></li>
+                <li><a href="#" title="Investor Relations">Investor Relations</a></li>
+                <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-12 col-lg-4">
+            <div class="footer-column-last">
+              <div class="newsletter-wrap">
+                <h4>Sign up for emails</h4>
+                <form id="newsletter-validate-detail" method="post" action="#">
+                  <div id="container_form_news">
+                    <div id="container_form_news2">
+                      <input type="text" class="input-text required-entry validate-email" value="Enter your email address" onFocus=" this.value='' " title="Sign up for our newsletter" id="newsletter" name="email">
+                      <!-- HERE. ONE BOX OR WINDOW NEEDED. SHOW SOME REACTION. -->
+                      <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <br>
+              <div class="social">
+                <h4>Follow Us</h4>
+                <ul class="link">
+                  <li class="fb pull-left"><a href="#"></a></li>
+                  <li class="tw pull-left"><a href="#"></a></li>
+                  <li class="googleplus pull-left"><a href="#"></a></li>
+                  <li class="rss pull-left"><a href="#"></a></li>
+                  <li class="pintrest pull-left"><a href="#"></a></li>
+                  <li class="linkedin pull-left"><a href="#"></a></li>
+                  <li class="youtube pull-left"><a href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="images/logo.png"></div>
+        <address>
+        	<!-- CHANGE THE ADDRESS AND CONTACT INFORMATION!!! -->
+          <i class="fa fa-map-marker"></i>ThemesGround, 789 Main rd, Anytown, CA 12345  USA <i class="fa fa-mobile"></i><span> +(888) 123-4567</span> <i class="fa fa-envelope"></i><span> superb@themesground.com</span>
+        </address>
+      </div>
+    </div>
+    
+    <!-- COPYRIGHT -->
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 coppyright">Copyright &copy; 2018. All rights reserved.</div>
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End Footer --> 
+
+    <div id="back-to-top">
+      <a href="#top"><i class="ui-arrow-up"></i></a>
+    </div>
+
+  </main> <!-- end main-wrapper -->
+</div>  
+  <!-- jQuery Scripts -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/easing.min.js"></script>
+  <script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
+  <script type="text/javascript" src="js/owl-carousel.min.js"></script>  
+  <script type="text/javascript" src="js/flickity.pkgd.min.js"></script>
+  <script type="text/javascript" src="js/modernizr.min.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+
+</body>
+</html>
