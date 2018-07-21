@@ -38,7 +38,8 @@
 				$.get(urlstr, { "id": name, "psw": pswd }, function (xml, textStatus, xhr) {
 					if (xhr.status == 200)
 						$(window).attr('location', '../HomePage/Index');
-					
+					else
+						alert("Please check your password and username ");
 					// return data.
 					// if success, no further action.
 					// else, alert, current page. double check and try again.
@@ -53,7 +54,7 @@
 		<h1>Log in to Vibranium</h1>
 		<div class="inset">
 			<p>
-				<label for="email">Phone Number</label>
+				<label for="email">Username</label>
 				<input type="text" name="email" id="usrn">
 			</p>
 			<p>

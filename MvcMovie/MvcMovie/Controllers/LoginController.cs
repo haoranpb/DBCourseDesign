@@ -21,13 +21,23 @@ namespace MvcMovie.Controllers
         ///Login/Register
         public ActionResult Register()//注册页面
         {
-            return View();
+            return PartialView();
         }
 
         //get:/Login/ConfirmRegister?id=xx&age=xx&psw=xx&gender=xx&phone=xx&credit=xx
-        public ActionResult ConfirmRegister(string id, int age, string psw, string gender, string phone, string credit)//传入注册的参数
+        public ActionResult ConfirmRegister()//传入注册的参数
         {
-           
+            string id = Request.QueryString["username"];
+            string phone = Request.QueryString["phonenum"];
+            string psw = Request.QueryString["password"];
+            
+            
+            //这里如果前端改的有了credit和gender传入的话把这里改成request.querystring[xxx]
+            string credit = "";
+            string gender = "";
+            int age = 0;
+
+
             //判断id是否重复
             Customer customer = db.Customers.Find(id);//在数据库中查找id
             if (customer != null) return HttpNotFound();//找到的话，以前注册过，注册失败
@@ -44,7 +54,10 @@ namespace MvcMovie.Controllers
             db.Customers.Add(cus);
             db.SaveChanges();
             ViewBag.id = id;
-            return RedirectToRoute("");//跳转到主界面
+            Response.StatusCode = 200;
+            Response.End();
+            EmptyResult empty = new EmptyResult();
+            return empty;//跳转到主界面，这个逻辑在前端实现
 
         }
 

@@ -52,16 +52,7 @@ namespace MvcMovie.Controllers
             //else return Content("fail");
         }
 
-        //GET: Goodsp/Pix?ID=X 
-        //返回商品图片
-        public ActionResult Pix(string ID)
-        {
-            FileStream fs = new FileStream(Server.MapPath(@"/Images/" + ID + ".jpg"), FileMode.Open, FileAccess.Read);
-            byte[] buffer = new byte[Convert.ToInt32(fs.Length)];
-            fs.Read(buffer, 0, Convert.ToInt32(fs.Length));
-            string contentType = "image/jpeg";
-            return File(buffer, contentType);
-        }
+        
     }
 
 }
