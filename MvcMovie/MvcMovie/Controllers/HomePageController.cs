@@ -12,7 +12,7 @@ using MvcMovie.DAL;
 
 namespace MvcMovie.Controllers
 {
-    public class HomePageController : Controller
+    public class HomePagesController : Controller
     {
         private MovieDBContext db = new MovieDBContext();
 
@@ -34,8 +34,13 @@ namespace MvcMovie.Controllers
             if (shop == null)
             {
                 return HttpNotFound();
+<<<<<<< HEAD
             }
             string url = string.Join("~/Shop/Index", id);
+=======
+            }
+            string url = string.Join("~/Shop/Index", id);
+>>>>>>> fe54a95606e1b40a0a4cd8c84b9cd714ef2c6773
             return RedirectToRoute("url & ID = user_id");
         }
 
@@ -48,8 +53,13 @@ namespace MvcMovie.Controllers
             if (item == null)
             {
                 return HttpNotFound();
+<<<<<<< HEAD
             }
             string url = string.Join("~/Item/Index", id);
+=======
+            }
+            string url = string.Join("~/Item/Index", id);
+>>>>>>> fe54a95606e1b40a0a4cd8c84b9cd714ef2c6773
             return RedirectToRoute("url & ID = user_id");
         }
 
@@ -61,6 +71,7 @@ namespace MvcMovie.Controllers
             if (shop == null)
             {
                 return HttpNotFound();
+<<<<<<< HEAD
             }
             ViewBag.Name = shop.ShopName;
             ViewBag.ShopID = shop.ShopID;
@@ -68,6 +79,15 @@ namespace MvcMovie.Controllers
             ViewBag.Level = shop.SalerCredit;
 
             string url = string.Join("~/Shop/Index", name);
+=======
+            }
+            ViewBag.Name = shop.ShopName;
+            ViewBag.ShopID = shop.ShopID;
+            ViewBag.Saler = shop.SalerID;
+            ViewBag.Level = shop.SalerCredit;
+
+            string url = string.Join("~/Shop/Index", name);
+>>>>>>> fe54a95606e1b40a0a4cd8c84b9cd714ef2c6773
             return RedirectToRoute("url & ID = user_id");
         }
 
@@ -79,6 +99,7 @@ namespace MvcMovie.Controllers
             if (item == null)
             {
                 return HttpNotFound();
+<<<<<<< HEAD
             }
             ViewBag.GID = item.ItemID;
             ViewBag.SID = item.ShopID;
@@ -90,6 +111,19 @@ namespace MvcMovie.Controllers
             ViewBag.Quanity = item.ItemRemain;
 
             string url = string.Join("~/Item/Index", name);
+=======
+            }
+            ViewBag.GID = item.ItemID;
+            ViewBag.SID = item.ShopID;
+            ViewBag.Price = item.ItemPrice;
+            ViewBag.Name = item.ItemPrice;
+            ViewBag.Info = item.ItemInfo;
+            ViewBag.Pic = item.ItemPic;
+            ViewBag.Sale = item.ItemSales;
+            ViewBag.Quanity = item.ItemRemain;
+
+            string url = string.Join("~/Item/Index", name);
+>>>>>>> fe54a95606e1b40a0a4cd8c84b9cd714ef2c6773
             return RedirectToRoute("url & ID = user_id");
         }
     }
