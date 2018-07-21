@@ -12,50 +12,49 @@ using MvcMovie.DAL;
 
 namespace MvcMovie.Controllers
 {
-    public class HomePagesController : Controller
+    public class HomePageController : Controller
     {
         private MovieDBContext db = new MovieDBContext();
 
         // GET: Recommend
-        // 
+        // Home页面
         public ActionResult Index()
         {
             ViewBag.Message = "Vibranium Home Page.";
 
-            return View();
+            return PartialView();
         }
 
         // GET: Recommend/Shop
-        public ActionResult ShopInfo(int? id)
+        // 点击进入店铺页
+        public ActionResult ShopInfo(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            string user_id = ViewBag.ID;
             Shop shop = db.Shops.Find(id);
             if (shop == null)
             {
                 return HttpNotFound();
             }
-            return View();
+            string url = string.Join("~/Shop/Index", id);
+            return RedirectToRoute("url & ID = user_id");
         }
 
         // GET: Recommend/Goods
-        public ActionResult GoodsInfo(int? id)
+        // 点击进入商品页
+        public ActionResult ItemInfo(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            string user_id = ViewBag.ID;
             Item item = db.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
             }
-            return View();
+            string url = string.Join("~/Item/Index", id);
+            return RedirectToRoute("url & ID = user_id");
         }
 
         // GET: Recommend/SearchShop
+        // 搜索店铺
         public ActionResult SearchShop(string name)
         {
             Shop shop = db.Shops.Find(name);
@@ -63,31 +62,35 @@ namespace MvcMovie.Controllers
             {
                 return HttpNotFound();
             }
-            var ShopInfo = new { Name = Shop.ShopName, ID = Shop.ShopID,
-                Saler = Shop.SalerID, Level = Shop.SalerCredit };
-            return Json(ShopInfo);
+            ViewBag.Name = shop.ShopName;
+            ViewBag.ShopID = shop.ShopID;
+            ViewBag.Saler = shop.SalerID;
+            ViewBag.Level = shop.SalerCredit;
+
+            string url = string.Join("~/Shop/Index", name);
+            return RedirectToRoute("url & ID = user_id");
         }
 
         // GET: Recommend/SearchGoods
+        // 搜索商品
         public ActionResult SearchGoods(string name)
         {
             Item item = db.Items.Find(name);
-            if (goods == null)
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            var GoodsInfo = new
-            {
-                GID = Item.ItemID,
-                SID = Item.ShopID,
-                Price = Item.ItemPrice,
-                Name = Item.ItemPrice,
-                Info = Item.ItemInfo,
-                Pic = Item.ItemPic,
-                Sale = Item.Sales,
-                Quanity = Item.Remain
-            };
-            return Json(GoodsInfo);
+            ViewBag.GID = item.ItemID;
+            ViewBag.SID = item.ShopID;
+            ViewBag.Price = item.ItemPrice;
+            ViewBag.Name = item.ItemPrice;
+            ViewBag.Info = item.ItemInfo;
+            ViewBag.Pic = item.ItemPic;
+            ViewBag.Sale = item.ItemSales;
+            ViewBag.Quanity = item.ItemRemain;
+
+            string url = string.Join("~/Item/Index", name);
+            return RedirectToRoute("url & ID = user_id");
         }
     }
 }
