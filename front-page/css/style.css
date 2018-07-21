@@ -825,7 +825,7 @@ ul#cart-sidebar {
 background:#f6f6f6
 }
 .btn-remove1 {
-	background-image: url(../images/btn_remove.png);
+	background-image: url(../Images/images/btn_remove.png);
 	margin: 0px 0 0 5px;
 }
 .btn-remove1:hover, .btn-remove1:focus {
@@ -916,7 +916,7 @@ nav {
 	
 }
 
-.inner-page nav {background:url('../images/slide-img1.jpg') repeat top left ;
+.inner-page nav {background:url('../Images/images/slide-img1.jpg') repeat top left ;
 	height: 170px;  
 }
 
@@ -1958,7 +1958,7 @@ ul.level1 {
 	text-align: center;
 	height: 16px;
 	width: 90px;
-	background:url(../images/seprator.png) no-repeat center center;
+	background:url(../Images/images/seprator.png) no-repeat center center;
 	margin-top:15px
 
 }
@@ -2027,7 +2027,7 @@ ul.level1 {
 .featured-pro {
 	position: relative;
 	margin-top:50px;
-	background:#f2f2f2 url(../images/down-arrow.png) no-repeat top center;
+	background:#f2f2f2 url(../Images/images/down-arrow.png) no-repeat top center;
 	padding:50px;
 	width:100%
 }
@@ -2308,7 +2308,7 @@ ul.level1 {
 	
 }
 .parallax-2 {
-	background-image: url("../images/parralax-bg2.jpg");
+	background-image: url("../Images/images/parralax-bg2.jpg");
 	padding-top: 55px;
 	padding-bottom: 55px;
 	background-position:bottom
@@ -4176,14 +4176,14 @@ a.button.detail-bnt span {
 	height: 10px;
 	font-size: 0;
 	line-height: 0;
-	background: url(../images/bkg_rating.png) no-repeat;
+	background: url(../Images/images/bkg_rating.png) no-repeat;
 	text-indent: -999em;
 	overflow: hidden;
 }
 .rating-box .rating {
 	float: left;
 	height: 9px;
-	background: url(../images/bkg_rating.png) no-repeat;
+	background: url(../Images/images/bkg_rating.png) no-repeat;
 }
 .ratings .rating-box {
 	display: inline-block;
@@ -4438,7 +4438,7 @@ a.button.detail-bnt span {
 }
 
 .gradient-overlay {
-    background: url(../images/article-header-overlay.png) no-repeat bottom center;
+    background: url(../Images/images/article-header-overlay.png) no-repeat bottom center;
     height:300px;
     width: 100%;
     z-index: 25;
@@ -4890,7 +4890,7 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 	width: 30px;
 }
 ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
-	background: url("../images/leftNav.png") no-repeat scroll 2px 3px;
+	background: url("../Images/images/leftNav.png") no-repeat scroll 2px 3px;
 }
 .side-nav-categories .block-title {
 	color: #d3523d;
@@ -4947,10 +4947,10 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 	opacity: 0.8;
 }
 .box-category .subDropdown.plus {
-	background-image: url("../images/plus.png");
+	background-image: url("../Images/images/plus.png");
 }
 .box-category .subDropdown.minus {
-	background-image: url("../images/minus.png");
+	background-image: url("../Images/images/minus.png");
 }
 .box-category ul li a {
 	padding: 8px 0px;
@@ -6041,23 +6041,23 @@ ol#compare-items li.last {
 }
 /* Category Toolbar, Pager */
 .toolbar .button-list {
-	background: url(../images/icon_list.png) no-repeat 9px 9px;
+	background: url(../Images/images/icon_list.png) no-repeat 9px 9px;
 	text-transform: none;
 	padding: 8px 8px 8px 22px;
 }
 .toolbar a.button-grid {
-	background: url(../images/icon_grid_over.png) no-repeat 11px 9px;
+	background: url(../Images/images/icon_grid_over.png) no-repeat 11px 9px;
 	padding: 8px 8px 8px 22px;
 	border: none
 }
 .toolbar span.button-active.button-grid {
-	background: #C2A476 url(../images/icon_grid_act.png) no-repeat 10px 9px;
+	background: #C2A476 url(../Images/images/icon_grid_act.png) no-repeat 10px 9px;
 	padding: 8px 8px 8px 22px;
 	margin-right: 5px;
 	border: none;
 }
 .toolbar span.button-active.button-list {
-	background: url(../images/icon_list_act.png) no-repeat 10px 9px;
+	background: url(../Images/images/icon_list_act.png) no-repeat 10px 9px;
 	padding: 8px 8px 8px 22px;
 	border: none
 }
@@ -7294,7 +7294,7 @@ button.button.submit:before {
 	right: 10px;
 	text-decoration: none;
 	width: 45px;
-	background: url(../images/to-top-arrow.png) no-repeat center;
+	background: url(../Images/images/to-top-arrow.png) no-repeat center;
 	background-size: 30px 20px;
 	background-color: #C2A476;
 	text-transform: uppercase;
@@ -7427,7 +7427,7 @@ footer {
 	overflow: hidden;
 	color: #fff;
 	padding-top: 50px;
-	background: #000 url(../images/footer-bg.jpg) no-repeat top left;
+	background: #000 url(../Images/images/footer-bg.jpg) no-repeat top left;
 
 }
 footer ul {
@@ -8160,7 +8160,7 @@ header .header-top-links {
 }
 
 .inner-page nav {
-    background: url('../images/slide-img1.jpg') repeat top left;
+    background: url('../Images/images/slide-img1.jpg') repeat top left;
     height: 100px;
 	margin-top:0px
 }
@@ -8226,7 +8226,7 @@ ul#cart-sidebar {
 .slideshow-wrapper .forward {
 	right: 25px !important;
 	top: 25% !important;
-	background: url(../images/slideshow-arrows.png) -85px 0 no-repeat !important;
+	background: url(../Images/images/slideshow-arrows.png) -85px 0 no-repeat !important;
 	width: 15px !important;
 	height: 38px !important;
 }
@@ -9360,7 +9360,7 @@ ul.navmenu {
 .slideshow-wrapper .forward {
 	right: 10px !important;
 	top: 30% !important;
-	background: url(../images/slideshow-arrows.png) -84px 0 no-repeat !important;
+	background: url(../Images/images/slideshow-arrows.png) -84px 0 no-repeat !important;
 	width: 17px !important;
 	height: 45px !important;
 }
@@ -10003,7 +10003,7 @@ ul.slideshow {
 }
 .slideshow-wrapper .forward {
 	top: 37% !important;
-	background: url(../images/slideshow-arrows.png) -79px 0 no-repeat !important;
+	background: url(../Images/images/slideshow-arrows.png) -79px 0 no-repeat !important;
 	width: 22px !important;
 }
 .caption.top-center {
@@ -10589,7 +10589,7 @@ ul.slideshow {
 }
 .slideshow-wrapper .forward {
 	top: 40%;
-	background: url(../images/slideshow-arrows.png) -76px 0 no-repeat;
+	background: url(../Images/images/slideshow-arrows.png) -76px 0 no-repeat;
 	width: 25px;
 }
 .slideshow-wrapper .forward:hover {
@@ -10867,7 +10867,7 @@ ol#compare-items li a.product-name {
     top: 35%;
     width: 620px;
     z-index: 10000;
-    background: url(../images/popup-bg.jpg) no-repeat bottom center;
+    background: url(../Images/images/popup-bg.jpg) no-repeat bottom center;
     margin-left: -325px;
 }
 .popup1 .x {
