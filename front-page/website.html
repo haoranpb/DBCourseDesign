@@ -13,15 +13,15 @@
 <!-- Mobile Specific -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!-- CSS Style -->
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all">
-<link rel="stylesheet" type="text/css" href="css/simple-line-icons.css" media="all">
-<link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="css/owl.theme.css">
-<link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
-<link rel="stylesheet" type="text/css" href="css/jquery.mobile-menu.css">
-<link rel="stylesheet" type="text/css" href="css/revslider.css" >
-<link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
+<link rel="stylesheet" type="text/css" href="~/Content/simple-line-icons.css" media="all">
+<link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="~/Content/owl.theme.css">
+<link rel="stylesheet" type="text/css" href="~/Content/jquery.bxslider.css">
+<link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
+<link rel="stylesheet" type="text/css" href="~/Content/revslider.css" >
+<link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
 
 </head>
 
@@ -35,11 +35,11 @@
           <div class="row"> 
             <!-- Header Language -->
             <div class="col-xs-7 col-sm-6">
-              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="images/english.png" alt="language"> English <span class="caret"></span></a>
+              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/english.png" alt="language"> English </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/francais.png" alt="language"> French </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/german.png" alt="language"> German </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
                 </ul>
               </div>
               <!-- End Header Language --> 
@@ -72,7 +72,7 @@
                         <ul class="mini-products-list" id="cart-sidebar">
                           <li class="item first">
                             <div class="item-inner">
-                              <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="products-images/p4.jpg"></a>
+                              <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="../Images/products-images/p4.jpg"></a>
                               <div class="product-details">
                                 <div class="access">
                                   <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
@@ -86,7 +86,7 @@
                           </li>
                           <li class="item last">
                             <div class="item-inner">
-                              <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="products-images/p3.jpg"></a>
+                              <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
                               <div class="product-details">
                                 <div class="access">
                                   <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
@@ -104,7 +104,8 @@
                     </div>
                   </div>
                   <!-- Top Cart -->
-                  <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
+                  <!-- CART INDEX ID="XXX"-->
+                  <div id="ajaxconfig_info" style="display:none"><a href="../Cart/Index/xxx"></a>
                     <input value="" type="hidden">
                     <input id="enable_module" value="1" type="hidden">
                     <input class="effect_to_cart" value="1" type="hidden">
@@ -118,7 +119,7 @@
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="images/interstitial-close.png" alt="close"> </button>
+                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
                           </div>
                           <div class="modal-body">
                             <form class="navbar-form">
@@ -139,8 +140,9 @@
                  <!-- Header Top Links -->
                 <div class="toplinks">
                   <div class="links">    
-                  	<!-- SWITCH TO MY ACCOUNT DETAILS. -->          
-                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">My Account</span></a></div>
+                  	<!-- SWITCH TO MY ACCOUNT DETAILS. --> 
+                    <!-- PERSONALINFO INDEX ID="XXX" -->         
+                    <div class="myaccount"><a title="My Account" href="../Personalinfo/Index/xxx"><span class="hidden-xs">My Account</span></a></div>
                   </div>           
                 </div>
                 <!-- End Header Top Links -->      
@@ -156,14 +158,14 @@
   <nav>
     <div class="container">
       <!-- Header Logo -->
-      <div class="logo"><a title="Vibra" href="website.html"><img alt="Vibra" src="images/logo.png"></a></div>
+      <div class="logo"><a title="Vibra" href="#"><img alt="Vibra" src="../Images/images/logo.png"></a></div>
       <!-- End Header Logo -->
         <div class="mm-toggle-wrap">
           <div class="mm-toggle"><i class="fa fa-reorder"></i><span class="mm-label">Menu</span> </div>
         </div>
      
         <ul class="nav hidden-xs menu-item menu-item-left">
-          <li class="level0 parent drop-menu active"><a href="index.html"><span>Home</span></a></li>
+          <li class="level0 parent drop-menu active"><a href="#"><span>Home</span></a></li>
           <li class="level0 parent drop-menu"><a href="#"><span>Pages</span> </a>
             <ul class="level1" style="display: none;">
               <li class="level1 first"><a href="#"><span>Grid</span></a></li>
@@ -255,7 +257,7 @@
                   </div>
                     <!--nav-block nav-block-center-->
                   <div class="col-2">
-                    <div class="menu_image"><a href="#" title=""><img src="images/menu_image.png" alt="menu_image"></a></div>
+                    <div class="menu_image"><a href="#" title=""><img src="../Images/images/menu_image.png" alt="menu_image"></a></div>
                   </div>
                 </div>
               <!--level0-wrapper2--> 
@@ -401,9 +403,9 @@
         <div id="rev_slider_4_1" class="rev_slider fullwidthabanner" style="display:none;" data-version="5.0.7">
           <ul>
             <!-- SLIDE  -->
-            <li data-index="rs-16" data-transition="zoomout" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="images/slide-img1.jpg"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-description=""> 
+            <li data-index="rs-16" data-transition="zoomout" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="../Images/images/slide-img1.jpg"  data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off"  data-title="Intro" data-description=""> 
               <!-- MAIN IMAGE --> 
-              <img src="images/slide-img1.jpg" alt=""> 
+              <img src="../Images/images/slide-img1.jpg" alt=""> 
               <!-- LAYERS --> 
               
               <!-- LAYER NR. 1 -->
@@ -505,9 +507,9 @@
             <!-- SLIDE  -->
             
             <!-- SLIDE  -->
-            <li data-index="rs-18" data-transition="zoomin" data-slotamount="7"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="images/slide-img2.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Ken Burns" data-description=""> 
+            <li data-index="rs-18" data-transition="zoomin" data-slotamount="7"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="../Images/images/slide-img2.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="Ken Burns" data-description=""> 
               <!-- MAIN IMAGE --> 
-              <img src="images/slide-img2.jpg"  alt=""> 
+              <img src="../Images/images/slide-img2.jpg"  alt=""> 
               <!-- LAYERS --> 
               
               <!-- LAYER NR. 1 -->
@@ -577,9 +579,9 @@
                   style="z-index: 7; white-space: nowrap;">Lorem ipsum dolor sit amet, consectetur </div>
             </li><!-- nonsense -->
             <!-- SLIDE  -->
-            <li data-index="rs-19" data-transition="zoomout" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="images/video-img.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="HTML5 Video" data-description=""> 
+            <li data-index="rs-19" data-transition="zoomout" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000"  data-thumb="../Images/images/video-img.jpg"  data-rotate="0"  data-saveperformance="off"  data-title="HTML5 Video" data-description=""> 
               <!-- MAIN IMAGE --> 
-              <img src="images/video-img.jpg"  alt=""> 
+              <img src="../Images/images/video-img.jpg"  alt=""> 
               <!-- LAYERS --> 
               
               <!-- BACKGROUND VIDEO LAYER -->
@@ -588,8 +590,8 @@
                   data-volume="mute" 
                   data-videowidth="100%" 
                   data-videoheight="100%" 
-                  data-videomp4="images/bg1.mp4"
-                  data-videowebm="images/bg1.webm"  
+                  data-videomp4="../Images/images/bg1.mp4"
+                  data-videowebm="../Images/images/bg1.webm"  
                   data-videopreload="preload" 
                   data-videoloop="none" 
                   data-forceCover="1" 
@@ -700,9 +702,9 @@
   <div class="promo-section">
     <div class="container">
       <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="images/promo-banner1.jpg"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="images/promo-banner2.jpg"></div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="images/promo-banner3.jpg"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="../Images/images/promo-banner1.jpg"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="../Images/images/promo-banner2.jpg"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"><img alt="promotion banner" src="../Images/images/promo-banner3.jpg"></div>
       </div>
     </div>
   </div>
@@ -721,7 +723,8 @@
           <div class="item">
             <div class="item-inner">
               <div class="item-img">
-                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/p10.jpg"> </a>
+                <!-- ITEM INDEX ID="XXX" -->
+                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="../Item/Index/xxx"> <img alt="Retis lapen casen" src="../Images/products-images/p10.jpg"> </a>
                   <div class="new-label new-top-left">new</div>
                   <div class="box-timer">
                       <div class="countbox_2 timer-grid"></div>
@@ -738,7 +741,7 @@
                       <div class="rating-box">
                         <div style="width:80%" class="rating"></div>
                       </div>
-                      <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                      <p class="rating-links"></p>
                     </div>
                   </div>
                 </div>
@@ -746,7 +749,8 @@
               <div class="item-info">
                 <div class="info-inner">
                 	<!-- CHANGE THIS NAME AND PRICE!! -->
-                  <div class="item-title"> <a title="Retis lapen casen" href="#"> Retis lapen casen </a> </div>
+                  <!-- ITEM INDEX ID="XXX" -->
+                  <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index/xxx"> 01 </a> </div>
                   <div class="item-content">
                     <div class="item-price">
                       <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -762,7 +766,8 @@
           <div class="item">
             <div class="item-inner">
               <div class="item-img">
-                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/p11.jpg"> </a>
+                <!-- ITEM INDEX ID="XXX" -->
+                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="../Item/Index/xxx"> <img alt="Retis lapen casen" src="../Images/products-images/p11.jpg"> </a>
                   <div class="actions">
                   	<!-- PRODUCT DETAILS. SWITCH TO ANOTHER PAGE. -->
                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -777,7 +782,7 @@
                       <div class="rating-box">
                         <div style="width:80%" class="rating"></div>
                       </div>
-                      <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                      <p class="rating-links"></p>
                     </div>
                   </div>
                 </div>
@@ -785,7 +790,8 @@
               <div class="item-info">
                 <div class="info-inner">
                 	<!-- NAME AND PRICE -->
-                  <div class="item-title"> <a title="Retis lapen casen" href="#"> Retis lapen casen </a> </div>
+                  <!-- ITEM INDEX ID="XXX" -->
+                  <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index/xxx"> 02 </a> </div>
                   <div class="item-content">
                     <div class="item-price">
                       <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -801,7 +807,8 @@
           <div class="item">
             <div class="item-inner">
               <div class="item-img">
-                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/p12.jpg"> </a>
+                <!-- ITEM INDEX ID="XXX" -->
+                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="../Item/Index/xxx"> <img alt="Retis lapen casen" src="../Images/products-images/p12.jpg"> </a>
                   <div class="sale-label new-top-left">Sale</div>
                   <div class="actions">
                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -816,15 +823,16 @@
                       <div class="rating-box">
                         <div style="width:80%" class="rating"></div>
                       </div>
-                      <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                      <p class="rating-links"></p>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="item-info">
                 <div class="info-inner">
-                	<!-- CHANGE THE STUPID NAME!!!! -->                  
-                	<div class="item-title"> <a title="Retis lapen casen" href="#"> Retis lapen casen </a> </div>
+                	<!-- CHANGE THE STUPID NAME!!!! -->   
+                  <!-- ITEM INDEX ID="XXX" -->               
+                	<div class="item-title"> <a title="Retis lapen casen" href="../Item/Index/xxx"> 03 </a> </div>
                   <div class="item-content">
                     <div class="item-price">
                       <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -840,7 +848,8 @@
           <div class="item">
             <div class="item-inner">
               <div class="item-img">
-                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/p13.jpg"> </a>
+                <!-- ITEM INDEX ID="XXX" -->
+                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="../Item/Index/xxx"> <img alt="Retis lapen casen" src="../Images/products-images/p13.jpg"> </a>
                   <div class="actions">
                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -854,14 +863,15 @@
                       <div class="rating-box">
                         <div style="width:80%" class="rating"></div>
                       </div>
-                      <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                      <p class="rating-links"></p>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="item-info">
                 <div class="info-inner">
-                  <div class="item-title"> <a title="Retis lapen casen" href="#"> Retis lapen casen </a> </div>
+                  <!-- ITEM INDEX ID="XXX" -->
+                  <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index/xxx"> 04 </a> </div>
                   <div class="item-content">
                     <div class="item-price">
                       <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -877,7 +887,8 @@
           <div class="item">
             <div class="item-inner">
               <div class="item-img">
-                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/p14.jpg"> </a>
+                <!-- ITEM INDEX ID="XXX" -->
+                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="../Item/Index/xxx"> <img alt="Retis lapen casen" src="../Images/products-images/p14.jpg"> </a>
                   <div class="actions">
                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -891,14 +902,15 @@
                       <div class="rating-box">
                         <div style="width:80%" class="rating"></div>
                       </div>
-                      <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                      <p class="rating-links"></p>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="item-info">
                 <div class="info-inner">
-                  <div class="item-title"> <a title="Retis lapen casen" href="#"> Retis lapen casen </a> </div>
+                  <!-- ITEM INDEX ID="XXX" -->
+                  <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index/xxx"> 05 </a> </div>
                   <div class="item-content">
                     <div class="item-price">
                       <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -914,7 +926,8 @@
           <div class="item">
             <div class="item-inner">
               <div class="item-img">
-                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/p16.jpg"> </a>
+                <!-- ITEM INDEX ID="XXX" -->
+                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="../Item/Index/xxx"> <img alt="Retis lapen casen" src="../Images/products-images/p16.jpg"> </a>
                   <div class="actions">
                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -928,14 +941,15 @@
                       <div class="rating-box">
                         <div style="width:80%" class="rating"></div>
                       </div>
-                      <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                      <p class="rating-links"></p>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="item-info">
                 <div class="info-inner">
-                  <div class="item-title"> <a title="Retis lapen casen" href="#"> Retis lapen casen </a> </div>
+                  <!-- ITEM INDEX ID="XXX" -->
+                  <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index/xxx"> 06 </a> </div>
                   <div class="item-content">
                     <div class="item-price">
                       <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -951,7 +965,8 @@
           <div class="item">
             <div class="item-inner">
               <div class="item-img">
-                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="#"> <img alt="Retis lapen casen" src="products-images/p10.jpg"> </a>
+                <!-- ITEM INDEX ID="XXX" -->
+                <div class="item-img-info"> <a class="product-image" title="Retis lapen casen" href="../Item/Index/xxx"> <img alt="Retis lapen casen" src="../Images/products-images/p10.jpg"> </a>
                      <div class="actions">
                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -965,14 +980,15 @@
                       <div class="rating-box">
                         <div style="width:80%" class="rating"></div>
                       </div>
-                      <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                      <p class="rating-links"></p>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="item-info">
                 <div class="info-inner">
-                  <div class="item-title"> <a title="Retis lapen casen" href="#"> Retis lapen casen </a> </div>
+                  <!-- ITEM INDEX ID="XXX" -->
+                  <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index/xxx"> 07 </a> </div>
                   <div class="item-content">
                     <div class="item-price">
                       <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -1031,7 +1047,8 @@
                           <li class="item item-animate wide-first">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p5.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p5.jpg" alt="Retis lapen casen"></a>
                        
                                   <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -1046,7 +1063,7 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
@@ -1054,7 +1071,8 @@
                               <div class="item-info">
                                 <div class="info-inner">
                                 	<!-- CHANGE THE NAME!! CHANGE THE NAME!!! -->
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">101</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1067,7 +1085,8 @@
                           <li class="item item-animate">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p6.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p6.jpg" alt="Retis lapen casen"></a>
                       
                                   <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -1082,14 +1101,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">102</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1102,7 +1122,8 @@
                           <li class="item item-animate">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p3.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p3.jpg" alt="Retis lapen casen"></a>
                       
                                   <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -1117,14 +1138,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">103</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1137,7 +1159,8 @@
                           <li class="item last item-animate">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p4.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p4.jpg" alt="Retis lapen casen"></a>
                    
                                   <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -1152,14 +1175,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">104</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1176,7 +1200,8 @@
                           <li class="item item-animate wide-first">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p1.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p1.jpg" alt="Retis lapen casen"></a>
                                             <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1190,14 +1215,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">105</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1210,7 +1236,8 @@
                           <li class="item item-animate">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p2.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p2.jpg" alt="Retis lapen casen"></a>
                                          <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1224,14 +1251,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">106</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1244,7 +1272,8 @@
                           <li class="item item-animate">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p7.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p7.jpg" alt="Retis lapen casen"></a>
                             
                                   <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
@@ -1259,14 +1288,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">107</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1279,7 +1309,8 @@
                           <li class="item item-animate last">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p8.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p8.jpg" alt="Retis lapen casen"></a>
                                          <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1293,14 +1324,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">108</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1317,7 +1349,8 @@
                           <li class="item item-animate wide-first">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p9.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p9.jpg" alt="Retis lapen casen"></a>
                                       <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1331,14 +1364,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">109</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1351,7 +1385,8 @@
                           <li class="item item-animate">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p10.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p10.jpg" alt="Retis lapen casen"></a>
                                   <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1365,14 +1400,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">110</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1385,7 +1421,8 @@
                           <li class="item item-animate">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p11.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p11.jpg" alt="Retis lapen casen"></a>
                                           <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1399,14 +1436,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">111</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1419,7 +1457,8 @@
                           <li class="item item-animate last">
                             <div class="item-inner">
                               <div class="item-img">
-                                <div class="item-img-info"><a href="#" title="Retis lapen casen" class="product-image"><img src="products-images/p12.jpg" alt="Retis lapen casen"></a>
+                                <!-- ITEM INDEX ID="XXX" -->
+                                <div class="item-img-info"><a href="../Item/Index/xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p12.jpg" alt="Retis lapen casen"></a>
                                       <div class="actions">
                                     <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                     <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1433,14 +1472,15 @@
                                       <div class="rating-box">
                                         <div class="rating" style="width:80%"></div>
                                       </div>
-                                      <p class="rating-links"><a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">Add Review</a> </p>
+                                      <p class="rating-links"></p>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                               <div class="item-info">
                                 <div class="info-inner">
-                                  <div class="item-title"><a href="#" title="Retis lapen casen">Retis lapen casen</a> </div>
+                                  <!-- ITEM INDEX ID="XXX" -->
+                                  <div class="item-title"><a href="../Item/Index/xxx" title="Retis lapen casen">112</a> </div>
                                   <div class="item-content">
                                     <div class="item-price">
                                       <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1476,41 +1516,45 @@
         <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
           <div class="blog_post">
             <div class="thumbnail">
-              <h2> <a href="#">Lorem ipsum dolor sit amet, consect adipiscing elit</a> </h2>
+              <!-- SHOP INDEX ID="XXX" -->
+              <h2> <a href="../Shop/Index/Xxx">SHOP 01</a> </h2>
               <div class="featured-img">
                 <span class="gradient-overlay"></span>
-                <img src="images/blog-img1.jpg" alt="blog post">
+                <img src="../Images/images/blog-img1.jpg" alt="blog post">
               </div>
                    
             </div>
             <div class="entry-meta">
               <a href="#">
-                <span class="author-avatar byline"><img alt="" src="images/admin-photo.jpg" class="avatar avatar-96 photo">By John Doe</span> <span class="timestamp">January 26, 2016</span>
+                <span class="author-avatar byline"><img alt="" src="../Images/images/admin-photo.jpg" class="avatar avatar-96 photo">By John Doe</span> <span class="timestamp">January 26, 2016</span>
               </a>
             </div>
             <p> Fusce ac pharetra urna. Duis non lacus sit amet lacus interdum facilisis sed non est. Ut mi metus, semper eu dictum nec, condimentum sed sapien.</p>
             <p> Nullam lobortis nunc semper ipsum luctus ut viverra ante eleifend... </p>
-            <a href="#" class="continue-btn">Continue Reading <span>›</span></a>
+            <!-- SHOP INDEX ID="XXX" -->
+            <a href="../Shop/Index/Xxx" class="continue-btn">Shop Now <span>›</span></a>
           </div>
         </div>
         <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
           <div class="blog_post">
             <div class="thumbnail">
-              <h2><a href="#"> Pellentesque aliquet, sem eget laoreet ultrices</a> </h2>
+              <!-- SHOP INDEX ID="XXX" -->
+              <h2><a href="../Shop/Index/Xxx">SHOP 02</a> </h2>
                 <div class="featured-img">
                   <span class="gradient-overlay"></span>
-                  <img src="images/blog-img2.jpg"  alt="blog post 2">
+                  <img src="../Images/images/blog-img2.jpg"  alt="blog post 2">
                 </div>
             </div>
             <div class="entry-meta">
               <a href="#">
-                <span class="author-avatar byline"><img alt="" src="images/admin-photo1.jpg"  class="avatar avatar-96 photo">By Saraha Smith</span>
+                <span class="author-avatar byline"><img alt="" src="../Images/images/admin-photo1.jpg"  class="avatar avatar-96 photo">By Saraha Smith</span>
               </a>
               <span class="timestamp">January 20, 2016</span>
             </div>
             <p>Aliquam laoreet consequat malesuada. Integer vitae diam sed dolor euismod laoreet eget ac felis. Donec non erat sed elit bibendum sodales.</p>
             <p> Donec eu cursus velit. Proin nunc lacus, gravida mollis dictum ut, vulputate eu turpis... </p>
-            <a href="#" class="continue-btn">Continue Reading <span>›</span></a>
+            <!-- SHOP INDEX ID="XXX" -->
+            <a href="../Shop/Index/Xxx" class="continue-btn">Shop Now <span>›</span></a>
           </div>
         </div>       
       </div>
@@ -1529,40 +1573,44 @@
         <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
           <div class="blog_post">
             <div class="thumbnail">
-              <h2> <a href="#">Lorem ipsum dolor sit amet, consect adipiscing elit</a> </h2>
+              <!-- SHOP INDEX ID="XXX" -->
+              <h2> <a href="../Shop/Index/Xxx">SHOP 03</a> </h2>
               <div class="featured-img">
                 <span class="gradient-overlay"></span>
-                <img src="images/blog-img1.jpg" alt="blog post">
+                <img src="../Images/images/blog-img1.jpg" alt="blog post">
               </div>
             </div>
             <div class="entry-meta">
               <a href="#">
-                <span class="author-avatar byline"><img alt="" src="images/admin-photo.jpg" class="avatar avatar-96 photo">By John Doe</span> <span class="timestamp">January 26, 2016</span>
+                <span class="author-avatar byline"><img alt="" src="../Images/images/admin-photo.jpg" class="avatar avatar-96 photo">By John Doe</span> <span class="timestamp">January 26, 2016</span>
               </a>
             </div>
             <p> Fusce ac pharetra urna. Duis non lacus sit amet lacus interdum facilisis sed non est. Ut mi metus, semper eu dictum nec, condimentum sed sapien.</p>
             <p> Nullam lobortis nunc semper ipsum luctus ut viverra ante eleifend... </p>
-            <a href="#" class="continue-btn">Continue Reading <span>›</span></a>
+            <!-- SHOP INDEX ID="XXX" -->
+            <a href="../Shop/Index/Xxx" class="continue-btn">Shop Now <span>›</span></a>
           </div>
         </div>
         <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
           <div class="blog_post">
             <div class="thumbnail">
-              <h2> <a href="#"> Pellentesque aliquet, sem eget laoreet ultrices</a> </h2>
+              <!-- SHOP INDEX ID="XXX" -->
+              <h2> <a href="../Shop/Index/Xxx">SHOP 04</a> </h2>
               <div class="featured-img">
                 <span class="gradient-overlay"></span>
-                <img src="images/blog-img2.jpg"  alt="blog post 2">
+                <img src="../Images/images/blog-img2.jpg"  alt="blog post 2">
               </div>
             </div>
             <div class="entry-meta">
               <a href="#">
-                <span class="author-avatar byline"><img alt="" src="images/admin-photo1.jpg"  class="avatar avatar-96 photo">By Saraha Smith</span>
+                <span class="author-avatar byline"><img alt="" src="../Images/images/admin-photo1.jpg"  class="avatar avatar-96 photo">By Saraha Smith</span>
               </a>
               <span class="timestamp">January 20, 2016</span>
             </div>
             <p>Aliquam laoreet consequat malesuada. Integer vitae diam sed dolor euismod laoreet eget ac felis. Donec non erat sed elit bibendum sodales.</p>
             <p> Donec eu cursus velit. Proin nunc lacus, gravida mollis dictum ut, vulputate eu turpis... </p>
-            <a href="#" class="continue-btn">Continue Reading <span>›</span></a>
+            <!-- SHOP INDEX ID="XXX" -->
+            <a href="../Shop/Index/Xxx" class="continue-btn">Shop Now <span>›</span></a>
           </div>
         </div>  
       </div>
@@ -1578,35 +1626,35 @@
           <div class="slider-items slider-width-col6"> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="images/b-logo3.png" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="../Images/images/b-logo3.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="images/b-logo2.png" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="../Images/images/b-logo2.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="images/b-logo1.png" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="../Images/images/b-logo1.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="images/b-logo4.png" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="../Images/images/b-logo4.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="images/b-logo5.png" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="../Images/images/b-logo5.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="images/b-logo6.png" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="../Images/images/b-logo6.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="images/b-logo1.png" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="../Images/images/b-logo1.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
             <!-- Item -->
-            <div class="item"><a href="#"><img src="images/b-logo4.png" alt="Image"></a> </div>
+            <div class="item"><a href="#"><img src="../Images/images/b-logo4.png" alt="Image"></a> </div>
             <!-- End Item --> 
             
           </div>
@@ -1715,7 +1763,7 @@
         </div>
       </div>
       <div class="container">
-        <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="images/logo.png"></div>
+        <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="../Images/images/logo.png"></div>
         <address>
         	<!-- CHANGE THE ADDRESS AND CONTACT INFORMATION!!! -->
           <i class="fa fa-map-marker"></i>ThemesGround, 789 Main rd, Anytown, CA 12345  USA <i class="fa fa-mobile"></i><span> +(888) 123-4567</span> <i class="fa fa-envelope"></i><span> superb@themesground.com</span>
@@ -1736,14 +1784,14 @@
   <!-- End Footer --> 
 
   <!-- JavaScript --> 
-  <script type="text/javascript" src="js/jquery.min.js"></script> 
-  <script type="text/javascript" src="js/bootstrap.min.js"></script> 
-  <script type="text/javascript" src="js/common.js"></script> 
-  <script type="text/javascript" src="js/countdown.js"></script> 
-  <script type="text/javascript" src="js/owl.carousel.min.js"></script> 
-  <script type="text/javascript" src="js/jquery.mobile-menu.min.js"></script> 
-  <script type="text/javascript" src="js/revolution-slider.js"></script> 
-  <script type="text/javascript" src="js/revolution.extension.js"></script> 
+  <script type="text/javascript" src="~/Scripts/jquery.min.js"></script> 
+  <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script> 
+  <script type="text/javascript" src="~/Scripts/common.js"></script> 
+  <script type="text/javascript" src="~/Scripts/countdown.js"></script> 
+  <script type="text/javascript" src="~/Scripts/owl.carousel.min.js"></script> 
+  <script type="text/javascript" src="~/Scripts/jquery.mobile-menu.min.js"></script> 
+  <script type="text/javascript" src="~/Scripts/revolution-slider.js"></script> 
+  <script type="text/javascript" src="~/Scripts/revolution.extension.js"></script> 
   <!-- TIMER -->
   <script type="text/javascript">
   	//THE LOWER ONE
