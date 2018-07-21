@@ -5,16 +5,15 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcMovie.DAL;
 
 namespace MvcMovie.Controllers
 {
     public class OrderController : Controller
     {
-        OrderDBContext db = new OrderDBContext();
-        ItemDBContext idb = new ItemDBContext();
-        OrderItemDBContext oidb = new OrderItemDBContext();
-        CartDBContext cdb = new CartDBContext();
-      
+        private MovieDBContext db = new MovieDBContext();
+
+
         public ActionResult Index(string id)
         {
             ViewBag.id = id;
@@ -28,31 +27,31 @@ namespace MvcMovie.Controllers
             db.Orders.Add(order);
             db.SaveChanges();
         
-            var iteminfo = (from c in oidb.OrderItems where c.OrderID == order.OrderID select c);
+            var iteminfo = (from c in db.OrderDetails where c.OrderID == order.OrderID select c);
             foreach (var iteml in iteminfo)
             {
-                Item itemp = idb.Items.Find(iteml.ItemID);
+                Item itemp = db.Items.Find(iteml.ItemID);
                 itemp.ItemRemain = itemp.ItemRemain - 1;
-                idb.Entry(itemp).State = EntityState.Modified;
-                idb.SaveChanges();
+                db.Entry(itemp).State = EntityState.Modified;
+                db.SaveChanges();
 
 
-                var cartinfo = (from j in cdb.Carts where j.CartID == iteml.ItemID && j.CustomerID == order.CustomerID select j);
+                var cartinfo = (from j in db.Carts where j.CartID == iteml.ItemID && j.CustomerID == order.CustomerID select j);
                 foreach (var cartitem in cartinfo)
                 {
-                    cdb.Carts.Remove(cartitem);
+                    db.Carts.Remove(cartitem);
                     db.SaveChanges();
                 }//删除购物车内的商品
             }
          
-            Item item = idb.Items.Find();
+            Item item = db.Items.Find();
             return Content("success") ;
         }
 
-        public ActionResult Query(int Orderid)
+        public ActionResult Query(string Orderid)
         {
             Order od = db.Orders.Find(Orderid);
-            var iteminfo = (from c in oidb.OrderItems where c.OrderID == Orderid select c);
+            var iteminfo = (from c in db.OrderDetails where c.OrderID == Orderid select c);
             int number = 0;
             string idstring = "";
             string sumstring = "";

@@ -19,7 +19,8 @@ namespace MvcMovie.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            return View(db.Movies.ToList());
+            var cartinfo = (from j in db.Movies where j.Price <= 10 select j);
+            return View(cartinfo.ToList());
         }
 
         // GET: Movies/Details/5
@@ -114,7 +115,7 @@ namespace MvcMovie.Controllers
             Movie movie = db.Movies.Find(id);
             db.Movies.Remove(movie);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToRoute("~/Home/Index");
         }
 
         protected override void Dispose(bool disposing)

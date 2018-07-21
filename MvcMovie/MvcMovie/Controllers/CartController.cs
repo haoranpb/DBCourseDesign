@@ -5,14 +5,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MvcMovie.Models;
+using MvcMovie.DAL;
 namespace MvcMovie.Controllers
 {
     public class CartController : Controller
     {
-        OrderItemDBContext oidb = new OrderItemDBContext();
-        OrderDBContext odb = new OrderDBContext();
-        CartDBContext cdb = new CartDBContext();
-        ItemDBContext idb = new ItemDBContext();
+        MovieDBContext db = new MovieDBContext();
         // GET: Cart
         public ActionResult Index(string id)
         {
@@ -22,7 +20,7 @@ namespace MvcMovie.Controllers
         
         public ActionResult ListID(string customerid)
         {
-            var cartinfo = (from j in cdb.Carts where j.CustomerID == customerid select j);
+            var cartinfo = (from j in db.Carts where j.CustomerID == customerid select j);
             string idstring = "";
             foreach (var cartitem in cartinfo){
                 idstring = String.Join(idstring, " ", cartitem.CartID.ToString());
@@ -31,21 +29,20 @@ namespace MvcMovie.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "CustomerID,CartID,ItemCount,CartPrice")] Cart cart)
+        public ActionResult Edit([Bind(Include = "CartID,ItemCount,CartPrice")] Cart cart)
         {
-            if (cart.ItemCount == "0")
+            if (cart.ItemCount == 0)
             {
-                Cart c = cdb.Carts.Find(cart.CartID);
-                cdb.Carts.Remove(c);
-                cdb.SaveChanges();
+                Cart c = db.Carts.Find(cart.CartID);
+                db.Carts.Remove(c);
+                db.SaveChanges();
             }
             else
             {
-                cdb.Entry(cart).State = EntityState.Modified;
-                cdb.SaveChanges();
+                db.Entry(cart).State = EntityState.Modified;
+                db.SaveChanges();
             }
                 return Content("Success");
-           
         }
 
     }

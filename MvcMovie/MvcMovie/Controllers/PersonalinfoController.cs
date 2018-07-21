@@ -5,20 +5,19 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcMovie.DAL;
 //全部使用localdb的连接方式，而非oracle
 namespace MvcMovie.Controllers
 {
     public class PersonalinfoController : Controller
     {
-        private CustomerDBContext cdb = new CustomerDBContext();
-        private SalerDBContext sdb = new SalerDBContext();
-        private AdminDBContext adb = new AdminDBContext();
+        private MovieDBContext db = new MovieDBContext();
         // GET: Personalinfo/Index?ID=XXX&role=xxxxx
         public ActionResult Index(string ID)
         {
-            Customer cus = cdb.Customers.Find(ID);
-            Admin adm = adb.Admins.Find(ID);
-            Saler sel = sdb.Salers.Find(ID);
+            Customer cus = db.Customers.Find(ID);
+            Admin adm = db.Admins.Find(ID);
+            Saler sel = db.Salers.Find(ID);
             int role = 0;
             if (adm != null) role = 1;
             if (sel != null) role = 2;
@@ -48,24 +47,24 @@ namespace MvcMovie.Controllers
         [HttpPost]
         public ActionResult EditCus([Bind(Include = "ID,CustomerAge,CustomerPassword")] Customer customer)
         {
-            cdb.Entry(customer).State = EntityState.Modified;
-            cdb.SaveChanges();
+            db.Entry(customer).State = EntityState.Modified;
+            db.SaveChanges();
             return Content("success");
         }
         // Post:/Personalinfo/EditAdm
         [HttpPost]
         public ActionResult EditAdm([Bind(Include = "AdminID,AdminPassword")] Admin admin)
         {
-            adb.Entry(admin).State = EntityState.Modified;
-            adb.SaveChanges();
+            db.Entry(admin).State = EntityState.Modified;
+            db.SaveChanges();
             return Content("success");
         }
         // Post:/Personalinfo/EditSel
         [HttpPost]
         public ActionResult EditSel([Bind(Include = "SalerID,SalerPassword,SalerPhone,SalerInfo")] Saler seller)
         {
-            sdb.Entry(seller).State = EntityState.Modified;
-            sdb.SaveChanges();
+            db.Entry(seller).State = EntityState.Modified;
+            db.SaveChanges();
             return Content("success");
         }
 

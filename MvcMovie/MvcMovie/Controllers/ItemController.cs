@@ -8,13 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using MvcMovie.Models;
 using Oracle.ManagedDataAccess.Client;
+using MvcMovie.DAL;
+
 namespace MvcMovie.Controllers
 
 {
     public class ItemController : Controller
     {
 
-        private ItemDBContext db = new ItemDBContext();
+        private MovieDBContext db = new MovieDBContext();
         // GET: Goodsp
         public ActionResult Index()
         {
