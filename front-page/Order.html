@@ -22,7 +22,7 @@
 <link rel="stylesheet" type="text/css" href="css/jquery.mobile-menu.css">
 <link rel="stylesheet" type="text/css" href="css/revslider.css" >
 <link rel="stylesheet" type="text/css" href="css/style.css" media="all">
-<link href="css/public.css" type="text/css" rel="stylesheet"/>
+<!--<link href="css/public.css" type="text/css" rel="stylesheet"/>-->
 <link rel="stylesheet" type="text/css" href="css/base.css"/>
         <script type="text/javascript" src="js/jquery_cart.js"></script>  
         <link rel="stylesheet" type="text/css" href="css/checkOut.css" />
@@ -193,21 +193,21 @@
                 <!-- 收货地址 -->
                 <div class="xm-box">
                     <div class="box-hd ">
-    <h2 class="title">收货地址</h2>
+    <h2 class="title">Address</h2>
     <!---->
 </div>
 <div class="box-bd">
     <div class="clearfix xm-address-list" id="checkoutAddrList">
           <dl class="item" >
             <dt>
-                <strong class="itemConsignee">潘骏杰</strong>
-                                <span class="itemTag tag">家</span>
+                <strong class="itemConsignee">Michael</strong>
+                                <span class="itemTag tag">Home</span>
                             </dt>
             <dd>
-                <p class="tel itemTel">15961726437</p>
-                <p class="itemRegion">江苏 无锡市 北塘区</p>
-                <p class="itemStreet">民丰西苑82号202室(214045)</p>
-                                                        <span class="edit-btn J_editAddr">编辑</span>
+                <p class="tel itemTel">088-6526-8987</p>
+                <p class="itemRegion">USA</p>
+                <p class="itemStreet">San Antonio</p>
+                                                        <span class="edit-btn J_editAddr">Edit</span>
                                                                 </dd>
             <dd style="display:none">
                 <input type="radio" name="Checkout[address]" class="addressId"  value="10140916720030323">
@@ -215,7 +215,7 @@
         </dl>
                         <div class="item use-new-addr"  id="J_useNewAddr" data-state="off">
              <span class="iconfont icon-add"><img src="images/add_cart.png" /></span> 
-            使用新地址
+            Use new address
         </div>
             </div>
         <input type="hidden" name="newAddress[type]" id="newType" value="common">
@@ -231,45 +231,45 @@
     <div class="xm-edit-addr-box" id="J_editAddrBox">
         <div class="bd">
             <div class="item">
-                <label>收货人姓名<span>*</span></label> 
-                <input type="text" name="userAddress[consignee]" id="Consignee" class="input" placeholder="收货人姓名" maxlength="15" autocomplete='off'>
+                <label>Consignee Name<span>*</span></label> 
+                <input type="text" name="userAddress[consignee]" id="Consignee" class="input" placeholder="Consignee Name" maxlength="15" autocomplete='off'>
                 <p class="tip-msg tipMsg"></p>
             </div>
             <div class="item">
-                <label>联系电话<span>*</span></label> 
-                <input type="text" name="userAddress[tel]" class="input" id="Telephone" placeholder="11位手机号" autocomplete='off'>
+                <label>Telephone<span>*</span></label> 
+                <input type="text" name="userAddress[tel]" class="input" id="Telephone" placeholder="Phone Number" autocomplete='off'>
                 <p class="tel-modify-tip" id="telModifyTip"></p>
                 <p class="tip-msg tipMsg"></p>
             </div>
             <div class="item">
-                <label>地址<span>*</span></label>
+                <label>Address<span>*</span></label>
                 <select name="userAddress[province]" id="Provinces" class="select-1">
-                    <option>省份/自治区</option>
+                    <option>Country/Region</option>
                 </select>
                 <select name="userAddress[city]"  id="Citys" class="select-2" disabled>
-                    <option>城市/地区/自治州</option>
+                    <option>City/Area/State</option>
                 </select>
                 <select name="userAddress[county]"  id="Countys" class="select-3" disabled>
-                    <option>区/县</option>
+                    <option>Area/County</option>
                 </select>
-                <textarea   name="userAddress[street]" class="input-area" id="Street" placeholder="路名或街道地址，门牌号"></textarea>
+                <textarea   name="userAddress[street]" class="input-area" id="Street" placeholder="Road name or street address, house number"></textarea>
                 <p class="tip-msg tipMsg"></p>
             </div>
             <div class="item">
-                <label>邮政编码<span>*</span></label> 
-                <input type="text" name="userAddress[zipcode]" id="Zipcode" class="input" placeholder="邮政编码"  autocomplete='off'>
+                <label>Postal Code<span>*</span></label> 
+                <input type="text" name="userAddress[zipcode]" id="Zipcode" class="input" placeholder="Postal Code"  autocomplete='off'>
                 <p class="zipcode-tip" id="zipcodeTip"></p>
                 <p class="tip-msg tipMsg"></p>
             </div>
             <div class="item">
-                <label>地址标签<span>*</span></label> 
-                <input type="text" name="userAddress[tag]" id="Tag" class="input" placeholder='地址标签：如"家"、"公司"。限5个字内'  >
+                <label>Address Label<span>*</span></label> 
+                <input type="text" name="userAddress[tag]" id="Tag" class="input" placeholder='Address tags: such as "home", "company". Limited to 5 words'  >
                 <p class="tip-msg tipMsg"></p>
             </div>
         </div>
         <div class="ft clearfix">
-            <button  type="button"  class="btn btn-lineDake btn-small " id="J_editAddrCancel">取消</button>
-             <button type="button" class="btn btn-primary  btn-small " id="J_editAddrOk">保存</button>
+            <button  type="button"  class="btn btn-lineDake btn-small " id="J_editAddrCancel">cancel</button>
+             <button type="button" class="btn btn-primary  btn-small " id="J_editAddrOk">save</button>
         </div>
     </div>
     <!--点击弹出新增/收货地址界面end-->
@@ -280,14 +280,14 @@
                     <!-- 支付方式 -->
                                 <div class="xm-box">
                 <div class="box-hd ">
-                    <h2 class="title">支付方式</h2>
+                    <h2 class="title">Payment Method</h2>
                 </div>
                 <div class="box-bd">
                     <ul id="checkoutPaymentList" class="checkout-option-list clearfix J_optionList">
                                                 <li class="item selected">
                             <input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
                             <p>
-                                在线支付                                <span></span>
+                                Online Payment                                <span></span>
                             </p>
                         </li>
                                             </ul>
@@ -296,14 +296,14 @@
             <!-- 支付方式 END-->
             <div class="xm-box">
                 <div class="box-hd ">
-                    <h2 class="title">配送方式</h2>
+                    <h2 class="title">Delivery Method</h2>
                 </div>
                 <div class="box-bd">
                     <ul id="checkoutShipmentList" class="checkout-option-list clearfix J_optionList">
                                                 <li class="item selected">
                             <input type="radio" data-price="0" name="Checkout[shipment_id]" checked="checked" value="1">
                             <p>
-                                快递配送（免运费）                                <span></span>
+                                Express Delivery（free）                                <span></span>
                             </p>
                         </li>
                                             </ul>
@@ -314,11 +314,11 @@
                 <!-- 送货时间 -->
                 <div class="xm-box">
                     <div class="box-hd">
-                        <h2 class="title">送货时间</h2>
+                        <h2 class="title">Delivery Time</h2>
                     </div>
                     <div class="box-bd">
                         <ul class="checkout-option-list clearfix J_optionList">
-                                                        <li class="item selected"><input type="radio" checked="checked" name="Checkout[best_time]" value="1"><p>不限送货时间<span>周一至周日</span></p></li><li class="item "><input type="radio"  name="Checkout[best_time]" value="2"><p>工作日送货<span>周一至周五</span></p></li><li class="item "><input type="radio"  name="Checkout[best_time]" value="3"><p>双休日、假日送货<span>周六至周日</span></p></li>                        </ul>
+                                                        <li class="item selected"><input type="radio" checked="checked" name="Checkout[best_time]" value="1"><p>Unlimited delivery time<span>Monday to Sunday</span></p></li><li class="item "><input type="radio"  name="Checkout[best_time]" value="2"><p>Delivery on weekday<span>Monday to Friday</span></p></li><li class="item "><input type="radio"  name="Checkout[best_time]" value="3"><p>Delivery on weekend/holiday<span>Saturday/Sunday</span></p></li>                        </ul>
                     </div>
                 </div>
                 <!-- 送货时间 END-->
@@ -326,45 +326,45 @@
                 <div id="checkoutInvoice">
                     <div class="xm-box">
     <div class="box-hd">
-        <h2 class="title">发票信息</h2>
+        <h2 class="title">Invoice</h2>
     </div>
     <div class="box-bd">
         <ul class="checkout-option-list checkout-option-invoice clearfix J_optionList J_optionInvoice">
              <li class="hide">
-                                 电子个人发票4  
+                                 Electronic Invoice  
              </li>
                         <li class="item selected">
                 <!--<label><input type="radio"  class="needInvoice" value="0" name="Checkout[invoice]">不开发票</label>-->
                 <input type="radio"    checked="checked"  value="4" name="Checkout[invoice]">
-                <p>电子发票（非纸质）</p>
+                <p>Electronic Invoice（Non-paper）</p>
             </li>
                         <li class="item ">
                 <input type="radio"   value="1" name="Checkout[invoice]">
-                <p>普通发票（纸质）</p>
+                <p>Gneral Invoice(paper）</p>
             </li>
         </ul>
                 <p id="eInvoiceTip" class="e-invoice-tip ">
-            电子发票是税务局认可的有效凭证，可作为售后维权凭据，不随商品寄送。开票后不可更换纸质发票，如需报销请选择普通发票。<a href="http://bbs.xiaomi.cn/thread-9285999-1-1.html" target="_blank">什么是电子发票？</a>
+            The electronic invoice is a valid certificate approved by the tax bureau and can be used as evidence for after-sales rights protection and is not sent with the goods. You cannot replace the paper invoice after invoicing. If you need reimbursement, please choose the ordinary invoice.<a href="http://bbs.xiaomi.cn/thread-9285999-1-1.html" target="_blank">What is electronic invoice？</a>
         </p>
         <div class="invoice-info nvoice-info-1" id="checkoutInvoiceElectronic" style="display:none;">
 
-            <p class="tip">电子发票目前仅对个人用户开具，不可用于单位报销 ，不随商品寄送</p>
-            <p>发票内容：购买商品明细</p>
-            <p>发票抬头：个人</p>
+            <p class="tip">Electronic invoices are currently only issued to individual users, not for unit reimbursement, not for goods.</p>
+            <p>Invoice content: contract details</p>
+            <p>Invoice title : Personal</p>
             <p>
                 <span class="hide"><input type="radio" value="4" name="Checkout[invoice_type]"   checked="checked"   id="electronicPersonal" class="invoiceType"></span>
                 <dl>
-                    <dt>什么是电子发票?</dt>
-                    <dd>&#903; 电子发票是纸质发票的映像，是税务局认可的有效凭证，与传统纸质发票具有同等法律效力，可作为售后维权凭据。</dd>
-                    <dd>&#903; 开具电子服务于个人，开票后不可更换纸质发票，不可用于单位报销。</dd>
-                    <dd>&#903; 您在订单详情的"发票信息"栏可查看、下载您的电子发票。<a href="http://bbs.xiaomi.cn/thread-9285999-1-1.html" target="_blank">什么是电子发票？</a></dd>
+                    <dt>What is electronic invoice ？</dt>
+                    <dd>&#903; The electronic invoice is an image of the paper invoice and is a valid certificate approved by the tax bureau. It has the same legal effect as the traditional paper invoice and can be used as evidence for after-sales rights protection.</dd>
+                    <dd>&#903; Electronic services are issued to individuals. Paper invoices cannot be exchanged after invoicing and cannot be used for unit reimbursement.</dd>
+                    <dd>&#903; You can view and download your electronic invoice in the "Invoice Information" column of the order details.。<a href="http://bbs.xiaomi.cn/thread-9285999-1-1.html" target="_blank">What is electronic invoice</a></dd>
                 </dl>
             </p>
         </div>
                 <div class="invoice-info invoice-info-2" id="checkoutInvoiceDetail"  style="display:none;" >
-            <p>发票内容：购买商品明细</p>
+            <p>Invoice title : Personal</p>
             <p>
-                发票抬头：请确认单位名称正确,以免因名称错误耽搁您的报销。注：合约机话费仅能开个人发票
+                Invoice header: Please confirm that the unit name is correct, so as not to delay your reimbursement due to the wrong name. Note: Contract machine call charges can only be opened for personal invoices.
             </p>
             <ul class="type clearfix J_invoiceType">
                 <li class="hide">
@@ -372,15 +372,15 @@
                 </li>
                 <li class="">
                     <input  class="invoiceType" type="radio" id="commonPersonal" name="Checkout[invoice_type]" value="1" >
-                    个人
+                    Personal
                 </li>
                 <li class="">
                      <input  class="invoiceType" type="radio" name="Checkout[invoice_type]" value="2" >
-                     单位
+                     Unit
                 </li>
             </ul>
             <div  id='CheckoutInvoiceTitle' class=" hide  invoice-title">
-                <label for="Checkout[invoice_title]">单位名称：</label>
+                <label for="Checkout[invoice_title]">Unit Name:</label>
                 <input name="Checkout[invoice_title]" type="text" maxlength="49" value="" class="input"> <span class="tip-msg J_tipMsg"></span>
             </div>
 
@@ -395,48 +395,48 @@
                 <div id="checkoutGoodsList" class="checkout-goods-box">
                                     <div class="xm-box">
                     <div class="box-hd">
-                        <h2 class="title">确认订单信息</h2>
+                        <h2 class="title">Order Confirm</h2>
                     </div>
                     <div class="box-bd">
                         <dl class="checkout-goods-list">
                             <dt class="clearfix">
-                                <span class="col col-1">商品名称</span>
-                                <span class="col col-2">购买价格</span>
-                                <span class="col col-3">购买数量</span>
-                                <span class="col col-4">小计（元）</span>
+                                <span class="col col-1">Commodity Name</span>
+                                <span class="col col-2">Price</span>
+                                <span class="col col-3">Quantity</span>
+                                <span class="col col-4">Sum (Yuan)</span>
                             </dt>
                                                         <dd class="item clearfix">
                                 <div class="item-row">
                                     <div class="col col-1">
                                         <div class="g-pic">
-                                            <img src="http://i1.mifile.cn/a1/T11lLgB5YT1RXrhCrK!40x40.jpg" srcset="http://i1.mifile.cn/a1/T11lLgB5YT1RXrhCrK!80x80.jpg 2x" width="40" height="40" />
+                                            <img src="C:\Users\Administrator\Documents\GitHub\DBCourseDesign\front-page\img\shop\product_back_9.jpg" srcset="http://i1.mifile.cn/a1/T11lLgB5YT1RXrhCrK!80x80.jpg 2x" width="40" height="40" />
                                         </div>
                                         <div class="g-info">
                                                                                           <a href="#">
-                                                小米T恤 忍者米兔双截棍 军绿 XXL                                            </a>
+                                                Belt                                                                      </a>
                                                                                                                                 </div>
                                     </div>
                 
-                                    <div class="col col-2">39元</div>
+                                    <div class="col col-2">3899</div>
                                     <div class="col col-3">1</div>
-                                    <div class="col col-4">39元</div>
+                                    <div class="col col-4">3899</div>
                                 </div>
                             </dd>
                                                         <dd class="item clearfix">
                                 <div class="item-row">
                                     <div class="col col-1">
                                         <div class="g-pic">
-                                            <img src="http://i1.mifile.cn/a1/T14BLvBKJT1RXrhCrK!40x40.jpg" srcset="http://i1.mifile.cn/a1/T14BLvBKJT1RXrhCrK!80x80.jpg 2x" width="40" height="40" />
+                                            <img src="C:\Users\Administrator\Documents\GitHub\DBCourseDesign\front-page\img\shop\product_back_2.jpg" srcset="http://i1.mifile.cn/a1/T14BLvBKJT1RXrhCrK!80x80.jpg 2x" width="40" height="40" />
                                         </div>
                                         <div class="g-info">
                                                                                          <a href="#">
-                                                招财猫米兔 白色                                            </a>
+                                                Shirt                                            </a>
                                                                                                                                 </div>
                                     </div>
                 
-                                    <div class="col col-2">49元</div>
+                                    <div class="col col-2">288</div>
                                     <div class="col col-3">1</div>
-                                    <div class="col col-4">49元</div>
+                                    <div class="col col-4">288</div>
                                 </div>
                             </dd>
                                                         <dd class="item clearfix">
@@ -447,19 +447,19 @@
                                         </div>
                                         <div class="g-info">
                                                                                          <a href="#">
-                                                小米圆领纯色T恤 男款 红色 XXL                                            </a>
+                                                Dress                                            </a>
                                                                                                                                 </div>
                                     </div>
                 
-                                    <div class="col col-2">39元</div>
-                                    <div class="col col-3">4</div>
-                                    <div class="col col-4">156元</div>
+                                    <div class="col col-2">2999</div>
+                                    <div class="col col-3">1</div>
+                                    <div class="col col-4">2999</div>
                                 </div>
                             </dd>
                                                     </dl>
                         <div class="checkout-count clearfix">
                             <div class="checkout-count-extend xm-add-buy">
-                                <h3 class="title">会员留言</h2></br>
+                                <h3 class="title">Member Message</h2></br>
                                 <input type="text" />
 
                             </div>
@@ -468,23 +468,23 @@
                                 <ul>
 
                                     <li>
-                                       订单总额：<span>244元</span>
+                                       Total：<span>7186 Yuan</span>
                                     </li>
                                     <li>
-                                        活动优惠：<span>-0元</span>
+                                        Discount：<span>-1000</span>
                                         <script type="text/javascript">
                                             checkoutConfig.activityDiscountMoney=0;
-                                            checkoutConfig.totalPrice=244.00;
+                                            checkoutConfig.totalPrice=6186.00;
                                         </script>
                                     </li>
                                     <li>
-                                        优惠券抵扣：<span id="couponDesc">-0元</span>
+                                        Coupon Deduction：<span id="couponDesc">-0</span>
                                     </li>
                                     <li>
-                                        运费：<span id="postageDesc">0元</span>
+                                        Freight：<span id="postageDesc">0</span>
                                     </li>
                                 </ul>
-                                <p class="checkout-total">应付总额：<span><strong id="totalPrice">244</strong>元</span></p>
+                                <p class="checkout-total">Total Amount：<span><strong id="totalPrice">6186</strong>Yuan</span></p>
                             </div>
                             <!--  -->
                         </div>
@@ -495,7 +495,7 @@
                 <div class="modal hide modal-choose-pro" id="J_choosePro-664">
                 <div class="modal-header">
                     <span class="close" data-dismiss='modal'><i class="iconfont">&#xe617;</i></span>
-                    <h3>选择产品</h3>
+                    <h3>Select Item</h3>
                     <div class="more">
                         <div class="xm-recommend-page clearfix">
                             <a class="page-btn-prev   J_carouselPrev iconfont" href="javascript: void(0);">&#xe604;</a><a class="page-btn-next  J_carouselNext iconfont" href="javascript: void(0);">&#xe605;</a>
@@ -509,7 +509,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-disabled J_chooseProBtn">加入购物车</a>
+                    <a href="#" class="btn btn-disabled J_chooseProBtn">Add to cart</a>
                 </div>
             </div>
                 <!--E 加价购 产品选择弹框 -->
@@ -523,8 +523,8 @@
                 <input type="hidden" id="couponValue" name="Checkout[couponsValue]">
                 <div class="checkout-confirm">
                     
-                     <a href="#" class="btn btn-lineDakeLight btn-back-cart">返回购物车</a>
-                     <input type="submit" class="btn btn-primary" value="立即下单" id="checkoutToPay" />
+                     <a href="#" class="btn btn-lineDakeLight btn-back-cart">Back to cart</a>
+                     <input type="submit" class="btn btn-primary" value="Order Now" id="checkoutToPay" />
                                      </div>
             </div>
         </div>
@@ -535,40 +535,40 @@
 <!-- 禮品卡提示 S-->
     <div class="modal hide lipin-modal" id="lipinTip">
         <div class="modal-header">
-            <h2 class="title">温馨提示</h2>
-            <p> 为保障您的利益与安全，下单后礼品卡将会被使用，<br>
- 且订单信息将不可修改。请确认收货信息：</p>
+            <h2 class="title">Tips</h2>
+            <p> In order to protect your interests and safety, the gift card will be used after the order is placed,<br>
+and the order information will not be editable. Please confirm the receipt information:</p>
         </div>
         <div class="modal-body">
             <ul>
-                <li><strong>收&nbsp;&nbsp;货&nbsp;&nbsp;人：</strong><span id="lipin-uname"></span></li>
-                <li><strong>联系电话：</strong><span id="lipin-uphone"></span></li>
-                <li><strong>收货地址：</strong><span id="lipin-uaddr"></span></li>
+                <li><strong>R&nbsp;E&nbsp;C&nbsp;E&nbsp;I&nbsp;V&nbsp;E&nbsp;R</strong><span id="lipin-uname"></span></li>
+                <li><strong>Phone Number：</strong><span id="lipin-uphone"></span></li>
+                <li><strong>Address：</strong><span id="lipin-uaddr"></span></li>
             </ul>
         </div>
         <div class="modal-footer">
-            <span class="btn btn-primary" id="useGiftCard">确认下单</span><span class="btn btn-dakeLight" id="closeGiftCard">返回修改</span>
+            <span class="btn btn-primary" id="useGiftCard">Confirm Order</span><span class="btn btn-dakeLight" id="closeGiftCard">Modify more</span>
         </div>
     </div>
 <!--  禮品卡提示 E-->
 <!-- 预售提示 S-->
     <div class="modal hide yushou-modal" id="yushouTip">
         <div class="modal-body">
-            <h2>请确认收货地址及发货时间</h2>
+            <h2>Please confirm the delivery address and delivery time</h2>
             <ul class="list">
                 <li>
-                    <strong>请确认配送地址，提交后不可变更：</strong>
+                    <strong>Please confirm the delivery address and cannot change after submission：</strong>
                     <p id="yushouAddr"> </p>
                     <span class="icon-common icon-1"></span>
                 </li>
                 <li>
-                    <strong>支付后发货</strong>
-                    <p>如您随预售商品一起购买的商品，将与预售商品一起发货</p>
+                    <strong>Shipment after payment</strong>
+                    <p>If you purchase the item with the pre-sold item, it will be shipped with the pre-sold item.</p>
                     <span class="icon-common icon-2"></span>
                 </li>
                 <li>
-                    <strong>以支付价格为准</strong>
-                    <p>如预售产品发生调价，已支付订单价格将不受影响。</p>
+                    <strong>Pay as the price</strong>
+                    <p>If the price of the pre-sold product is adjusted, the price of the paid order will not be affected.</p>
                     <span class="icon-common icon-3"></span>
                 </li>
             </ul>
@@ -576,9 +576,9 @@
         <div class="modal-footer">
                 <p id="yushouOk" class="yushou-ok">
                     <span class="icon-checkbox"><i class="iconfont">&#xe626;</i></span>
-                    我已确认收货地址正确，不再变更</p>
-                <span class="btn btn-lineDakeLight" data-dismiss="modal">返回修改地址</span>    
-                <span class="btn btn-primary" id="yushouCheckout">继续下单</span>
+                    I have confirmed that the shipping address is correct and will not be changed.</p>
+                <span class="btn btn-lineDakeLight" data-dismiss="modal">Return to modify address</span>    
+                <span class="btn btn-primary" id="yushouCheckout">Continue</span>
                 
             </div>
     </div>
@@ -596,7 +596,7 @@
                 <p class="tel itemTel">{{=it.tel}}</p>
                 <p  class="itemRegion">{{=it.provinceName}} {{=it.cityName}} {{=it.countyName}}</p>
                 <p  class="itemStreet">{{=it.street}} ({{=it.zipcode}})</p>
-                <span class="edit-btn J_editAddr">编辑</span>
+                <span class="edit-btn J_editAddr">EDIT</span>
             </dd>
         </dl>
 </script>
