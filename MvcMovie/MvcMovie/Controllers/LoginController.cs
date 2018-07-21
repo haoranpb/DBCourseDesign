@@ -27,7 +27,7 @@ namespace MvcMovie.Controllers
         //get:/Login/ConfirmRegister?id=xx&age=xx&psw=xx&gender=xx&phone=xx&credit=xx
         public ActionResult ConfirmRegister(string id, int age, string psw, string gender, string phone, string credit)//传入注册的参数
         {
-
+           
             //判断id是否重复
             Customer customer = db.Customers.Find(id);//在数据库中查找id
             if (customer != null) return HttpNotFound();//找到的话，以前注册过，注册失败
@@ -44,26 +44,32 @@ namespace MvcMovie.Controllers
             db.Customers.Add(cus);
             db.SaveChanges();
             ViewBag.id = id;
-            return RedirectToAction("Main");//跳转到主界面
+            return RedirectToRoute("");//跳转到主界面
 
         }
 
         ///Login
         public ActionResult Index()//返回登录的界面
         {
-            return View();
+            return PartialView();
         }
 
-        //get:/Login/ConfirmLogin?id=xx&psw=xx
-        public ActionResult ConfirmLogin(string id, string psw)//登陆成功or失败
+        //get:/Login/ConfirmLogin?id=x&psw=222
+        public ActionResult ConfirmLogin()//登陆成功or失败
         {
+            string id = Request.QueryString["id"];
+            string psw = Request.QueryString["psw"];
             //localdb方法
-            Customer customer = db.Customers.Find(id);//在数据库中查找id
-            if (customer == null) return HttpNotFound();//没找到错误提示，登录失败
-            if (psw == customer.CustomerPassword)
+            Customer customer1 = db.Customers.Find(id);//在数据库中查找id
+            if (customer1 == null) return HttpNotFound();//没找到错误提示，登录失败
+            if (psw == customer1.CustomerPassword)
             {
-                ViewBag.id = id;
-                return RedirectToAction("Main");
+                ViewBag.ID = id;
+                Response.StatusCode = 200;
+                Response.End();
+                EmptyResult empty = new EmptyResult();
+                return empty;
+                     
             }//成功的话切换到主页面
             else return HttpNotFound();//密码错误？登录失败
         }

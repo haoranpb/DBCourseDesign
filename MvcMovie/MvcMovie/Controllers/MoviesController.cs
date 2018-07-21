@@ -19,8 +19,8 @@ namespace MvcMovie.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            var cartinfo = (from j in db.Movies where j.Price <= 10 select j);
-            return View(cartinfo.ToList());
+            //var cartinfo = (from j in db.Movies where j.Price <= 10 select j);
+            return View(db.Movies.ToList());
         }
 
         // GET: Movies/Details/5

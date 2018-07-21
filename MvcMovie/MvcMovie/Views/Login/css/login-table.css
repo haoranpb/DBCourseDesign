@@ -1,0 +1,19 @@
+﻿#table-layer {
+	position: absolute;
+	right:64px;
+	top:192px;
+	width: 30%;
+	height: 50%;
+	background-color: white;
+}
+
+#table-cell {
+	font-size: 18px;
+	font-family: "Times";
+	width: 96px;
+	vertical-align: "left";
+}
+
+.label {
+	font-size: 16px;
+}
