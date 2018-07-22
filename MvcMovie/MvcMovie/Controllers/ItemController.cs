@@ -39,7 +39,7 @@ namespace MvcMovie.Controllers
                 Cart newCart = new Cart()
                 {
                     CustomerID = customerID,
-                     ItemID = itemID,
+                     CartID = itemID,
                      ItemCount=cnt,
                      CartPrice=good.ItemPrice*cnt,
                 };

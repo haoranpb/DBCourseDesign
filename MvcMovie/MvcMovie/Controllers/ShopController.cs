@@ -20,19 +20,19 @@ namespace MvcMovie.Controllers
         // GET: Shop/Index/id
         public ActionResult Index(string id)
         {
-            ViewBag.id = id;
-            return View();
+            ViewBag.ShopID = id;
+            return PartialView();
         }
 
         //商店内商品列表
         // GET: Shop/ListID/shopid
         public ActionResult ListID(string shopid)
         {
-            var shopinfo = (from j in db.Shops where j.ShopID == shopid select j);
+            var shopinfo = (from j in db.Items where j.ShopID == shopid select j);
             string itemIdlist = "";
             foreach (var shopitem in shopinfo)
             {
-                itemIdlist = String.Join(itemIdlist, " ", shopitem.ShopID.ToString());
+                itemIdlist = String.Join(itemIdlist, " ", shopitem.ItemID.ToString());
             }
             return Content(itemIdlist);
         }
