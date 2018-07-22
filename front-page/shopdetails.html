@@ -30,7 +30,7 @@
   <script>
     $(document).ready(function()
     {
-      //shopid应该是从哪来的啊？？？
+      var shopid="@ViewBag.ShopID";
       var shop_urlstr="../Shop/ListID/"+shopid;
       //返回商品列表 string
       $.get(shop_urlstr,function(itemstr)
@@ -232,11 +232,14 @@
                 <li class="nav__dropdown">
                   <a href="#">Women</a>
                   <ul class="nav__dropdown-menu">
-                    <li><a href="#">Underwear</a></li>
-                    <li><a href="#">Hipster</a></li>
                     <li><a href="#">Dress</a></li>
                     <li><a href="#">Hoodie &amp; Jackets</a></li>
                     <li><a href="#">Tees</a></li>
+                    <li><a href="#">Hair Clips</a></li>
+                    <li><a href="#">Necklaces</a></li>
+                    <li><a href="#">Earrings</a></li>
+                    <li><a href="#">Bracelets</a></li>
+                    <li><a href="#">Rings</a></li>
                   </ul>
                 </li>
 
