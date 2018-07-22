@@ -12,7 +12,7 @@ namespace MvcMovie.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.HasDefaultSchema("SYSTEM");
+            modelBuilder.HasDefaultSchema("C##LUDAN");
             base.OnModelCreating(modelBuilder);
         }
 

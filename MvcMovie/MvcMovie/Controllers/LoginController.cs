@@ -24,13 +24,13 @@ namespace MvcMovie.Controllers
             return PartialView();
         }
 
-        //get:/Login/ConfirmRegister?id=xx&age=xx&psw=xx&gender=xx&phone=xx&credit=xx
+        //get:/Login/ConfirmRegister?id=xx&age=xx&psw=xx&gender=xx&phone=xx&credit=xx&role=xx
         public ActionResult ConfirmRegister()//传入注册的参数
         {
             string id = Request.QueryString["username"];
             string phone = Request.QueryString["phonenum"];
             string psw = Request.QueryString["password"];
-            
+            string role = Request.QueryString["role"];
             
             //这里如果前端改的有了credit和gender传入的话把这里改成request.querystring[xxx]
             string credit = "1";
@@ -40,24 +40,48 @@ namespace MvcMovie.Controllers
 
             //判断id是否重复
             Customer customer = db.Customers.Find(id);//在数据库中查找id
-            if (customer != null) return HttpNotFound();//找到的话，以前注册过，注册失败
+            Admin admin = db.Admins.Find(id);
+            Saler saler = db.Salers.Find(id);
+            if (customer != null||admin != null||saler!=null) return Content("failed") ;//找到的话，以前注册过，注册失败
             //加入数据库
-            Customer cus = new Customer()
+            if (role == "Customer")
             {
-                ID = id,
-                CustomerAge = age,
-                CustomerPassword = psw,
-                CustomerGender = gender,
-                CustomerPhone = phone,
-                CustomerCredit = credit,
-            };
-            db.Customers.Add(cus);
-            db.SaveChanges();
-            ViewBag.id = id;
-            Response.StatusCode = 200;
-            Response.End();
-            EmptyResult empty = new EmptyResult();
-            return empty;//跳转到主界面，这个逻辑在前端实现
+                Customer cus = new Customer()
+                {
+                    ID = id,
+                    CustomerAge = age,
+                    CustomerPassword = psw,
+                    CustomerGender = gender,
+                    CustomerPhone = phone,
+                    CustomerCredit = credit,
+                };
+                db.Customers.Add(cus);
+                db.SaveChanges();
+            }
+            else if (role == "Admin")
+            {
+                Admin adm = new Admin()
+                {
+                    AdminID = id,
+                    AdminInfo = phone,
+                    AdminPassword = psw,
+                };
+                db.Admins.Add(adm);
+                db.SaveChanges();
+            }
+            else
+            {
+                Saler sal = new Saler()
+                {
+                    SalerID = id,
+                    SalerPhone = phone,
+                    SalerPassword = psw,
+                    SalerInfo = "",
+                };
+                db.Salers.Add(sal);
+                db.SaveChanges();
+            }
+            return Content("success"); ;//跳转到主界面，这个逻辑在前端实现
 
         }
 
@@ -74,14 +98,30 @@ namespace MvcMovie.Controllers
             string psw = Request.QueryString["psw"];
             //localdb方法
             Customer customer1 = db.Customers.Find(id);//在数据库中查找id
-            if (customer1 == null) return HttpNotFound();//没找到错误提示，登录失败
+            if (customer1 == null) {
+                Admin admin = db.Admins.Find(id);
+                if(admin == null){
+                    Saler saler = db.Salers.Find(id);
+                    if(saler==null)
+                        return Content("failed");//没找到错误提示，登录失败
+                    if (psw == saler.SalerPassword)
+                    {
+                        ViewBag.ID = id;
+                        return Content("success"); ;
+
+                    }
+                }
+                if (psw == admin.AdminPassword)
+                {
+                    ViewBag.ID = id;
+                    return Content("success"); ;
+
+                }//成功的话切换到主页面
+            }
             if (psw == customer1.CustomerPassword)
             {
                 ViewBag.ID = id;
-                Response.StatusCode = 200;
-                Response.End();
-                EmptyResult empty = new EmptyResult();
-                return empty;
+                return Content("success"); ;
                      
             }//成功的话切换到主页面
             else return HttpNotFound();//密码错误？登录失败
