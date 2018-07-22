@@ -34,8 +34,9 @@
 				var name = $("#usrn").val();
 				var pswd = $("#usrp").val();
 				var urlstr = "/Login/ConfirmLogin";
-				$.get(urlstr, { "id": name,"psw":pswd}, function (xml, textStatus, xhr) {
-					if (xhr.status == 200)
+				$.get(urlstr, { "id": name,"psw":pswd}, function (data) {
+					if (data == "success")
+
 						$(window).attr('location', '../HomePage/Index?id='+name);
 					else
 						alert("Please check your password and username ");

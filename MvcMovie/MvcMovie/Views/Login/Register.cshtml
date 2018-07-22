@@ -31,37 +31,39 @@
 	<script>
 		$(document).ready(function () {
 			$("#signup").click(function () {
-				var phonenum = $("#phonenum").val();
+				var phonenum = $("#phonenum").val();	
 				var username = $("#username").val();
 				var password = $("#password").val();
 				var repassword = $("#repassword").val();
+				var role = $("#identity option:checked").text();
 
 				if (phonenum == null || phonenum == "") {
 					alert("Please enter your phone number.");
 				}
-				if (username == null || username == "") {
+				else if (username == null || username == "") {
 					alert("Please enter your user name.");
 				}
-				if (password == null || password == "") {
+				else if (password == null || password == "") {
 					alert("Please enter your password.");
 				}
-				if (repassword == null || repassword == "") {
+				else if (repassword == null || repassword == "") {
 					alert("Please confirm your password.");
 				}
 
-				if (password != repassword) {
+				else if (password != repassword) {
 					alert("Password inconsistent. Please double check and try again.");
 				}
-
-				var urlstr = "/Login/ConfirmRegister?phonenum=" + phonenum + "&username=" + username + "&password=" + password;
-				$.get(urlstr, function (a, b, c) {
-					if (c.status == 200) {
-						 $(window).attr('location', '../HomePage/Index'); 
-					}
-					else {
-						alert("This username is already registered. Please try again.");
-					}
-				});
+				else {
+					var urlstr = "/Login/ConfirmRegister?phonenum=" + phonenum + "&username=" + username + "&password=" + password + "&role=" + role;
+					$.get(urlstr, function (data) {
+						if (data == "success") {
+							$(window).attr('location', '../HomePage/Index');
+						}
+						else {
+							alert("This username is already registered. Please try again.");
+						}
+					});
+				}
 			});
 		});
 	</script>
@@ -91,7 +93,13 @@
 
 		</div>
 		<p class="p-container">
-			<span><a href="#">Already have an account ?</a></span>
+   	 		<div>Role :
+      			<select id="identity">
+        			<option value="customer" selected="selected">Customer</option>
+        			<option value="saler">Saler</option>
+        			<option value="admin">Admin</option>
+      			</select>
+    		</div>			
 			<button type="button" id="signup">Sign Up</button>
 		</p>
 	</form>
