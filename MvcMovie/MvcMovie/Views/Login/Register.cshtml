@@ -49,15 +49,24 @@
 				else if (repassword == null || repassword == "") {
 					alert("Please confirm your password.");
 				}
-
 				else if (password != repassword) {
 					alert("Password inconsistent. Please double check and try again.");
 				}
 				else {
-					var urlstr = "/Login/ConfirmRegister?phonenum=" + phonenum + "&username=" + username + "&password=" + password + "&role=" + role;
+					var urlstr = "/Login/ConfirmRegister?username=" + username + "&phonenum=" + phonenum + "&password=" + password + "&role=" + role;
 					$.get(urlstr, function (data) {
+						var role = $("#identity option:checked").text();
 						if (data == "success") {
-							$(window).attr('location', '../HomePage/Index');
+							if(role=="Customer"){
+								//go to Homepage.
+								$(window).attr('location', '../HomePage/Index');
+							}
+							else if(role=="Saler"){
+								//go to Seller's Account.
+							}
+							else if(role=="Admin"){
+								//go to Administrator's Account.
+							}
 						}
 						else {
 							alert("This username is already registered. Please try again.");
