@@ -6,94 +6,84 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 using MvcMovie.Models;
 using Oracle.ManagedDataAccess.Client;
+using MvcMovie.DAL;
 
 namespace MvcMovie.Controllers
 {
     public class ShopController : Controller
     {
-        private ShopDBContext db = new ShopDBContext();
+        private MovieDBContext db = new MovieDBContext();
 
-        // GET: Shop
-        public ActionResult Index()
+        // GET: Shop/Index/id
+        public ActionResult Index(string id)
         {
+            ViewBag.id = id;
             return View();
         }
 
-        // GET: Shop/ShopInfo?id=X
+        //商店内商品列表
+        // GET: Shop/ListID/shopid
+        public ActionResult ListID(string shopid)
+        {
+            var shopinfo = (from j in db.Shops where j.ShopID == shopid select j);
+            string itemIdlist = "";
+            foreach (var shopitem in shopinfo)
+            {
+                itemIdlist = String.Join(itemIdlist, " ", shopitem.ShopID.ToString());
+            }
+            return Content(itemIdlist);
+        }
+
+        //商店信息
+        // GET: Shop/ShopInfo/id
         public ActionResult ShopInfo(string id)
         {
-            //这里连接数据库读取店铺信息
-            /* using (OracleConnection orcl = new OracleConnection("xxx"))
-             {
-                 string strSQL = "select * from shops where ID='" + ID + "';";
-                 OracleDataAdapter da = new OracleDataAdapter(strSQL, orcl);
-                 DataSet ds = new DataSet();
-                 da.Fill(ds);
-                 var ShopInfo = new { ID = 123455, Name = "sdf" };
-                 return Json(ShopInfo);
-             }*/
-            //Oracle 方法
-            Shop shop = db.Shop.Find(id);
-            var ShopInfo = new { Name = shop.shopName, ID = shop.id, Saler = shop.salerID, Level = shop.level };
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Shop shop = db.Shops.Find(id);
+            var ShopInfo = new
+            {
+                Name = shop.ShopName,
+                ID = shop.ShopID,
+                Saler = shop.SalerID,
+            };
             return Json(ShopInfo);
-            //local方法
+        }
+
+        // GET: Shop/SalerInfo/id
+        //卖家信息
+        public ActionResult SalerInfo(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Saler saler = db.Salers.Find(id);
+            var SalerInfo = new
+            {
+                ID = saler.SalerID,
+                Info = saler.SalerInfo,
+            };
+            return Json(saler.SalerInfo);
+        }
+
+        // GET: Shop/ItemInfo/itemid
+        // 点击进入商品页
+        public ActionResult ItemInfo(string itemid)
+        {
+            string user_id = ViewBag.ID;
+            Item item = db.Items.Find(itemid);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            var json = new { ItemID = item.ItemID, ItemInfo = item.ItemInfo,ItemName = item.ItemName,itemPic = item.ItemPic,ItemPrice = item.ItemPrice, ItemRemain = item.ItemRemain ,ItemSales = item.ItemSales,ShopID = item.ShopID };
+            return Json(json);
         }
     }
-}
-
-{
-    public class GoodspController : Controller
-    {
-
-        private GoodsDBContext db = new GoodsDBContext();
-        // GET: Goodsp
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // GET: Goodsp/Goodsinfo?id=X
-        public ActionResult Goodsinfo(string id)
-        {
-            //这里连接数据库读取商品信息
-            /* using (OracleConnection orcl = new OracleConnection("xxx"))
-             {
-                 string strSQL = "select * from goods where ID='" + ID + "';";
-                 OracleDataAdapter da = new OracleDataAdapter(strSQL, orcl);
-                 DataSet ds = new DataSet();
-                 da.Fill(ds);
-                 var goodsinfo = new { Price = 123455, Name = "sdf" };
-                 return Json(goodsinfo);
-             }*/
-            //Oracle 方法
-            Good good = db.Goods.Find(id);
-            var goodsinfo = new { Price = good.price, Name = good.price, Id = good.ID, shopID = good.shopID, url = good.url, stock = good.stock, intro = good.intro, salge = good.sale };
-            return Json(goodsinfo);
-            //local方法
-        }
-
-        //GET: Goodsp/Add?ID=X
-        public ActionResult Add(string ID)
-        {
-            //if 库存>1
-            //连接数据库使商品库存-1，购物车增加对应商品
-            return Content("success");
-            //else return Content("fail");
-        }
-
-        //GET: Goodsp/Pix?ID=X 
-        //返回商品图片
-        public ActionResult Pix(string ID)
-        {
-            FileStream fs = new FileStream(Server.MapPath(@"/Images/" + ID + ".jpg"), FileMode.Open, FileAccess.Read);
-            byte[] buffer = new byte[Convert.ToInt32(fs.Length)];
-            fs.Read(buffer, 0, Convert.ToInt32(fs.Length));
-            string contentType = "image/jpeg";
-            return File(buffer, contentType);
-        }
-    }
-
-
 }

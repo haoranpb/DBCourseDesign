@@ -11,6 +11,7 @@ namespace MvcMovie.Controllers
     public class CartController : Controller
     {
         MovieDBContext db = new MovieDBContext();
+        //Get: LOCLAHOSR:1236513/Cart/Index/asdf
         // GET: Cart
         public ActionResult Index(string id)
         {
