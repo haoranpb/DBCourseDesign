@@ -155,11 +155,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PersonalinfoController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -405,6 +403,7 @@
     <Content Include="Views\Cart\cart.html" />
     <None Include="Views\HomePage\Index.cshtml" />
     <None Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Shop\shopdetails.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
