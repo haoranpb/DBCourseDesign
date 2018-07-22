@@ -40,17 +40,16 @@
 				if (phonenum == null || phonenum == "") {
 					alert("Please enter your phone number.");
 				}
-				if (username == null || username == "") {
+				else if (username == null || username == "") {
 					alert("Please enter your user name.");
 				}
-				if (password == null || password == "") {
+				else if (password == null || password == "") {
 					alert("Please enter your password.");
 				}
-				if (repassword == null || repassword == "") {
+				else if (repassword == null || repassword == "") {
 					alert("Please confirm your password.");
 				}
-
-				if (password != repassword) {
+				else if (password != repassword) {
 					alert("Password inconsistent. Please double check and try again.");
 				}
 				else {
