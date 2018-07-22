@@ -53,10 +53,10 @@
 					alert("Password inconsistent. Please double check and try again.");
 				}
 
-				var urlstr = "./Register?phonenum=" + phonenum + "&username=" + username + "&password=" + password;
+				var urlstr = "/Login/ConfirmRegister?phonenum=" + phonenum + "&username=" + username + "&password=" + password;
 				$.get(urlstr, function (a, b, c) {
 					if (c.status == 200) {
-						$(window).attr('location', '../HomePage/Index');
+						 $(window).attr('location', '../HomePage/Index'); 
 					}
 					else {
 						alert("This username is already registered. Please try again.");

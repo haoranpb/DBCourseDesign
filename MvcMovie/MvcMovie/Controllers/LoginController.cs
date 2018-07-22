@@ -33,8 +33,8 @@ namespace MvcMovie.Controllers
             
             
             //这里如果前端改的有了credit和gender传入的话把这里改成request.querystring[xxx]
-            string credit = "";
-            string gender = "";
+            string credit = "1";
+            string gender = "1";
             int age = 0;
 
 

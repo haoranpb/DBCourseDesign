@@ -16,12 +16,12 @@ namespace MvcMovie.Controllers
     {
         private MovieDBContext db = new MovieDBContext();
 
-        // GET: Recommend
+        // GET: Recommand
         // Home页面
         public ActionResult Index()
         {
             ViewBag.Message = "Vibranium Home Page.";
-
+            ViewBag.id = Request.QueryString["id"];
             return PartialView();
         }
 

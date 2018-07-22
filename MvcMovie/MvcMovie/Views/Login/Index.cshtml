@@ -33,16 +33,12 @@
 			$("#login").click(function () {
 				var name = $("#usrn").val();
 				var pswd = $("#usrp").val();
-
 				var urlstr = "/Login/ConfirmLogin";
-				$.get(urlstr, { "id": name, "psw": pswd }, function (xml, textStatus, xhr) {
+				$.get(urlstr, { "id": name,"psw":pswd}, function (xml, textStatus, xhr) {
 					if (xhr.status == 200)
-						$(window).attr('location', '../HomePage/Index');
+						$(window).attr('location', '../HomePage/Index?id='+name);
 					else
 						alert("Please check your password and username ");
-					// return data.
-					// if success, no further action.
-					// else, alert, current page. double check and try again.
 				});
 			});
 		});

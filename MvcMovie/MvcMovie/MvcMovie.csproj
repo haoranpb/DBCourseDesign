@@ -162,6 +162,7 @@
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PersonalinfoController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="DAL\MovieDBContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -343,7 +344,6 @@
     <Content Include="Images\products-images\p7.jpg" />
     <Content Include="Images\products-images\p8.jpg" />
     <Content Include="Images\products-images\p9.jpg" />
-    <Content Include="Models\dele.html" />
     <Content Include="Scripts\address_all.js" />
     <Content Include="Scripts\base.min.js" />
     <Content Include="Scripts\bootstrap.js" />
