@@ -18,13 +18,50 @@ namespace MvcMovie.Controllers
 
         private MovieDBContext db = new MovieDBContext();
 
-        // GET: /Item/id
-        public ActionResult Index(string id)
+        // GET: /Item/Index?id=xxx
+        public ActionResult Index()
         {
+            //return PartialView();
+            string id = Request.QueryString["id"];
+            //string personId = Request.QueryString["personId"];
+
+
+            //return PartialView();
+
             Item good = db.Items.Find(id);
+            
             if (good == null) return HttpNotFound();
-            return PartialView(good);
+            ViewBag.name = good.ItemName;
+            ViewBag.price = good.ItemPrice;
+            ViewBag.ItemInfo = good.ItemInfo;
+            ViewBag.id = "../Images/img/images/" + good.ItemID + ".jpg";
+        
+            //ViewBag.personId = personId;
+
+
+
+            /*var query = from p in db.Comments
+                        where p.ItemID == id
+                        select p;
+
+            string commentString = "";
+
+            var commentList = query.ToList();
+            for (int i = 0; i < commentList.Count; ++i)
+            {
+                commentString = commentString + "/ID:" + commentList[i].ItemID + "/Comment:" + commentList[i].CommentInfo
+                    + "/Reply:" + commentList[i].Reply;
+            }
+            ViewBag.comment = commentString;//所有评论的字符串*/
+
+
+
+            return PartialView();
+            
         }
+
+
+
 
         //GET: /Item/Add?ID=X&customerID&cnt=xx
         //向购物车增加商品 cnt为数量
@@ -35,7 +72,7 @@ namespace MvcMovie.Controllers
             int cnt = int.Parse(Request.QueryString["cnt"]);
             Item good = db.Items.Find(itemID);
             if (good.ItemRemain < cnt) return Content("low_stock");//库存不足
-            Cart cart = db.Carts.Find(customerID,itemID );
+            Cart cart = db.Carts.Find(customerID, itemID);
             if (cart == null)
             {
                 Cart newCart = new Cart()
@@ -58,9 +95,9 @@ namespace MvcMovie.Controllers
             //else return Content("fail");
         }
 
+
+
     }
 
 }
-
-
 
