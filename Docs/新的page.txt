@@ -28,7 +28,7 @@ account增加写评论
 
 卖家account下半部分添加显示订单
 
-admin下面增加两个部分，一个商品，一个商店，并增加删除按钮（对于每个商品商店customer和saler）
+admin下面增加两个部分，一个商品，一个订单，并增加删除按钮（对于每个商品商店customer和saler）
 
 
 
