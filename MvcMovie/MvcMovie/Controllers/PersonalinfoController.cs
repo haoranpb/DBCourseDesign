@@ -23,7 +23,7 @@ namespace MvcMovie.Controllers
         }
 
         //get:/Personalinfo/EditCus?ID=222&CustomerAge=38&CustomerGender=girl&CustomerPassword=qqq&CustomerPhone=111
-        public ActionResult EditCus([Bind(Include = "ID,CustomerAge,CustomerPassword")] Customer customer)
+        public ActionResult EditCus()
         {
             string ID = Request.QueryString["ID"];
             string CustomerAge = Request.QueryString["CustomerAge"];
