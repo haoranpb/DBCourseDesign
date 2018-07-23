@@ -87,7 +87,7 @@ namespace MvcMovie.Controllers
                 ItemID = item.ItemID,
                 ItemInfo = item.ItemInfo,
                 ItemName = item.ItemName,
-                itemPic = item.ItemPic,// id
+                ItemPic = item.ItemPic,// id
                 ItemPrice = item.ItemPrice,
                 ItemRemain = item.ItemRemain,
                 ItemSales = item.ItemSales,
