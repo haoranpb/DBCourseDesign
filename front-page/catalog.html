@@ -33,12 +33,13 @@
     {
     	var cata="@ViewBag.cata";
     	var userid="@ViewBag.ID";
-      var cata_urlstr="../Catalog/Index?id="+userid+"&cata="+cata;
+      var cata_urlstr="../Catalog/Index?cata="+cata;
       //返回商品列表 string
       $.get(cata_urlstr,function(itemstr)
       {
         var itemList=itemstr.split(" ");
         for(var i=1;i<12;i++){
+          //ShopController
           var item_urlstr="../Shop/Iteminfo/"+itemList[i];
           //返回商品信息 json
           $.get(item_urlstr,function(itemjson)
