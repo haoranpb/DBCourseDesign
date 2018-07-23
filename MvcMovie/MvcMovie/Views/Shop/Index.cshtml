@@ -31,13 +31,13 @@
     $(document).ready(function()
     {
       var shopid="@ViewBag.ShopID";
-      var shop_urlstr="../Shop/ListID/"+shopid;
+      var shop_urlstr="/Shop/ListID/"+shopid;
       //返回商品列表IDs string
       $.get(shop_urlstr,function(itemstr)
       {
         var itemList=itemstr.split(" ");
         for(var i=1;i<=12;i++){
-            var item_urlstr = "../Shop/ItemInfo/" + itemList[i];
+            var item_urlstr = "/Shop/ItemInfo/" + itemList[i]; // undefined?
           //返回商品信息 json
           $.get(item_urlstr,function(itemjson) // error
           {
