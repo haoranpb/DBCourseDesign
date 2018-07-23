@@ -75,6 +75,8 @@ namespace MvcMovie.Controllers
             Cart cart = db.Carts.Find(customerID, itemID);
             if (cart == null)
             {
+                var p = (from j in db.Carts select j);
+                if (p.Count() >= 3) return Content("false");//防止购物车内商品种类>3个，这样会过多，然后前端提示一下，购物车商品过多
                 Cart newCart = new Cart()
                 {
                     CustomerID = customerID,
