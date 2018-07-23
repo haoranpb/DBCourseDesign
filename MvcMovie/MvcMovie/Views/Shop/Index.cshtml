@@ -32,14 +32,14 @@
     {
       var shopid="@ViewBag.ShopID";
       var shop_urlstr="../Shop/ListID/"+shopid;
-      //返回商品列表 string
+      //返回商品列表IDs string
       $.get(shop_urlstr,function(itemstr)
       {
         var itemList=itemstr.split(" ");
         for(var i=1;i<=12;i++){
-          var item_urlstr="../Shop/Iteminfo/"+itemList[i];
+            var item_urlstr = "../Shop/ItemInfo/" + itemList[i];
           //返回商品信息 json
-          $.get(item_urlstr,function(itemjson)
+          $.get(item_urlstr,function(itemjson) // error
           {
             //解析json
             var itemObj=eval(itemjson);
@@ -47,7 +47,7 @@
             var id=itemObj.ItemID;
             var info=itemObj.ItemInfo;
             var name=itemObj.ItemName;
-            var pic=itemObj.ItemPic;
+            var pic = "../../Images/img/images/" + itemObj.ItemPic + ".jpg"; // ItemPic stores item id
             var price=itemObj.ItemPrice;
             //替换信息
             $("#item"+i+"p").attr("src",pic);   //图片 picture

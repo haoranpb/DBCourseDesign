@@ -24,7 +24,7 @@ namespace MvcMovie.Controllers
             return PartialView();
         }
 
-        //商店内商品列表
+        // Return all items' ID in a shop
         // GET: Shop/ListID/shopid
         public ActionResult ListID(string shopid)
         {
@@ -73,16 +73,23 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Shop/ItemInfo/itemid
-        // 点击进入商品页
+        // Return item info
         public ActionResult ItemInfo(string itemid)
         {
-            string user_id = ViewBag.ID;
             Item item = db.Items.Find(itemid);
             if (item == null)
             {
                 return HttpNotFound();
             }
-            var json = new { ItemID = item.ItemID, ItemInfo = item.ItemInfo,ItemName = item.ItemName,itemPic = item.ItemPic,ItemPrice = item.ItemPrice, ItemRemain = item.ItemRemain ,ItemSales = item.ItemSales,ShopID = item.ShopID };
+            var json = new {
+                ItemID = item.ItemID,
+                ItemInfo = item.ItemInfo,
+                ItemName = item.ItemName,
+                itemPic = item.ItemPic,// id
+                ItemPrice = item.ItemPrice,
+                ItemRemain = item.ItemRemain,
+                ItemSales = item.ItemSales,
+                ShopID = item.ShopID };
             return Json(json);
         }
     }
