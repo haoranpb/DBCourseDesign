@@ -34,9 +34,8 @@ namespace MvcMovie.Controllers
         {
             string id = Request.QueryString["user_id"];
             // string time = System.DateTime.Now.ToString();
-            List<Item> list = new List<Item>();
-           
-
+            string Shopid = Request.QueryString["shop_id"];
+             List<Item> list = new List<Item>();
             var cartinfo = (from c in db.Carts where c.CustomerID == id select c);
             foreach (var cartx in cartinfo)
             {
@@ -44,23 +43,16 @@ namespace MvcMovie.Controllers
                 if (item != null)
                     list.Add(item);
             }
-            var p = list.GroupBy(a => a.ShopID).Select( g =>new { shopid = g.Key });
-            long pnum = p.Count();
-            string s= "";
-            foreach(var i in p)
+            string s = "";
+            foreach (var it in list)
             {
-                s = s + " "+i.shopid;
-                foreach(var it in list)
+                if (it.ShopID == Shopid)
                 {
-                    if(it.ShopID == i.shopid)
-                    {
-                        s = s + "&" + it.ItemID;
-                    }
+                    s = s + "&" + it.ItemID;
                 }
             }
-            ViewBag.ID = Request.QueryString["user_id"];
-            ViewBag.Shopnumber_or_Ordernumber = (int)pnum;
-            ViewBag.OrderString = s;
+            ViewBag.id = id;
+            ViewBag.s = s;//包括全部的itemid
             // 查找购物车
             return PartialView();
         }

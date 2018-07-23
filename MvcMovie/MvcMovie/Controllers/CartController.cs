@@ -87,5 +87,45 @@ namespace MvcMovie.Controllers
 
         //结算
         //默认结算购物车内所有商品 所以前端直接向OrderController发送CustomerID即可
+
+        // 从购物车加载订单
+        public ActionResult ToOrder()
+        {
+            string id = Request.QueryString["user_id"];
+            // string time = System.DateTime.Now.ToString();
+            List<Item> list = new List<Item>();
+            var cartinfo = (from c in db.Carts where c.CustomerID == id select c);
+            foreach (var cartx in cartinfo)
+            {
+                Item item = db.Items.Find(cartx.CartID);
+                if (item != null)
+                    list.Add(item);
+            }
+            var p = list.GroupBy(a => a.ShopID).Select(g => new { shopid = g.Key });
+            long pnum = p.Count();
+            string s = "";
+            foreach (var i in p)
+            {
+                s = s + " " + i.shopid;
+                foreach (var it in list)
+                {
+                    if (it.ShopID == i.shopid)
+                    {
+                        s = s + "&" + it.ItemID;
+                    }
+                }
+            }
+            var json = new
+            {
+                ID = Request.QueryString["user_id"],
+                Shopnumber_or_Ordernumber = (int)pnum,
+                OrderString = s
+            };
+            // 查找购物车
+            return Json(json,JsonRequestBehavior.AllowGet);
+        }
     }
+
+
+
 }
