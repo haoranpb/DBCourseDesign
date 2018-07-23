@@ -22,7 +22,11 @@
 	<link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
 	<link rel="stylesheet" type="text/css" href="~/Content/revslider.css">
 	<link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
-
+	<script>
+		$.document.ready(
+			$("#personal").attr("href", "../Personalinfo/Index/" +@ViewBag.id);
+		);
+	</script>
 </head>
 
 <body class="cms-index-index index">
@@ -146,7 +150,7 @@
 									<div class="links">
 										<!-- SWITCH TO MY ACCOUNT DETAILS. -->
 										<!-- PERSONALINFO INDEX ID="XXX" -->
-										<div class="myaccount"><a title="My Account" href="../Personalinfo/Index/xxx"><span class="hidden-xs">My Account</span></a></div>
+										<div class="myaccount"><a title="My Account" id="personal" href="../Personalinfo/Index/"><span class="hidden-xs">My Account</span></a></div>
 									</div>
 								</div>
 								<!-- End Header Top Links -->

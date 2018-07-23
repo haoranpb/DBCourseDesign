@@ -124,7 +124,7 @@ namespace MvcMovie.Controllers
                 return Content("success"); ;
                      
             }//成功的话切换到主页面
-            else return HttpNotFound();//密码错误？登录失败
+            else return Content("failed");//密码错误？登录失败
         }
         
         /// Login/Edit

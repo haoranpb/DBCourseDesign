@@ -36,7 +36,6 @@
 				var urlstr = "/Login/ConfirmLogin";
 				$.get(urlstr, { "id": name,"psw":pswd}, function (data) {
 					if (data == "success")
-
 						$(window).attr('location', '../HomePage/Index?id='+name);
 					else
 						alert("Please check your password and username ");
