@@ -30,32 +30,35 @@ namespace MvcMovie.Controllers
         public ActionResult ListID( )
         {
             string shopid = Request.QueryString["shopid"];
-            var shopinfo = (from j in db.Items where j.ShopID == shopid select j);
+            var shopinfo = (from j in db.Items
+                            where j.ShopID == shopid
+                            select j);
+
             string itemIdlist = "";
             foreach (var shopitem in shopinfo)
             {
-                itemIdlist = itemIdlist+ " "+shopitem.ItemID;
+                itemIdlist = itemIdlist+ " " + shopitem.ItemID;
             }
             return Content(itemIdlist);
         }
 
-        //商店信息
-        // GET: Shop/ShopInfo/id
-        public ActionResult ShopInfo(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Shop shop = db.Shops.Find(id);
-            var ShopInfo = new
-            {
-                Name = shop.ShopName,
-                ID = shop.ShopID,
-                Saler = shop.SalerID,
-            };
-            return Json(ShopInfo);
-        }
+        ////商店信息
+        //// GET: Shop/ShopInfo?id=xxx
+        //public ActionResult ShopInfo(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Shop shop = db.Shops.Find(id);
+        //    var ShopInfo = new
+        //    {
+        //        Name = shop.ShopName,
+        //        ID = shop.ShopID,
+        //        Saler = shop.SalerID,
+        //    };
+        //    return Json(ShopInfo);
+        //}
 
         // GET: Shop/SalerInfo/id
         //卖家信息
@@ -74,10 +77,13 @@ namespace MvcMovie.Controllers
             return Json(saler.SalerInfo);
         }
 
-        // GET: Shop/ItemInfo/itemid
+        // GET: Shop/ItemInfo?itemid=xx&itemnum=xxx
         // Return item info
-        public ActionResult ItemInfo(string itemid)
+        public ActionResult ItemInfo()
         {
+            string itemid = Request.QueryString["itemid"];
+            string itemnum = Request.QueryString["itemnum"];
+
             Item item = db.Items.Find(itemid);
             if (item == null)
             {
@@ -91,8 +97,10 @@ namespace MvcMovie.Controllers
                 ItemPrice = item.ItemPrice,
                 ItemRemain = item.ItemRemain,
                 ItemSales = item.ItemSales,
-                ShopID = item.ShopID };
-            return Json(json);
+                ShopID = item.ShopID,
+                ItemNum = itemnum
+            };
+            return Json(json, JsonRequestBehavior.AllowGet);
         }
     }
 }
