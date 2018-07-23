@@ -31,18 +31,17 @@
     <script>
     $(document).ready(function()
     {
-        alert("@ViewBag.ShopID");
       var shopid="@ViewBag.ShopID";
       var shop_urlstr="/Shop/ListID?shopid="+shopid;
       //返回商品列表IDs string
       $.get(shop_urlstr,function(itemstr)
       {
-          var itemList = itemstr.split(" ");
-          alert(itemList[1]);
+        var itemList = itemstr.split(" ");
         for(var i=1;i<=12;i++){
-            var item_urlstr = "/Shop/ItemInfo/" + itemList[i]; // undefined?
+            var item_urlstr = "/Shop/ItemInfo?itemid=" + itemList[i] + "&itemnum=" + i;
           //返回商品信息 json
-          $.get(item_urlstr,function(itemjson) // error
+            
+          $.get(item_urlstr,function(itemjson)
           {
             //解析json
             var itemObj=eval(itemjson);
@@ -51,15 +50,18 @@
             var info=itemObj.ItemInfo;
             var name=itemObj.ItemName;
             var pic = "../../Images/img/images/" + itemObj.ItemPic + ".jpg"; // ItemPic stores item id
-            var price=itemObj.ItemPrice;
+            var price = itemObj.ItemPrice;
+            var num = itemObj.ItemNum;
+
             //替换信息
-            $("#item"+i+"p").attr("src",pic);   //图片 picture
-            $("#item"+i+"p").attr("alt",name);  //图片无法显示时的文字 picture.alt
-            $("#item"+i+"t").text(name);        //名称 title
-            $("#item"+i+"pl").attr("href","../Item/Index/"+id); //图片上的链接 picture link
-            $("#item"+i+"t").attr("href","../Item/Index/"+id);  //文本上的链接 title.link
-            $("#item"+i+"b").attr("href","../Order/Index/"+id); //Buy Now的链接 buy
-            $("#item"+i+"pr").text("$"+price);
+            //$("#item01pr").text("fuck");
+            $("#item" + num+"p").attr("src",pic);   //图片 picture
+            $("#item" + num+"p").attr("alt",name);  //图片无法显示时的文字 picture.alt
+            $("#item" + num+"t").text(name);        //名称 title
+            $("#item" + num+"pl").attr("href","../item/index/"+id); //图片上的链接 picture link
+            $("#item" + num+"t").attr("href","../item/index/"+id);  //文本上的链接 title.link
+            $("#item" + num + "b").attr("href", "../order/index/" + id); //buy now的链接 buy      
+            $("#item" + num + "pr").text("$" + price);
           });
        }
       });
@@ -352,7 +354,7 @@
                                         <i class="ui-eye"></i>
                                         <span>Quick View</span>
                                     </a>
-                                    <a id="item01b" href="#" class="product__add-to-wishlist">
+                                    <a id="item1b" href="#" class="product__add-to-wishlist">
                                         <i class="ui-heart"></i>
                                         <span>Buy Now</span>
                                     </a>
@@ -365,7 +367,7 @@
                             </div>
                             <span class="product__price">
                                 <ins>
-                                    <span id="item01pr" class="amount">$15.99</span>
+                                    <span id="item1pr" class="amount">$15.99</span>
                                 </ins>
                             </span>
                         </div>
@@ -381,7 +383,7 @@
                                         <i class="ui-eye"></i>
                                         <span>Quick View</span>
                                     </a>
-                                    <a id="item02b" href="#" class="product__add-to-wishlist">
+                                    <a id="item2b" href="#" class="product__add-to-wishlist">
                                         <i class="ui-heart"></i>
                                         <span>Buy Now</span>
                                     </a>
@@ -394,7 +396,7 @@
                             </div>
                             <span class="product__price">
                                 <ins>
-                                    <span id="item02pr" class="amount">$34.00</span>
+                                    <span id="item2pr" class="amount">$34.00</span>
                                 </ins>
                             </span>
                         </div>
@@ -423,7 +425,7 @@
                             </div>
                             <span class="product__price">
                                 <ins>
-                                    <span id="item03pr" class="amount">$19.00</span>
+                                    <span id="item3pr" class="amount">$19.00</span>
                                 </ins>
                             </span>
                         </div>
@@ -452,7 +454,7 @@
                             </div>
                             <span class="product__price">
                                 <ins>
-                                    <span id="item04pr" class="amount">$17.99</span>
+                                    <span id="item4pr" class="amount">$17.99</span>
                                 </ins>
                             </span>
                         </div>
@@ -481,7 +483,7 @@
                             </div>
                             <span class="product__price">
                                 <ins>
-                                    <span id="item05pr" class="amount">$15.99</span>
+                                    <span id="item5pr" class="amount">$15.99</span>
                                 </ins>
                             </span>
                         </div>
@@ -510,7 +512,7 @@
                             </div>
                             <span class="product__price">
                                 <ins>
-                                    <span id="item06pr" class="amount">$19.99</span>
+                                    <span id="item6pr" class="amount">$19.99</span>
                                 </ins>
                             </span>
                         </div>
@@ -557,7 +559,7 @@
                             </div>
                             <span class="product__price">
                                 <ins>
-                                    <span id="item07pr" class="amount">$17.99</span>
+                                    <span id="item7pr" class="amount">$17.99</span>
                                 </ins>
                             </span>
                         </div>
@@ -585,7 +587,7 @@
                             </div>
                             <span class="product__price">
                                 <ins>
-                                    <span id="item08pr" class="amount">$9.90</span>
+                                    <span id="item8pr" class="amount">$9.90</span>
                                 </ins>
                             </span>
                         </div>
@@ -614,7 +616,7 @@
                             </div>
                             <span class="product__price">
                                 <ins>
-                                    <span id="item09pr" class="amount">$29.00</span>
+                                    <span id="item9pr" class="amount">$29.00</span>
                                 </ins>
                             </span>
                         </div>
