@@ -13,18 +13,53 @@
   <link href='http://fonts.googleapis.com/css?family=Questrial:400%7CMontserrat:300,400,700,700i' rel='stylesheet'>
 
   <!-- Css -->
-  <link rel="stylesheet" type="text/css"href="css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css"href="css/font-icons.css" />
-  <link rel="stylesheet" type="text/css"href="css/styleshop.css" />
-  <link rel="stylesheet" type="text/css"href="css/color.css" />
-  <link rel="stylesheet" type="text/css"href="css/style.css" />
-  <link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all">
-  <link rel="stylesheet" type="text/css" href="css/simple-line-icons.css" media="all">
-  <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
-  <link rel="stylesheet" type="text/css" href="css/owl.theme.css">
-  <link rel="stylesheet" type="text/css" href="css/jquery.bxslider.css">
-  <link rel="stylesheet" type="text/css" href="css/jquery.mobile-menu.css">
-  <link rel="stylesheet" type="text/css" href="css/revslider.css" >
+  <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/font-icons.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/styleshop.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/color.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
+  <link rel="stylesheet" type="text/css" href="~/Content/simple-line-icons.css" media="all">
+  <link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css">
+  <link rel="stylesheet" type="text/css" href="~/Content/owl.theme.css">
+  <link rel="stylesheet" type="text/css" href="~/Content/jquery.bxslider.css">
+  <link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
+  <link rel="stylesheet" type="text/css" href="~/Content/revslider.css" >
+
+  <script src="~/Scripts/jquery-3.3.1.js"></script>
+  <script>
+    $(document).ready(function()
+    {
+      var shopid="@ViewBag.ShopID";
+      var shop_urlstr="../Shop/ListID/"+shopid;
+      //返回商品列表 string
+      $.get(shop_urlstr,function(itemstr)
+      {
+        var itemList=itemstr.split(" ");
+        for(var i=1;i<12;i++){
+          var item_urlstr="../Shop/Iteminfo/"+itemList[i];
+          //返回商品信息 json
+          $.get(item_urlstr,function(itemjson)
+          {
+            //解析json
+            var itemObj=eval(itemjson);
+            var id=itemObj.ItemID;
+            var info=itemObj.ItemInfo;
+            var name=itemObj.ItemName;
+            var pic=itemObj.ItemPic;
+            //替换信息
+            $("#item"+i+"p").attr("src",pic);   //图片 picture
+            $("#item"+i+"p").attr("alt",name);  //图片无法显示时的文字 picture.alt
+            $("#item"+i+"t").text(name);        //名称 title
+            $("#item"+i+"pl").attr("href","../Item/Index/"+id); //图片上的链接 picture link
+            $("#item"+i+"t").attr("href","../Item/Index/"+id);  //文本上的链接 title.link
+            $("#item"+i+"b").attr("href","../Order/Index/"+id); //Buy Now的链接 buy
+
+          });
+       }
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -69,7 +104,7 @@
               <div class="top-cart-contain pull-right"> 
                 <!-- Top Cart -->
                 <div class="mini-cart">
-                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
+                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="..Cart/Index/xxxxxxx">  My Cart <span class="cart_count">2</span></a></div>
                     <div>
                       <div class="top-cart-content" style="display: none;">
                         <div class="actions">
@@ -149,7 +184,7 @@
                 <div class="toplinks">
                   <div class="links">    
                     <!-- SWITCH TO MY ACCOUNT DETAILS. -->          
-                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">My Account</span></a></div>
+                    <div class="myaccount"><a title="My Account" href="../Personalinfo/Index/xxx"><span class="hidden-xs">My Account</span></a></div>
                   </div>           
                 </div>
                 <!-- End Header Top Links -->      
@@ -185,7 +220,7 @@
               <ul class="nav__menu">
 
                 <li class="nav__dropdown active">
-                  <a href="catalog.html">Men</a>
+                  <a href="#">Men</a>
                   <ul class="nav__dropdown-menu">
                     <li><a href="#">T-shirt</a></li>
                     <li><a href="#">Hoodie &amp; Jackets</a></li>
@@ -195,13 +230,16 @@
                 </li>
 
                 <li class="nav__dropdown">
-                  <a href="catalog.html">Women</a>
+                  <a href="#">Women</a>
                   <ul class="nav__dropdown-menu">
-                    <li><a href="#">Underwear</a></li>
-                    <li><a href="#">Hipster</a></li>
                     <li><a href="#">Dress</a></li>
                     <li><a href="#">Hoodie &amp; Jackets</a></li>
                     <li><a href="#">Tees</a></li>
+                    <li><a href="#">Hair Clips</a></li>
+                    <li><a href="#">Necklaces</a></li>
+                    <li><a href="#">Earrings</a></li>
+                    <li><a href="#">Bracelets</a></li>
+                    <li><a href="#">Rings</a></li>
                   </ul>
                 </li>
 
@@ -216,9 +254,7 @@
                 <li class="nav__dropdown">
                   <a href="#">Pages</a>
                   <ul class="nav__dropdown-menu">
-                    <li><a href="catalog.html">Catalog</a></li>
-                    <li><a href="single-product.html">Single Product</a></li>
-                    <li><a href="#">Cart</a></li>
+                    <li><a href="../Cart/Index/xxxxx">Cart</a></li>
                     <li><a href="#">Checkout</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
@@ -253,14 +289,14 @@
         <div class="hero__slide" style="background-image: url(img/hero/1.jpg)">
           <div class="container text-center">
             <h1 class="hero__title">Got the style? Show us</h1>
-            <a href="single-product.html" class="hero__link">Shop Now</a>
+            <a href="#bestseller" class="hero__link">Shop Now</a>
           </div>          
         </div>
         <div class="hero__slide" style="background-image: url(img/hero/2.jpg)">
           <div class="container relative">
             <div class="hero__holder">
               <h1 class="hero__title-1">dope<br>street<br>wear</h1>
-              <a href="single-product.html" class="hero__link-1 btn btn-lg btn-dark"><span>New Arrivals</span></a>
+              <a href="#newarrival" class="hero__link-1 btn btn-lg btn-dark"><span>New Arrivals</span></a>
             </div>
           </div>
         </div>
@@ -269,7 +305,7 @@
             <div class="hero__holder-1">
               <h1 class="hero__title-2">new lookbook</h1>
               <h3 class="hero__subtitle">Sale 50% off. Get only trendy items</h3>
-              <a href="single-product.html" class="hero__link-1 btn btn-lg btn-color"><span>Shop the trend</span></a>
+              <a href="#bestseller" class="hero__link-1 btn btn-lg btn-color"><span>Shop the trend</span></a>
             </div>
           </div>
         </div>
@@ -307,7 +343,7 @@
     <!-- End Features -->
 
     <!-- Best Seller -->
-    <section class="section-wrap pb-30">
+    <section id="bestseller" class="section-wrap pb-30">
       <div class="container">
         <div class="heading-row">
           <div class="text-center">
@@ -316,27 +352,27 @@
         </div>
 
         <div class="row row-8">
+          <!-- ITEM 01 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_11.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_11.jpg" alt="" class="product__img-back">
+              <a id="item1pl" href="#" class="product__link" aria-label="Product">
+                <img id="item1p" src="" alt="" class="product__img">
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item01b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Floral Mini Strappy</a>
+                <a id="item1t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -351,27 +387,27 @@
           </div> 
           <!-- end product -->
 
+          <!-- ITEM 02 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_12.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_12.jpg" alt="" class="product__img-back">
+              <a id="item2pl" href="#" class="product__link" aria-label="Product">
+                <img id="item2p"src="" alt="" class="product__img">
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item02b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Hooded Jacket</a>
+                <a id="item2t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -383,11 +419,11 @@
           </div> 
           <!-- end product -->
 
+          <!-- ITEM 03 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_5.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_5.jpg" alt="" class="product__img-back">
+              <a id="item3pl" href="#" class="product__link" aria-label="Product">
+                <img id="item3p" src="" alt="" class="product__img">
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
@@ -396,14 +432,14 @@
                 </a>
                 <a href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Maxi dress</a>
+                <a id="item3t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -415,27 +451,27 @@
           </div> 
           <!-- end product -->
 
+          <!-- ITEM 04 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_6.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_6.jpg" alt="" class="product__img-back">
+              <a id="item4pl" href="#" class="product__link" aria-label="Product">
+                <img id="item4p" src="" alt="" class="product__img">
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item4b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Casual Jacket</a>
+                <a id="item4t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -450,27 +486,27 @@
           </div> 
           <!-- end product -->
 
+          <!-- ITEM 05 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_7.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_7.jpg" alt="" class="product__img-back">
+              <a id="item5pl" href="#" class="product__link" aria-label="Product">
+                <img id="item5p" src="" alt="" class="product__img">
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item5b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Bounce Elegant Dress</a>
+                <a id="item5t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -485,27 +521,27 @@
           </div> 
           <!-- end product -->
 
+          <!-- ITEM 06 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_8.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_8.jpg" alt="" class="product__img-back">
+              <a id="item6pl" href="#" class="product__link" aria-label="Product">
+                <img id="item6p" src="" alt="" class="product__img">
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item6b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Classic White Tailored Shirt</a>
+                <a id="item6t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -530,7 +566,7 @@
     <!-- end best seller -->
 
     <!-- New Arrivals -->
-    <section class="section-wrap no-padding">
+    <section id="newarrival" class="section-wrap no-padding">
       <div class="container">
         <div class="heading-row">
           <div class="text-center">
@@ -539,27 +575,28 @@
         </div>
 
         <div class="row row-8">
+          <!-- ITEM 07 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_1.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_1.jpg" alt="" class="product__img-back">
+              <a id="item7pl" href="#" class="product__link" aria-label="Product">
+                <img id="item7p" src="" alt="" class="product__img">
+
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item7b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Joeby Tailored Trouser</a>
+                <a id="item7t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -571,27 +608,26 @@
           </div> 
           <!-- end product -->
 
+          <!-- ITEM 08 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_9.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_9.jpg" alt="" class="product__img-back">
-              </a>
+              <a id="item8pl" href="#" class="product__link" aria-label="Product">
+                <img id="item8p" src="" alt="" class="product__img">
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item8b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Men’s Belt</a>
+                <a id="item8t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -603,27 +639,27 @@
           </div> 
           <!-- end product -->
 
+          <!-- ITEM 09 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_10.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_10.jpg" alt="" class="product__img-back">
+              <a id="item9pl" href="#" class="product__link" aria-label="Product">
+                <img id="item9p" src="" alt="" class="product__img">
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item9b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Sport Hi Adidas</a>
+                <a id="item9t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -635,27 +671,27 @@
           </div> 
           <!-- end product -->
 
+          <!-- ITEM 10 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_2.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_2.jpg" alt="" class="product__img-back">
+              <a id="item10pl" href="#" class="product__link" aria-label="Product">
+                <img id="item10p" src="" alt="" class="product__img">
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item10b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Denim Hooded</a>
+                <a id="item10t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -667,27 +703,27 @@
           </div> 
           <!-- end product -->
 
+          <!-- ITEM 11 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_3.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_3.jpg" alt="" class="product__img-back">
+              <a id="item11pl" href="#" class="product__link" aria-label="Product">
+                <img id="item11p" src="" alt="" class="product__img">
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item11b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Mint Maxi Dress</a>
+                <a id="item11t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -702,27 +738,27 @@
           </div> 
           <!-- end product -->
 
+          <!-- ITEM 12 -->
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link" aria-label="Product">
-                <img src="img/shop/product_4.jpg" alt="" class="product__img">
-                <img src="img/shop/product_back_4.jpg" alt="" class="product__img-back">
+              <a id="item12pl" href="#" class="product__link" aria-label="Product">
+                <img id="item12p" src="" alt="" class="product__img">
               </a>
               <div class="product__actions">
                 <a href="#" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
                 </a>
-                <a href="#" class="product__add-to-wishlist">
+                <a id="item12b" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
-                  <span>Wishlist</span>
+                  <span>Buy Now</span>
                 </a>
               </div>
             </div>
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">White Flounce Dress</a>
+                <a id="item12t" href="#">no more item ...</a>
               </h3>
             </div>
 
@@ -735,8 +771,7 @@
               </del>
             </span>
           </div> 
-          <!-- end product -->
-    
+          <!-- end product --> 
         </div> 
         <!-- end row -->
       </div> 
@@ -843,14 +878,14 @@
 </div>
 
 <!-- jQuery Scripts -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/easing.min.js"></script>
-<script type="text/javascript" src="js/jquery.magnific-popup.min.js"></script>
-<script type="text/javascript" src="js/owl-carousel.min.js"></script>  
-<script type="text/javascript" src="js/flickity.pkgd.min.js"></script>
-<script type="text/javascript" src="js/modernizr.min.js"></script>
-<script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/Scripts/easing.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="~/Scripts/owl-carousel.min.js"></script>  
+<script type="text/javascript" src="~/Scripts/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="~/Scripts/modernizr.min.js"></script>
+<script type="text/javascript" src="~/Scripts/scripts.js"></script>
 
 </body>
 </html>
