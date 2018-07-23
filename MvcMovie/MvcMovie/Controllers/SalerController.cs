@@ -40,6 +40,20 @@ namespace MvcMovie.Controllers
             //return View(shopquery.ToList());
         }
 
+        //跳转至创建店铺页面 /Saler/CreateShopPage?ID=Lucas
+        public ActionResult CreateShopPage()
+        {
+            string ID = Request.QueryString["ID"];
+            //卖家基本信息通过viewbag传输
+            Saler saler = db.Salers.Find(ID);
+            ViewBag.Salerinfo = saler.SalerInfo;
+            ViewBag.SalerPassword = saler.SalerPassword;
+            ViewBag.ID = ID;
+            ViewBag.SalerPhone = saler.SalerPhone;
+
+            return View();
+        }
+
 
         //添加店铺 /Saler/CreateShop?ShopID=111&ShopName=111&SalerCredit=111&SalerID=Lucas
         public ActionResult CreateShop(string ShopID, string ShopName, string SalerCredit, string SalerID)
@@ -57,7 +71,7 @@ namespace MvcMovie.Controllers
                 return RedirectToAction("Index/"+shop.SalerID);
             }
 
-            return View(shop);
+            return Content("failure");
         }
         
         //删除店铺 /Saler/DeleteShop?ID=111
@@ -65,12 +79,50 @@ namespace MvcMovie.Controllers
         {
             string ID = Request.QueryString["ID"];
             Shop shop = db.Shops.Find(ID);
+            if(shop == null)
+            {
+                return Content("failure");
+            }
             db.Shops.Remove(shop);
             db.SaveChanges();
             return RedirectToAction("Index/" + shop.SalerID);
         }
 
-        
+        //跳转至SalerInfo /Saler/SalerInfoPage
+        public ActionResult SalerInfoPage(string ID)
+        {
+            //卖家基本信息通过viewbag传输
+            Saler saler = db.Salers.Find(ID);
+            ViewBag.Salerinfo = saler.SalerInfo;
+            ViewBag.SalerPassword = saler.SalerPassword;
+            ViewBag.ID = ID;
+            ViewBag.SalerPhone = saler.SalerPhone;
+
+            return View();
+        }
+
+        //修改卖家信息  /Saler/EditSalerInfo?ID=111&SalerPassword=qqq&SalerInfo=what&SalerPhone=123
+        public ActionResult EditSalerInfo()
+        {
+            string ID = Request.QueryString["ID"];
+            string SalerPassword = Request.QueryString["SalerPassword"];
+            string SalerInfo = Request.QueryString["SalerInfo"];
+            string SalerPhone = Request.QueryString["SalerPhone"];
+
+            Saler saler = db.Salers.Find(ID);
+            saler.SalerInfo = SalerInfo;
+            saler.SalerPassword = SalerPassword;
+            saler.SalerPhone = SalerPhone;
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(saler).State = EntityState.Modified;
+                db.SaveChanges();
+                return Content("success");
+            }
+            
+            return Content("failed");
+        }
 
     }
 }
