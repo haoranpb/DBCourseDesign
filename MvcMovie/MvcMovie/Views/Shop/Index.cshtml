@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Shop Details</title>
@@ -8,10 +12,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
-
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Questrial:400%7CMontserrat:300,400,700,700i' rel='stylesheet'>
-
     <!-- Css -->
     <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/Content/font-icons.css" />
@@ -25,17 +27,18 @@
     <link rel="stylesheet" type="text/css" href="~/Content/jquery.bxslider.css">
     <link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
     <link rel="stylesheet" type="text/css" href="~/Content/revslider.css">
-
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script>
     $(document).ready(function()
     {
+        alert("@ViewBag.ShopID");
       var shopid="@ViewBag.ShopID";
       var shop_urlstr="/Shop/ListID/"+shopid;
       //返回商品列表IDs string
       $.get(shop_urlstr,function(itemstr)
       {
-        var itemList=itemstr.split(" ");
+          var itemList = itemstr.split(" ");
+          alert(itemList[1]);
         for(var i=1;i<=12;i++){
             var item_urlstr = "/Shop/ItemInfo/" + itemList[i]; // undefined?
           //返回商品信息 json
@@ -63,7 +66,6 @@
     });
     </script>
 </head>
-
 <body>
     <!-- Preloader -->
     <div class="loader-mask">
@@ -71,7 +73,6 @@
             <div></div>
         </div>
     </div>
-
     <div id="page">
         <!-- Header -->
         <header>
@@ -100,7 +101,6 @@
                                     </ul>
                                 </div>
                                 <!-- End Header Currency -->
-
                                 <div class="welcome-msg hidden-xs"> Welcome to Vibranium! </div>
                             </div>
                             <div class="col-xs-5 col-sm-6">
@@ -159,7 +159,6 @@
                                         <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
                                     </div>
                                 </div>
-
                                 <div class="top-search">
                                     <div class="block-icon pull-right">
                                         <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
@@ -200,14 +199,12 @@
             </div>
         </header>
         <!-- end header -->
-
         <main class="main oh" id="main">
             <!-- Navigation -->
             <header class="nav" style="position:relative; top:-64px;">
                 <div class="nav__holder nav--sticky" style="height: 64px">
                     <div class="container relative">
                         <div class="flex-parent">
-
                             <!-- Mobile Menu Button -->
                             <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open mobile menu">
                                 <span class="nav-icon-toggle__box">
@@ -218,11 +215,9 @@
                             <a href="index.html" class="logo" style="position: relative;top:-4px;left: 20px">
                                 <img class="logo__img" src="img/logo_light.png" alt="logo">
                             </a>
-
                             <!-- Nav-wrap -->
                             <nav class="flex-child nav__wrap d-none d-lg-block" style="vertical-align: center">
                                 <ul class="nav__menu">
-
                                     <li class="nav__dropdown active">
                                         <a href="#">Men</a>
                                         <ul class="nav__dropdown-menu">
@@ -232,7 +227,6 @@
                                             <li><a href="#">Shorts</a></li>
                                         </ul>
                                     </li>
-
                                     <li class="nav__dropdown">
                                         <a href="#">Women</a>
                                         <ul class="nav__dropdown-menu">
@@ -246,7 +240,6 @@
                                             <li><a href="#">Rings</a></li>
                                         </ul>
                                     </li>
-
                                     <li class="nav__dropdown">
                                         <a href="#">News</a>
                                         <ul class="nav__dropdown-menu">
@@ -254,7 +247,6 @@
                                             <li><a href="#">Single Post</a></li>
                                         </ul>
                                     </li>
-
                                     <li class="nav__dropdown">
                                         <a href="#">Pages</a>
                                         <ul class="nav__dropdown-menu">
@@ -265,7 +257,6 @@
                                             <li><a href="#">FAQ</a></li>
                                         </ul>
                                     </li>
-
                                 </ul> <!-- end menu -->
                             </nav> <!-- end nav-wrap -->
                             <!-- Search -->
@@ -349,7 +340,6 @@
                             <h2 class="heading bottom-line">best seller</h2>
                         </div>
                     </div>
-
                     <div class="row row-8">
                         <!-- ITEM 01 -->
                         <div class="col-lg-2 col-sm-4 product">
@@ -368,13 +358,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item1t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item01pr" class="amount">$15.99</span>
@@ -399,13 +387,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item2t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item02pr" class="amount">$34.00</span>
@@ -430,13 +416,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item3t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item03pr" class="amount">$19.00</span>
@@ -461,13 +445,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item4t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item04pr" class="amount">$17.99</span>
@@ -492,13 +474,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item5t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item05pr" class="amount">$15.99</span>
@@ -523,13 +503,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item6t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item06pr" class="amount">$19.99</span>
@@ -554,14 +532,12 @@
                             <h2 class="heading bottom-line">New arrivals</h2>
                         </div>
                     </div>
-
                     <div class="row row-8">
                         <!-- ITEM 07 -->
                         <div class="col-lg-2 col-sm-4 product">
                             <div class="product__img-holder">
                                 <a id="item7pl" href="#" class="product__link" aria-label="Product">
                                     <img id="item7p" src="" alt="" class="product__img">
-
                                 </a>
                                 <div class="product__actions">
                                     <a href="#" class="product__quickview">
@@ -574,13 +550,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item7t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item07pr" class="amount">$17.99</span>
@@ -604,13 +578,11 @@
                                         </a>
                                     </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item8t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item08pr" class="amount">$9.90</span>
@@ -635,13 +607,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item9t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item09pr" class="amount">$29.00</span>
@@ -666,13 +636,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item10t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item10pr" class="amount">$30.00</span>
@@ -697,13 +665,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item11t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item11pr" class="amount">$17.99</span>
@@ -728,13 +694,11 @@
                                     </a>
                                 </div>
                             </div>
-
                             <div class="product__details">
                                 <h3 class="product__title">
                                     <a id="item12t" href="#">no more item ...</a>
                                 </h3>
                             </div>
-
                             <span class="product__price">
                                 <ins>
                                     <span id="item12pr" class="amount">$15.99</span>
@@ -826,7 +790,6 @@
                         </address>
                     </div>
                 </div>
-
                 <!-- COPYRIGHT -->
                 <div class="footer-bottom">
                     <div class="container">
@@ -837,15 +800,12 @@
                 </div>
             </footer>
             <!-- End Footer -->
-
             <div id="back-to-top">
                 <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
             </div>
-
         </main>
         <!-- end main-wrapper -->
     </div>
-
     <!-- jQuery Scripts -->
     <script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
@@ -855,6 +815,5 @@
     <script type="text/javascript" src="~/Scripts/flickity.pkgd.min.js"></script>
     <script type="text/javascript" src="~/Scripts/modernizr.min.js"></script>
     <script type="text/javascript" src="~/Scripts/scripts.js"></script>
-
 </body>
 </html>

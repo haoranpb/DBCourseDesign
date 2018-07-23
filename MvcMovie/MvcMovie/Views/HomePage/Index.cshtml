@@ -25,7 +25,6 @@
 	<script src=" ~/Scripts/jquery-3.3.1.js"></script>
 	<script>
 		$(document).ready(function () {
-			alert("@ViewBag.id");
 			$("#personal").attr("href", "../Personalinfo/Index/" +"@ViewBag.id");
 		});</script>
 </head>
@@ -1526,7 +1525,7 @@
 						<div class="blog_post">
 							<div class="thumbnail">
 								<!-- SHOP INDEX ID="XXX" -->
-								<h2> <a href="../Shop/Index/100001">SHOP 01</a> </h2>
+								<h2> <a href="../Shop/Index?id=100001&userid=@ViewBag.id">SHOP 01</a> </h2>
 								<div class="featured-img">
 									<span class="gradient-overlay"></span>
 									<img src="../Images/images/blog-img1.jpg" alt="blog post">
@@ -1541,14 +1540,14 @@
 							<p> Fusce ac pharetra urna. Duis non lacus sit amet lacus interdum facilisis sed non est. Ut mi metus, semper eu dictum nec, condimentum sed sapien.</p>
 							<p> Nullam lobortis nunc semper ipsum luctus ut viverra ante eleifend... </p>
 							<!-- SHOP INDEX ID="XXX" -->
-							<a href="../Shop/Index/100001" class="continue-btn">Shop Now <span>›</span></a>
+							<a href="../Shop/Index?id=100001&userid=@ViewBag.id" class="continue-btn">Shop Now <span>›</span></a>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
 						<div class="blog_post">
 							<div class="thumbnail">
 								<!-- SHOP INDEX ID="XXX" -->
-								<h2><a href="../Shop/Index/100002">SHOP 02</a> </h2>
+								<h2><a href="../Shop/Index?id=100002&userid=@ViewBag.id">SHOP 02</a> </h2>
 								<div class="featured-img">
 									<span class="gradient-overlay"></span>
 									<img src="../Images/images/blog-img2.jpg" alt="blog post 2">
@@ -1563,7 +1562,7 @@
 							<p>Aliquam laoreet consequat malesuada. Integer vitae diam sed dolor euismod laoreet eget ac felis. Donec non erat sed elit bibendum sodales.</p>
 							<p> Donec eu cursus velit. Proin nunc lacus, gravida mollis dictum ut, vulputate eu turpis... </p>
 							<!-- SHOP INDEX ID="XXX" -->
-							<a href="../Shop/Index/100002" class="continue-btn">Shop Now <span>›</span></a>
+							<a href="../Shop/Index?id=100002&userid=@ViewBag.id2" class="continue-btn">Shop Now <span>›</span></a>
 						</div>
 					</div>
 				</div>
@@ -1582,7 +1581,7 @@
 						<div class="blog_post">
 							<div class="thumbnail">
 								<!-- SHOP INDEX ID="XXX" -->
-								<h2> <a href="../Shop/Index/100003">SHOP 03</a> </h2>
+								<h2> <a href="../Shop/Index?id=100003&userid=@ViewBag.id">SHOP 03</a> </h2>
 								<div class="featured-img">
 									<span class="gradient-overlay"></span>
 									<img src="../Images/images/blog-img1.jpg" alt="blog post">
@@ -1596,14 +1595,14 @@
 							<p> Fusce ac pharetra urna. Duis non lacus sit amet lacus interdum facilisis sed non est. Ut mi metus, semper eu dictum nec, condimentum sed sapien.</p>
 							<p> Nullam lobortis nunc semper ipsum luctus ut viverra ante eleifend... </p>
 							<!-- SHOP INDEX ID="XXX" -->
-							<a href="../Shop/Index/100003" class="continue-btn">Shop Now <span>›</span></a>
+							<a href="../Shop/Index?id=100003&userid=@ViewBag.id" class="continue-btn">Shop Now <span>›</span></a>
 						</div>
 					</div>
 					<div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
 						<div class="blog_post">
 							<div class="thumbnail">
 								<!-- SHOP INDEX ID="XXX" -->
-								<h2> <a href="../Shop/Index/100004">SHOP 04</a> </h2>
+								<h2> <a href="../Shop/Index?id=100004&userid=@ViewBag.id">SHOP 04</a> </h2>
 								<div class="featured-img">
 									<span class="gradient-overlay"></span>
 									<img src="../Images/images/blog-img2.jpg" alt="blog post 2">
@@ -1618,7 +1617,7 @@
 							<p>Aliquam laoreet consequat malesuada. Integer vitae diam sed dolor euismod laoreet eget ac felis. Donec non erat sed elit bibendum sodales.</p>
 							<p> Donec eu cursus velit. Proin nunc lacus, gravida mollis dictum ut, vulputate eu turpis... </p>
 							<!-- SHOP INDEX ID="XXX" -->
-							<a href="../Shop/Index/100004" class="continue-btn">Shop Now <span>›</span></a>
+							<a href="../Shop/Index?id=100004&userid=@ViewBag.id" class="continue-btn">Shop Now <span>›</span></a>
 						</div>
 					</div>
 				</div>

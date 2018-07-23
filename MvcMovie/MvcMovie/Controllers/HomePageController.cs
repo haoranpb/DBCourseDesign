@@ -16,9 +16,10 @@ namespace MvcMovie.Controllers
     {
         private MovieDBContext db = new MovieDBContext();
 
-        // GET: /Homepage/Index
+        // GET: /Homepage/Index?id = xxx
         public ActionResult Index()
         {
+            ViewBag.id = Request.QueryString["id"];
             return PartialView();
         }
 

@@ -17,10 +17,11 @@ namespace MvcMovie.Controllers
     {
         private MovieDBContext db = new MovieDBContext();
 
-        // GET: Shop/Index/id
-        public ActionResult Index(string id)
+        // GET: Shop/Index?id=xxx&userid=xxx
+        public ActionResult Index()
         {
-            ViewBag.ShopID = id;
+            ViewBag.id = Request.QueryString["userid"];
+            ViewBag.ShopID = Request.QueryString["id"];
             return PartialView();
         }
 
@@ -32,7 +33,7 @@ namespace MvcMovie.Controllers
             string itemIdlist = "";
             foreach (var shopitem in shopinfo)
             {
-                itemIdlist = String.Join(itemIdlist, " ", shopitem.ItemID.ToString());
+                itemIdlist = itemIdlist+ " "+shopitem.ItemID;
             }
             return Content(itemIdlist);
         }
