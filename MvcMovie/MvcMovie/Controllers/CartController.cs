@@ -17,20 +17,16 @@ namespace MvcMovie.Controllers
         public ActionResult Index(string customerID)
         {
             ViewBag.customerID = customerID;
-            return View();
-        }
-
-        public ActionResult ListID(string customerid)
-        {
-            var cartinfo = (from j in db.Carts where j.CustomerID == customerid select j);
+            var cartinfo = (from j in db.Carts where j.CustomerID == customerID select j);
             string idstring = "";
             foreach (var cartitem in cartinfo)
             {
                 idstring = String.Join(idstring, " ", cartitem.CartID.ToString());
             }
-            return Content(idstring);
+            ViewBag.idstring = idstring;
+            return View();
         }
-
+        
         // 删除购物车中某商品的全部
         //GET: /Cart/DeletSome?ID=X&customerID
         public ActionResult DeleteSome()

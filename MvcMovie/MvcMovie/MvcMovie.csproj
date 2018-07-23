@@ -158,9 +158,11 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PersonalinfoController.cs" />
+    <Compile Include="Controllers\SalerController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="DAL\MovieDBContext.cs" />
     <Compile Include="Global.asax.cs">
