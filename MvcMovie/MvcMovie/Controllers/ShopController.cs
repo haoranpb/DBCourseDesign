@@ -26,9 +26,10 @@ namespace MvcMovie.Controllers
         }
 
         // Return all items' ID in a shop
-        // GET: Shop/ListID/shopid
-        public ActionResult ListID(string shopid)
+        // GET: Shop/ListID?shopid = xxx
+        public ActionResult ListID( )
         {
+            string shopid = Request.QueryString["shopid"];
             var shopinfo = (from j in db.Items where j.ShopID == shopid select j);
             string itemIdlist = "";
             foreach (var shopitem in shopinfo)
