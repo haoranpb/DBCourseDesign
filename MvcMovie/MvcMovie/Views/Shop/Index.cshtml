@@ -36,7 +36,7 @@
       $.get(shop_urlstr,function(itemstr)
       {
         var itemList=itemstr.split(" ");
-        for(var i=1;i<12;i++){
+        for(var i=1;i<=12;i++){
           var item_urlstr="../Shop/Iteminfo/"+itemList[i];
           //返回商品信息 json
           $.get(item_urlstr,function(itemjson)
@@ -287,13 +287,13 @@
             <!-- Hero Slider -->
             <section class="hero" style="position: relative; top: -88px">
                 <div id="owl-hero" class="owl-carousel owl-theme owl-carousel--dots-inside">
-                    <div class="hero__slide" style="background-image: url(img/hero/1.jpg)">
+                    <div class="hero__slide" style="background-image: url(../../Images/img/hero/1.jpg)">
                         <div class="container text-center">
                             <h1 class="hero__title">Got the style? Show us</h1>
                             <a href="#bestseller" class="hero__link">Shop Now</a>
                         </div>
                     </div>
-                    <div class="hero__slide" style="background-image: url(img/hero/2.jpg)">
+                    <div class="hero__slide" style="background-image: url(../../Images/img/hero/2.jpg)">
                         <div class="container relative">
                             <div class="hero__holder">
                                 <h1 class="hero__title-1">dope<br>street<br>wear</h1>
@@ -301,7 +301,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero__slide" style="background-image: url(img/hero/3.jpg)">
+                    <div class="hero__slide" style="background-image: url(../../Images/img/hero/3.jpg)">
                         <div class="container text-center">
                             <div class="hero__holder-1">
                                 <h1 class="hero__title-2">new lookbook</h1>
