@@ -29,7 +29,7 @@ website:   	http://www.themepunch.com
     left: 0;
     right: 0;
     height: 105px;
-    background: url(../images/strip.png) 50% 0 no-repeat;
+    background: url(../Images/images/strip.png) 50% 0 no-repeat;
     z-index: 5;
 }
 
@@ -664,7 +664,7 @@ img.tp-slider-alternative-image {
 	text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.6) !important;
 	font-size: 15px;
 	line-height: 45px !important;
-	background: url(../images/gradient/g30.png) repeat-x top;
+	background: url(../Images/images/gradient/g30.png) repeat-x top;
 	font-family: arial, sans-serif;
 	font-weight: bold;
 	letter-spacing: -1px;
@@ -678,7 +678,7 @@ img.tp-slider-alternative-image {
 	font-size: 19px;
 	line-height: 57px !important;
 
-	background: url(../images/gradient/g40.png) repeat-x top
+	background: url(../Images/images/gradient/g40.png) repeat-x top
 }
 .purchase:hover, .tp-button:hover, .tp-button.big:hover {
 	background-position: bottom, 15px 11px

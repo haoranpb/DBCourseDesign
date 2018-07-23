@@ -12,14 +12,15 @@ namespace MvcMovie.Controllers
     public class PersonalinfoController : Controller
     {
         private MovieDBContext db = new MovieDBContext();
-        // GET: Personalinfo/Index?ID=XXX&role=xxxxx
-        public ActionResult Index(string ID)
+        // GET: Personalinfo/Index?ID=XXX
+        public ActionResult Index()
         {
+            string ID = Request.QueryString["ID"];
             Customer cus = db.Customers.Find(ID);
             ViewBag.age = cus.CustomerAge;
             ViewBag.key = cus.CustomerPassword;
             ViewBag.id = ID;
-            return View();
+            return PartialView();
         }
 
         //get:/Personalinfo/EditCus?ID=222&CustomerAge=38&CustomerGender=girl&CustomerPassword=qqq&CustomerPhone=111

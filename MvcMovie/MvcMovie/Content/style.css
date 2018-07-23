@@ -916,9 +916,8 @@ nav {
 	
 }
 
-.inner-page nav {
-	background: url('../Images/images/slide-img1.jpg') repeat top left;
-	height: 170px;
+.inner-page nav {background:url('../Images/images/slide-img1.jpg') repeat top left ;
+	height: 170px;  
 }
 
 .menu-item {
@@ -1959,8 +1958,9 @@ ul.level1 {
 	text-align: center;
 	height: 16px;
 	width: 90px;
-	background: url(../Images/images/seprator.png) no-repeat center center;
-	margin-top: 15px
+	background:url(../Images/images/seprator.png) no-repeat center center;
+	margin-top:15px
+
 }
 
 .offer-slider .starSeparator {margin-bottom:15px}
@@ -2026,10 +2026,10 @@ ul.level1 {
 /* featured Product*/
 .featured-pro {
 	position: relative;
-	margin-top: 50px;
-	background: #f2f2f2 url(../Images/images/down-arrow.png) no-repeat top center;
-	padding: 50px;
-	width: 100%
+	margin-top:50px;
+	background:#f2f2f2 url(../Images/images/down-arrow.png) no-repeat top center;
+	padding:50px;
+	width:100%
 }
 
 .featured-pro .new_title {margin-bottom:25px}
@@ -2302,17 +2302,16 @@ ul.level1 {
 .recommend .controls .prev {
 	right: 36px;
 }
- /**arallax bg  */
+/*  parallax bg  */
 
 .parallax {
 	
 }
-
 .parallax-2 {
 	background-image: url("../Images/images/parralax-bg2.jpg");
 	padding-top: 55px;
 	padding-bottom: 55px;
-	background-position: bottom
+	background-position:bottom
 }
 /*  Other Slider   **/
 .box-up-sell .flex-direction-nav .flex-prev, .box-cross-sell .flex-direction-nav .flex-prev, #brand-slider .flex-direction-nav .flex-prev, .featured-products .flex-direction-nav .flex-prev {
@@ -4158,7 +4157,7 @@ a.button.detail-bnt span {
 .ratings strong {
 	float: left;
 	margin: 1px 3px 0 0;
-}down
+}
 .ratings .rating-links {
 	margin: 0;
 	display: none;
@@ -4181,11 +4180,11 @@ a.button.detail-bnt span {
 	text-indent: -999em;
 	overflow: hidden;
 }
-	.rating-box .rating {
-		float: left;
-		height: 9px;
-		background: url(../Images/images/bkg_rating.png) no-repeat;
-	}
+.rating-box .rating {
+	float: left;
+	height: 9px;
+	background: url(../Images/images/bkg_rating.png) no-repeat;
+}
 .ratings .rating-box {
 	display: inline-block;
 }
@@ -4439,12 +4438,12 @@ a.button.detail-bnt span {
 }
 
 .gradient-overlay {
-	background: url(../Images/images/article-header-overlay.png) no-repeat bottom center;
-	height: 300px;
-	width: 100%;
-	z-index: 25;
-	position: absolute;
-	opacity: .9;
+    background: url(../Images/images/article-header-overlay.png) no-repeat bottom center;
+    height:300px;
+    width: 100%;
+    z-index: 25;
+    position: absolute;
+    opacity: .9;
 }
 
 .latest-blog .featured-img img {
@@ -4947,12 +4946,12 @@ ul#magicat li .open-close, .block-layered-nav dt .toggleBtn {
 .box-category .subDropdown:hover {
 	opacity: 0.8;
 }
-	.box-category .subDropdown.plus {
-		background-image: url("../Images/images/plus.png");
-	}
-	.box-category .subDropdown.minus {
-		background-image: url("../Images/images/minus.png");
-	}
+.box-category .subDropdown.plus {
+	background-image: url("../Images/images/plus.png");
+}
+.box-category .subDropdown.minus {
+	background-image: url("../Images/images/minus.png");
+}
 .box-category ul li a {
 	padding: 8px 0px;
 	display: block;
@@ -7429,6 +7428,7 @@ footer {
 	color: #fff;
 	padding-top: 50px;
 	background: #000 url(../Images/images/footer-bg.jpg) no-repeat top left;
+
 }
 footer ul {
 	margin: 0px;
@@ -8159,11 +8159,11 @@ header .header-top-links {
 	padding: 6px 3px;
 }
 
-	.inner-page nav {
-		background: url('../Images/images/slide-img1.jpg') repeat top left;
-		height: 100px;
-		margin-top: 0px
-	}
+.inner-page nav {
+    background: url('../Images/images/slide-img1.jpg') repeat top left;
+    height: 100px;
+	margin-top:0px
+}
 
 .inner-page nav .mm-toggle {margin-top:0px; z-index:10}
 
@@ -8223,13 +8223,13 @@ ul#cart-sidebar {
 	width: 15px !important;
 	height: 38px !important;
 }
-	.slideshow-wrapper .forward {
-		right: 25px !important;
-		top: 25% !important;
-		background: url(../Images/images/slideshow-arrows.png) -85px 0 no-repeat !important;
-		width: 15px !important;
-		height: 38px !important;
-	}
+.slideshow-wrapper .forward {
+	right: 25px !important;
+	top: 25% !important;
+	background: url(../Images/images/slideshow-arrows.png) -85px 0 no-repeat !important;
+	width: 15px !important;
+	height: 38px !important;
+}
 .caption.top-center {
 	display: none;
 }
@@ -9357,13 +9357,13 @@ ul.navmenu {
 	width: 17px !important;
 	height: 45px !important;
 }
-	.slideshow-wrapper .forward {
-		right: 10px !important;
-		top: 30% !important;
-		background: url(../Images/images/slideshow-arrows.png) -84px 0 no-repeat !important;
-		width: 17px !important;
-		height: 45px !important;
-	}
+.slideshow-wrapper .forward {
+	right: 10px !important;
+	top: 30% !important;
+	background: url(../Images/images/slideshow-arrows.png) -84px 0 no-repeat !important;
+	width: 17px !important;
+	height: 45px !important;
+}
 .caption.top-center {
 	display: none;
 }
@@ -10001,11 +10001,11 @@ ul.slideshow {
 	top: 37% !important;
 	width: 22px !important;
 }
-	.slideshow-wrapper .forward {
-		top: 37% !important;
-		background: url(../Images/images/slideshow-arrows.png) -79px 0 no-repeat !important;
-		width: 22px !important;
-	}
+.slideshow-wrapper .forward {
+	top: 37% !important;
+	background: url(../Images/images/slideshow-arrows.png) -79px 0 no-repeat !important;
+	width: 22px !important;
+}
 .caption.top-center {
 	padding-top: 0% !important;
 	width: 400px !important;
@@ -10587,11 +10587,11 @@ ul.slideshow {
 	width: 25px;
 	top: 40%;
 }
-	.slideshow-wrapper .forward {
-		top: 40%;
-		background: url(../Images/images/slideshow-arrows.png) -76px 0 no-repeat;
-		width: 25px;
-	}
+.slideshow-wrapper .forward {
+	top: 40%;
+	background: url(../Images/images/slideshow-arrows.png) -76px 0 no-repeat;
+	width: 25px;
+}
 .slideshow-wrapper .forward:hover {
 	background-position: -76px -66px;
 }
@@ -10858,17 +10858,17 @@ ol#compare-items li a.product-name {
  
 }
 .newsletter-sign-box {
-	border-radius: 0;
-	left: 50%;
-	margin: auto;
-	min-height: 150px;
-	min-width: 455px;
-	position: fixed;
-	top: 35%;
-	width: 620px;
-	z-index: 10000;
-	background: url(../Images/images/popup-bg.jpg) no-repeat bottom center;
-	margin-left: -325px;
+    border-radius: 0;
+    left: 50%;
+    margin: auto;
+    min-height: 150px;
+    min-width: 455px;
+    position: fixed;
+    top: 35%;
+    width: 620px;
+    z-index: 10000;
+    background: url(../Images/images/popup-bg.jpg) no-repeat bottom center;
+    margin-left: -325px;
 }
 .popup1 .x {
  position: absolute;

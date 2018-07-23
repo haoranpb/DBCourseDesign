@@ -190,23 +190,29 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\buyConfirm.css" />
+    <Content Include="Content\cart.css" />
     <Content Include="Content\checkOut.css" />
     <Content Include="Content\color.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-icons.css" />
+    <Content Include="Content\footerstyle.css" />
     <Content Include="Content\jquery.bxslider.css" />
     <Content Include="Content\jquery.mobile-menu.css" />
     <Content Include="Content\login-table.css" />
+    <Content Include="Content\ms-style.min.css" />
     <Content Include="Content\owl.carousel.css" />
     <Content Include="Content\owl.theme.css" />
+    <Content Include="Content\personal_member.min.css" />
     <Content Include="Content\public.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\revslider.css" />
     <Content Include="Content\signup-table.css" />
     <Content Include="Content\simple-line-icons.css" />
+    <Content Include="Content\Snaddress.min.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\styleregis.css" />
     <Content Include="Content\styleshop.css" />
+    <Content Include="Content\sui.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -375,7 +381,9 @@
     <Content Include="Scripts\flickity.pkgd.min.js" />
     <Content Include="Scripts\html5shiv-min.js" />
     <Content Include="Scripts\index.js" />
+    <Content Include="Scripts\index_account.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -390,10 +398,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jquery1.js" />
+    <Content Include="Scripts\jquery_account.js" />
     <Content Include="Scripts\jquery_cart.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\modernizr.js" />
     <Content Include="Scripts\modernizr.min.js" />
+    <Content Include="Scripts\ms_common.min.js" />
     <Content Include="Scripts\owl-carousel.min.js" />
     <Content Include="Scripts\owl.carousel.min.js" />
     <Content Include="Scripts\prefixfree.min.js" />
@@ -401,11 +411,13 @@
     <Content Include="Scripts\revolution-slider.js" />
     <Content Include="Scripts\revolution.extension.js" />
     <Content Include="Scripts\scripts.js" />
+    <Content Include="Scripts\sui.js" />
     <Content Include="Scripts\tuan.js" />
     <Content Include="Scripts\unslider.min.js" />
     <Content Include="Views\Cart\cart.html" />
     <None Include="Views\HomePage\Index.cshtml" />
     <None Include="Views\Login\Register.cshtml" />
+    <None Include="Views\Personalinfo\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -429,9 +441,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Admininfo\" />
     <Folder Include="Views\Item\" />
     <Folder Include="Views\Order\" />
-    <Folder Include="Views\Personalinfo\" />
+    <Folder Include="Views\Saler\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
