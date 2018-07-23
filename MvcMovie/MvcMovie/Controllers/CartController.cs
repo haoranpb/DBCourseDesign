@@ -12,11 +12,11 @@ namespace MvcMovie.Controllers
     public class CartController : Controller
     {
         MovieDBContext db = new MovieDBContext();
-        //Get: LOCLAHOSR:1236513/Cart/Index/asdf
-        // GET: Cart
-        public ActionResult Index(string id)
+
+        //GET: LOCLAHOSR:1236513/Cart/Index/asdf
+        public ActionResult Index(string customerID)
         {
-            ViewBag.id = id;
+            ViewBag.customerID = customerID;
             return View();
         }
 
@@ -90,28 +90,6 @@ namespace MvcMovie.Controllers
         //添加商品在ItemController.cs中实现
 
         //结算
-        [HttpPost]
-        public ActionResult PlaceOrder()
-        {
-            string itemIDsTmp = Request.Form["ID"];//被选中的商品列表
-            string[] itemIDs = null;
-            itemIDs = itemIDsTmp.Split(',');//分割
-            if (itemIDs == null) return View();//没选择商品
-
-            string customerID = Request.QueryString["customerID"];
-            if (customerID == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            var CartList = new List<Cart>();
-
-            foreach (string itemID in itemIDs)
-            {
-                Cart cart = db.Carts.Find(customerID, itemID);
-                CartList.Add(cart);
-            }
-            ViewBag.CartList = CartList;
-            //return RedirectToRoute("~/Order/Index & ID = customerID");
-            return Content("success");
-        }
-
+        //默认结算购物车内所有商品 所以前端直接向OrderController发送CustomerID即可
     }
 }
