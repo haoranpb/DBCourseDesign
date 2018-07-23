@@ -29,7 +29,7 @@ namespace MvcMovie.Controllers
             string list = "";
             foreach(Item j in catainfo)
             {
-                list = list + j.ItemID;
+                list = list +" "+ j.ItemID;
              }
             return Content(list);
         }
