@@ -13,10 +13,10 @@ namespace MvcMovie.Controllers
     public class CatalogController : Controller
     {
         MovieDBContext db = new MovieDBContext();
-        // GET: Catalog/Index?id = xxxx&cata = 1 or 2 or 3 or 4 or 5 
+        // GET: Catalog/Index?id = xxxx&cata = 1 or 2 or 3 or 4 or 5  Catalog/Index?id=ludan&cata=1
         public ActionResult Index()
         {
-            ViewBag.id = Request.QueryString["id"];
+            ViewBag.ID = Request.QueryString["id"];
             ViewBag.cata = Request.QueryString["cata"];
             return PartialView();
         }
@@ -24,12 +24,14 @@ namespace MvcMovie.Controllers
         //GET:Catalog/Index?cata = 1 or 2 or 3 or 4 or 5
         public ActionResult ItemListForCata()
         {
-            int cata = int.Parse(Request.QueryString["cata"]);
-            var catainfo = (from j in db.Items where j.ItemID[1] == cata select j);
+            int cata = int.Parse(Request.QueryString["cata"]); //error
+            var catainfo = (from j in db.Items
+                            where j.ItemID[1] == cata
+                            select j);
             string list = "";
             foreach(Item j in catainfo)
             {
-                list = list +" "+ j.ItemID;
+                list = list + " " + j.ItemID;
              }
             return Content(list);
         }
