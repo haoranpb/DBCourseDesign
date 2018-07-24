@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,23 +9,32 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <!-- Favicons Icon -->
-<title>Personal Account</title>
+<title>Seller Account</title>
 <!-- Mobile Specific -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content="">
 <!-- CSS Style -->
-<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
-<link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
-<link rel="stylesheet" href="~/Content/ms-style.min.css" />
-<link rel="stylesheet" href="~/Content/personal_member.min.css" />
-<link rel="stylesheet" href="~/Content/sui.css" />
-<script type="text/javascript" src="~/Scripts/address_all.js"></script> 
-<script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js" ></script>
-<script type="text/javascript" src="~/Scripts/sui.js" ></script>
-<link rel="stylesheet" type="text/css" href="~/Content/checkOut.css"/>
-<link rel="stylesheet" type="text/css" href="~/Content/account_table.css"/>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css" media="all">
+<link rel="stylesheet" type="text/css" href="css/style.css" media="all">
+<link rel="stylesheet" href="css/ms-style.min.css" />
+<link rel="stylesheet" href="css/personal_member.min.css" />
+<link rel="stylesheet" href="css/sui.css" />
+<script type="text/javascript" src="js/address_all.js"></script> 
+<script type="text/javascript" src="js/jquery-1.9.1.min.js" ></script>
+<script type="text/javascript" src="js/sui.js" ></script>
+<link rel="stylesheet" type="text/css" href="css/finishOut.css"/>
+<link rel="stylesheet" type="text/css" href="css/seller_account.css"/>
+<link rel="stylesheet" type="text/css" href="css/account_table.css"/>
+
+<script type="text/javascript">
+  function openEdit()
+  {
+    document.getElementById('open').style.display='block';
+    document.getElementById('close').style.display='block';
+  }
+</script>
 
 </head>
 
@@ -38,11 +46,11 @@
           <div class="row"> 
            
             <div class="col-xs-7 col-sm-6">
-              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
+              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="images/english.png" alt="language"> English <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/english.png" alt="language"> English </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/francais.png" alt="language"> French </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/german.png" alt="language"> German </a></li>
                 </ul>
               </div>
            
@@ -66,14 +74,14 @@
                     <div>
                       <div class="top-cart-content" style="display: none;">
                         <div class="actions">
-                          <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
+                          <button class="btn-finishout" title="finishout" type="button"><span>finishout</span></button>
                           <a href="#" class="view-cart" ><span>View Cart</span></a>
                         </div>
                       
                         <ul class="mini-products-list" id="cart-sidebar">
                           <li class="item first">
                             <div class="item-inner">
-                              <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="../Images/products-images/p4.jpg"></a>
+                              <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="products-images/p4.jpg"></a>
                               <div class="product-details">
                                 <div class="access">
                                   <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
@@ -87,7 +95,7 @@
                           </li>
                           <li class="item last">
                             <div class="item-inner">
-                              <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
+                              <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="products-images/p3.jpg"></a>
                               <div class="product-details">
                                 <div class="access">
                                   <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
@@ -119,7 +127,7 @@
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
+                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="images/interstitial-close.png" alt="close"> </button>
                           </div>
                           <div class="modal-body">
                             <form class="navbar-form">
@@ -139,7 +147,7 @@
                 
                 <div class="toplinks">
                   <div class="links">              
-                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">USER NAME</span></a></div>
+                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">SELLER NAME</span></a></div>
                 
                  
 
@@ -164,36 +172,23 @@
           <div class="ms-side" style="margin-top: 20px;">
             <article class="side-menu side-menu-off">
               <dl class="side-menu-tree" style="padding-left: 50px;">
-                <dt><img src="../Images/images/mycart.png"  style="margin-right: 10px;margin-left: -20px;"/>My Account</dt>
-                <dt><img src="../Images/images/file.png"  style="margin-right: 10px;margin-left: -20px;"/>Orders</dt>
+                <dt><img src="images/mycart.png"  style="margin-right: 10px;margin-left: -20px;"/>My Account</dt>
+                <dt><img src="images/file.png"  style="margin-right: 10px;margin-left: -20px;"/>My Shops</dt>
                 <dd>
-                  <a>My Order</a>
+                  <a>My Shops</a>
                 </dd>
                 <dd>
-                  <a>My Collection</a>
-                </dd>
-                <dd>
-                  <a>Order History</a>
+                  <a>Shop Management</a> <!--卖家进行店铺的增加和删除 -->
                 </dd>
                 
-                <dt><img src="../Images/images/myvibra.png"  style="margin-right: 10px;margin-left: -20px;"/>My Vibra</dt>
+                <dt><img src="images/myvibra.png"  style="margin-right: 10px;margin-left: -20px;"/>My Orders</dt>
                 <dd>
-                  <a>Favorite</a>
+                  <a>Orders</a> <!--卖家查看当前未完成订单 -->
                 </dd>
                 <dd>
-                  <a>Wallet</a>
+                  <a>History Orders</a> <!--卖家查看历史订单 -->
                 </dd>
-                <dd>
-                  <a>My Coupon</a>
-                </dd>
-                <dt><img src="../Images/images/v-card-3.png"  style="margin-right: 10px;margin-left: -20px;"/>After Sell</dt>
-                <dd>
-                  <a>Change/Return</a>
-                </dd>
-                <dd>
-                  <a>Suggestion</a>
-                </dd>
-                <dt><img src="../Images/images/v-card-3.png"  style="margin-right: 10px;margin-left: -20px;"/>Edit Info</dt>
+                <dt><img src="images/v-card-3.png"  style="margin-right: 10px;margin-left: -20px;"/>Edit Info</dt>
                 <dd>
                   <a>Edit Info</a>
                 </dd>
@@ -212,36 +207,34 @@
                 <div style="width: 680px;padding: 10px;float: left;background-color: #fff;height: 250px;">
                 <div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                   <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">My Address : </span>
-                     <span style="font-size: 15px;color: #686868;font-weight:;display: block;display: block; margin:auto;margin-top:20px;">Shanghai China,Tongji University </span>
-                       <input  type="button" value="Edit" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 3px;" />
+                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">shop3 name</span>
+                       <input  type="button" value="View" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" />
                   </div>
                 </div>
-               <div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
+                 
+                <div style="float: left;width:200px ;height: 152px;;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                   <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">Username : </span>
-                     <span style="font-size: 15px;color: #686868;font-weight:;display: block;display: block; margin:auto;margin-top:20px;">Apollo </span>
-                       <input  type="button" value="Edit" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top:20px;" />
+                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">Shop2 name</span>
+                     <input  type="button" value="View" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" />
                   </div>
                 </div>
                 
-               <div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
+                <div style="float: left;width:200px ;height: 152px;;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                   <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">My Phone : </span>
-                     <span style="font-size: 15px;color: #686868;font-weight:;display: block;display: block; margin:auto;margin-top:20px;">581-5472-2892 </span>
-                       <input  type="button" value="Edit" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 20px;" />
+                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">new Shop</span>
+                     <input  type="button" value="Add" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" />
                   </div>
                 </div>
+
                 </div>
                 
                 <!--右侧---end------->
                 
-                <div style="width: 800px;padding:10px;display: inline-block; float: left;margin-top: 20px;background-color: #fff;">
-                          <div style="border-bottom: 1px #ccc solid;">
-                            <p style="font-size: 20px;text-align: left;">My Orders</p>
-                          </div>
-                  
-                 <table class="dataintable" style="font-size: 15px">
+                 <div style="width: 800px;padding:10px;display: inline-block; float: left;margin-top: 20px;background-color: #fff;">
+                        <div style="border-bottom: 1px #ccc solid;">
+                            <p style="font-size: 20px;text-align: left;"><b>My Orders</b></p>
+                        </div>
+                        <table class="dataintable" style="font-size: 15px">
                       <tr>
                         <th>Order ID</th>
                         <th>Time</th>
@@ -253,37 +246,135 @@
                         <td>2016-04-10 12:20:30</td>
                         <td>554564</td>
                         <td>
-                          <input type="button" value="renturn" class="button_blue">
-                          <input type="button" value="comment" class="button_blue">
-                          <input type="button" value="check" class="button_blue">
+                           <button onclick="document.getElementById('light').style.display='block';
+                         document.getElementById('fade').style.display='block'"
+                         style="background-color: #42a4e0;
+                          border-radius: 5px;
+                          color: #fff; 
+                          font-size:14px;
+                          border: 0px;
+                          width: 107px;
+                          height: 26px;">edit</button>
+                          <!-- 以下为点击edit后,卖家对order的操作 -->
+                          <div id="light" class="white_content">
+                                <h1 style="align-content:center;margin-top: -10px;">Manage this order</h1>
+                                <p>The former price is </p><a href="">$180</a>
+                                <!-- cancel button -->
+                                <button onclick="document.getElementById('light').style.display='none';
+                               document.getElementById('fade').style.display='none'"
+                               style="background-color: #FF0000;
+                                border-radius: 5px;
+                                color: #fff; 
+                                font-size:14px;
+                                border: 0px;
+                                width: 107px;
+                                height: 26px;
+                                top: 10px;
+                                position: relative;
+                                margin-bottom: -550px;">cancel</button>
+                                <!-- confirm button -->
+                                  <button onclick="document.getElementById('light').style.display='none';
+                               document.getElementById('fade').style.display='none'"
+                               style="background-color: #42a4e0;
+                                border-radius: 5px;
+                                color: #fff; 
+                                font-size:14px;
+                                border: 0px;
+                                width: 107px;
+                                height: 26px;
+                                top: 10px;
+                                position: relative;
+                                margin-bottom: -550px;">comfirm</button>
+                          </div>
+                          <div id="fade" class="black_overlay"></div>
+                          <button style="background-color: #42a4e0;
+                                border-radius: 5px;
+                                color: #fff; 
+                                font-size:14px;
+                                border: 0px;
+                                width: 107px;
+                                height: 26px;">Finish</button>
                         </td>
                       </tr>
+                        
                       <tr>
                         <td><b>98542287</b></td>
                         <td>2016-04-10 12:20:30</td>
                         <td>755458</td>
-                         <td>
-                          <input type="button" value="renturn" class="button_blue">
-                          <input type="button" value="comment" class="button_blue">
-                          <input type="button" value="check" class="button_blue">
+                        <td>
+                           <button onclick="document.getElementById('light').style.display='block';
+                         document.getElementById('fade').style.display='block'"
+                         style="background-color: #42a4e0;
+                          border-radius: 5px;
+                          color: #fff; 
+                          font-size:14px;
+                          border: 0px;
+                          width: 107px;
+                          height: 26px;">edit</button>
+                          <div id="light" class="white_content">
+                                <button onclick="document.getElementById('light').style.display='none';
+                               document.getElementById('fade').style.display='none'"
+                               style="background-color: #FF0000;
+                                border-radius: 5px;
+                                color: #fff; 
+                                font-size:14px;
+                                border: 0px;
+                                width: 107px;
+                                height: 26px;">cancel</button>
+                          </div>
+                          <div id="fade" class="black_overlay"></div>
+                          <button style="background-color: #42a4e0;
+                                border-radius: 5px;
+                                color: #fff; 
+                                font-size:14px;
+                                border: 0px;
+                                width: 107px;
+                                height: 26px;">Finish</button>
                         </td>
                       </tr>
+                        
                       <tr>
                         <td><b>98542751</b></td>
                         <td>2016-04-10 12:20:30</td>
                         <td>825990</td>
-                         <td>
-                          <input type="button" value="renturn" class="button_blue">
-                          <input type="button" value="comment" class="button_blue">
-                          <input type="button" value="check" class="button_blue">
+                        <td>
+                           <button onclick="document.getElementById('light').style.display='block';
+                         document.getElementById('fade').style.display='block'"
+                         style="background-color: #42a4e0;
+                          border-radius: 5px;
+                          color: #fff; 
+                          font-size:14px;
+                          border: 0px;
+                          width: 107px;
+                          height: 26px;">edit</button>
+                          <div id="light" class="white_content">
+                                <button onclick="document.getElementById('light').style.display='none';
+                               document.getElementById('fade').style.display='none'"
+                               style="background-color: #FF0000;
+                                border-radius: 5px;
+                                color: #fff; 
+                                font-size:14px;
+                                border: 0px;
+                                width: 107px;
+                                height: 26px;">cancel</button>
+                          </div>
+                          <div id="fade" class="black_overlay"></div>
+                          <button style="background-color: #42a4e0;
+                                border-radius: 5px;
+                                color: #fff; 
+                                font-size:14px;
+                                border: 0px;
+                                width: 107px;
+                                height: 26px;">Finish</button>
                         </td>
                       </tr>
-                  </table>
 
-               </div>
-                
+                        
+                  </table>
+                         
+                        
               
-          </div>
+                 </div>
         </div>
         
       </div>
@@ -291,6 +382,8 @@
     </div>
   </section>
 <!-- END OF PERSONAL ACCOUNT -->
+
+
 
 
 
@@ -362,7 +455,7 @@
         </div>
       </div>
       <div class="container">
-        <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="../Images/images/logo.png"></div>
+        <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="images/logo.png"></div>
         <address>
           <i class="fa fa-map-marker"></i>DB Design Project <i class="fa fa-mobile"></i><span> +(888) 123-4567</span> <i class="fa fa-envelope"></i><span> Tongji University </span>
         </address>
