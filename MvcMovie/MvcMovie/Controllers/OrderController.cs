@@ -37,7 +37,7 @@ namespace MvcMovie.Controllers
                 ViewBag.address = " ";
                 ViewBag.phone = " ";
             }
-            return PartialView();
+            return PartialView("Index");
         }
 
         // 从购物车加载订单
@@ -59,7 +59,7 @@ namespace MvcMovie.Controllers
             {
                 if (it.ShopID == Shopid)
                 {
-                    s = s + "&" + it.ItemID;
+                    s = s + "%" + it.ItemID;
                     foreach(var j in cartinfo)
                     {
                         if(j.CartID == it.ItemID)
@@ -87,7 +87,7 @@ namespace MvcMovie.Controllers
                 ViewBag.phone = "no default address";
             }
 
-            return PartialView();
+            return PartialView("Index");
         }
 
         /*

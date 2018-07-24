@@ -1,0 +1,510 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Favicons Icon -->
+<title>Order</title>
+<!-- Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- CSS Style -->
+<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
+<link rel="stylesheet" type="text/css" href="~/Content/simple-line-icons.css" media="all">
+<link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="~/Content/owl.theme.css">
+<link rel="stylesheet" type="text/css" href="~/Content/jquery.bxslider.css">
+<link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
+<link rel="stylesheet" type="text/css" href="~/Content/revslider.css" >
+<link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
+<link rel="stylesheet" type="text/css" href="~/Content/base.css"/>
+<link rel="stylesheet" type="text/css" href="~/Content/checkOut.css" />
+<script type="text/javascript" src="~/Scripts/address_all.js"></script>  
+<script type="text/javascript" src="~/Scripts/jquery_cart.js"></script>  
+<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+      /*------------------------加载内容------------------------*/
+    	//判断订单来自商品还是购物车
+    	var orderType="@ViewBag.Shopnumber_or_Ordernumber";
+
+    	//修改手机号和收货地址为默认地址
+      var phone="@ViewBag.phone";
+      var address="@ViewBag.address";
+      $("#phone").attr("value",phone);
+      $("#address").attr("value",address);
+
+      //订单来自商品 加载一件
+    	if(orderType==-1){
+    		//获取商品id
+    		var itemid="@ViewBag.item_id";
+    		var item_url="../Shop/ItemInfo?itemid="+itemid+"&itemnum=1";
+    		//获取商品信息
+    		$.get(item_url,function(itemjson)
+    		{
+    			var itemObj=eval(itemjson);
+				
+				var id = itemObj.ItemID;
+				console.log(id);
+          var info=itemObj.ItemInfo;
+          var name=itemObj.ItemName;
+          var pic=itemObj.ItemPic;
+          var price=itemObj.ItemPrice;
+			
+          $("#item1p").attr("src","../Images/img/images/"+id+".jpg");	//图品
+          $("#item1p").attr("alt",name);		//图片无法显示是的替代文字
+          $("#item1t").text(name);	//名称
+          $("#item1t").attr("href","../Item/Index/?id="+id);	//链接
+          $("#item1pr").text("$"+price);	//单价
+          $("#item1prs").text("$"+price);		//总价=单价*数目 数目为1不可修改
+
+          $("#price").text(price);			//订单总价格
+          $("#totalPrice").text(price);	//订单优惠后总价格 优惠设置为0
+        });
+    	}
+    	//订单来自购物车 加载至多三件
+    	else{
+    		//订单总价
+    		var TotalPrice=0;
+    		//获取订单内多件商品id
+			var itemstr = "@ViewBag.s";
+			console.log("@ViewBag.s");
+    		//s: "&item1id?item1n&item2id?item2n&item3id?item3n"
+    		//每个itemlist[i]为itemid?itemn 即商品id+商品数目
+    		var itemlist=itemstr.split("%");
+    		for(var i=1;i<=itemlist.length;i++){
+    			var itemid_n=(itemlist[i]).split("?");
+    			//[0]为id [1]为数目 字符串类型
+    		  var item_url="../Shop/ItemInfo?itemid="+itemid_n[0]+"&itemnum="+i;
+    		  //将数目从字符串变成浮点数
+    		  var itemcount=parseFloat(itemid_n[1]);
+    		  //获取商品信息
+    		 	$.get(item_url,function(itemjson)
+    			{
+    				var itemObj=eval(itemjson);
+
+    				var num=itemObj.ItemNum;
+          	var id=itemObj.ItemID;
+          	var info=itemObj.ItemInfo;
+          	var name=itemObj.ItemName;
+          	var pic=itemObj.ItemPic;
+          	var price=itemObj.ItemPrice;
+          	var pricecount=(parseFloat(price))*itemcount;	//n件商品的总价 转换为浮点数直接计算
+
+          	$("#item"+num+"p").attr("src","../Images/img/images/"+id+".jpg");   //图片
+          	$("#item"+num+"p").attr("alt",name);  //图片无法显示时的文字
+          	$("#item"+num+"t").text(name);        //名称
+          	$("#item"+num+"t").attr("href","../Item/Index/?id="+id);  //链接
+          	$("#item"+num+"pr").text("$"+price);	//单价
+          	$("#item"+num+"prs").text("$"+pricecount);	//总价
+          	TotalPrice+=pricecount;	//订单总价 累加商品总价
+    		 	});
+			}
+			console.log(TotalPrice);
+    		$("#price").text(TotalPrice);	//订单总价
+    		$("#totalPrice").text(TotalPrice);	//订单优惠后总价 优惠设置为0
+      }
+      /*------------------------提交订单------------------------*/
+      $("#createorder").click(function()
+      {
+        //用户填写的信息
+        var phone=$("#phone").val();
+        var address=$("#address").val();
+        var userid="@ViewBag.ID";
+
+        if(phone==null||phone==""){
+          alert("Please enter your phone number");
+        }if(address==null||address==""){
+          alert("Please enter your address");
+        }
+        else{
+          var orderType="ViewBag.Shopnumber_or_Ordernumber";
+          //从店铺创建
+          if(orderType==-1){
+            var itemid="@ViewBag.ItemID";
+
+            var create_url="../Order/ShopCreate?OrderPhone="+phone+"&OrderAddress="+address+"&itemID="+itemid;
+            $.get(create_url,function(data)
+            {
+              if(data=="success"){
+                //订单创建成功
+                alert("Ordre Successfully Submitted!");
+                //三秒后跳转
+                //可以跳转 但是实际上可能用了不止三秒 有点慢
+                function delay()
+                {
+                  $(window).attr('location', '../HomePage/Index?id='+itemid);
+                }
+                setTimeout(delay,3000);
+              }
+              else{
+                //订单创建失败
+                alert("Failed to submit order");
+              }
+            });
+          }
+          //从购物车创建订单
+          else{
+            var shopid="@ViewBag.shopid";
+
+            var create_url="../Order/CartCreate?OrderPhone="+phone+"&OrderAddress="+address+"&user_id="+userid+"&shop_id="+shopid;
+            $.get(create_url,function(data)
+            {
+              if(data=="success"){
+                //订单创建成功
+                alert("Order Successfully Submitted!");
+                //三秒后跳转
+                function delay()
+                {
+                  $(window).attr('location', '../HomePage/Index?id='+itemid);
+                }
+                setTimeout(delay,3000);
+              }
+              else{
+                alert("Failed to submit order");
+              }
+            })
+
+          }     
+        }
+      })
+    });
+</script>
+</head>
+
+<body>
+	<header>
+    <div class="header-container">
+      <div class="header-top">
+        <div class="container">
+          <div class="row"> 
+            <!-- Header Language -->
+            <div class="col-xs-7 col-sm-6">
+              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
+                </ul>
+              </div>
+              <!-- End Header Language --> 
+              
+              <!-- Header Currency -->
+              <div class="dropdown block-currency-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
+                </ul>
+              </div>
+              <!-- End Header Currency -->
+              
+              <div class="welcome-msg hidden-xs"> Welcome to Tongji University! </div>
+            </div>
+            <div class="col-xs-5 col-sm-6"> 
+              <div class="top-cart-contain pull-right"> 
+                <!-- Top Cart -->
+                <div class="mini-cart">
+                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="../Cart/Index?id=@ViewBag.ID">  My Cart <span class="cart_count">2</span></a></div>
+                  <div>
+                    <div class="top-cart-content" style="display: none;">
+                      <div class="actions">
+                        <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
+                        <a href="#" class="view-cart" ><span>View Cart</span></a>
+                      </div>
+                      <!--block-subtitle-->
+                      <ul class="mini-products-list" id="cart-sidebar">
+                        <li class="item first">
+                          <div class="item-inner">
+                            <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="../Images/products-images/p4.jpg"></a>
+                            <div class="product-details">
+                              <div class="access">
+                                <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+                              </div>
+                              <!--access-->
+                              <strong>1</strong> x <span class="price">$179.99</span>
+                              <p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
+                            </div>
+                          </div>
+                        </li>
+                        <li class="item last">
+                          <div class="item-inner">
+                            <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
+                            <div class="product-details">
+                              <div class="access">
+                                <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+                              </div>
+                              <!--access-->
+                              <strong>1</strong> x <span class="price">$80.00</span>
+                              <p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                      <!--actions--> 
+                    </div>
+                  </div>
+                </div>
+                <!-- Top Cart -->
+                <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
+                  <input value="" type="hidden">
+                  <input id="enable_module" value="1" type="hidden">
+                  <input class="effect_to_cart" value="1" type="hidden">
+                  <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
+                </div>
+              </div>     
+              <div class="top-search">
+                <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
+                  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
+                        </div>
+                        <div class="modal-body">
+                          <form class="navbar-form">
+                            <div id="search">
+                              <div class="input-group">
+                                <input name="search" placeholder="Search" class="form-control" type="text">
+                                <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>                 
+              <!-- Header Top Links -->
+              <div class="toplinks">
+                <div class="links">              
+                  <div class="myaccount"><a title="My Account" href="../Personalinfo/Index?id=@ViewBag.ID"><span class="hidden-xs">My Account</span></a></div>
+                </div>           
+              </div>
+              <!-- End Header Top Links -->      
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- END OF HEADER -->
+
+  <div class="border_top_cart">
+		<div class="container">
+    	<div class="checkout-box">
+        <form  id="checkoutForm" action="#" method="post">
+          <div class="checkout-box-bd">
+            <div id="checkoutPayment">
+              <!-- PHONE NUMBER -->
+              <div class="xm-box">
+                <div class="box-hd ">
+                  <h2 class="title">Phone Number</h2>
+                </div>
+                <div class="box-bd">
+                  <form>
+                    <input id="phone" type="text" value="" style="width: 256px;height: 48px;font-size: 28px">
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="xm-box">
+              <div class="box-hd ">
+                <h2 class="title">Delivery Address</h2>
+              </div>
+              <div class="box-bd">
+                <form>
+                  <input id="addr" type="text" value="" style="width: 512px;height: 48px;font-size: 28px">
+                </form>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!--  ITEMS INFORMATION -->
+      <div class="checkout-box-ft">
+        <div id="checkoutGoodsList" class="checkout-goods-box">
+          <div class="xm-box">
+            <div class="box-hd">
+              <h2 class="title">Order Confirm</h2>
+            </div>
+            <div class="box-bd">
+              <dl class="checkout-goods-list">
+                <dt class="clearfix">
+                  <span class="col col-1">Commodity Name</span>
+                  <span class="col col-2">Price</span>
+                  <span class="col col-3">Quantity</span>
+                  <span class="col col-4">Sum (Yuan)</span>
+                </dt>
+                <!-- ITEM 01 -->	
+                <dd class="item clearfix">
+                  <div class="item-row">
+                    <div class="col col-1">
+                      <div class="g-pic">
+                        <img id="item1p" src="" width="40" height="40" />
+                      </div>
+                      <div class="g-info">
+                        <a id="item1t" href="#">no more item ...</a>
+                      </div>
+                    </div>
+                    <div id="item1pr" class="col col-2"></div>
+                    <div id="item1n" class="col col-3"></div>
+                    <div id="item1prs" class="col col-4"></div>
+                  </div>
+                </dd>
+                <!-- ITEM 02 -->
+                <dd class="item clearfix">
+                  <div class="item-row">
+                    <div class="col col-1">
+                      <div class="g-pic">
+                        <img id="item2p" src="" width="40" height="40" />
+                      </div>
+                      <div class="g-info">
+                        <a id="item2t" href="#">no more item ...</a><
+                      </div>
+                    </div>
+                    <div id="item2pr" class="col col-2"></div>
+                    <div id="item2n" class="col col-3"></div>
+                    <div id="item2prs" class="col col-4"></div>
+                  </div>
+                </dd>
+                <!-- ITEM 03 -->
+                <dd class="item clearfix">
+                  <div class="item-row">
+                    <div class="col col-1">
+                      <div class="g-pic">
+                        <img id="item3p" src="http://i1.mifile.cn/a1/T1rrDgB4DT1RXrhCrK!40x40.jpg" width="40" height="40" />
+                      </div>
+                      <div class="g-info">
+                        <a id="item3t" href="#">no more item ...</a>
+                      </div>
+                      <div id="item3pr" class="col col-2"></div>
+                      <div id="item3n" class="col col-3"></div>
+                      <div id="item3prs" class="col col-4"></div>
+                    </div>
+                  </div>
+                </dd>
+              </dl>
+              <div class="checkout-count clearfix">
+              <!-- checkout-count-extend -->
+                <div class="checkout-price">
+                  
+                  <p class="checkout-total">Total Amount：<span><strong id="totalPrice"></strong>Yuan</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 商品清单 END -->
+        <input type="hidden"  id="couponType" name="Checkout[couponsType]">
+        <input type="hidden" id="couponValue" name="Checkout[couponsValue]">
+        <div class="checkout-confirm">                    
+          <a href="../Cart/Index?id=@ViewBag.ID" class="btn btn-lineDakeLight btn-back-cart">Back to cart</a>
+          <button id="createorder" type="button" class="btn btn-primary" id="checkoutToPay">Order Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="~/Scripts/address_all.js"></script>
+  <script type="text/javascript" src="~/Scripts/address_all.js"></script>
+  <script type="text/javascript" src="~/Scripts/address_all.js"></script> 
+  <script src="~/Scripts/base.min.js"></script>
+  <script type="text/javascript" src="~/Scripts/address_all.js"></script>
+  <script type="text/javascript" src="~/Scripts/checkout.min.js"></script> 
+ 
+  <!--收货地址body部分结束-->
+  <footer style="z-index: -1">
+    <div class="footer-inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 col-lg-8">
+            <div class="footer-column pull-left">
+              <h4>CUSTOMMER SERVICE</h4>
+              <ul class="links">
+                <li class="first"><a href="#" title="Contact us">My Account</a></li>
+                <li><a href="#" title="About us">Order History</a></li>
+                <li><a href="#" title="faq">FAQ</a></li>
+                <li><a href="#" title="Popular Searches">Specials</a></li>
+                <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
+              </ul>
+            </div>
+            <div class="footer-column pull-left">
+              <h4>Corporation</h4>
+              <ul class="links">
+                <li class="first"><a title="Your Account" href="#">About us</a></li>
+                <li><a title="Information" href="#">Customer Service</a></li>
+                <li><a title="Addresses" href="#">Company</a></li>
+                <li><a title="Addresses" href="#">Investor Relations</a></li>
+                <li class="last"><a title="Orders History" href="#">Advanced Search</a></li>             
+              </ul>
+            </div>
+            <div class="footer-column pull-left">
+              <h4>Why choose Us</h4>
+              <ul class="links">
+                <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
+                <li><a href="#" title="Blog">Blog</a></li>
+                <li><a href="#" title="Company">Company</a></li>
+                <li><a href="#" title="Investor Relations">Investor Relations</a></li>
+                <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-12 col-lg-4">
+            <div class="footer-column-last">
+              <div class="newsletter-wrap">
+                <h4>Sign up for emails</h4>
+                <form id="newsletter-validate-detail" method="post" action="#">
+                  <div id="container_form_news">
+                    <div id="container_form_news2">
+                      <input type="text" class="input-text required-entry validate-email" value="Enter your email address" onFocus=" this.value='' " title="Sign up for our newsletter" id="newsletter" name="email">
+                      <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <br>
+              <div class="social">
+                <h4>Follow Us</h4>
+                <ul class="link">
+                  <li class="fb pull-left"><a href="#"></a></li>
+                  <li class="tw pull-left"><a href="#"></a></li>
+                  <li class="googleplus pull-left"><a href="#"></a></li>
+                  <li class="rss pull-left"><a href="#"></a></li>
+                  <li class="pintrest pull-left"><a href="#"></a></li>
+                  <li class="linkedin pull-left"><a href="#"></a></li>
+                  <li class="youtube pull-left"><a href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="../Images/images/logo.png"></div>
+        <address>
+          <i class="fa fa-map-marker"></i>DB Design Project <i class="fa fa-mobile"></i><span> +(888) 123-4567</span> <i class="fa fa-envelope"></i><span> Tongji University </span>
+        </address>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 coppyright">Copyright &copy; 2018. All rights reserved.</div>
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- END OF FOOTER -->
+</body>

@@ -35,19 +35,21 @@
 			var j = "@ViewBag.idstring".split(" ");
 		console.log(j[1]);
 		console.log(j[2]);
-			for (let i = 1; i < j.length; i++) {
+		var js = [1, 2, 3, 4];
+		for (let i = 1; i < j.length; i++) {
+			console.log("begin");
 				var number = j[i].split("=");//number[0]->itemid, number[1]->count
 				var id = number[0];
-				var count = number[1];
+				js[i] = number[1];
 				console.log(id);
-				console.log(count);
-			$.get('../Shop/ItemInfo?itemid=' + id + "&itemnum" + count, function (data) {
-				$("#img" + i).attr("src", "../Images/img/images/" + data["ItemPic"] + ".jpg");
-				$("#cart" + i).text(data["ItemName"]);
-				$("#price" + i).text('$'+data["ItemPrice"]+".00");
-				$("#totalprice" + i).text(data["ItemPrice"] * count);
-				$("#quantity" + i).text(count);
-			});
+				console.log(js[i]);
+				$.get('../Shop/ItemInfo?itemid=' + id + "&itemnum" + j[i], function (data) {
+					$("#img" + i).attr("src", "../Images/img/images/" + data["ItemPic"] + ".jpg");
+					$("#cart" + i).text(data["ItemName"]);
+					$("#price" + i).text('$'+data["ItemPrice"]+".00");
+					$("#totalprice" + i).text(data["ItemPrice"] * js[i]);
+					$("#quantity" + i).text(js[i]);
+				});
 			}
 		
 	});

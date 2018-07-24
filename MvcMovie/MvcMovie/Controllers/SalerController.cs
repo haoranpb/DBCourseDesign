@@ -85,10 +85,11 @@ namespace MvcMovie.Controllers
             return Json(json,JsonRequestBehavior.AllowGet);
         }
 
-        //跳转至创建店铺页面 /Saler/CreateShopPage?ID=Lucas
+        //跳转至店铺页面 /Saler/CreateShopPage?ID=Lucas&shopid=123456
         public ActionResult CreateShopPage()
         {
             string ID = Request.QueryString["ID"];
+            ViewBag.shopid = Request.QueryString["shopid"];
             //卖家基本信息通过viewbag传输
             Saler saler = db.Salers.Find(ID);
             ViewBag.Salerinfo = saler.SalerInfo;
@@ -96,7 +97,7 @@ namespace MvcMovie.Controllers
             ViewBag.ID = ID;
             ViewBag.SalerPhone = saler.SalerPhone;
 
-            return View();
+            return PartialView();
         }
 
 
