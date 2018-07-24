@@ -18,7 +18,9 @@ namespace MvcMovie.Controllers
         {
             string customerID = Request.QueryString["id"];
             ViewBag.customerID = customerID;
-            var cartinfo = (from j in db.Carts where j.CustomerID == customerID select j);
+            var cartinfo = (from j in db.Carts
+                            where j.CustomerID == customerID
+                            select j);
             string idstring = "";
             foreach (var cartitem in cartinfo)
             {
