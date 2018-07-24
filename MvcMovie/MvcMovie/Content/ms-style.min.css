@@ -703,7 +703,7 @@ body {
 	overflow: hidden;
 	width: 160px;
 	background: #FFF;
-	background-image: url(../Images/images/menu-treeNeck.png);
+	background-image: url(images/menu-treeNeck.png);
 	background-position: center top;
 	background-repeat: repeat-x;
 	box-shadow: 0 2px 5px #e3e3e3, -1px 2px 5px #e3e3e3;

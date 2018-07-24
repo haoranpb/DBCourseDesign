@@ -36,6 +36,24 @@
   }
 </script>
 
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var a = "@ViewBag.ShopIdString";
+			var j = a.split(" ");
+			console.log("@ViewBag.ShopIdString");
+			for (var i = 1; i < j.length; i++) {
+				var s = j[i];
+				console.log("#shop" + i);
+				console.log($("#shop" + i).text());
+				$("#shop" + i).text(s);
+				$("#shop" + i + "v").attr("value", View);
+			}
+
+			
+
+
+		});
+	</script>
 </head>
 
 <body>
@@ -207,22 +225,22 @@
                 <div style="width: 680px;padding: 10px;float: left;background-color: #fff;height: 250px;">
                 <div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                   <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">shop3 name</span>
-                       <input  type="button" value="View" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" />
+                    <span id ="shop1" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">shop3 name</span>
+                       <input  id ="shop1v" type="button" value="View" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" />
                   </div>
                 </div>
                  
                 <div style="float: left;width:200px ;height: 152px;;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                   <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">Shop2 name</span>
-                     <input  type="button" value="View" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" />
+                    <span id ="shop2" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">Shop2 name</span>
+                     <input  id ="shop2v"type="button" value="View" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" />
                   </div>
                 </div>
                 
                 <div style="float: left;width:200px ;height: 152px;;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                   <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">new Shop</span>
-                     <input  type="button" value="Add" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" />
+                    <span id ="shop3" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">new Shop</span>
+                     <input  id ="shop3v"type="button" value="Add" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" />
                   </div>
                 </div>
 

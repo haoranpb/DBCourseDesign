@@ -111,20 +111,21 @@ namespace MvcMovie.Controllers
 
                     }
                 }
-                if (psw == admin.AdminPassword)
+                else if (psw == admin.AdminPassword)
                 {
                     ViewBag.ID = id;
                     return Content("success2"); ;
 
                 }//成功的话切换到主页面
             }
-            if (psw == customer1.CustomerPassword)
+            else if (psw == customer1.CustomerPassword)
             {
                 ViewBag.ID = id;
                 return Content("success1"); ;
                      
             }//成功的话切换到主页面
-            else return Content("failed");//密码错误？登录失败
+
+            return Content("failed");//密码错误？登录失败
         }
         
         /// Login/Edit
