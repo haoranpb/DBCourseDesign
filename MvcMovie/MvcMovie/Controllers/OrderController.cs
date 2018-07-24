@@ -74,16 +74,21 @@ namespace MvcMovie.Controllers
             ViewBag.s = s;//包括全部的itemid
             // 查找购物车
 
-            ReceivingInfo p = db.ReceivingInfos.Find(id);
-            if (p != null)
+            var p1 = (from i in db.ReceivingInfos
+                      where i.ID == "ludan"
+                      select i);
+            //ReceivingInfo p = null;
+            
+            //if (p1 != null)
+            //{
+            //    p = p1.First();
+            //    ViewBag.address = p.Address;
+            //    ViewBag.phone = p.ReceivingPhone;
+            //}
+            //else
             {
-                ViewBag.address = p.Address;
-                ViewBag.phone = p.ReceivingPhone;
-            }
-            else
-            {
-                ViewBag.address = " ";
-                ViewBag.phone = " ";
+                ViewBag.address = "no default address";
+                ViewBag.phone = "no default address";
             }
 
             return PartialView();

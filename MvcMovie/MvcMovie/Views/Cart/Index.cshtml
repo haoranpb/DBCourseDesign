@@ -29,7 +29,29 @@
     <script src=" ~/Scripts/jquery-3.3.1.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Content/checkOut.css" />
 </head>
-
+<script>
+	$(document).ready(function () {
+		console.log("@ViewBag.idstring");
+			var j = "@ViewBag.idstring".split(" ");
+		console.log(j[1]);
+		console.log(j[2]);
+			for (let i = 1; i < j.length; i++) {
+				var number = j[i].split("=");//number[0]->itemid, number[1]->count
+				var id = number[0];
+				var count = number[1];
+				console.log(id);
+				console.log(count);
+			$.get('../Shop/ItemInfo?itemid=' + id + "&itemnum" + count, function (data) {
+				$("#img" + i).attr("src", "../Images/img/images/" + data["ItemPic"] + ".jpg");
+				$("#cart" + i).text(data["ItemName"]);
+				$("#price" + i).text('$'+data["ItemPrice"]+".00");
+				$("#totalprice" + i).text(data["ItemPrice"] * count);
+				$("#quantity" + i).text(count);
+			});
+			}
+		
+	});
+</script>
 <body>
 	<header>
     <div class="header-container">
@@ -126,7 +148,6 @@
               <td class="remove">Remove</td>
               <td class="image">Image</td>
               <td class="name">Product Name</td>
-              <td class="model">Model</td>
               <td class="quantity">Quantity</td>
               <td class="price">Unit Price</td>
               <td class="total">Total</td>
@@ -135,45 +156,42 @@
           <tbody>
                         <tr>
               <td class="remove"><input type="checkbox" name="remove[]" value="41" /></td>
-              <td class="image"><a href="#"><img src="../Images/images/mac.jpg" alt="iMac" title="iMac" style="height: 80px;
+              <td class="image"><a href="#"><img id ="img1"src="../Images/empty.jpg" alt="iMac" title="iMac" style="height: 80px;
 	width: 80px;"  /></a>
                 </td>
-              <td class="name"><a href="#">iMac</a>
+              <td class="name"><a id ="cart1" href="#">Empty</a>
               <div>
               </div>
                 </td>
-              <td class="model">Product 14</td>
-              <td class="quantity"><input type="text" name="quantity[41]" value="2" size="3" /></td>
-              <td class="price">$100.00</td>
-              <td class="total">$200.00</td>
+			  <td class="quantity" id="quantity1">0</td>
+              <td class="price" id="price1">$0.00</td>
+              <td class="total" id="totalprice1">$0.00</td>
             </tr>
                         <tr>
               <td class="remove"><input type="checkbox" name="remove[]" value="40" /></td>
-              <td class="image"><a href="#"><img src="../Images/images/iPhone.jpg" alt="iPhone" title="iPhone" style="height: 80px;
+              <td class="image"><a href="#"><img id ="img2" src="../Images/empty.jpg" alt="iPhone" title="iPhone" style="height: 80px;
 	width: 80px;" /></a>
                 </td>
-              <td class="name"><a href="#">iPhoneX</a>
+              <td class="name"><a id ="cart2" href="#">Empty</a>
               <div>
               </div>
                 </td>
-              <td class="model">product 11</td>
-              <td class="quantity"><input type="text" name="quantity[40]" value="1" size="3" /></td>
-              <td class="price">$101.00</td>
-              <td class="total">$101.00</td>
+              <td class="quantity" id="quantity2">0</td>
+              <td class="price"id="price2">$0.00</td>
+              <td class="total" id="totalprice2">$0.00</td>
             </tr>
                         <tr>
               <td class="remove"><input type="checkbox" name="remove[]" value="36" /></td>
-              <td class="image"><a href="#"><img src="../Images/images/ipod.jpg" alt="iPod Nano" title="iPod Nano" style="height: 80px;
+              <td class="image"><a href="#"><img id ="img3" src="../Images/empty.jpg" alt="iPod Nano" title="iPod Nano" style="height: 80px;
 	width: 80px;"  /></a>
                 </td>
-              <td class="name"><a href="#">iPod Nano</a>
+              <td class="name"><a id ="cart3" href="#">Empty</a>
               <div>
               </div>
                 </td>
-              <td class="model">Product 9</td>
-              <td class="quantity"><input type="text" name="quantity[36]" value="1" size="3" /></td>
-              <td class="price">$100.00</td>
-              <td class="total">$100.00</td>
+			<td class="quantity" id="quantity3">0</td>
+              <td class="price" id="price3">$0.00</td>
+              <td class="total" id="totalprice3">$0.00</td>
             </tr>
                                   </tbody>
 
@@ -189,9 +207,10 @@
                 //console.log("@ViewBag.customerID");
                 $.get('../Cart/ToOrder?user_id=' + "@ViewBag.customerID", function (data) {
                     console.log(data["Shopnumber_of_Ordernumber"]);
-                    console.log(data["OrderString"]);
-
-                    for (let i = 0; i < data["OrderString"].split(' ').length; ++i) {
+					console.log(data["OrderString"]);
+					if (data["OrderString"] == "") alert("Your cart is empty.");
+					else
+                    for (let i = 1; i < data["OrderString"].split(' ').length; ++i) {
                         window.open('../Order/Index2?user_id=' + "@ViewBag.customerID" + "&shop_id=" + data["OrderString"].split(' ')[i].split('&')[0]);
                         console.log(data["OrderString"].split(' ')[i].split('&')[0]);
                     }
