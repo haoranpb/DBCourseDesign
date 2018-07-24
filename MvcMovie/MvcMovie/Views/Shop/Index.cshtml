@@ -57,9 +57,9 @@
             $("#item" + num+"p").attr("src",pic);   //图片 picture
             $("#item" + num+"p").attr("alt",name);  //图片无法显示时的文字 picture.alt
             $("#item" + num+"t").text(name);        //名称 title
-            $("#item" + num+"pl").attr("href","../Item/Index?id="+id); //图片上的链接 picture link
-            $("#item" + num+"t").attr("href","../Item/Index?id="+id);  //文本上的链接 title.link
-            $("#item" + num+"b").attr("href", "../Order/Index?id=" + id); //buy now的链接 buy      
+            $("#item" + num+"pl").attr("href","../Item/Index?id="+id +"&user_id=" + "@ViewBag.id"); //图片上的链接 picture link
+            $("#item" + num+"t").attr("href","../Item/Index?id="+id + "&user_id=" + "@ViewBag.id");  //文本上的链接 title.link
+            $("#item" + num+"b").attr("href", "../Order/Index?id=" + id); // need to change via ordercontroller    
             $("#item" + num+"pr").text("$" + price);
           });
        }

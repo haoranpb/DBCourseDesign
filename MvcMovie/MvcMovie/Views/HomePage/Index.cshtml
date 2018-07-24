@@ -25,7 +25,10 @@
 	<script src=" ~/Scripts/jquery-3.3.1.js"></script>
 	<script>
 		$(document).ready(function () {
-			$("#personal").attr("href", "../Personalinfo/Index/" +"@ViewBag.id");
+            $("#personal").attr("href", "../Personalinfo/Index/" + "@ViewBag.id");
+            $(".product-image").attr("href", function (i, origValue) {
+                return origValue + "&user_id=" + "@ViewBag.id";
+            });
 		});</script>
 </head>
 
@@ -77,7 +80,7 @@
                                                 <ul class="mini-products-list" id="cart-sidebar">
                                                     <li class="item first">
                                                         <div class="item-inner">
-                                                            <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="../Images/products-images/p4.jpg"></a>
+                                                            <a class="product-image-static" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="../Images/products-images/p4.jpg"></a>
                                                             <div class="product-details">
                                                                 <div class="access">
                                                                     <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
@@ -91,7 +94,7 @@
                                                     </li>
                                                     <li class="item last">
                                                         <div class="item-inner">
-                                                            <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
+                                                            <a class="product-image-static" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
                                                             <div class="product-details">
                                                                 <div class="access">
                                                                     <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
@@ -874,7 +877,7 @@
                                 <div class="item-img">
                                     <!-- ITEM INDEX ID="XXX" -->
                                     <div class="item-img-info">
-                                        <a class="product-image" title="Retis lapen casen" href="../Item/Index?id=11191"> <img alt="Retis lapen casen" src="../Images/products-images/p14.jpg"> </a>
+                                        <a class="product-image" title="Retis lapen casen" href="../Item/Index?id=33143"> <img alt="Retis lapen casen" src="../Images/img/origin-images/33143.jpg"> </a>
                                         <div class="actions">
                                             <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                             <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -913,7 +916,7 @@
                                 <div class="item-img">
                                     <!-- ITEM INDEX ID="XXX" -->
                                     <div class="item-img-info">
-                                        <a class="product-image" title="Retis lapen casen" href="../Item/Index?id=12123"> <img alt="Retis lapen casen" src="../Images/products-images/p16.jpg"> </a>
+                                        <a class="product-image" title="Retis lapen casen" href="../Item/Index?id=32133"> <img alt="Retis lapen casen" src="../Images/img/origin-images/32133.jpg"> </a>
                                         <div class="actions">
                                             <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                             <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1223,7 +1226,7 @@
                                                                 <div class="item-img">
                                                                     <!-- ITEM INDEX ID="XXX" -->
                                                                     <div class="item-img-info">
-                                                                        <a href="../Item/Index?id=43133" title="Retis lapen casen" class="product-image"><img src="../Images/img/orgin-images/43133.jpg" alt="Retis lapen casen"></a>
+                                                                        <a href="../Item/Index?id=43133" title="Retis lapen casen" class="product-image"><img src="../Images/img/origin-images/43133.jpg" alt="Retis lapen casen"></a>
                                                                         <div class="actions">
                                                                             <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                                                             <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1260,7 +1263,7 @@
                                                                 <div class="item-img">
                                                                     <!-- ITEM INDEX ID="XXX" -->
                                                                     <div class="item-img-info">
-                                                                        <a href="../Item/Index?id=43152" title="Retis lapen casen" class="product-image"><img src="../Images/img/orgin-images/43152.jpg" alt="Retis lapen casen"></a>
+                                                                        <a href="../Item/Index?id=43152" title="Retis lapen casen" class="product-image"><img src="../Images/img/origin-images/43152.jpg" alt="Retis lapen casen"></a>
                                                                         <div class="actions">
                                                                             <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                                                             <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1412,7 +1415,7 @@
                                                                 <div class="item-img">
                                                                     <!-- ITEM INDEX ID="XXX" -->
                                                                     <div class="item-img-info">
-                                                                        <a href="../Item/Index?id=xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p11.jpg" alt="Retis lapen casen"></a>
+                                                                        <a href="../Item/Index?id=44181" title="Retis lapen casen" class="product-image"><img src="../Images/img/origin-images/44181.jpg" alt="Retis lapen casen"></a>
                                                                         <div class="actions">
                                                                             <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                                                             <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
@@ -1449,7 +1452,7 @@
                                                                 <div class="item-img">
                                                                     <!-- ITEM INDEX ID="XXX" -->
                                                                     <div class="item-img-info">
-                                                                        <a href="../Item/Index?id=xxx" title="Retis lapen casen" class="product-image"><img src="../Images/products-images/p12.jpg" alt="Retis lapen casen"></a>
+                                                                        <a href="../Item/Index?id=44162" title="Retis lapen casen" class="product-image"><img src="../Images/img/origin-images/44162.jpg" alt="Retis lapen casen"></a>
                                                                         <div class="actions">
                                                                             <div class="quick-view-btn"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Quick View"> <span>Quick View</span></a></div>
                                                                             <div class="link-wishlist"><a href="#" data-toggle="tooltip" data-placement="right" title="" data-original-title="Wishlist"><span>Add to Wishlist</span></a></div>
