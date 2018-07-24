@@ -51,7 +51,7 @@
                 var urlstr = "/Item/Add?ID=" + "@ViewBag.id" + "&customerID=" + "@ViewBag.user_id" + "&cnt=1";
                 $.get(urlstr, function (data) {
                     if (data == "success")
-                        $(window).attr("href", "../Cart/Index?id=" + "@ViewBag.user_id");
+                        $(window).attr('location', "../Cart/Index?id=" + "@ViewBag.user_id");
                     else if (data == "low_stock")
                         alert("Inventory Shortage!");
                     else if (data == "already_in")
