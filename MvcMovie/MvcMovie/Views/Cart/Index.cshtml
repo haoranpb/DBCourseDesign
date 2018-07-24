@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -221,9 +221,30 @@
     </form>
 
     <div class="buttons">
-      <div class="left"><a class="button"><span>Update</span></a></div>
+      <div class="left"><a href="#" class="button"><span>Update</span></a></div>
       <div class="right"><a href="#" class="button"><span>Checkout</span></a></div>
-      <div class="center"><a href="#" class="button" style="width:300px;"><span>Continue Shopping</span></a></div>
+      <div class="center"><button id="continueShopping" class="button" style="width:300px;"><span>Continue Shopping</span></button></div>
+        <script>
+            document.querySelector('#continueShopping').addEventListener('click', function ()
+            {
+                //console.log("@ViewBag.customerID");
+                 $.get('../Cart/ToOrder?user_id=' + "@ViewBag.customerID", function (data) {
+                     console.log(data["Shopnumber_of_Ordernumber"]);
+                     console.log(data["OrderString"]);
+
+                     for (let i = 0; i < data["OrderString"].split(' ').length; ++i) {
+                         window.open('../Order/Index2?user_id=' + "@ViewBag.customerID" + "&shop_id=" + data["OrderString"].split(' ')[i].split('&')[0]);
+                         console.log(data["OrderString"].split(' ')[i].split('&')[0]);
+                     }
+
+
+                     
+                     //console.log(data);
+                })
+                //console.log('Hello');
+            })
+            console.log(document.getElementById('continueShopping'));
+        </script>
     </div>
 
     </div>
