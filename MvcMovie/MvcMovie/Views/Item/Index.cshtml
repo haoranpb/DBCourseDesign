@@ -164,7 +164,7 @@
   <main class="main oh" id="main">
     <!-- Navigation -->
     <header class="nav" style="position:relative; top:-64px;">
-      <div class="nav__holder nav--sticky" style="height: 64px">
+      <div style="display:none" class="nav__holder nav--sticky" style="height: 64px">
         <div class="container relative">
           <div class="flex-parent">
 
@@ -275,26 +275,10 @@
                   <img src=@ViewBag.id alt="" />
                 </a>
               </div>
-              <div class="gallery-cell">
-                <a href="../Images/img/shop/item_lg_2.jpg" class="lightbox-img">
-                  <img src="../Images/img/shop/item_lg_2.jpg" alt="" />
-                </a>
-              </div>
-              <div class="gallery-cell">
-                <a href="../Images/img/shop/item_lg_3.jpg" class="lightbox-img">
-                  <img src="../Images/img/shop/item_lg_3.jpg" alt="" />
-                </a>
-              </div>
-              <div class="gallery-cell">
-                <a href="../Images/img/shop/item_lg_4.jpg" class="lightbox-img">
-                  <img src="../Images/img/shop/item_lg_4.jpg" alt="" />
-                </a>
-              </div>
-              <div class="gallery-cell">
-                <a href="../Images/img/shop/item_lg_5.jpg" class="lightbox-img">
-                  <img src="../Images/img/shop/item_lg_5.jpg" alt="" />
-                </a>
-              </div>
+             
+              
+              
+              
             </div> <!-- end gallery main -->
 
             <div style="display:none" class="gallery-thumbs" id="gallery-thumbs">
@@ -427,7 +411,7 @@
                 <div id="collapseThree" class="collapse" data-parent="#accordion" role="tabpanel" aria-labelledby="headingThree">
                   <div class="accordion__body">
                     <div class="reviews">
-                      <ul class="reviews__list">
+                      <ul style="display:none" class="reviews__list">
                         <li class="reviews__list-item">
                           <div class="reviews__body">
                             <div class="reviews__content">
@@ -483,15 +467,20 @@
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
               <a href="single-product.html" class="product__link">
-                <img src="../Images/img/shop/product_1.jpg" alt="" class="product__img">
-                <img src="../Images/img/shop/product_back_1.jpg" alt="" class="product__img-back">
+                <img src="../Images/img/images/11122.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/11122.jpg" alt="" class="product__img-back">
               </a>
               <div class="product__actions">
-                <a href="#" class="product__quickview">
+                <button id="debug11122" href="/Item/Index?id=11122" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
-                </a>
-                <a href="#" class="product__add-to-wishlist">
+                </button>
+                  <script>
+                      document.querySelector('#debug11122').addEventListener('click', function () {
+                          window.open('Index?id=11122');
+                      })
+                  </script>
+                <a style="display:none" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
                   <span>Buy Now</span>
                 </a>
@@ -500,7 +489,7 @@
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Joeby Tailored Trouser</a>
+                <a href="single-product.html"></a>
               </h3>
             </div>
 
@@ -514,15 +503,23 @@
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
               <a href="single-product.html" class="product__link">
-                <img src="../Images/img/shop/product_9.jpg" alt="" class="product__img">
-                <img src="../Images/img/shop/product_back_9.jpg" alt="" class="product__img-back">
+                <img src="../Images/img/images/11123.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/11123.jpg" alt="" class="product__img-back">
               </a>
               <div class="product__actions">
-                <a href="#" class="product__quickview">
-                  <i class="ui-eye"></i>
+                <button id="debug" href="Index?id=11123" class="product__quickview">
+                  <script type="text/javascript">
+                      console.log(document.querySelector('#debug').getAttribute('href'));
+                  </script>
+                    <i class="ui-eye"></i>
                   <span>Quick View</span>
-                </a>
-                <a href="#" class="product__add-to-wishlist">
+                </button>
+                  <script>
+                      document.querySelector('#debug').addEventListener('click', function () {
+                          window.open('Index?id=11123')
+                      })
+                  </script>
+                <a style="display:none" href="Index?id=11123" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
                   <span>Buy Now</span>
                 </a>
@@ -531,13 +528,13 @@
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Men’s Belt</a>
+                <a href="Index?id=11123"></a>
               </h3>
             </div>
 
             <span class="product__price">
               <ins>
-                <span class="amount">$9.90</span>
+                <span class="amount">588</span>
               </ins>
             </span>
           </div> <!-- end product -->
@@ -545,15 +542,20 @@
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
               <a href="single-product.html" class="product__link">
-                <img src="../Images/img/shop/product_10.jpg" alt="" class="product__img">
-                <img src="../Images/img/shop/product_back_10.jpg" alt="" class="product__img-back">
+                <img src="../Images/img/images/11131.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/11131.jpg" alt="" class="product__img-back">
               </a>
               <div class="product__actions">
-                <a href="#" class="product__quickview">
+                <button id="debug11131" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
-                </a>
-                <a href="#" class="product__add-to-wishlist">
+                </button>
+                  <script>
+                      document.querySelector('#debug11131').addEventListener('click', function () {
+                          window.open('Index?id=11131');
+                      })
+                  </script>
+                <a style="display:none" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
                   <span>Buy Now</span>
                 </a>
@@ -562,13 +564,13 @@
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Sport Hi Adidas</a>
+                <a href="single-product.html"></a>
               </h3>
             </div>
 
             <span class="product__price">
               <ins>
-                <span class="amount">$29.00</span>
+                <span class="amount">369</span>
               </ins>
             </span>
           </div> <!-- end product -->
@@ -576,15 +578,20 @@
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
               <a href="single-product.html" class="product__link">
-                <img src="../Images/img/shop/product_2.jpg" alt="" class="product__img">
-                <img src="../Images/img/shop/product_back_2.jpg" alt="" class="product__img-back">
+                <img src="../Images/img/images/11132.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/11132.jpg" alt="" class="product__img-back">
               </a>
               <div class="product__actions">
-                <a href="#" class="product__quickview">
+                <button id="debug11132" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
-                </a>
-                <a href="#" class="product__add-to-wishlist">
+                </button>
+                  <script>
+                      document.querySelector('#debug11132').addEventListener('click', function () {
+                          window.open('Index?id=11132');
+                      })
+                  </script>
+                <a style="display:none" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
                   <span>Buy Now</span>
                 </a>
@@ -593,13 +600,13 @@
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Denim Hooded</a>
+                <a href="single-product.html"></a>
               </h3>
             </div>
 
             <span class="product__price">
               <ins>
-                <span class="amount">$30.00</span>
+                <span class="amount">560</span>
               </ins>
             </span>
           </div> <!-- end product -->
@@ -607,15 +614,21 @@
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
               <a href="single-product.html" class="product__link">
-                <img src="../Images/img/shop/product_3.jpg" alt="" class="product__img">
-                <img src="../Images/img/shop/product_back_3.jpg" alt="" class="product__img-back">
+                <img src="../Images/img/images/11133.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/11133.jpg" alt="" class="product__img-back">
               </a>
               <div class="product__actions">
-                <a href="#" class="product__quickview">
+                <button id="debug11133" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
-                </a>
-                <a href="#" class="product__add-to-wishlist">
+                </button>
+                  <script>
+                      document.querySelector('#debug11133').addEventListener('click', function () {
+                          window.open('Index?id=11133');
+                      })
+                      
+                  </script>
+                <a style="display:none" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
                   <span>Buy Now</span>
                 </a>
@@ -624,16 +637,16 @@
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">Mint Maxi Dress</a>
+                <a href="single-product.html"></a>
               </h3>
             </div>
 
             <span class="product__price">
               <ins>
-                <span class="amount">$17.99</span>
+                <span class="amount">395</span>
               </ins>
               <del>
-                <span>$30.00</span>
+                <span></span>
               </del>
             </span>
           </div> <!-- end product -->
@@ -641,15 +654,20 @@
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
               <a href="single-product.html" class="product__link">
-                <img src="../Images/img/shop/product_4.jpg" alt="" class="product__img">
-                <img src="../Images/img/shop/product_back_4.jpg" alt="" class="product__img-back">
+                <img src="../Images/img/images/11141.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/11141.jpg" alt="" class="product__img-back">
               </a>
               <div class="product__actions">
-                <a href="#" class="product__quickview">
+                <button id="debug11141" class="product__quickview">
                   <i class="ui-eye"></i>
                   <span>Quick View</span>
-                </a>
-                <a href="#" class="product__add-to-wishlist">
+                </button>
+                  <script>
+                      document.querySelector('#debug11141').addEventListener('click', function () {
+                          window.open('Index?id=11141');
+                      })
+                  </script>
+                <a style="display:none" href="#" class="product__add-to-wishlist">
                   <i class="ui-heart"></i>
                   <span>Buy Now</span>
                 </a>
@@ -658,16 +676,16 @@
 
             <div class="product__details">
               <h3 class="product__title">
-                <a href="single-product.html">White Flounce Dress</a>
+                <a href="single-product.html"></a>
               </h3>
             </div>
 
             <span class="product__price">
               <ins>
-                <span class="amount">$15.99</span>
+                <span class="amount">528</span>
               </ins>
               <del>
-                <span>$27.00</span>
+                <span></span>
               </del>
             </span>
           </div> <!-- end product -->
