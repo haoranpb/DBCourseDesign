@@ -26,10 +26,10 @@ namespace MvcMovie.Controllers
             ViewBag.ID = Request.QueryString["user_id"];
             ViewBag.ItemID = Request.QueryString["item_id"];
             ViewBag.Orderid = time + ViewBag.ID + ViewBag.ItemID;
-            ReceivingInfo p = db.ReceivingInfos.Find(ViewBag.ID);
+            Address p = db.Addresses.Find(ViewBag.ID);
             if (p != null)
             {
-                ViewBag.address = p.Address;
+                ViewBag.address = p.AddressInfo;
                 ViewBag.phone = p.ReceivingPhone;
             }
             else
@@ -74,18 +74,14 @@ namespace MvcMovie.Controllers
             ViewBag.s = s;//包括全部的itemid
             // 查找购物车
 
-            var p1 = (from i in db.ReceivingInfos
-                      where i.ID == "ludan"
-                      select i);
-            //ReceivingInfo p = null;
-            
-            //if (p1 != null)
-            //{
-            //    p = p1.First();
-            //    ViewBag.address = p.Address;
-            //    ViewBag.phone = p.ReceivingPhone;
-            //}
-            //else
+            Address p = db.Addresses.Find(id);
+
+            if (p != null)
+            {
+                ViewBag.address = p.AddressInfo;
+                ViewBag.phone = p.ReceivingPhone;
+            }
+            else
             {
                 ViewBag.address = "no default address";
                 ViewBag.phone = "no default address";
