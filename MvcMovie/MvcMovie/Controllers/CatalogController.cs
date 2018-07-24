@@ -16,7 +16,7 @@ namespace MvcMovie.Controllers
         // GET: Catalog/Index?id = xxxx&cata = 1 or 2 or 3 or 4 or 5  Catalog/Index?id=ludan&cata=2
         public ActionResult Index()
         {
-            ViewBag.ID = Request.QueryString["id"];
+            ViewBag.ID = Request.QueryString["id"];//user_id
             ViewBag.cata = Request.QueryString["cata"];
             return PartialView();
         }

@@ -26,28 +26,18 @@ namespace MvcMovie.Controllers
             ViewBag.id = Request.QueryString["id"];
             ViewBag.user_id = Request.QueryString["user_id"];
             //string personId = Request.QueryString["personId"];
-
-
             //return PartialView();
-
             Item good = db.Items.Find(id);
-            
             if (good == null) return HttpNotFound();
             ViewBag.name = good.ItemName;
             ViewBag.price = good.ItemPrice;
             ViewBag.ItemInfo = good.ItemInfo;
             ViewBag.id = "../Images/img/images/" + good.ItemID + ".jpg";
-        
             //ViewBag.personId = personId;
-
-
-
             /*var query = from p in db.Comments
                         where p.ItemID == id
                         select p;
-
             string commentString = "";
-
             var commentList = query.ToList();
             for (int i = 0; i < commentList.Count; ++i)
             {
@@ -55,9 +45,6 @@ namespace MvcMovie.Controllers
                     + "/Reply:" + commentList[i].Reply;
             }
             ViewBag.comment = commentString;//所有评论的字符串*/
-
-
-
             return PartialView();
             
         }

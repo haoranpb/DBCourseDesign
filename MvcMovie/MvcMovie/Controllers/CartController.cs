@@ -13,16 +13,18 @@ namespace MvcMovie.Controllers
     {
         MovieDBContext db = new MovieDBContext();
 
-        //GET: LOCLAHOSR:1236513/Cart/Index/asdf
-        public ActionResult Index(string customerID)
+        //GET: LOCLAHOSR:1236513/Cart/Index?customerID=XXX
+        public ActionResult Index()
         {
+            string customerID = Request.QueryString["customerID"];
             ViewBag.customerID = customerID;
             var cartinfo = (from j in db.Carts where j.CustomerID == customerID select j);
             string idstring = "";
             foreach (var cartitem in cartinfo)
             {
-                idstring = String.Join(idstring, " ", cartitem.CartID.ToString());
-            }
+                idstring = idstring+ " "+ cartitem.CartID+"="+cartitem.ItemCount.ToString();
+            }//idstring格式为
+            //" cartid1=cardid1对应的数量 cartid2=cartid2对应的数量 ......"
             ViewBag.idstring = idstring;
             return View();
         }

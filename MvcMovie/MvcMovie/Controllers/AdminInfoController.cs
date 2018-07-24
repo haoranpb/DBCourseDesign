@@ -12,7 +12,7 @@ namespace MvcMovie.Controllers
     {
         private MovieDBContext db = new MovieDBContext();
 
-        // GET: AdminInfo/Index
+        // GET: AdminInfo/Index?id = xxx
         public ActionResult Index()
         {
             ViewBag.SalerList = db.Salers.ToList();
