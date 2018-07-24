@@ -34,7 +34,7 @@
       var shopid="@ViewBag.ShopID";
       var shop_urlstr = "/Shop/ListID?shopid=" + shopid;
       $(".fixurl").attr("href", function (i, origValue) {
-                return origValue "@ViewBag.id";
+                return origValue + "@ViewBag.id";
       });  
       //返回商品列表IDs string
       $.get(shop_urlstr,function(itemstr)
