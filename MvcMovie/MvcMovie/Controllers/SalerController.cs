@@ -14,9 +14,9 @@ namespace MvcMovie.Controllers
         private MovieDBContext db = new MovieDBContext();
 
         // GET: /Saler/index?ID=xxx
-        public ActionResult Index(string ID)
+        public ActionResult Index( )
         {
-
+            string ID = Request.QueryString["ID"];
             //卖家基本信息通过viewbag传输
             Saler saler = db.Salers.Find(ID);
             ViewBag.Salerinfo = saler.SalerInfo;
@@ -35,7 +35,8 @@ namespace MvcMovie.Controllers
             {
                 ShopIdString = String.Join(ShopIdString, " ", shop.ShopID);
             }
-            return Content(ShopIdString);
+            ViewBag.shopidstring = ShopIdString;
+            return PartialView();
 
             //return View(shopquery.ToList());
         }

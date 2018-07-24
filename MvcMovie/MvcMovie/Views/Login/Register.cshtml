@@ -61,11 +61,13 @@
 								//go to Homepage.
 								$(window).attr('location', '../HomePage/Index?id='+username);
 							}
-							else if(role=="Saler"){
+							else if (role == "Saler") {
+								$(window).attr('location', '../Saler/Index?ID='+username);
 								//go to Seller's Account.
 							}
 							else if(role=="Admin"){
 								//go to Administrator's Account.
+								$(window).attr('location', '../AdminInfo/Index?ID='+username);
 							}
 						}
 						else {

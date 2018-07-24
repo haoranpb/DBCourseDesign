@@ -70,7 +70,7 @@ namespace MvcMovie.Controllers
                 }
             }
             ViewBag.shopid = Shopid;
-            ViewBag.id = id;
+            ViewBag.ID = id;
             ViewBag.s = s;//包括全部的itemid
             // 查找购物车
 

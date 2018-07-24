@@ -438,13 +438,13 @@
     <Content Include="Views\Movies\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Saler\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Admininfo\" />
     <Folder Include="Views\Item\" />
     <Folder Include="Views\Order\" />
-    <Folder Include="Views\Saler\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

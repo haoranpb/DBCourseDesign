@@ -35,8 +35,12 @@
 				var pswd = $("#usrp").val();
 				var urlstr = "/Login/ConfirmLogin";
 				$.get(urlstr, { "id": name,"psw":pswd}, function (data) {
-					if (data == "success")
-						$(window).attr('location', '../HomePage/Index?id='+name);
+					if (data == "success1")
+						$(window).attr('location', '../HomePage/Index?id=' + name);
+					else if (data == "success2")
+						$(window).attr('location', '../Saler/Index?ID=' + name);
+					else if (data == "success3")
+						$(window).attr('location', '../AdminInfo/Index?ID=' + name);
 					else
 						alert("Please check your password and username ");
 				});

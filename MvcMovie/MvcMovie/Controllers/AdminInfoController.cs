@@ -15,8 +15,9 @@ namespace MvcMovie.Controllers
         private MovieDBContext db = new MovieDBContext();
 
         // GET: AdminInfo/Index?adminID=xxx
-        public ActionResult Index(string adminID)
+        public ActionResult Index( )
         {
+            string adminID = Request.QueryString["ID"];
             ViewBag.SalerList = db.Salers.ToList();
             ViewBag.CustomerList = db.Customers.ToList();
             ViewBag.ItemList = db.Items.ToList();
