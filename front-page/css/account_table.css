@@ -33,3 +33,14 @@ border: 0px;
 width: 107px;
 height: 26px;
 }
+
+
+button.button_blue{
+background-color: #42a4e0;
+border-radius: 5px;
+color: #fff; 
+font-size:14px;
+border: 0px;
+width: 107px;
+height: 26px;
+}
