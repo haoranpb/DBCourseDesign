@@ -10,7 +10,7 @@ namespace MvcMovie.Models
         public string CustomerID { get; set; }
         public string CartID { get; set; }//itemid
         public int ItemCount { get; set; }
-        public int CartPrice { get; set; }
+        public int CartPrice { get; set; }//单价
     }
     
 }
