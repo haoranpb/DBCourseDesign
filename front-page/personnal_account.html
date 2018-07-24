@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Favicons Icon -->
+<title>Personal Account</title>
+<!-- Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<!-- CSS Style -->
+<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
+<link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
+<link rel="stylesheet" href="~/Content/ms-style.min.css" />
+<link rel="stylesheet" href="~/Content/personal_member.min.css" />
+<link rel="stylesheet" href="~/Content/sui.css" />
+<script type="text/javascript" src="~/Scripts/address_all.js"></script> 
+<script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js" ></script>
+<script type="text/javascript" src="~/Scripts/sui.js" ></script>
+<link rel="stylesheet" type="text/css" href="~/Content/checkOut.css"/>
+<link rel="stylesheet" type="text/css" href="~/Content/account_table.css"/>
+<link rel="stylesheet" type="text/css" href="~/Content/seller_account.css"/>
+
+</head>
+
+<body>
+	<header>
+    <div class="header-container">
+      <div class="header-top">
+        <div class="container">
+          <div class="row"> 
+           
+            <div class="col-xs-7 col-sm-6">
+              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
+                </ul>
+              </div>
+           
+             
+              <div class="dropdown block-currency-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
+                </ul>
+              </div>
+              
+              
+              <div class="welcome-msg hidden-xs"> Welcome to Tongji University! </div>
+            </div>
+            <div class="col-xs-5 col-sm-6"> 
+              <div class="top-cart-contain pull-right"> 
+               
+                <div class="mini-cart">
+                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
+                    <div>
+                      <div class="top-cart-content" style="display: none;">
+                        <div class="actions">
+                          <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
+                          <a href="#" class="view-cart" ><span>View Cart</span></a>
+                        </div>
+                      
+                        <ul class="mini-products-list" id="cart-sidebar">
+                          <li class="item first">
+                            <div class="item-inner">
+                              <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="products-images/p4.jpg"></a>
+                              <div class="product-details">
+                                <div class="access">
+                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+                                </div>
+                               
+                                <strong>1</strong> x <span class="price">$179.99</span>
+                                <p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item last">
+                            <div class="item-inner">
+                              <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
+                              <div class="product-details">
+                                <div class="access">
+                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+                                </div>
+                               
+                                <strong>1</strong> x <span class="price">$80.00</span>
+                                <p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
+                              </div>
+                            </div>.
+                          </li>
+                        </ul>
+                     
+                      </div>
+                    </div>
+                  </div>
+                 
+                  <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
+                    <input value="" type="hidden">
+                    <input id="enable_module" value="1" type="hidden">
+                    <input class="effect_to_cart" value="1" type="hidden">
+                    <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
+                  </div>
+                </div>
+          
+                <div class="top-search">
+                  <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
+                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
+                          </div>
+                          <div class="modal-body">
+                            <form class="navbar-form">
+                              <div id="search">
+                                <div class="input-group">
+                                  <input name="search" placeholder="Search" class="form-control" type="text">
+                                  <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>                 
+                
+                <div class="toplinks">
+                  <div class="links">              
+                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">Apollo</span></a></div>
+                <!--此处显示的应该随着用户名的更改而更改 -->
+                 
+
+                  </div>           
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+<!-- PERSONAL ACCOUNT -->
+<section style="position:relative;">
+      <div class="cont">
+        <div class="cont-side">
+          <div class="side-neck" style="margin-top: 20px;">
+            <i></i>
+          </div>
+          <div class="ms-side" style="margin-top: 20px;">
+            <article class="side-menu side-menu-off">
+              <dl class="side-menu-tree" style="padding-left: 50px;">
+                <dt><img src="../Images/images/mycart.png"  style="margin-right: 10px;margin-left: -20px;"/>My Account</dt>
+                <dt><img src="../Images/images/file.png"  style="margin-right: 10px;margin-left: -20px;"/>Orders</dt>
+                <dd>
+                  <a>My Order</a>
+                </dd>
+                <dd>
+                  <a>My Collection</a>
+                </dd>
+                <dd>
+                  <a>Order History</a>
+                </dd>
+                
+              </dl>
+
+              <a ison="on" class="switch-side-menu icon-up-side"><i></i></a>
+            </article>
+          </div>
+        </div>
+
+        <div class="cont-main" style="margin-left: 20%">
+          <div class="main-wrap mt15" style="border: 0px;">
+            <div class="server-wrapper">
+              <div class="server-tab" style="margin-top: 26px;">
+                <div style=" float: left;vertical-align: bottom;text-align: center;">
+                <div style="width: 680px;padding: 10px;float: left;background-color: #fff;height: 250px;">
+                <div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
+                  <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
+                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">My Address : </span>
+                     <span style="font-size: 15px;color: #686868;font-weight:;display: block;display: block; margin:auto;margin-top:20px;">Shanghai China,Tongji University </span>
+                     <!--edit the address -->
+                              <button onclick="document.getElementById('editAdrs').style.display='block';
+                              document.getElementById('fade_1').style.display='block'"
+                              style="background-color: #f56a48;
+                              border-radius: 5px;color: #fff;
+                              font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 5px;">
+                              Edit</button>
+                              <!-- 以下为点击edit后,对address的操作 -->
+                               <div id="editAdrs" class="white_content">
+                                  <h1 style="align-content:center;margin-top: -10px;">Edit your address</h1>
+                                  <input type="" name="edit the address"
+                                   style="height: 250px;width: 400px;
+                                   margin: auto;
+                                   margin-top:20px;" placeholder="Input your new address:country/city/district/street."
+                                   >
+                                      <!--Buttons-->
+                                      <center>
+                                  <button onclick="document.getElementById('editAdrs').style.display='none';
+                                   document.getElementById('fade_1').style.display='none'"
+                                   style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                   margin-top: 20px;
+                                    ">cancel</button></center>
+                                    <center>
+                                    <button onclick="document.getElementById('editAdrs').style.display='none';
+                                   document.getElementById('fade_1').style.display='none'"
+                                   style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-top: 30px;
+                                    ">save</button></center>
+                                    <!-- end of buttons --> 
+                               </div>
+                               <div id="fade_1" class="black_overlay"></div>
+                  </div>
+                </div>
+               <div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
+                  <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
+                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">Gender : </span>
+                     <span style="font-size: 15px;color: #686868;font-weight:;display: block;display: block; margin:auto;margin-top:20px;">Male </span>
+                       <button onclick="document.getElementById('editGender').style.display='block';
+                              document.getElementById('fade_2').style.display='block'"
+                              style="background-color: #f56a48;
+                              border-radius: 5px;color: #fff;
+                              font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 22px;">
+                              Edit</button>
+                              <!-- 以下为点击edit后,对gender的操作 -->
+                               <div id="editGender" class="white_content2" style="left:530px;">
+                                  <h1 style="align-content:center;margin-top: -10px;">Change your Gender</h1>
+                                    <!-- edit gender -->
+                                        <label id="lblSelect" style="margin-top:20px;">
+                                          <select id="selectTravelCity" title="Select Travel Destination" >
+                                          <option value="Male" style="font-size: 15px">----Male----</option>
+                                          <option value="Female" style="font-size: 15px">--Female--</option>                                 
+                                        </select>
+                                      
+                                    <!--Buttons-->
+                                    <center>
+                                  <button onclick="document.getElementById('editGender').style.display='none';
+                                   document.getElementById('fade_2').style.display='none'"
+                                   style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                   margin-top: 20px;
+                                    ">cancel</button></center>
+                                    <center>
+                                    <button onclick="document.getElementById('editGender').style.display='none';
+                                   document.getElementById('fade_2').style.display='none'"
+                                   style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-top: 30px;
+                                    ">save</button></center>
+                                    <!-- end of buttons --> 
+                               </div>
+                               <div id="fade_2" class="black_overlay"></div>
+                  </div>
+                </div>
+                
+               <div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
+                  <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
+                    <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">My Phone : </span>
+                     <span style="font-size: 15px;color: #686868;font-weight:;display: block;display: block; margin:auto;margin-top:20px;">581-5472-2892 </span>
+                       <button onclick="document.getElementById('editPhone').style.display='block';
+                              document.getElementById('fade_3').style.display='block'"
+                              style="background-color: #f56a48;
+                              border-radius: 5px;color: #fff;
+                              font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 22px;">
+                              Edit</button>
+                               <!-- edit the Phone -->
+                          <div id="editPhone" class="white_content3" style="left: 480px;">
+                                  <h1 style="align-content:center;margin-top: -10px;z-index: 9999">Edit Your Phone Number</h1>
+                                   <!-- edit card no. -->
+                                   <h2 style="align-content:center;margin-top: 30px;">Change Number</h1>
+                                   <input style="width:500px;margin-top: 20px;position: relative;" type="" name="editNo" placeholder="Input your new phone number(11 digits)">
+                                  <!-- end of edit -->
+                                  <center>
+                                  <button onclick="document.getElementById('editPhone').style.display='none';
+                                   document.getElementById('fade_3').style.display='none'"
+                                   style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -200px;
+                                    ">cancel</button></center>
+                              
+                                    <center>
+                                    <button onclick="document.getElementById('editPhone').style.display='none';
+                                   document.getElementById('fade_3').style.display='none'"
+                                   style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -250px;
+                                    ">save</button></center>
+                           </div>
+                           <div id="fade_3" class="black_overlay"></div>
+                          <!--end of edit the bank card-->
+
+                  </div>
+                </div>
+                </div>
+                
+                <!--右侧---end------->
+                
+                <!-- my orders information -->
+                <div style="width: 800px;padding:10px;display: inline-block; float: left;margin-top: 20px;background-color: #fff;">
+                          <div style="border-bottom: 1px #ccc solid;">
+                            <p style="font-size: 20px;text-align: left;">My Orders</p>
+                          </div>
+                  
+                 <table class="dataintable" style="font-size: 15px">
+                      <tr>
+                        <th>Order ID</th>
+                        <th>Time</th>
+                        <th>Shop ID</th>
+                        <th>Options</th>
+                      </tr>
+                      <tr>
+                        <td><b>98542257</b></td>
+                        <td>2016-04-10 12:20:30</td>
+                        <td>554564</td>
+                        <td>
+                          <input type="button" value="return" class="button_blue">
+                          <button class="button_Blue"
+                          onclick="document.getElementById('comment_1').style.display='block';
+                                   document.getElementById('fade_4').style.display='block'">
+                                    comment 
+                                   </button>
+                          <!-- 以下为点击edit后,对comment的操作 -->
+                               <div id="comment_1" class="comment_content" style="left: 500px;">
+                                  <h1 style="align-content:center;margin-top: -10px;">Welcome to comment!</h1>
+                                  <input type="" name="comment"
+                                   style="height: 200px;width: 400px;
+                                   margin: auto;
+                                   margin-top:20px;
+                                   " placeholder="Welcome to comment!"
+                                   >
+                                      <!--Buttons-->
+                                      <center>
+                                  <button onclick="document.getElementById('comment_1').style.display='none';
+                                   document.getElementById('fade_4').style.display='none'"
+                                   style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                   margin-top: 20px;
+                                    ">cancel</button></center>
+                                    <center>
+                                    <button onclick="document.getElementById('comment_1').style.display='none';
+                                   document.getElementById('fade_4').style.display='none'"
+                                   style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-top: 30px;
+                                    ">comment</button></center>
+                                    <!-- end of buttons --> 
+                               </div>
+                               <div id="fade_4" class="black_overlay"></div>
+                               <!-- end of comment-->
+                          <input type="button" value="check" class="button_blue">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>98542287</b></td>
+                        <td>2016-04-10 12:20:30</td>
+                        <td>755458</td>
+                         <td>
+                          <input type="button" value="return" class="button_blue">
+                          <button class="button_Blue"
+                          onclick="document.getElementById('comment_2').style.display='block';
+                                   document.getElementById('fade_4').style.display='block'">
+                                    comment 
+                                   </button>
+                          <!-- 以下为点击edit后,对comment的操作 -->
+                               <div id="comment_2" class="comment_content" style="left: 500px;">
+                                  <h1 style="align-content:center;margin-top: -10px;">Welcome to comment!</h1>
+                                  <input type="" name="comment"
+                                   style="height: 200px;width: 400px;
+                                   margin: auto;
+                                   margin-top:20px;
+                                   " placeholder="Welcome to comment!"
+                                   >
+                                      <!--Buttons-->
+                                      <center>
+                                  <button onclick="document.getElementById('comment_2').style.display='none';
+                                   document.getElementById('fade_4').style.display='none'"
+                                   style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                   margin-top: 20px;
+                                    ">cancel</button></center>
+                                    <center>
+                                    <button onclick="document.getElementById('comment_2').style.display='none';
+                                   document.getElementById('fade_4').style.display='none'"
+                                   style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-top: 30px;
+                                    ">comment</button></center>
+                                    <!-- end of buttons --> 
+                               </div>
+                               <div id="fade_4" class="black_overlay"></div>
+                               <!-- end of comment-->
+                          <input type="button" value="check" class="button_blue">
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><b>98542751</b></td>
+                        <td>2016-04-10 12:20:30</td>
+                        <td>825990</td>
+                         <td>
+                          <input type="button" value="return" class="button_blue">
+                          <button class="button_Blue"
+                          onclick="document.getElementById('comment_3').style.display='block';
+                                   document.getElementById('fade_4').style.display='block'">
+                                    comment 
+                                   </button>
+                          <!-- 以下为点击edit后,对comment的操作 -->
+                               <div id="comment_3" class="comment_content" style="left: 500px;">
+                                  <h1 style="align-content:center;margin-top: -10px;">Welcome to comment!</h1>
+                                  <input type="" name="comment"
+                                   style="height: 200px;width: 400px;
+                                   margin: auto;
+                                   margin-top:20px;
+                                   " placeholder="Welcome to comment!"
+                                   >
+                                      <!--Buttons-->
+                                      <center>
+                                  <button onclick="document.getElementById('comment_3').style.display='none';
+                                   document.getElementById('fade_4').style.display='none'"
+                                   style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                   margin-top: 20px;
+                                    ">cancel</button></center>
+                                    <center>
+                                    <button onclick="document.getElementById('comment_3').style.display='none';
+                                   document.getElementById('fade_4').style.display='none'"
+                                   style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-top: 30px;
+                                    ">comment</button></center>
+                                    <!-- end of buttons --> 
+                               </div>
+                               <div id="fade_4" class="black_overlay"></div>
+                               <!-- end of comment-->
+                          <input type="button" value="check" class="button_blue">
+                        </td>
+                      </tr>
+                  </table>
+               </div>
+             <!-- end of my orders information -->
+
+             <!-- my bankcard information -->
+                      <div style="width: 800px;padding:10px;display: inline-block; float: left;margin-top: 20px;background-color: #fff;">
+                            <div style="border-bottom: 1px #ccc solid;">
+                            <p style="font-size: 20px;text-align: left;">My Bank Cards</p>
+                      </div>
+                       <table class="dataintable" style="font-size: 15px;">
+                        <tr>
+                          <th>Bank Card No</th>
+                          <th>Options</th>
+                        </tr>
+                        <tr>
+                          <td>95588825268221855</td>
+                          <td>
+                            <button onclick="document.getElementById('editCard_1').style.display='block';
+                            document.getElementById('fade_1').style.display='block'"
+                            style="background-color: #42a4e0;
+                          border-radius: 5px;
+                          color: #fff; 
+                          font-size:14px;
+                          border: 0px;
+                          width: 107px;
+                          height: 26px;">edit</button>
+                          <!-- edit the bankcard -->
+                           
+                            <div id="editCard_1" class="white_content">
+                                  <h1 style="align-content:center;margin-top: -10px;z-index: 9999">Edit Your Bank Card</h1>
+                                   <!-- edit card no. -->
+                                   <h2 style="align-content:center;margin-top: 30px;">Change Number</h1>
+                                   <input style="width:500px;margin-top: 20px;position: relative;" type="" name="editNo" placeholder="Input your new card number(16~19 digits)">
+                                  <!-- end of edit -->
+                                  <center>
+                                  <button onclick="document.getElementById('editCard_1').style.display='none';
+                                   document.getElementById('fade_1').style.display='none'"
+                                   style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -200px;
+                                    ">cancel</button></center>
+                              
+                                    <center>
+                                    <button onclick="document.getElementById('editCard_1').style.display='none';
+                                   document.getElementById('fade_1').style.display='none'"
+                                   style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -250px;
+                                    ">save</button></center>
+                           </div>
+                           <div id="fade_1" class="black_overlay"></div>
+                          <!--end of edit the bank card-->
+                            <button style="background-color: #FF0000;
+                          border-radius: 5px;
+                          color: #fff; 
+                          font-size:14px;
+                          border: 0px;
+                          width: 107px;
+                          height: 26px;">delete</button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>95588827852422110</td>
+                          <td>
+                             <button onclick="document.getElementById('editCard_2').style.display='block';
+                            document.getElementById('fade_2').style.display='block'"
+                            style="background-color: #42a4e0;
+                          border-radius: 5px;
+                          color: #fff; 
+                          font-size:14px;
+                          border: 0px;
+                          width: 107px;
+                          height: 26px;">edit</button>
+                          <!-- edit the bankcard -->
+                          <div id="editCard_2" class="white_content">
+                                  <h1 style="align-content:center;margin-top: -10px;z-index: 9999">Edit Your Bank Card</h1>
+                                   <!-- edit card no. -->
+                                   <h2 style="align-content:center;margin-top: 30px;">Change Number</h1>
+                                   <input style="width:500px;margin-top: 20px;position: relative;" type="" name="editNo" placeholder="Input your new card number(16~19 digits)">
+                                  <!-- end of edit -->
+                                  <center>
+                                  <button onclick="document.getElementById('editCard_2').style.display='none';
+                                   document.getElementById('fade_2').style.display='none'"
+                                   style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -200px;
+                                    ">cancel</button></center>
+                              
+                                    <center>
+                                    <button onclick="document.getElementById('editCard_2').style.display='none';
+                                   document.getElementById('fade_2').style.display='none'"
+                                   style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -250px;
+                                    ">save</button></center>
+                           </div>
+                           <div id="fade_2" class="black_overlay"></div>
+                          <!--end of edit the bank card-->
+
+                            <button style="background-color: #FF0000;
+                          border-radius: 5px;
+                          color: #fff; 
+                          font-size:14px;
+                          border: 0px;
+                          width: 107px;
+                          height: 26px;">delete</button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>95588123585799973</td>
+                          <td>
+                             <button onclick="document.getElementById('editCard_3').style.display='block';
+                            document.getElementById('fade_3').style.display='block'"
+                             style="background-color: #42a4e0;
+                          border-radius: 5px;
+                          color: #fff; 
+                          font-size:14px;
+                          border: 0px;
+                          width: 107px;
+                          height: 26px;">edit</button>
+                          <!-- edit the bankcard -->
+                          <div id="editCard_3" class="white_content">
+                                  <h1 style="align-content:center;margin-top: -10px;z-index: 9999">Edit Your Bank Card</h1>
+                                   <!-- edit card no. -->
+                                   <h2 style="align-content:center;margin-top: 30px;">Change Number</h1>
+                                   <input style="width:500px;margin-top: 20px;position: relative;" type="" name="editNo" placeholder="Input your new card number(16~19 digits)">
+                                  <!-- end of edit -->
+                                  <center>
+                                  <button onclick="document.getElementById('editCard_3').style.display='none';
+                                   document.getElementById('fade_3').style.display='none'"
+                                   style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -200px;
+                                    ">cancel</button></center>
+                              
+                                    <center>
+                                    <button onclick="document.getElementById('editCard_3').style.display='none';
+                                   document.getElementById('fade_3').style.display='none'"
+                                   style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff; 
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -250px;
+                                    ">save</button></center>
+                           </div>
+                           <div id="fade_3" class="black_overlay"></div>
+                          <!--end of edit the bank card-->
+
+                            <button style="background-color: #FF0000;
+                          border-radius: 5px;
+                          color: #fff; 
+                          font-size:14px;
+                          border: 0px;
+                          width: 107px;
+                          height: 26px;">delete</button>
+                          </td>
+                        </tr>
+                      </table>
+                 <p style="font-size: 15px;color: #CDC8B1;text-align: left;">You can only have up to three bank cards.</p> 
+
+             <!-- end of my bankcard information -->
+                
+              
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    </div>
+  </section>
+<!-- END OF PERSONAL ACCOUNT -->
+
+
+
+<!-- FOOTER -->
+     <footer style="margin-top: -50px;z-index: 9999;position: relative;top: 200px;">
+    <div class="footer-inner">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 col-lg-8">	
+            <div class="footer-column pull-left">
+              <h4>CUSTOMMER SERVICE</h4>
+              <ul class="links">
+                <li class="first"><a href="#" title="Contact us">My Account</a></li>
+                <li><a href="#" title="About us">Order History</a></li>
+                <li><a href="#" title="faq">FAQ</a></li>
+                <li><a href="#" title="Popular Searches">Specials</a></li>
+                <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
+              </ul>
+            </div>
+            <div class="footer-column pull-left">
+              <h4>Corporation</h4>
+              <ul class="links">
+                <li class="first"><a title="Your Account" href="#">About us</a></li>
+                <li><a title="Information" href="#">Customer Service</a></li>
+                <li><a title="Addresses" href="#">Company</a></li>
+                <li><a title="Addresses" href="#">Investor Relations</a></li>
+                <li class="last"><a title="Orders History" href="#">Advanced Search</a></li>             
+              </ul>
+            </div>
+            <div class="footer-column pull-left">
+              <h4>Why choose Us</h4>
+              <ul class="links">
+                <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
+                <li><a href="#" title="Blog">Blog</a></li>
+                <li><a href="#" title="Company">Company</a></li>
+                <li><a href="#" title="Investor Relations">Investor Relations</a></li>
+                <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-12 col-lg-4">
+            <div class="footer-column-last">
+              <div class="newsletter-wrap">
+                <h4>Sign up for emails</h4>
+                <form id="newsletter-validate-detail" method="post" action="#">
+                  <div id="container_form_news">
+                    <div id="container_form_news2">
+                      <input type="text" class="input-text required-entry validate-email" value="Enter your email address" onFocus=" this.value='' " title="Sign up for our newsletter" id="newsletter" name="email">
+                      <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <br>
+              <div class="social">
+                <h4>Follow Us</h4>
+                <ul class="link">
+                  <li class="fb pull-left"><a href="#"></a></li>
+                  <li class="tw pull-left"><a href="#"></a></li>
+                  <li class="googleplus pull-left"><a href="#"></a></li>
+                  <li class="rss pull-left"><a href="#"></a></li>
+                  <li class="pintrest pull-left"><a href="#"></a></li>
+                  <li class="linkedin pull-left"><a href="#"></a></li>
+                  <li class="youtube pull-left"><a href="#"></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="../Images/images/logo.png"></div>
+        <address>
+          <i class="fa fa-map-marker"></i>DB Design Project <i class="fa fa-mobile"></i><span> +(888) 123-4567</span> <i class="fa fa-envelope"></i><span> Tongji University </span>
+        </address>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12 coppyright">Copyright &copy; 2018. All rights reserved.</div>
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- END OF FOOTER -->		
+</body>
