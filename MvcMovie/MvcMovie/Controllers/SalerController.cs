@@ -41,6 +41,50 @@ namespace MvcMovie.Controllers
             //return View(shopquery.ToList());
         }
 
+        public ActionResult Order()//向页面返回全部的shop内的全部order的id
+        {
+            var shopid1 = Request.QueryString["shopid1"];
+
+            var shopid2 = Request.QueryString["shopid2"];
+
+            var shopid3 = Request.QueryString["shopid3"];
+            string p = "";
+            var orderinfo1 = (from i in db.Orders where i.ShopID == shopid1 select i);
+            var orderinfo2 = (from i in db.Orders where i.ShopID == shopid2 select i);
+            var orderinfo3 = (from i in db.Orders where i.ShopID == shopid3 select i);
+            if(orderinfo1.Count()!=0)
+            foreach (var o in orderinfo1)
+            {
+                p = p + " " + o;
+            }
+            if (orderinfo2.Count() != 0)
+                foreach (var o in orderinfo2)
+            {
+                p = p + " " + o;
+            }
+            if (orderinfo3.Count() != 0)
+                foreach (var o in orderinfo3)
+            {
+                p = p + " " + o;
+            }
+            return Content(p);
+        }
+
+        public ActionResult Orderinfo()
+        {
+            string Orderid = Request.QueryString["Orderid"];
+            Order order = db.Orders.Find(Orderid);
+            string ordertime = order.OrderTime.ToString();
+            string shopid = order.ShopID;
+            var json = new
+            {
+                OrderId = Orderid,
+                OrderTime = ordertime,
+                ShopId = shopid
+            };
+            return Json(json,JsonRequestBehavior.AllowGet);
+        }
+
         //跳转至创建店铺页面 /Saler/CreateShopPage?ID=Lucas
         public ActionResult CreateShopPage()
         {
