@@ -49,6 +49,13 @@ namespace MvcMovie.Controllers
                 if (it.ShopID == Shopid)
                 {
                     s = s + "&" + it.ItemID;
+                    foreach(var j in cartinfo)
+                    {
+                        if(j.CartID == it.ItemID)
+                        {
+                            s = s + "?" + j.ItemCount;
+                        }
+                    }
                 }
             }
             ViewBag.id = id;

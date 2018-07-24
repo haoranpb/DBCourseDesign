@@ -18,11 +18,13 @@ namespace MvcMovie.Controllers
 
         private MovieDBContext db = new MovieDBContext();
 
-        // GET: /Item/Index?id=xxx
+        // GET: /Item/Index?id=xxx&user_id=xxx
         public ActionResult Index()
         {
             //return PartialView();
             string id = Request.QueryString["id"];
+            ViewBag.id = Request.QueryString["id"];
+            ViewBag.user_id = Request.QueryString["user_id"];
             //string personId = Request.QueryString["personId"];
 
 
