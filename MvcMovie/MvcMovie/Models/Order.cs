@@ -16,6 +16,8 @@ namespace MvcMovie.Models
         public int OrderCount { get; set; }
         public DateTime OrderTime { get; set; }
         public string OrderState { get; set; }
+        public string OrderPhone { get; set; }
+        public string OrderAddress { get; set; }
     }
   
 }

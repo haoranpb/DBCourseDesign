@@ -58,6 +58,7 @@ namespace MvcMovie.Controllers
                     }
                 }
             }
+            ViewBag.shopid = Shopid;
             ViewBag.id = id;
             ViewBag.s = s;//包括全部的itemid
             // 查找购物车
@@ -80,6 +81,8 @@ namespace MvcMovie.Controllers
         // 从店铺创建订单
         public ActionResult ShopCreate()
         {
+            string orderphone = Request.QueryString["OrderPhone"];
+            string orderaddress = Request.QueryString["OrderAddress"];
             string itemID = Request.QueryString["itemID"];
             Item item = db.Items.Find(itemID);
             string ID = Request.QueryString["user_id"];
@@ -95,6 +98,8 @@ namespace MvcMovie.Controllers
             order.OrderCount = 1;
             order.OrderTime = Convert.ToDateTime(time);
             order.OrderState = "Ordered";
+            order.OrderAddress = orderaddress;
+            order.OrderPhone = orderphone;
             db.Orders.Add(order);
             db.SaveChanges();
 
@@ -107,7 +112,7 @@ namespace MvcMovie.Controllers
             od.OrderDetailCount = 1;
             db.OrderDetails.Add(od);
             db.SaveChanges();
-
+            
             var iteminfo = (from c in db.OrderDetails where c.OrderID == order.OrderID select c);
             foreach (var itemx in iteminfo)
             {
@@ -133,7 +138,10 @@ namespace MvcMovie.Controllers
         // 从购物车创建订单
         public ActionResult CartCreate()
         {
+            string orderphone = Request.QueryString["OrderPhone"];
+            string orderaddress = Request.QueryString["OrderAddress"];
             string id = Request.QueryString["user_id"];
+            string shop_id = Request.QueryString["shop_id"];
             // string time = System.DateTime.Now.ToString();
             List<Item> list = new List<Item>();
             var cartinfo = (from c in db.Carts where c.CustomerID == id select c);
@@ -143,23 +151,23 @@ namespace MvcMovie.Controllers
                 if (item != null)
                     list.Add(item);
             }
-            var p = list.GroupBy(a => a.ShopID).Select(g => new { shopid = g.Key });
-            long pnum = p.Count();
+            
             string s = "";
             string time = System.DateTime.Now.ToString();
-            foreach (var i in p)
-            {
+           
                 Order order = new Order();
-                order.OrderID = time + i.shopid + id;
-                order.ShopID = i.shopid;
+                order.OrderID = time + shop_id + id;
+                order.ShopID = shop_id;
                 order.CustomerID = id;
                 order.OrderPrice = 0;
                 order.OrderCount = 0;
                 order.OrderTime = Convert.ToDateTime(time);
+                order.OrderAddress = orderaddress;
+                order.OrderPhone = orderphone;
                 order.OrderState = "Ordered";
                 foreach (var it in list)
                 {
-                    if (it.ShopID == i.shopid)
+                    if (it.ShopID == shop_id)
                     {
                         // 生成OrderDetail
                         OrderDetail od = new OrderDetail();
@@ -188,7 +196,7 @@ namespace MvcMovie.Controllers
                 }
                 db.Orders.Add(order);
                 db.SaveChanges();
-            }
+            
             return Content("success");
         }
 
