@@ -31,14 +31,17 @@
   <script>
     $(document).ready(function()
     {
-/*      var shopid="@ViewBag.ShopID";
-      var shop_urlstr="../Shop/ListID/"+shopid;
+    	var cata="@ViewBag.cata";
+    	var userid="@ViewBag.ID";
+      //CatalogController ItemListForCata()
+      var cata_urlstr="../Catalog/ItemListForCata?cata="+cata;
       //返回商品列表 string
-      $.get(shop_urlstr,function(itemstr)
+      $.get(cata_urlstr,function(itemstr)
       {
         var itemList=itemstr.split(" ");
-        for(var i=1;i<12;i++){
-          var item_urlstr="../Shop/Iteminfo/"+itemList[i];
+        for(var i=1;i<=12;i++){
+          //ShopController ItenInfo(string id)
+          var item_urlstr="../Shop/ItemInfo/"+itemList[i];
           //返回商品信息 json
           $.get(item_urlstr,function(itemjson)
           {
@@ -46,27 +49,26 @@
             var itemObj=eval(itemjson);
 
 						//参数ItemPic返回商品id，通过商品id构建路径
-
+						var userid="@ViewBag.ID";
             var id=itemObj.ItemID;
             var info=itemObj.ItemInfo;
             var name=itemObj.ItemName;
             var pic=itemObj.ItemPic;
             var price=itemObj.ItemPrice;
+            var shopid=itemObj.ShopID;
             
             //替换信息
             //通过pic构建图片路径
-            //$("#item"+i"+"p").attr("src","../Images/img/images/"+pic+".jpg");
-
-            $("#item"+i+"p").attr("src",pic);   //图片 picture
+            $("#item"+i+"p").attr("src","../Images/img/images/"+pic+".jpg");	//图片 picture
             $("#item"+i+"p").attr("alt",name);  //图片无法显示时的文字 picture.alt
             $("#item"+i+"t").text(name);        //名称 title
-            $("#item"+i+"pl").attr("href","../Item/Index/"+id); //图片上的链接 picture link
-            $("#item"+i+"t").attr("href","../Item/Index/"+id);  //文本上的链接 title.link
-            $("#item"+i+"b").attr("href","../Order/Index/"+id); //Buy Now的链接 buy
+            $("#item"+i+"pl").attr("href","../Item/Index?id="+id+"&personalId="+userid); //图片上的链接 picture link
+            $("#item"+i+"t").attr("href","../Item/Index?id="+id+"&personalId="+userid);  //文本上的链接 title.link
+            $("#item"+i+"b").attr("href","../Order/Index1?user_id="+userid+"&item_id="+id); //Buy Now的链接 buy
             $("#item"+i+"pr").text("$"+price);
           });
        }
-      });*/
+      });
     });
   </script>
 </head>
