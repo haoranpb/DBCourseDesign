@@ -415,6 +415,7 @@
     <Content Include="Scripts\tuan.js" />
     <Content Include="Scripts\unslider.min.js" />
     <Content Include="Views\Cart\cart.html" />
+    <Content Include="Views\Catalog\Index.cshtml" />
     <None Include="Views\HomePage\Index.cshtml" />
     <None Include="Views\Login\Register.cshtml" />
     <None Include="Views\Personalinfo\Index.cshtml" />
