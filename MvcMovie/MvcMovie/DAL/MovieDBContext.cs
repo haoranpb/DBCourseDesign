@@ -25,7 +25,7 @@ namespace MvcMovie.DAL
         public DbSet<Item> Items { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<ReceivingInfo> ReceivingInfos { get; set; }
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<Saler> Salers { get; set; }
         public DbSet<Shop> Shops { get; set; }
         public DbSet<Movie> Movies { get; set; }

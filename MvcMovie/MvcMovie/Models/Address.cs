@@ -6,10 +6,10 @@ namespace MvcMovie.Models
     using System.Collections.Generic;
     using System.Data.Entity;
 
-    public partial class ReceivingInfo
+    public partial class Address
     {
         public string ID { get; set; }//customerid
-        public string Address { get; set; }
+        public string AddressInfo { get; set; }
         public string ReceivingName { get; set; }
         public string ReceivingPhone { get; set; }
         
