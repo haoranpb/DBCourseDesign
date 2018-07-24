@@ -26,6 +26,17 @@ namespace MvcMovie.Controllers
             ViewBag.ID = Request.QueryString["user_id"];
             ViewBag.ItemID = Request.QueryString["item_id"];
             ViewBag.Orderid = time + ViewBag.ID + ViewBag.ItemID;
+            ReceivingInfo p = db.ReceivingInfos.Find(ViewBag.ID);
+            if (p != null)
+            {
+                ViewBag.address = p.Address;
+                ViewBag.phone = p.ReceivingPhone;
+            }
+            else
+            {
+                ViewBag.address = " ";
+                ViewBag.phone = " ";
+            }
             return PartialView();
         }
 
