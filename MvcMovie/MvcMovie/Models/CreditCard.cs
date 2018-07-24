@@ -10,7 +10,6 @@ namespace MvcMovie.Models
     {
         public string CustomerID { get; set; }
         public string CreditCardID { get; set; }
-        public string ReceivingInfoCustomerID { get; set; }
    
     }
     

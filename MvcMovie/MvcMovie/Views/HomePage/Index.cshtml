@@ -29,7 +29,7 @@
             $(".product-image").attr("href", function (i, origValue) {
                 return origValue + "&user_id=" + "@ViewBag.id";
             });
-            var test = $(".fixurl").attr("href", function (i, origValue){
+            $(".fixurl").attr("href", function (i, origValue){
                 return origValue + "@ViewBag.id";
             });
 		});</script>
@@ -46,22 +46,12 @@
                             <!-- Header Language -->
                             <div class="col-xs-7 col-sm-6">
                                 <div class="dropdown block-language-wrapper hidden-xs">
-                                    <a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
-                                    </ul>
+                                    <a class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English </a>
                                 </div>
                                 <!-- End Header Language -->
                                 <!-- Header Currency -->
                                 <div class="dropdown block-currency-wrapper hidden-xs">
-                                    <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
-                                    </ul>
+                                    <a role="button" class="block-currency dropdown-toggle" > USD </a>
                                 </div>
                                 <!-- End Header Currency -->
                                 <div class="welcome-msg hidden-xs"> Welcome to Vibranium! </div>

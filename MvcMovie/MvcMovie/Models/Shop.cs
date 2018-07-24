@@ -12,6 +12,4 @@ namespace MvcMovie.Models
         public string SalerCredit { get; set; }
         public string SalerID { get; set; }
     }
-
-   
 }

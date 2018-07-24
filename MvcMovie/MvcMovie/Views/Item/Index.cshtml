@@ -1,30 +1,69 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Single Product</title>
+    <title>Single Product</title>
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="">
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Questrial:400%7CMontserrat:300,400,700,700i' rel='stylesheet'>
+    <!-- Css -->
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/simple-line-icons.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/revslider.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/font-icons.css" />
+    <link rel="stylesheet" href="~/Content/styleshop.css" />
+    <link rel="stylesheet" href="~/Content/color.css" />
+    <script src=" ~/Scripts/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#personal").attr("href", "../Personalinfo/Index/" + "@ViewBag.user_id");
 
-  <meta charset="utf-8">
-  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="">
+            $(".fixurl").attr("href", function (i, origValue) {
+                return origValue + "@ViewBag.user_id";
+            });
 
-  <!-- Google Fonts -->
-  <link href='http://fonts.googleapis.com/css?family=Questrial:400%7CMontserrat:300,400,700,700i' rel='stylesheet'>
+            $(".addtocart").click(function () {//GET: /Item/Add?ID=X&customerID&cnt=xx
+				var urlstr = "/Item/Add?ID=" + "@ViewBag.id"+ "&customerID="+"@ViewBag.user_id"+"&cnt=1";
+				$.get(urlstr, function (data) {
+                    if (data == "success")
+                        alert("Add to cart success!");
+                    else if (data == "low_stock")
+                        alert("Inventory Shortage!");
+                    else if (data == "already_in")
+                        alert("The item is already in the cart!");
+                    else if (data == "full")
+                        alert("The cart is full!");
+                    else
+                        alert("Fail, Please check your internet!");
+				});
+            });
 
-  <!-- Css -->
-  <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
-	<link rel="stylesheet" type="text/css" href="~/Content/simple-line-icons.css" media="all">
-	<link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/owl.theme.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/jquery.bxslider.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/revslider.css" >
-	<link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
-  <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-  <link rel="stylesheet" href="~/Content/font-icons.css" />
-  <link rel="stylesheet" href="~/Content/styleshop.css" />
-  <link rel="stylesheet" href="~/Content/color.css" />
+            $(".buynow").click(function () {//GET: /Item/Add?ID=X&customerID&cnt=xx
+                var urlstr = "/Item/Add?ID=" + "@ViewBag.id" + "&customerID=" + "@ViewBag.user_id" + "&cnt=1";
+                $.get(urlstr, function (data) {
+                    if (data == "success")
+                        $(window).attr("href", "../Cart/Index?id=" + "@ViewBag.user_id");
+                    else if (data == "low_stock")
+                        alert("Inventory Shortage!");
+                    else if (data == "already_in")
+                        alert("The item is already in the cart!");
+                    else if (data == "full")
+                        alert("The cart is full!");
+                    else
+                        alert("Fail, Please check your internet!");
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -44,22 +83,12 @@
           <div class="row"> 
             <!-- Header Language -->
             <div class="col-xs-7 col-sm-6">
-              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
-                </ul>
+              <div class="dropdown block-language-wrapper hidden-xs"><a class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English </a>
               </div>
               <!-- End Header Language --> 
               
               <!-- Header Currency -->
-              <div class="dropdown block-currency-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
-                </ul>
+              <div class="dropdown block-currency-wrapper hidden-xs"> <a class="block-currency dropdown-toggle" href="#"> USD </a>
               </div>
               <!-- End Header Currency -->
               
@@ -69,48 +98,7 @@
               <div class="top-cart-contain pull-right"> 
                 <!-- Top Cart -->
                 <div class="mini-cart">
-                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
-                    <div>
-                      <div class="top-cart-content" style="display: none;">
-                        <div class="actions">
-                          <!-- THIS VIEWCART BUTTON CAN SWITCH THE PAGES. -->
-                          <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
-                          <a href="#" class="view-cart" ><span>View Cart</span></a>
-                        </div>
-                        <!--block-subtitle-->
-                        <ul class="mini-products-list" id="cart-sidebar">
-                          <li class="item first">
-                            <div class="item-inner">
-                              <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="../Images/products-images/p4.jpg"></a>
-                              <div class="product-details">
-                                <div class="access">
-                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
-                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
-                                </div>
-                                <!--access-->
-                                <strong>1</strong> x <span class="price">$179.99</span>
-                                <p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="item last">
-                            <div class="item-inner">
-                              <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
-                              <div class="product-details">
-                                <div class="access">
-                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
-                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
-                                </div>
-                                <!--access-->
-                                <strong>1</strong> x <span class="price">$80.00</span>
-                                <p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
-                              </div>
-                            </div>
-                          </li>
-                        </ul>
-                      <!--actions--> 
-                      </div>
-                    </div>
+                  <div class="basket dropdown-toggle"><a class="fixurl" href="../Cart/Index?id=">  My Cart </a></div>
                   </div>
                   <!-- Top Cart -->
                   <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
@@ -149,7 +137,7 @@
                 <div class="toplinks">
                   <div class="links">    
                     <!-- SWITCH TO MY ACCOUNT DETAILS. -->          
-                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">My Account</span></a></div>
+                    <div class="myaccount"><a title="My Account" id="personal" href="../Personalinfo/Index/"><span class="hidden-xs">My Account</span></a></div>
                   </div>           
                 </div>
                 <!-- End Header Top Links -->      
@@ -254,10 +242,7 @@
         <!-- Breadcrumbs -->
         <ol class="breadcrumbs">
           <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="index.html">Women</a>
+            <a class="fixurl" href="../HomePage/Index?id=">Home</a>
           </li>
           <li class="active">
             @ViewBag.name
@@ -272,13 +257,10 @@
 
               <div class="gallery-cell">
                 <a href="../Images/img/shop/item_lg_1.jpg" class="lightbox-img">
-                  <img src=@ViewBag.id alt="" />
+                  <img src=@ViewBag.img alt="" />
                 </a>
               </div>
-             
-              
-              
-              
+                  
             </div> <!-- end gallery main -->
 
             <div style="display:none" class="gallery-thumbs" id="gallery-thumbs">
@@ -303,10 +285,6 @@
 
           <div class="col-md-6 product-single">
             <h1 class="product-single__title uppercase">@ViewBag.name</h1>
-
-            <div class="rating">
-              <a href="#">3 Reviews</a>
-            </div>
 
             <span class="product-single__price">
               <ins>
@@ -350,16 +328,16 @@
 
             <div class="row row-10 product-single__actions clearfix">
               <div class="col">
-                <a href="../Cart/Index" class="btn btn-lg btn-color product-single__add-to-cart">
+                <button class="btn btn-lg btn-color product-single__add-to-cart addtocart"> <!-- error-->
                   <i class="ui-bag"></i>
                   <span>Add to Cart</span>
-                </a>
+                </button>
               </div>
               <div class="col">
-                <a href="../Order/Index" class="btn btn-lg btn-dark product-single__add-to-wishlist">
+                <button class="btn btn-lg btn-dark product-single__add-to-wishlist buynow">
                   <i class="ui-heart"></i>
                   <span>Buy Now</span>
-                </a>
+                </button>
               </div>
             </div>            
 
@@ -466,31 +444,10 @@
 
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link">
-                <img src="../Images/img/images/11122.jpg" alt="" class="product__img">
-                <img src="../Images/img/images/11122.jpg" alt="" class="product__img-back">
+              <a href="../Item/Index?id=11191&user_id=" class="product__link fixurl">
+                <img src="../Images/img/images/11191.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/11191.jpg" alt="" class="product__img-back">
               </a>
-              <div class="product__actions">
-                <button id="debug11122" href="/Item/Index?id=11122" class="product__quickview">
-                  <i class="ui-eye"></i>
-                  <span>Quick View</span>
-                </button>
-                  <script>
-                      document.querySelector('#debug11122').addEventListener('click', function () {
-                          window.open('Index?id=11122');
-                      })
-                  </script>
-                <a style="display:none" href="#" class="product__add-to-wishlist">
-                  <i class="ui-heart"></i>
-                  <span>Buy Now</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="product__details">
-              <h3 class="product__title">
-                <a href="single-product.html"></a>
-              </h3>
             </div>
 
             <span class="product__price">
@@ -502,34 +459,10 @@
 
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link">
-                <img src="../Images/img/images/11123.jpg" alt="" class="product__img">
-                <img src="../Images/img/images/11123.jpg" alt="" class="product__img-back">
+              <a href="../Item/Index?id=12123&user_id=" class="product__link fixurl">
+                <img src="../Images/img/images/12123.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/12123.jpg" alt="" class="product__img-back">
               </a>
-              <div class="product__actions">
-                <button id="debug" href="Index?id=11123" class="product__quickview">
-                  <script type="text/javascript">
-                      console.log(document.querySelector('#debug').getAttribute('href'));
-                  </script>
-                    <i class="ui-eye"></i>
-                  <span>Quick View</span>
-                </button>
-                  <script>
-                      document.querySelector('#debug').addEventListener('click', function () {
-                          window.open('Index?id=11123')
-                      })
-                  </script>
-                <a style="display:none" href="Index?id=11123" class="product__add-to-wishlist">
-                  <i class="ui-heart"></i>
-                  <span>Buy Now</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="product__details">
-              <h3 class="product__title">
-                <a href="Index?id=11123"></a>
-              </h3>
             </div>
 
             <span class="product__price">
@@ -541,31 +474,10 @@
 
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link">
-                <img src="../Images/img/images/11131.jpg" alt="" class="product__img">
-                <img src="../Images/img/images/11131.jpg" alt="" class="product__img-back">
+              <a href="../Item/Index?id=13121&user_id=" class="product__link fixurl">
+                <img src="../Images/img/images/13121.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/13121.jpg" alt="" class="product__img-back">
               </a>
-              <div class="product__actions">
-                <button id="debug11131" class="product__quickview">
-                  <i class="ui-eye"></i>
-                  <span>Quick View</span>
-                </button>
-                  <script>
-                      document.querySelector('#debug11131').addEventListener('click', function () {
-                          window.open('Index?id=11131');
-                      })
-                  </script>
-                <a style="display:none" href="#" class="product__add-to-wishlist">
-                  <i class="ui-heart"></i>
-                  <span>Buy Now</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="product__details">
-              <h3 class="product__title">
-                <a href="single-product.html"></a>
-              </h3>
             </div>
 
             <span class="product__price">
@@ -577,31 +489,10 @@
 
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link">
-                <img src="../Images/img/images/11132.jpg" alt="" class="product__img">
-                <img src="../Images/img/images/11132.jpg" alt="" class="product__img-back">
+              <a href="../Item/Index?id=13143&user_id=" class="product__link fixurl">
+                <img src="../Images/img/images/13143.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/13143.jpg" alt="" class="product__img-back">
               </a>
-              <div class="product__actions">
-                <button id="debug11132" class="product__quickview">
-                  <i class="ui-eye"></i>
-                  <span>Quick View</span>
-                </button>
-                  <script>
-                      document.querySelector('#debug11132').addEventListener('click', function () {
-                          window.open('Index?id=11132');
-                      })
-                  </script>
-                <a style="display:none" href="#" class="product__add-to-wishlist">
-                  <i class="ui-heart"></i>
-                  <span>Buy Now</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="product__details">
-              <h3 class="product__title">
-                <a href="single-product.html"></a>
-              </h3>
             </div>
 
             <span class="product__price">
@@ -613,32 +504,10 @@
 
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link">
-                <img src="../Images/img/images/11133.jpg" alt="" class="product__img">
-                <img src="../Images/img/images/11133.jpg" alt="" class="product__img-back">
+              <a href="../Item/Index?id=22133&user_id=" class="product__link fixurl">
+                <img src="../Images/img/images/22133.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/22133.jpg" alt="" class="product__img-back">
               </a>
-              <div class="product__actions">
-                <button id="debug11133" class="product__quickview">
-                  <i class="ui-eye"></i>
-                  <span>Quick View</span>
-                </button>
-                  <script>
-                      document.querySelector('#debug11133').addEventListener('click', function () {
-                          window.open('Index?id=11133');
-                      })
-                      
-                  </script>
-                <a style="display:none" href="#" class="product__add-to-wishlist">
-                  <i class="ui-heart"></i>
-                  <span>Buy Now</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="product__details">
-              <h3 class="product__title">
-                <a href="single-product.html"></a>
-              </h3>
             </div>
 
             <span class="product__price">
@@ -653,31 +522,10 @@
 
           <div class="col-lg-2 col-sm-4 product">
             <div class="product__img-holder">
-              <a href="single-product.html" class="product__link">
-                <img src="../Images/img/images/11141.jpg" alt="" class="product__img">
-                <img src="../Images/img/images/11141.jpg" alt="" class="product__img-back">
+              <a href="../Item/Index?id=22171&user_id=" class="product__link fixurl">
+                <img src="../Images/img/images/22171.jpg" alt="" class="product__img">
+                <img src="../Images/img/images/22171.jpg" alt="" class="product__img-back">
               </a>
-              <div class="product__actions">
-                <button id="debug11141" class="product__quickview">
-                  <i class="ui-eye"></i>
-                  <span>Quick View</span>
-                </button>
-                  <script>
-                      document.querySelector('#debug11141').addEventListener('click', function () {
-                          window.open('Index?id=11141');
-                      })
-                  </script>
-                <a style="display:none" href="#" class="product__add-to-wishlist">
-                  <i class="ui-heart"></i>
-                  <span>Buy Now</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="product__details">
-              <h3 class="product__title">
-                <a href="single-product.html"></a>
-              </h3>
             </div>
 
             <span class="product__price">
