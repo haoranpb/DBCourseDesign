@@ -38,8 +38,9 @@
       var phone="@ViewBag.phone";
       var address="@ViewBag.address";
       $("#phone").attr("value",phone);
-      $("#address").attr("value",address);
-
+      $("#addr").attr("value",address);
+		console.log("@ViewBag.phone");
+		console.log("@ViewBag.address");
       //订单来自商品 加载一件
     	if(orderType==-1){
     		//获取商品id
@@ -78,44 +79,51 @@
     		//s: "&item1id?item1n&item2id?item2n&item3id?item3n"
     		//每个itemlist[i]为itemid?itemn 即商品id+商品数目
     		var itemlist=itemstr.split("%");
-    		for(var i=1;i<=itemlist.length;i++){
-    			var itemid_n=(itemlist[i]).split("?");
-    			//[0]为id [1]为数目 字符串类型
-    		  var item_url="../Shop/ItemInfo?itemid="+itemid_n[0]+"&itemnum="+i;
+    		for(var i=1;i<itemlist.length;i++){
+				var itemid_n = (itemlist[i]).split("?");
+				var itemcount = parseFloat(itemid_n[1]);
+				//[0]为id [1]为数目 字符串类型
+				var item_url = "../Shop/ItemInfo?itemid=" + itemid_n[0] + "&itemnum=" + i + "&itemcount=" + itemcount;
     		  //将数目从字符串变成浮点数
-    		  var itemcount=parseFloat(itemid_n[1]);
+    		  
     		  //获取商品信息
     		 	$.get(item_url,function(itemjson)
     			{
-    				var itemObj=eval(itemjson);
-
+					  var itemObj = eval(itemjson);
+					  var itemcount = itemObj.ItemCount;
     				var num=itemObj.ItemNum;
-          	var id=itemObj.ItemID;
-          	var info=itemObj.ItemInfo;
-          	var name=itemObj.ItemName;
-          	var pic=itemObj.ItemPic;
-          	var price=itemObj.ItemPrice;
-          	var pricecount=(parseFloat(price))*itemcount;	//n件商品的总价 转换为浮点数直接计算
+          			var id=itemObj.ItemID;
+          			var info=itemObj.ItemInfo;
+          			var name=itemObj.ItemName;
+          			var pic=itemObj.ItemPic;
+          			var price=itemObj.ItemPrice;
+          			var pricecount=(parseFloat(price))*itemcount;	//n件商品的总价 转换为浮点数直接计算
 
-          	$("#item"+num+"p").attr("src","../Images/img/images/"+id+".jpg");   //图片
-          	$("#item"+num+"p").attr("alt",name);  //图片无法显示时的文字
-          	$("#item"+num+"t").text(name);        //名称
-          	$("#item"+num+"t").attr("href","../Item/Index/?id="+id);  //链接
-          	$("#item"+num+"pr").text("$"+price);	//单价
-          	$("#item"+num+"prs").text("$"+pricecount);	//总价
-          	TotalPrice+=pricecount;	//订单总价 累加商品总价
+          			$("#item"+num+"p").attr("src","../Images/img/images/"+id+".jpg");   //图片
+          			$("#item"+num+"p").attr("alt",name);  //图片无法显示时的文字
+					  $("#item" + num + "t").text(name);        //名称
+					  $("#item" + num + "n").text(itemcount);  //数量
+          			$("#item"+num+"t").attr("href","../Item/Index/?id="+id);  //链接
+          			$("#item"+num+"pr").text("$"+price);	//单价
+					  $("#item" + num + "prs").text("$" + pricecount);	//总价
+
+					  TotalPrice += pricecount;	//订单总价 累加商品总价
+					  console.log(TotalPrice);
+					  console.log(i);
+					  if (num == itemlist.length-1) {
+						  console.log(TotalPrice);
+						  $("#totalPrice").text(TotalPrice);
+					  }
     		 	});
 			}
-			console.log(TotalPrice);
-    		$("#price").text(TotalPrice);	//订单总价
-    		$("#totalPrice").text(TotalPrice);	//订单优惠后总价 优惠设置为0
+				//订单总价设置为0
       }
       /*------------------------提交订单------------------------*/
       $("#createorder").click(function()
       {
         //用户填写的信息
         var phone=$("#phone").val();
-        var address=$("#address").val();
+        var address=$("#addr").val();
         var userid="@ViewBag.ID";
 
         if(phone==null||phone==""){
@@ -343,14 +351,14 @@
                   <span class="col col-1">Commodity Name</span>
                   <span class="col col-2">Price</span>
                   <span class="col col-3">Quantity</span>
-                  <span class="col col-4">Sum (Yuan)</span>
+                  <span class="col col-4">Sum (dollars)</span>
                 </dt>
                 <!-- ITEM 01 -->	
                 <dd class="item clearfix">
                   <div class="item-row">
                     <div class="col col-1">
                       <div class="g-pic">
-                        <img id="item1p" src="" width="40" height="40" />
+                        <img id="item1p" src="../Images/empty.jpg" width="40" height="40" />
                       </div>
                       <div class="g-info">
                         <a id="item1t" href="#">no more item ...</a>
@@ -366,7 +374,7 @@
                   <div class="item-row">
                     <div class="col col-1">
                       <div class="g-pic">
-                        <img id="item2p" src="" width="40" height="40" />
+                        <img id="item2p" src="../Images/empty.jpg" width="40" height="40" />
                       </div>
                       <div class="g-info">
                         <a id="item2t" href="#">no more item ...</a><
@@ -382,7 +390,7 @@
                   <div class="item-row">
                     <div class="col col-1">
                       <div class="g-pic">
-                        <img id="item3p" src="http://i1.mifile.cn/a1/T1rrDgB4DT1RXrhCrK!40x40.jpg" width="40" height="40" />
+                        <img id="item3p" src="../Images/empty.jpg" width="40" height="40" />
                       </div>
                       <div class="g-info">
                         <a id="item3t" href="#">no more item ...</a>
@@ -398,7 +406,7 @@
               <!-- checkout-count-extend -->
                 <div class="checkout-price">
                   
-                  <p class="checkout-total">Total Amount：<span><strong id="totalPrice"></strong>Yuan</span></p>
+                  <p class="checkout-total">Total Amount：<span><strong id="totalPrice"></strong>Dollars</span></p>
                 </div>
               </div>
             </div>

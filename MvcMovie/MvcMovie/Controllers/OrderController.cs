@@ -34,8 +34,8 @@ namespace MvcMovie.Controllers
             }
             else
             {
-                ViewBag.address = " ";
-                ViewBag.phone = " ";
+                ViewBag.address = "no default address";
+                ViewBag.phone = "no default phonenumber";
             }
             return PartialView("Index");
         }
@@ -84,7 +84,7 @@ namespace MvcMovie.Controllers
             else
             {
                 ViewBag.address = "no default address";
-                ViewBag.phone = "no default address";
+                ViewBag.phone = "no default phonenumber";
             }
 
             return PartialView("Index");
@@ -190,7 +190,9 @@ namespace MvcMovie.Controllers
                 order.OrderAddress = orderaddress;
                 order.OrderPhone = orderphone;
                 order.OrderState = "Ordered";
-                foreach (var it in list)
+                db.Orders.Add(order);
+                db.SaveChanges();
+            foreach (var it in list)
                 {
                     if (it.ShopID == shop_id)
                     {
@@ -219,9 +221,8 @@ namespace MvcMovie.Controllers
                         db.SaveChanges();
                     }
                 }
-                db.Orders.Add(order);
-                db.SaveChanges();
-            
+            db.Entry(order).State = EntityState.Modified;
+            db.SaveChanges();
             return Content("success");
         }
 

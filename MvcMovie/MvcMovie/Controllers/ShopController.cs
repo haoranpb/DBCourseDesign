@@ -78,7 +78,7 @@ namespace MvcMovie.Controllers
             return Json(saler.SalerInfo);
         }
 
-        // GET: Shop/ItemInfo?itemid=xx&itemnum=xxx
+        // GET: Shop/ItemInfo?itemid=xx&itemnum=xxx&itemcount=xxxx
         // Return item info
         public ActionResult ItemInfo()
         {
@@ -91,6 +91,7 @@ namespace MvcMovie.Controllers
                 return HttpNotFound();
             }
             var json = new {
+                ItemCount = Request.QueryString["itemcount"],
                 ItemID = item.ItemID,
                 ItemInfo = item.ItemInfo,
                 ItemName = item.ItemName,
