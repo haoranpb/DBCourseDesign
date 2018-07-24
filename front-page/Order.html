@@ -27,12 +27,21 @@
 <script type="text/javascript" src="~/Scripts/address_all.js"></script>  
 <script type="text/javascript" src="~/Scripts/jquery_cart.js"></script>  
 <script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="js/jquery-3.3.1.js"></script>
 <script type="text/javascript">
     $(document).ready(function()
     {
+      /*------------------------加载内容------------------------*/
     	//判断订单来自商品还是购物车
     	var orderType="@ViewBag.Shopnumber_or_Ordernumber";
-    	//订单来自商品 加载一件
+
+    	//修改手机号和收货地址为默认地址
+      var phone="@ViewBag.phone";
+      var address="@ViewBag.address";
+      $("#phone").attr("value",phone);
+      $("#address").attr("value",address);
+
+      //订单来自商品 加载一件
     	if(orderType==-1){
     		//获取商品id
     		var itemid="@ViewBag.item_id";
@@ -58,7 +67,7 @@
           $("#price").text(price);			//订单总价格
           $("#totalPrice").text(price);	//订单优惠后总价格 优惠设置为0
         });
-    	};
+    	}
     	//订单来自购物车 加载至多三件
     	else{
     		//订单总价
@@ -69,7 +78,7 @@
     		//每个itemlist[i]为itemid?itemn 即商品id+商品数目
     		var itemlist=itemstr.split("&");
     		for(var i=1;i<=3;i++){
-    			var itemid_n=itemlist[i].split("?");
+    			var itemid_n=(itemlist[i]).split("?");
     			//[0]为id [1]为数目 字符串类型
     		  var item_url="../Shop/ItemInfo?itemid="+itemList[i][0]+"&itemnum="+i;
     		  //将数目从字符串变成浮点数
@@ -94,11 +103,75 @@
           	$("#item"+num+"pr").text("$"+price);	//单价
           	$("#item"+num+"prs").text("$"+pricecount);	//总价
           	TotalPrice+=pricecount;	//订单总价 累加商品总价
-    		 	}
+    		 	});
     		}
     		$("#price").text(TotalPrice);	//订单总价
     		$("#totalPrice").text(TotalPrice);	//订单优惠后总价 优惠设置为0
       }
+      /*------------------------提交订单------------------------*/
+      $("#createorder").click(function()
+      {
+        //用户填写的信息
+        var phone=$("#phone").val();
+        var address=$("#address").val();
+        var userid="@ViewBag.ID";
+
+        if(phone==null||phone==""){
+          alert("Please enter your phone number");
+        }if(address==null||address==""){
+          alert("Please enter your address");
+        }
+        else{
+          var orderType="ViewBag.Shopnumber_or_Ordernumber";
+          //从店铺创建
+          if(orderType==-1){
+            var itemid="@ViewBag.ItemID";
+
+            var create_url="../Order/ShopCreate?OrderPhone="+phone+"&OrderAddress="+address+"&itemID="+itemid;
+            $.get(create_url,function(data)
+            {
+              if(data=="success"){
+                //订单创建成功
+                alert("Ordre Successfully Submitted!");
+                //三秒后跳转
+                //可以跳转 但是实际上可能用了不止三秒 有点慢
+                function delay()
+                {
+                  $(window).attr('location', '../HomePage/Index?id='+itemid);
+                }
+                setTimeout(delay,3000);
+              }
+              else{
+                //订单创建失败
+                alert("Failed to submit order");
+              }
+            });
+          }
+          //从购物车创建订单
+          else{
+            var shopid="@ViewBag.shopid";
+
+            var create_url="../Order/CartCreate?OrderPhone="+phone+"&OrderAddress="+address+"&user_id="+userid+"&shop_id="+shopid;
+            $.get(create_url,function(data)
+            {
+              if(data=="success"){
+                //订单创建成功
+                alert("Order Successfully Submitted!");
+                //三秒后跳转
+                function delay()
+                {
+                  $(window).attr('location', '../HomePage/Index?id='+itemid);
+                }
+                setTimeout(delay,3000);
+              }
+              else{
+                alert("Failed to submit order");
+              }
+            })
+
+          }     
+        }
+      })
     });
 </script>
 </head>
@@ -137,461 +210,223 @@
                 <!-- Top Cart -->
                 <div class="mini-cart">
                   <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="../Cart/Index?id=@ViewBag.ID">  My Cart <span class="cart_count">2</span></a></div>
-                    <div>
-                      <div class="top-cart-content" style="display: none;">
-                        <div class="actions">
-                          <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
-                          <a href="#" class="view-cart" ><span>View Cart</span></a>
-                        </div>
-                        <!--block-subtitle-->
-                        <ul class="mini-products-list" id="cart-sidebar">
-                          <li class="item first">
-                            <div class="item-inner">
-                              <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="../Images/products-images/p4.jpg"></a>
-                              <div class="product-details">
-                                <div class="access">
-                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
-                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
-                                </div>
-                                <!--access-->
-                                <strong>1</strong> x <span class="price">$179.99</span>
-                                <p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
+                  <div>
+                    <div class="top-cart-content" style="display: none;">
+                      <div class="actions">
+                        <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
+                        <a href="#" class="view-cart" ><span>View Cart</span></a>
+                      </div>
+                      <!--block-subtitle-->
+                      <ul class="mini-products-list" id="cart-sidebar">
+                        <li class="item first">
+                          <div class="item-inner">
+                            <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="../Images/products-images/p4.jpg"></a>
+                            <div class="product-details">
+                              <div class="access">
+                                <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
                               </div>
+                              <!--access-->
+                              <strong>1</strong> x <span class="price">$179.99</span>
+                              <p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
                             </div>
-                          </li>
-                          <li class="item last">
-                            <div class="item-inner">
-                              <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
-                              <div class="product-details">
-                                <div class="access">
-                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
-                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
-                                </div>
-                                <!--access-->
-                                <strong>1</strong> x <span class="price">$80.00</span>
-                                <p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
+                          </div>
+                        </li>
+                        <li class="item last">
+                          <div class="item-inner">
+                            <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
+                            <div class="product-details">
+                              <div class="access">
+                                <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
                               </div>
+                              <!--access-->
+                              <strong>1</strong> x <span class="price">$80.00</span>
+                              <p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
                             </div>
-                          </li>
-                        </ul>
+                          </div>
+                        </li>
+                      </ul>
                       <!--actions--> 
-                      </div>
                     </div>
                   </div>
-                  <!-- Top Cart -->
-                  <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
-                    <input value="" type="hidden">
-                    <input id="enable_module" value="1" type="hidden">
-                    <input class="effect_to_cart" value="1" type="hidden">
-                    <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
-                  </div>
                 </div>
-          
-                <div class="top-search">
-                  <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
-                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
-                          </div>
-                          <div class="modal-body">
-                            <form class="navbar-form">
-                              <div id="search">
-                                <div class="input-group">
-                                  <input name="search" placeholder="Search" class="form-control" type="text">
-                                  <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
-                                </div>
+                <!-- Top Cart -->
+                <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
+                  <input value="" type="hidden">
+                  <input id="enable_module" value="1" type="hidden">
+                  <input class="effect_to_cart" value="1" type="hidden">
+                  <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
+                </div>
+              </div>     
+              <div class="top-search">
+                <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
+                  <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
+                        </div>
+                        <div class="modal-body">
+                          <form class="navbar-form">
+                            <div id="search">
+                              <div class="input-group">
+                                <input name="search" placeholder="Search" class="form-control" type="text">
+                                <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
                               </div>
-                            </form>
-                          </div>
+                            </div>
+                          </form>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>                 
-                 <!-- Header Top Links -->
-                <div class="toplinks">
-                  <div class="links">              
-                    <div class="myaccount"><a title="My Account" href="../Personalinfo/Index?id=@ViewBag.ID"><span class="hidden-xs">My Account</span></a></div>
-                
-                    <!-- Header Company -->
-                  
-                    <!-- End Header Company -->
-
-                  </div>           
                 </div>
-                <!-- End Header Top Links -->      
+              </div>                 
+              <!-- Header Top Links -->
+              <div class="toplinks">
+                <div class="links">              
+                  <div class="myaccount"><a title="My Account" href="../Personalinfo/Index?id=@ViewBag.ID"><span class="hidden-xs">My Account</span></a></div>
+                </div>           
               </div>
+              <!-- End Header Top Links -->      
             </div>
           </div>
         </div>
       </div>
-    </header>
-    <!-- END OF HEADER -->
-
-    <div class="border_top_cart">
-			<div class="container">
-    		<div class="checkout-box">
-        	<form  id="checkoutForm" action="#" method="post">
-            <div class="checkout-box-bd">
-              <!-- 地址状态 0：默认选择；1：新增地址；2：修改地址 -->
-              <input type="hidden" name="Checkout[addressState]" id="addrState"   value="0">
-                <!-- 收货地址 -->
-                <div class="xm-box">
-                  <div class="box-hd ">
-   									<h2 class="title">Address</h2>
-									</div>
-									<div class="box-bd">
-    								<div class="clearfix xm-address-list" id="checkoutAddrList">
-          						<dl class="item" >
-            						<dt>
-                					<strong class="itemConsignee">Michael</strong>
-                          <span class="itemTag tag">Home</span>
-                        </dt>
-            						<dd>
-                					<p class="tel itemTel">088-6526-8987</p>
-                					<p class="itemRegion">USA</p>
-                					<p class="itemStreet">San Antonio</p>
-                          <span class="edit-btn J_editAddr">Edit</span>
-                        </dd>
-            						<dd style="display:none">
-                					<input type="radio" name="Checkout[address]" class="addressId"  value="10140916720030323">
-            						</dd>
-       			 					</dl>
-                      <div class="item use-new-addr"  id="J_useNewAddr" data-state="off">
-             						<span class="iconfont icon-add"><img src="../Images/images/add_cart.png" /></span> 
-            						Use new address
-        							</div>
-            				</div>
-        						<input type="hidden" name="newAddress[type]" id="newType" value="common">
-    								<input type="hidden" name="newAddress[consignee]" id="newConsignee">
-    								<input type="hidden" name="newAddress[province]" id="newProvince">
-    								<input type="hidden" name="newAddress[city]" id="newCity">
-    								<input type="hidden" name="newAddress[district]" id="newCounty">
-    								<input type="hidden" name="newAddress[address]" id="newStreet">
-    								<input type="hidden" name="newAddress[zipcode]" id="newZipcode">
-    								<input type="hidden" name="newAddress[tel]" id="newTel">
-    								<input type="hidden" name="newAddress[tag_name]" id="newTag">
-    								<!--点击弹出新增/收货地址界面start-->
-    								<div class="xm-edit-addr-box" id="J_editAddrBox">
-        							<div class="bd">
-            						<div class="item">
-                					<label>Consignee Name<span>*</span></label> 
-                					<input type="text" name="userAddress[consignee]" id="Consignee" class="input" placeholder="Consignee Name" maxlength="15" autocomplete='off'>
-                					<p class="tip-msg tipMsg"></p>
-            						</div>
-            						<div class="item">
-                					<label>Telephone<span>*</span></label> 
-                					<input type="text" name="userAddress[tel]" class="input" id="Telephone" placeholder="Phone Number" autocomplete='off'>
-                					<p class="tel-modify-tip" id="telModifyTip"></p>
-                					<p class="tip-msg tipMsg"></p>
-            						</div>
-            						<div class="item">
-                					<label>Address<span>*</span></label>
-                					<select name="userAddress[province]" id="Provinces" class="select-1">
-                    				<option>Country/Region</option>
-                					</select>
-                					<select name="userAddress[city]"  id="Citys" class="select-2" disabled>
-                    				<option>City/Area/State</option>
-                					</select>
-               			 			<select name="userAddress[county]"  id="Countys" class="select-3" disabled>
-                    				<option>Area/County</option>
-                					</select>
-                					<textarea   name="userAddress[street]" class="input-area" id="Street" placeholder="Road name or street address, house number"></textarea>
-                					<p class="tip-msg tipMsg"></p>
-            						</div>
-            						<div class="item">
-                					<label>Postal Code<span>*</span></label> 
-                					<input type="text" name="userAddress[zipcode]" id="Zipcode" class="input" placeholder="Postal Code"  autocomplete='off'>
-                					<p class="zipcode-tip" id="zipcodeTip"></p>
-                					<p class="tip-msg tipMsg"></p>
-            						</div>
-            						<div class="item">
-                					<label>Address Label<span>*</span></label> 
-                					<input type="text" name="userAddress[tag]" id="Tag" class="input" placeholder='Address tags: such as "home", "company". Limited to 5 words'  >
-                					<p class="tip-msg tipMsg"></p>
-            						</div>
-        							</div>
-        							<div class="ft clearfix">
-            						<button type="button"  class="btn btn-lineDake btn-small " id="J_editAddrCancel">cancel</button>
-             						<button type="button" class="btn btn-primary  btn-small " id="J_editAddrOk">save</button>
-        							</div>
-   									</div>
-    								<!--点击弹出新增/收货地址界面end-->
-    								<div class="xm-edit-addr-backdrop" id="J_editAddrBackdrop">
-    								</div>
-									</div>                
-								</div>
-                <!-- 收货地址 END-->
-                <div id="checkoutPayment">
-                  <!-- 支付方式 -->
-                  <div class="xm-box">
-                		<div class="box-hd ">
-                    	<h2 class="title">Payment Method</h2>
-                		</div>
-                		<div class="box-bd">
-                    	<ul id="checkoutPaymentList" class="checkout-option-list clearfix J_optionList">
-                        <li class="item selected">
-                          <input type="radio" name="Checkout[pay_id]" checked="checked" value="1">
-                            <p>Online Payment<span></span></p>
-                        </li>
-                      </ul>
-                		</div>
-            			</div>
-            			<!-- 支付方式 END-->
-            			<div class="xm-box">
-                		<div class="box-hd ">
-                    	<h2 class="title">Delivery Method</h2>
-                		</div>
-                		<div class="box-bd">
-                    	<ul id="checkoutShipmentList" class="checkout-option-list clearfix J_optionList">
-                        <li class="item selected">
-                          <input type="radio" data-price="0" name="Checkout[shipment_id]" checked="checked" value="1">
-                            <p>Express Delivery（free)<span></span></p>
-                        </li>
-                      </ul>
-                		</div>
-            			</div>
-            		<!-- 配送方式 END-->
-                </div>
-                <!-- 送货时间 -->
-                <div class="xm-box">
-                  <div class="box-hd">
-                    <h2 class="title">Delivery Time</h2>
-                  </div>
-                  <div class="box-bd">
-                    <ul class="checkout-option-list clearfix J_optionList">
-                      <li class="item selected">
-                      	<input type="radio" checked="checked" name="Checkout[best_time]" value="1">
-                      	<p>Unlimited delivery time<span>Monday to Sunday</span></p>
-                      </li>
-                      <li class="item "><input type="radio"  name="Checkout[best_time]" value="2">
-                      	<p>Delivery on weekday<span>Monday to Friday</span></p>
-                      </li>
-                      <li class="item "><input type="radio"  name="Checkout[best_time]" value="3">
-                      	<p>Delivery on weekend/holiday<span>Saturday/Sunday</span></p>
-                      </li>                        
-                    </ul>
-                  </div>
-                </div>
-                <!-- 送货时间 END-->
-                <!-- 发票信息 -->
-                <div id="checkoutInvoice">
-                  <div class="xm-box">
-    								<div class="box-hd">
-        							<h2 class="title">Invoice</h2>
-    								</div>
-    								<div class="box-bd">
-        							<ul class="checkout-option-list checkout-option-invoice clearfix J_optionList J_optionInvoice">
-            	 					<li class="hide">Electronic Invoice</li>
-                        <li class="item selected">
-                				<input type="radio"    checked="checked"  value="4" name="Checkout[invoice]">
-                					<p>Electronic Invoice（Non-paper）</p>
-           					 		</li>
-                        <li class="item ">
-                					<input type="radio"   value="1" name="Checkout[invoice]">
-                						<p>Gneral Invoice(paper）</p>
-            						</li>
-        							</ul>
-                			<p id="eInvoiceTip" class="e-invoice-tip ">The electronic invoice is a valid certificate approved by the tax bureau and can be used as evidence for after-sales rights protection and is not sent with the goods. You cannot replace the paper invoice after invoicing. If you need reimbursement, please choose the ordinary invoice.<a href="http://bbs.xiaomi.cn/thread-9285999-1-1.html" target="_blank">What is electronic invoice？</a></p>
-        							<div class="invoice-info nvoice-info-1" id="checkoutInvoiceElectronic" style="display:none;">
-            						<p class="tip">Electronic invoices are currently only issued to individual users, not for unit reimbursement, not for goods.</p>
-            						<p>Invoice content: contract details</p>
-            						<p>Invoice title : Personal</p>
-           						  <p><span class="hide"><input type="radio" value="4" name="Checkout[invoice_type]"   checked="checked"   id="electronicPersonal" class="invoiceType"></span>
-                					<dl>
-                    				<dt>What is electronic invoice ？</dt>
-                    				<dd>&#903; The electronic invoice is an image of the paper invoice and is a valid certificate approved by the tax bureau. It has the same legal effect as the traditional paper invoice and can be used as evidence for after-sales rights protection.</dd>
-                    				<dd>&#903; Electronic services are issued to individuals. Paper invoices cannot be exchanged after invoicing and cannot be used for unit reimbursement.</dd>
-                    				<dd>&#903; You can view and download your electronic invoice in the "Invoice Information" column of the order details.。<a href="http://bbs.xiaomi.cn/thread-9285999-1-1.html" target="_blank">What is electronic invoice</a></dd>
-                					</dl>
-            						</p>
-        							</div>
-                			<div class="invoice-info invoice-info-2" id="checkoutInvoiceDetail"  style="display:none;" >
-            						<p>Invoice title : Personal</p>
-            						<p>Invoice header: Please confirm that the unit name is correct, so as not to delay your reimbursement due to the wrong name. Note: Contract machine call charges can only be opened for personal invoices.</p>
-            						<ul class="type clearfix J_invoiceType">
-                					<li class="hide">
-                    				<input type="radio" value="0" name="Checkout[invoice_type]" id="noNeedInvoice" > 
-                					</li>
-                					<li class="">
-                    				<input  class="invoiceType" type="radio" id="commonPersonal" name="Checkout[invoice_type]" value="1" >Personal
-                					</li>
-                					<li class="">
-                     				<input  class="invoiceType" type="radio" name="Checkout[invoice_type]" value="2" >Unit
-					                </li>
-					            	</ul>
-            <div  id='CheckoutInvoiceTitle' class=" hide  invoice-title">
-                <label for="Checkout[invoice_title]">Unit Name:</label>
-                <input name="Checkout[invoice_title]" type="text" maxlength="49" value="" class="input"> <span class="tip-msg J_tipMsg"></span>
-            </div>
-
-        </div>
-
     </div>
-</div>                </div>
-                <!-- 发票信息 END-->
-            </div>
-            <div class="checkout-box-ft">
-                 <!-- 商品清单 -->
-                <div id="checkoutGoodsList" class="checkout-goods-box">
-                                    <div class="xm-box">
-                    <div class="box-hd">
-                        <h2 class="title">Order Confirm</h2>
-                    </div>
-                    <div class="box-bd">
-                        <dl class="checkout-goods-list">
-                            <dt class="clearfix">
-                                <span class="col col-1">Commodity Name</span>
-                                <span class="col col-2">Price</span>
-                                <span class="col col-3">Quantity</span>
-                                <span class="col col-4">Sum (Yuan)</span>
-                            </dt>
-                            <!-- ITEM 01 -->	
-                            <dd class="item clearfix">
-                                <div class="item-row">
-                                    <div class="col col-1">
-                                        <div class="g-pic">
-                                            <img id="item1p" src="" width="40" height="40" />
-                                        </div>
-                                        <div class="g-info">
-                                            <a id="item1t" href="#">no more item ...</a>
-                                          </div>
-                                    </div>
-                
-                                    <div id="item1pr" class="col col-2"></div>
-                                    <div id="item1n" class="col col-3"></div>
-                                    <div id="item1prs" class="col col-4"></div>
-                                </div>
-                            </dd>
-                            <!-- ITEM 02 -->
-                                                        <dd class="item clearfix">
-                                <div class="item-row">
-                                    <div class="col col-1">
-                                        <div class="g-pic">
-                                            <img id="item2p" src="" width="40" height="40" />
-                                        </div>
-                                        <div class="g-info">
-                                                                                         <a id="item2t" href="#">
-                                                no more item ...                                        </a>
-                                                                                                                                </div>
-                                    </div>
-                
-                                    <div id="item2pr" class="col col-2"></div>
-                                    <div id="item2n" class="col col-3"></div>
-                                    <div id="item2prs" class="col col-4"></div>
-                                </div>
-                            </dd>
-                            <!-- ITEM 03 -->
-                                                        <dd class="item clearfix">
-                                <div class="item-row">
-                                    <div class="col col-1">
-                                        <div class="g-pic">
-                                            <img id="item3p" src="http://i1.mifile.cn/a1/T1rrDgB4DT1RXrhCrK!40x40.jpg" width="40" height="40" />
-                                        </div>
-                                        <div class="g-info">
-                                                                                         <a id="item3t" href="#">
-                                                no more item ...                                         </a>
-                                                                                                                                </div>
-                                    </div>
-                
-                                    <div id="item3pr" class="col col-2"></div>
-                                    <div id="item3n" class="col col-3"></div>
-                                    <div id="item3prs" class="col col-4"></div>
-                                </div>
-                            </dd>
-                                                    </dl>
-                        <div class="checkout-count clearfix">
-                            <div class="checkout-count-extend xm-add-buy">
-                                <h3 class="title">Member Message</h2></br>
-                                <input type="text" />
+  </header>
+  <!-- END OF HEADER -->
 
-                            </div>
-                            <!-- checkout-count-extend -->
-                            <div class="checkout-price">
-                                <ul>
-
-                                    <li>
-                                       Total：<span id="price"></span>
-                                    </li>
-                                    <li>
-                                        Discount：<span>-0</span>
-                                        <script type="text/javascript">
-                                            checkoutConfig.activityDiscountMoney=0;
-                                            checkoutConfig.totalPrice=6186.00;
-                                        </script>
-                                    </li>
-                                    <li>
-                                        Coupon Deduction：<span id="couponDesc">-0</span>
-                                    </li>
-                                    <li>
-                                        Freight：<span id="postageDesc">0</span>
-                                    </li>
-                                </ul>
-                                <p class="checkout-total">Total Amount：<span><strong id="totalPrice"></strong>Yuan</span></p>
-                            </div>
-                            <!--  -->
-                        </div>
-                    </div>
+  <div class="border_top_cart">
+		<div class="container">
+    	<div class="checkout-box">
+        <form  id="checkoutForm" action="#" method="post">
+          <div class="checkout-box-bd">
+            <div id="checkoutPayment">
+              <!-- PHONE NUMBER -->
+              <div class="xm-box">
+                <div class="box-hd ">
+                  <h2 class="title">Phone Number</h2>
                 </div>
-    
-    
+                <div class="box-bd">
+                  <form>
+                    <input id="phone" type="text" value="" style="width: 256px;height: 48px;font-size: 28px">
+                  </form>
                 </div>
-                <!-- 商品清单 END -->
-                <input type="hidden"  id="couponType" name="Checkout[couponsType]">
-                <input type="hidden" id="couponValue" name="Checkout[couponsValue]">
-                <div class="checkout-confirm">
-                    
-                     <a href="../Cart/Index/@ViewBag.ID" class="btn btn-lineDakeLight btn-back-cart">Back to cart</a>
-                     <input type="submit" class="btn btn-primary" value="Order Now" id="checkoutToPay" />
-                                     </div>
+              </div>
             </div>
+            <div class="xm-box">
+              <div class="box-hd ">
+                <h2 class="title">Delivery Address</h2>
+              </div>
+              <div class="box-bd">
+                <form>
+                  <input id="addr" type="text" value="" style="width: 512px;height: 48px;font-size: 28px">
+                </form>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!--  ITEMS INFORMATION -->
+      <div class="checkout-box-ft">
+        <div id="checkoutGoodsList" class="checkout-goods-box">
+          <div class="xm-box">
+            <div class="box-hd">
+              <h2 class="title">Order Confirm</h2>
+            </div>
+            <div class="box-bd">
+              <dl class="checkout-goods-list">
+                <dt class="clearfix">
+                  <span class="col col-1">Commodity Name</span>
+                  <span class="col col-2">Price</span>
+                  <span class="col col-3">Quantity</span>
+                  <span class="col col-4">Sum (Yuan)</span>
+                </dt>
+                <!-- ITEM 01 -->	
+                <dd class="item clearfix">
+                  <div class="item-row">
+                    <div class="col col-1">
+                      <div class="g-pic">
+                        <img id="item1p" src="" width="40" height="40" />
+                      </div>
+                      <div class="g-info">
+                        <a id="item1t" href="#">no more item ...</a>
+                      </div>
+                    </div>
+                    <div id="item1pr" class="col col-2"></div>
+                    <div id="item1n" class="col col-3"></div>
+                    <div id="item1prs" class="col col-4"></div>
+                  </div>
+                </dd>
+                <!-- ITEM 02 -->
+                <dd class="item clearfix">
+                  <div class="item-row">
+                    <div class="col col-1">
+                      <div class="g-pic">
+                        <img id="item2p" src="" width="40" height="40" />
+                      </div>
+                      <div class="g-info">
+                        <a id="item2t" href="#">no more item ...</a><
+                      </div>
+                    </div>
+                    <div id="item2pr" class="col col-2"></div>
+                    <div id="item2n" class="col col-3"></div>
+                    <div id="item2prs" class="col col-4"></div>
+                  </div>
+                </dd>
+                <!-- ITEM 03 -->
+                <dd class="item clearfix">
+                  <div class="item-row">
+                    <div class="col col-1">
+                      <div class="g-pic">
+                        <img id="item3p" src="http://i1.mifile.cn/a1/T1rrDgB4DT1RXrhCrK!40x40.jpg" width="40" height="40" />
+                      </div>
+                      <div class="g-info">
+                        <a id="item3t" href="#">no more item ...</a>
+                      </div>
+                      <div id="item3pr" class="col col-2"></div>
+                      <div id="item3n" class="col col-3"></div>
+                      <div id="item3prs" class="col col-4"></div>
+                    </div>
+                  </div>
+                </dd>
+              </dl>
+              <div class="checkout-count clearfix">
+              <!-- checkout-count-extend -->
+                <div class="checkout-price">
+                  <ul>
+                    <li>Total：<span id="price"></span></li>
+                    <li>Discount：<span>-0</span></li>
+                    <li>Coupon Deduction：<span id="couponDesc">-0</span></li>
+                    <li>Freight：<span id="postageDesc">0</span></li>
+                  </ul>
+                  <p class="checkout-total">Total Amount：<span><strong id="totalPrice"></strong>Yuan</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- 商品清单 END -->
+        <input type="hidden"  id="couponType" name="Checkout[couponsType]">
+        <input type="hidden" id="couponValue" name="Checkout[couponsValue]">
+        <div class="checkout-confirm">                    
+          <a href="../Cart/Index/@ViewBag.ID" class="btn btn-lineDakeLight btn-back-cart">Back to cart</a>
+          <button id="createorder" type="button" class="btn btn-primary" id="checkoutToPay">Order Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    </form>
-
-</div>
-
-
-
-<script id="newAddrTemplate" type="text/x-dot-template">
-        <dl class="item selected" data-isnew="true" data-consignee="{{=it.consignee}}" data-tel="{{=it.tel}}" data-province="{{=it.province}}" data-provincename="{{=it.provinceName}}" data-city="{{=it.city}}" data-cityname="{{=it.cityName}}" data-county="{{=it.county}}" data-countyname="{{=it.countyName}}" data-zipcode="{{=it.zipcode}}" data-street="{{=it.street}}" data-tag="{{=it.tag}}">
-            <dt>
-                <strong class="itemConsignee">{{=it.consignee}}</strong>
-                {{? it.tag }}
-                    <span  class="itemTag tag">{{=it.tag}}</span>
-                {{?}}
-            </dt>
-            <dd>
-                <p class="tel itemTel">{{=it.tel}}</p>
-                <p  class="itemRegion">{{=it.provinceName}} {{=it.cityName}} {{=it.countyName}}</p>
-                <p  class="itemStreet">{{=it.street}} ({{=it.zipcode}})</p>
-                <span class="edit-btn J_editAddr">EDIT</span>
-            </dd>
-        </dl>
-</script>
-
-
-
-        
-
-
-    <script src="~/Scripts/address_all.js"></script>
-
-        <script type="text/javascript" src="~/Scripts/address_all.js"></script>
-<script type="text/javascript" src="~/Scripts/address_all.js"></script> 
-
-    <script src="~/Scripts/base.min.js"></script>
-
-        <script type="text/javascript" src="~/Scripts/address_all.js"></script>
-<script type="text/javascript" src="~/Scripts/checkout.min.js"></script> 
-
-</div>
+  <script src="~/Scripts/address_all.js"></script>
+  <script type="text/javascript" src="~/Scripts/address_all.js"></script>
+  <script type="text/javascript" src="~/Scripts/address_all.js"></script> 
+  <script src="~/Scripts/base.min.js"></script>
+  <script type="text/javascript" src="~/Scripts/address_all.js"></script>
+  <script type="text/javascript" src="~/Scripts/checkout.min.js"></script> 
  
- <!--收货地址body部分结束-->
-
-    <footer style="z-index: -1">
+  <!--收货地址body部分结束-->
+  <footer style="z-index: -1">
     <div class="footer-inner">
       <div class="container">
         <div class="row">
