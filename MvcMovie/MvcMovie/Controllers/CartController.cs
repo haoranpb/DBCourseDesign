@@ -13,10 +13,10 @@ namespace MvcMovie.Controllers
     {
         MovieDBContext db = new MovieDBContext();
 
-        //GET: LOCLAHOSR:1236513/Cart/Index?customerID=XXX
+        //GET: LOCLAHOSR:1236513/Cart/Index?id=XXX
         public ActionResult Index()
         {
-            string customerID = Request.QueryString["customerID"];
+            string customerID = Request.QueryString["id"];
             ViewBag.customerID = customerID;
             var cartinfo = (from j in db.Carts where j.CustomerID == customerID select j);
             string idstring = "";
@@ -26,7 +26,8 @@ namespace MvcMovie.Controllers
             }//idstring格式为
             //" cartid1=cardid1对应的数量 cartid2=cartid2对应的数量 ......"
             ViewBag.idstring = idstring;
-            return View();
+
+            return PartialView();
         }
         
         // 删除购物车中某商品的全部

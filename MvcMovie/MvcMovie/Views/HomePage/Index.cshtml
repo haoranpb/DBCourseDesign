@@ -26,14 +26,11 @@
 	<script>
 		$(document).ready(function () {
             $("#personal").attr("href", "../Personalinfo/Index/" + "@ViewBag.id");
-            $(".product-image").find("a").attr("href", function (i, origValue) {
+            $(".product-image").attr("href", function (i, origValue) {
                 return origValue + "&user_id=" + "@ViewBag.id";
             });
-            $(".item-title").find("a").attr("href", function (i, origValue) {
-                return origValue + "&user_id=" + "@ViewBag.id";
-            });
-            $(".basket dropdown-toggle").find("a").attr("href", function (i, origValue) {
-                return origValue "@ViewBag.id";
+            var test = $(".fixurl").attr("href", function (i, origValue) {
+                return origValue + "@ViewBag.id";
             });
 		});</script>
 </head>
@@ -73,7 +70,7 @@
                                 <div class="top-cart-contain pull-right">
                                     <!-- Top Cart -->
                                     <div class="mini-cart">
-                                        <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="../Cart/Index?id=">  My Cart <span class="cart_count">2</span></a></div>
+                                        <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a class="fixurl" href="../Cart/Index?id=">  My Cart <span class="cart_count">2</span></a></div>
                                         <div>
                                             <div class="top-cart-content" style="display: none;">
                                                 <div class="actions">
@@ -745,7 +742,7 @@
                                     <div class="info-inner">
                                         <!-- CHANGE THIS NAME AND PRICE!! -->
                                         <!-- ITEM INDEX ID="XXX" -->
-                                        <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index?id=11191"> 01 </a> </div>
+                                        <div class="item-title"> <a class="fixurl" title="Retis lapen casen" href="../Item/Index?id=11191&user_id="> 01 </a> </div>
                                         <div class="item-content">
                                             <div class="item-price">
                                                 <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -786,7 +783,7 @@
                                     <div class="info-inner">
                                         <!-- NAME AND PRICE -->
                                         <!-- ITEM INDEX ID="XXX" -->
-                                        <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index?id=12123"> 02 </a> </div>
+                                        <div class="item-title"> <a class="fixurl" title="Retis lapen casen" href="../Item/Index?id=12123&user_id="> 02 </a> </div>
                                         <div class="item-content">
                                             <div class="item-price">
                                                 <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -827,7 +824,7 @@
                                     <div class="info-inner">
                                         <!-- CHANGE THE STUPID NAME!!!! -->
                                         <!-- ITEM INDEX ID="XXX" -->
-                                        <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index?id=13121"> 03 </a> </div>
+                                        <div class="item-title"> <a class="fixurl" title="Retis lapen casen" href="../Item/Index?id=13121&user_id="> 03 </a> </div>
                                         <div class="item-content">
                                             <div class="item-price">
                                                 <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -866,7 +863,7 @@
                                 <div class="item-info">
                                     <div class="info-inner">
                                         <!-- ITEM INDEX ID="XXX" -->
-                                        <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index?id=13143"> 04 </a> </div>
+                                        <div class="item-title"> <a class="fixurl" title="Retis lapen casen" href="../Item/Index?id=13143&user_id="> 04 </a> </div>
                                         <div class="item-content">
                                             <div class="item-price">
                                                 <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -905,7 +902,7 @@
                                 <div class="item-info">
                                     <div class="info-inner">
                                         <!-- ITEM INDEX ID="XXX" -->
-                                        <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index?id=33143"> 05 </a> </div>
+                                        <div class="item-title"> <a class="fixurl" title="Retis lapen casen" href="../Item/Index?id=33143&user_id="> 05 </a> </div>
                                         <div class="item-content">
                                             <div class="item-price">
                                                 <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -944,7 +941,7 @@
                                 <div class="item-info">
                                     <div class="info-inner">
                                         <!-- ITEM INDEX ID="XXX" -->
-                                        <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index?id=32133"> 06 </a> </div>
+                                        <div class="item-title"> <a class="fixurl" title="Retis lapen casen" href="../Item/Index?id=32133&user_id="> 06 </a> </div>
                                         <div class="item-content">
                                             <div class="item-price">
                                                 <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -983,7 +980,7 @@
                                 <div class="item-info">
                                     <div class="info-inner">
                                         <!-- ITEM INDEX ID="XXX" -->
-                                        <div class="item-title"> <a title="Retis lapen casen" href="../Item/Index?id=22133"> 07 </a> </div>
+                                        <div class="item-title"> <a class="fixurl" title="Retis lapen casen" href="../Item/Index?id=22133&user_id="> 07 </a> </div>
                                         <div class="item-content">
                                             <div class="item-price">
                                                 <div class="price-box"> <span class="regular-price"> <span class="price">$125.00</span> </span> </div>
@@ -1065,7 +1062,7 @@
                                                                     <div class="info-inner">
                                                                         <!-- CHANGE THE NAME!! CHANGE THE NAME!!! -->
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=33142" title="Retis lapen casen">101</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=33142&user_id=" title="Retis lapen casen">101</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1102,7 +1099,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=43133" title="Retis lapen casen">102</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=43133&user_id=" title="Retis lapen casen">102</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1139,7 +1136,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=43152" title="Retis lapen casen">103</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=43152&user_id=" title="Retis lapen casen">103</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1176,7 +1173,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=43181" title="Retis lapen casen">104</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=43181&user_id=" title="Retis lapen casen">104</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1217,7 +1214,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=22171" title="Retis lapen casen">105</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=22171&user_id=" title="Retis lapen casen">105</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1254,7 +1251,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=22192" title="Retis lapen casen">106</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=22192&user_id=" title="Retis lapen casen">106</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1291,7 +1288,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=22193" title="Retis lapen casen">107</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=22193&user_id=" title="Retis lapen casen">107</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1328,7 +1325,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=24132" title="Retis lapen casen">108</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=24132&user_id=" title="Retis lapen casen">108</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1369,7 +1366,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=44132" title="Retis lapen casen">109</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=44132&user_id=" title="Retis lapen casen">109</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1406,7 +1403,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=44153" title="Retis lapen casen">110</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=44153&user_id=" title="Retis lapen casen">110</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1443,7 +1440,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=44181" title="Retis lapen casen">111</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=44181&user_id=" title="Retis lapen casen">111</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
@@ -1480,7 +1477,7 @@
                                                                 <div class="item-info">
                                                                     <div class="info-inner">
                                                                         <!-- ITEM INDEX ID="XXX" -->
-                                                                        <div class="item-title"><a href="../Item/Index?id=44162" title="Retis lapen casen">112</a> </div>
+                                                                        <div class="item-title"><a class="fixurl" href="../Item/Index?id=44162&user_id=" title="Retis lapen casen">112</a> </div>
                                                                         <div class="item-content">
                                                                             <div class="item-price">
                                                                                 <div class="price-box"><span class="regular-price"><span class="price">$125.00</span> </span> </div>
