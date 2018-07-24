@@ -26,11 +26,14 @@
 	<script>
 		$(document).ready(function () {
             $("#personal").attr("href", "../Personalinfo/Index/" + "@ViewBag.id");
-            $(".product-image").attr("href", function (i, origValue) {
+            $(".product-image").find("a").attr("href", function (i, origValue) {
                 return origValue + "&user_id=" + "@ViewBag.id";
             });
-            $(".item-title").attr("href", function (i, origValue) {
+            $(".item-title").find("a").attr("href", function (i, origValue) {
                 return origValue + "&user_id=" + "@ViewBag.id";
+            });
+            $(".basket dropdown-toggle").find("a").attr("href", function (i, origValue) {
+                return origValue "@ViewBag.id";
             });
 		});</script>
 </head>
@@ -70,7 +73,7 @@
                                 <div class="top-cart-contain pull-right">
                                     <!-- Top Cart -->
                                     <div class="mini-cart">
-                                        <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="../Cart/Index?id=@ViewBag.id">  My Cart <span class="cart_count">2</span></a></div>
+                                        <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="../Cart/Index?id=">  My Cart <span class="cart_count">2</span></a></div>
                                         <div>
                                             <div class="top-cart-content" style="display: none;">
                                                 <div class="actions">
