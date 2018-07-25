@@ -27,13 +27,42 @@
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script>
         $(document).ready(function () {
-            var shoplist = ViewBag.shopidstring; // backspace to split, shopID store in it
+            var shopidstring = @ViewBag.shopidstring; // backspace to split, shopID store in it
+            alert(shopidstring);
+            var shoplist = shopidstring.split(" ");
+            alert();
+            //for (var shop in shoplist) {
+            //    $("#shop" + shop[5] + "outer").text = shop;
+            //}
 
-            var urlstr = "/Saler/Order?shopid1=" ; // get order ID list
-            $.get(urlstr, function (data) {
+            //var urlstr = "/Saler/Order?shopid1=" ; // get order ID list
+            //$.get(urlstr, function (data) {
                 
-            }); // get order detail through order id list
+            //}); // get order detail through order id list
 
+            // view shop info pop up button 
+
+            $("#shop1viewbutton").click(function () {
+                //if (shoplist >=1)
+                document.getElementById('view_shop2').style.display = 'block';
+                document.getElementById('fade_view_shop2').style.display = 'block';
+
+                var urlstr = "/Saler/ShopInfo?shopid=" + shoplist[0];
+                $.get(urlstr, function (data) { // get shop detail and set shop detail
+                    //@ViewBag.ShopName; // data get from back-end
+                });
+            });
+
+            $("#shop2viewbutton").click(function () {
+                //if (shoplist >=2)
+                document.getElementById('view_shop2').style.display = 'block';
+                document.getElementById('fade_view_shop2').style.display = 'block';
+
+                var urlstr = "";
+                $.get(urlstr, function (data) { // get shop detail and set shop detail
+
+                });
+            });
 
 
         });
@@ -204,17 +233,16 @@
                     <div style="width: 680px;padding: 10px;float: left;background-color: #fff;height: 250px;">
                     <div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                       <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                        <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">shop3 name</span>
-
+                        <span id="shop1outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">shop1 name</span>
                            <!--本按钮应调用数据库数据，目前暂时为静态且与shop2按钮相同-->
-                           <input  type="button" value="View" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" onclick="document.getElementById('view_shop2').style.display='block';document.getElementById('fade_view_shop2').style.display='block'"/>
+                           <button id="shop1viewbutton" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">View </button>
                       </div>
                     </div>
                 
                     <div style="float: left;width:200px ;height: 152px;;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                       <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                        <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">Shop2 name</span>
-                         <input  type="button" value="View" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" onclick="document.getElementById('view_shop2').style.display='block';document.getElementById('fade_view_shop2').style.display='block'"/>
+                        <span id="shop2outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">Shop2 name</span>
+                         <button id="shop2viewbutton" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">View </button>
 
                                <!-- 点击view后跳出店铺信息 -->
                                <div id="view_shop2" class="white_content"

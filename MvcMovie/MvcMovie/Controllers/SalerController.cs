@@ -86,10 +86,27 @@ namespace MvcMovie.Controllers
             return Json(json,JsonRequestBehavior.AllowGet);
         }
 
+        // GET: ../Saler/ShopInfo?shopid=xxx
+        public ActionResult ShopInfo()
+        {
+            string shopid = Request.QueryString["shopid"];
+            Shop shop = db.Shops.Find(shopid);
+            if (shop == null)
+            {
+                return Content("shop not exist");
+            }
+            else
+            {
+                ViewBag.ShopName = shop.ShopName; // what else to display?
+                return Content("success");
+            }
+        }
+
         // create shop func finished in a pop up dialog
+        // GET: /Saler/CreateShopPage?ID=xxx&shopid=xx
         public ActionResult CreateShopPage()
         {
-            string ID = Request.QueryString["ID"];
+            string ID = Request.QueryString["ID"]; // what this ID for?
             ViewBag.shopid = Request.QueryString["shopid"];
             //卖家基本信息通过viewbag传输
             Saler saler = db.Salers.Find(ID);
