@@ -1,52 +1,52 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<!--[if IE]>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<![endif]-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<!-- Favicons Icon -->
-	<title>Log In</title>
-	<!-- Mobile Specific -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<!-- CSS Style -->
-	<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
-	<link rel="stylesheet" type="text/css" href="~/Content/simple-line-icons.css" media="all">
-	<link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/owl.theme.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/jquery.bxslider.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/revslider.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
-	<link rel="stylesheet" type="text/css" href="~/Content/cssContentlogin-table.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/styleregis.css">
-	<script src="~/Scripts/prefixfree.min.js"></script>
-	<script src="~/Scripts/modernizr.js"></script>
-	<script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
-	<script type="text/javascript">
-		/* LOG IN */
-		$(document).ready(function () {
-			$("#login").click(function () {
-				var name = $("#usrn").val();
-				var pswd = $("#usrp").val();
-				var urlstr = "/Login/ConfirmLogin";
-				$.get(urlstr, { "id": name,"psw":pswd}, function (data) {
-					if (data == "success1")
-						$(window).attr('location', '../HomePage/Index?id=' + name);
-					else if (data == "success2")
-						$(window).attr('location', '../Saler/Index?ID=' + name);
-					else if (data == "success3")
-						$(window).attr('location', '../AdminInfo/Index?ID=' + name);
-					else
-						alert("Please check your password and username ");
-				});
-			});
-		});
-	</script>
+    <meta charset="utf-8">
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicons Icon -->
+    <title>Log In</title>
+    <!-- Mobile Specific -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- CSS Style -->
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/simple-line-icons.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/owl.theme.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/revslider.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
+    <link rel="stylesheet" type="text/css" href="~/Content/cssContentlogin-table.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/styleregis.css">
+    <script src="~/Scripts/prefixfree.min.js"></script>
+    <script src="~/Scripts/modernizr.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        /* LOG IN */
+        $(document).ready(function () {
+            $("#login").click(function () {
+                var name = $("#usrn").val();
+                var pswd = $("#usrp").val();
+                var urlstr = "/Login/ConfirmLogin";
+                $.get(urlstr, { "id": name, "psw": pswd }, function (data) {
+                    if (data == "success1")
+                        $(window).attr('location', '../HomePage/Index?id=' + name);
+                    else if (data == "success3")
+                        $(window).attr('location', '../Saler/Index?ID=' + name);
+                    else if (data == "success2")
+                        $(window).attr('location', '../AdminInfo/Index?ID=' + name);
+                    else
+                        alert("Please check your password and username ");
+                });
+            });
+        });
+    </script>
 </head>
 
 <body style="background-color: black">

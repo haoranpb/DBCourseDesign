@@ -13,11 +13,11 @@ namespace MvcMovie.Controllers
     {
         private MovieDBContext db = new MovieDBContext();
 
-        // GET: /Saler/index?ID=xxx
+        // GET: /Saler/Index?ID=xxx
         public ActionResult Index( )
         {
             string ID = Request.QueryString["ID"];
-            //卖家基本信息通过viewbag传输
+            //return saler info via viewbag
             Saler saler = db.Salers.Find(ID);
             ViewBag.Salerinfo = saler.SalerInfo;
             ViewBag.SalerPassword = saler.SalerPassword;
@@ -29,16 +29,17 @@ namespace MvcMovie.Controllers
                            where shops.SalerID == ID
                            select shops;
 
-            //用于测试
+            //return shoplist of id
             string ShopIdString = "";
             foreach (var shop in shopquery)
             {
-                ShopIdString = String.Join(ShopIdString, " ", shop.ShopID);
+                ShopIdString = ShopIdString + " " + shop.ShopID;
             }
             ViewBag.shopidstring = ShopIdString;
-            return PartialView();
 
-            //return View(shopquery.ToList());
+            //return shop orderlist
+
+            return PartialView();
         }
 
         public ActionResult Order()//向页面返回全部的shop内的全部order的id
@@ -85,7 +86,7 @@ namespace MvcMovie.Controllers
             return Json(json,JsonRequestBehavior.AllowGet);
         }
 
-        //跳转至店铺页面 /Saler/CreateShopPage?ID=Lucas&shopid=123456
+        // create shop func finished in a pop up dialog
         public ActionResult CreateShopPage()
         {
             string ID = Request.QueryString["ID"];
@@ -120,7 +121,7 @@ namespace MvcMovie.Controllers
             return Content("failure");
         }
         
-        //删除店铺 /Saler/DeleteShop?ID=111
+        // delete shop button wait to add
         public ActionResult DeleteShop()
         {
             string ID = Request.QueryString["ID"];
