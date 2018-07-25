@@ -14,18 +14,72 @@ namespace MvcMovie.Controllers
     {
         private MovieDBContext db = new MovieDBContext();
 
-        // GET: AdminInfo/Index?adminID=xxx
-        public ActionResult Index( )
+        // GET: AdminInfo/Item?adminID=xxx
+        public ActionResult Item( )
         {
             string adminID = Request.QueryString["ID"];
-            ViewBag.SalerList = db.Salers.ToList();
-            ViewBag.CustomerList = db.Customers.ToList();
-            ViewBag.ItemList = db.Items.ToList();
-            ViewBag.OrderList = db.Orders.ToList();
-            ViewBag.AdminID = adminID;
-            return Content("success"); // finish redirect url in the front-end. Qustion: need to pass admin id through index func?
+            
+            var ItemList = db.Items.ToList();
+            string itemidstring = "";
+            string itemstring = "";
+            foreach(var item in ItemList)
+            {
+                itemidstring = itemidstring + " " + item.ItemID;
+                itemstring = itemstring + "%" + item.ShopID;
+            }
+            ViewBag.shopstring = itemstring;
+            ViewBag.itemidstring = itemidstring;
+            ViewBag.ID = adminID;
+            return PartialView(); // finish redirect url in the front-end. Qustion: need to pass admin id through index func?
         }
 
+        public ActionResult Order()
+        {
+            string adminID = Request.QueryString["ID"];
+
+            var ItemList = db.Orders.ToList();
+            string itemidstring = "";
+            string itemtimestring = "";
+            foreach (var item in ItemList)
+            {
+                itemidstring = itemidstring + "%" + item.OrderID;
+                itemtimestring = itemtimestring + "%" + Convert.ToDateTime(item.OrderTime); ;
+            }
+            ViewBag.orderidstring = itemidstring;
+            ViewBag.ordertimestring = itemtimestring;
+            ViewBag.ID = adminID;
+            return PartialView(); // finish redirect url in the front-end. Qustion: need to pass admin id through index func?
+        }
+
+        public ActionResult Customer()
+        {
+            string adminID = Request.QueryString["ID"];
+
+            var ItemList = db.Customers.ToList();
+            string itemidstring = "";
+            foreach (var item in ItemList)
+            {
+                itemidstring = itemidstring + " " + item.ID;
+            }
+            ViewBag.cusidstring = itemidstring;
+            ViewBag.ID = adminID;
+            return PartialView(); // finish redirect url in the front-end. Qustion: need to pass admin id through index func?
+        }
+
+        public ActionResult Saler()
+        {
+            string adminID = Request.QueryString["ID"];
+
+            var ItemList = db.Salers.ToList();
+            string itemidstring = "";
+            foreach (var item in ItemList)
+            {
+                itemidstring = itemidstring + " " + item.SalerID;
+            }
+            ViewBag.salerstring = itemidstring;
+            ViewBag.ID = adminID;
+            return PartialView(); // finish redirect url in the front-end. Qustion: need to pass admin id through index func?
+        }
         // GET: AdminInfo/AdminInfo?adminID=xxx
         //管理员信息
         public ActionResult AdminInfo(string adminID)
@@ -43,9 +97,10 @@ namespace MvcMovie.Controllers
 
 
 
-        // GET: AdminInfo/DeleteSaler/id
-        public ActionResult DeleteSaler(string id)
+        // GET: AdminInfo/DeleteSaler?id
+        public ActionResult DeleteSaler()
         {
+            string id = Request.QueryString["id"];
             Saler saler = db.Salers.Find(id);
             db.Salers.Remove(saler);
             db.SaveChanges();
@@ -53,8 +108,9 @@ namespace MvcMovie.Controllers
         }
 
         // GET: AdminInfo/DeleteCustomer/id
-        public ActionResult DeleteCustomer(string id)
+        public ActionResult DeleteCustomer()
         {
+            string id = Request.QueryString["id"];
             Customer customer = db.Customers.Find(id);
             db.Customers.Remove(customer);
             db.SaveChanges();
@@ -62,8 +118,9 @@ namespace MvcMovie.Controllers
         }
 
         // GET: AdminInfo/DeleteItem/id
-        public ActionResult DeleteItem(string id)
+        public ActionResult DeleteItem()
         {
+            string id = Request.QueryString["id"];
             Item item = db.Items.Find(id);
             db.Items.Remove(item);
             db.SaveChanges();
@@ -71,8 +128,9 @@ namespace MvcMovie.Controllers
         }
 
         // GET: AdminInfo/DeleteOrder/id
-        public ActionResult DeleteOrder(string id)
+        public ActionResult DeleteOrder()
         {
+            string id = Request.QueryString["id"];
             Order order = db.Orders.Find(id);
             db.Orders.Remove(order);
             db.SaveChanges();

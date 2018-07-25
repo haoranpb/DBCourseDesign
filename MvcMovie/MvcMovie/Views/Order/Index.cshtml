@@ -85,7 +85,7 @@
 				//[0]为id [1]为数目 字符串类型
 				var item_url = "../Shop/ItemInfo?itemid=" + itemid_n[0] + "&itemnum=" + i + "&itemcount=" + itemcount;
     		  //将数目从字符串变成浮点数
-    		  
+    		  var item = [0,0,0,0];
     		  //获取商品信息
     		 	$.get(item_url,function(itemjson)
     			{
@@ -106,12 +106,20 @@
           			$("#item"+num+"t").attr("href","../Item/Index/?id="+id);  //链接
           			$("#item"+num+"pr").text("$"+price);	//单价
 					  $("#item" + num + "prs").text("$" + pricecount);	//总价
-
+					  item[num] = 1;
 					  TotalPrice += pricecount;	//订单总价 累加商品总价
 					  console.log(TotalPrice);
-					  console.log(i);
-					  if (num == itemlist.length-1) {
-						  console.log(TotalPrice);
+					  console.log(num);
+					  var j = 1;
+					  for (var p = 1; p < itemlist.length ; p++) {
+						  console.log("p" + p + " " + item[p]);
+;						  if (item[p] == 0) {
+							  j = 0;
+						  }
+					  }
+					  console.log(j);
+					  if (j==1) {
+						  console.log("tot"+TotalPrice);
 						  $("#totalPrice").text(TotalPrice);
 					  }
     		 	});
@@ -146,8 +154,8 @@
                 //三秒后跳转
                 //可以跳转 但是实际上可能用了不止三秒 有点慢
                 function delay()
-                {
-                  $(window).attr('location', '../HomePage/Index?id='+itemid);
+				{
+					$(window).attr('location', '../HomePage/Index?id=' + userid);
                 }
                 setTimeout(delay,3000);
               }
@@ -170,7 +178,7 @@
                 //三秒后跳转
                 function delay()
                 {
-                  $(window).attr('location', '../HomePage/Index?id='+itemid);
+					$(window).attr('location', '../HomePage/Index?id=' + userid);
                 }
                 setTimeout(delay,3000);
               }

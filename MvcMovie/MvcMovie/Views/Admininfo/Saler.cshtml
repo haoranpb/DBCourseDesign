@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Administrator Seller</title>
+	
+	<link href="~/Content/bootstrap_admin.css" rel="stylesheet">
+    <link href="~/Content/font-awesome_admin.css" rel="stylesheet" />
+    <link href="~/Content/style_admin.css" rel="stylesheet">
+    <link href="~/Content/style-responsive_admin.css" rel="stylesheet">
+    <link href="~/Content/button_delete.css" rel="stylesheet">
+    
+    <script src="~/Scripts/jquery.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="~/Scripts/jquery.ui.touch-punch.min.js"></script>
+    <script class="include" type="text/javascript" src="~/Scripts/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="~/Scripts/jquery.scrollTo.min.js"></script>
+    <script src="~/Scripts/jquery.nicescroll.js" type="text/javascript"></script>
+    <!-- script for all pages -->
+    <script src="~/Scripts/common-scripts.js"></script>
+
+
+	<script>
+		$(document).ready(function () {
+
+			var list = "@ViewBag.salerstring".split(" ");
+
+			for (var i = 1; i < list.length; i++) {
+				$("#s" + i).text(list[i]);
+				$("body").find("#" + i).click(function () {
+					var j = $(this).attr("id");
+					console.log(j);
+					$.get("/AdminInfo/DeleteSaler?id=" + $("#s" + j).text(), function (data) {
+						if (data == "success") location.reload();
+					});
+				});
+			}
+			
+		});
+	</script>
+
+    <!--买家卖家店铺商品-->
+</head>
+<body>
+	<section id="container">
+		<!-- sidebar start -->
+		<aside>
+			<div id="sidebar" class="nav-collapse">
+
+				<ul class="sidebar-menu" id="nav-accordion">
+
+
+					<h5 class="centered" style="font-size: 20px;">Administrator</h5>
+					<li class="sub-menu">
+						<a href="/AdminInfo/Customer?ID=@ViewBag.ID">
+
+							<span style="font-size: 15px;">Customer</span>
+						</a>
+					</li>
+					<li class="sub-menu">
+						<a href="/AdminInfo/Saler?ID=@ViewBag.ID">
+
+							<span style="font-size: 15px;">Seller</span>
+						</a>
+					</li>
+					<li class="sub-menu">
+						<a href="/AdminInfo/Order?ID=@ViewBag.ID">
+
+							<span style="font-size: 15px;">Orders</span>
+						</a>
+					</li>
+					<li class="sub-menu">
+						<a href="/AdminInfo/Item?ID=@ViewBag.ID">
+
+							<span style="font-size: 15px;">Commodity</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+		<!-- sidebar end -->
+		<!-- main content -->
+		<section id="main-content">
+			<section class="wrapper">
+				<h3>View the Information</h3>
+				<div class="row">
+
+					<div class="col-md-12">
+						<div class="content-panel">
+							<h4>Seller Information</h4>
+							<hr>
+							<table class="table">
+								<thead>
+									<tr>
+										<th style="font-size: 15px;width: 264px">Seller No.</th>
+										<th style="font-size: 15px;width: 264px">SellerID</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td style="font-size: 15px;width: 264px">1</td>
+										<td id="s1" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="1" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">2</td>
+										<td id="s2" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="2" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">3</td>
+										<td id="s3" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="3" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">4</td>
+										<td id="s4" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="4" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">5</td>
+										<td id="s5" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="5" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">6</td>
+										<td id="s6" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="6" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">7</td>
+										<td id="s7" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="7" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">8</td>
+										<td id="s8" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="8" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">9</td>
+										<td id="s9" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="9" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">10</td>
+										<td id="s10" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="10" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">11</td>
+										<td id="s11" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="11" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">12</td>
+										<td id="s12" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="12" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">13</td>
+										<td id="s13" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="13" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">14</td>
+										<td id="s14" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="14" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">15</td>
+										<td id="s15" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="15" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">16</td>
+										<td id="s16" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="16" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">17</td>
+										<td id="s17" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="17" class="button red medium">delete</buttonid></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">18</td>
+										<td id="s18" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="18" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">19</td>
+										<td id="s19" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="19" class="button red medium">delete</button></td>
+									</tr>
+									<tr>
+										<td style="font-size: 15px;width: 264px">20</td>
+										<td id="s20" style="font-size: 15px;width: 264px">empty</td>
+
+										<td><button id="20" class="button red medium">delete</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- end of main content -->
+		</section>
+</body>
+</html>
