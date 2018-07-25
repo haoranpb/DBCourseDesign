@@ -53,23 +53,36 @@ namespace MvcMovie.Controllers
 
             var shopid3 = Request.QueryString["shopid3"];
             string p = "";
+            List<Order> ol = new List<Order>();
             var orderinfo1 = (from i in db.Orders where i.ShopID == shopid1 select i);
             var orderinfo2 = (from i in db.Orders where i.ShopID == shopid2 select i);
             var orderinfo3 = (from i in db.Orders where i.ShopID == shopid3 select i);
-            if(orderinfo1.Count()!=0)
-            foreach (var o in orderinfo1)
-            {
-                p = p + " " + o;
+            foreach (var i in orderinfo1) {
+                ol.Add(i);
             }
-            if (orderinfo2.Count() != 0)
-                foreach (var o in orderinfo2)
+            foreach (var i in orderinfo2)
             {
-                p = p + " " + o;
+                ol.Add(i);
             }
-            if (orderinfo3.Count() != 0)
-                foreach (var o in orderinfo3)
+            foreach (var i in orderinfo3)
             {
-                p = p + " " + o;
+                ol.Add(i);
+            }
+            for (int k = 0; k < ol.Count() - 1; k++)
+            {
+                for (int j = 0; j < ol.Count() - 1 - k; j++)
+                {
+                    if (ol[j].OrderTime < ol[j + 1].OrderTime)
+                    {
+                        Order so = ol[j];
+                        ol[j] = ol[j + 1];
+                        ol[j + 1] = so;
+                    }
+                }
+            }
+            foreach (var o in ol)
+            {
+                p = p + " " + o.OrderID;
             }
             return Content(p);
         }

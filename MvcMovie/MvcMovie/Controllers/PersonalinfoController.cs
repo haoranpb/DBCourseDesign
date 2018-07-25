@@ -37,12 +37,29 @@ namespace MvcMovie.Controllers
             ViewBag.Time = "";
             ViewBag.ShopID = "";
 
-            var orderQuery = from order in db.Orders
+            var orderQuery =  from order in db.Orders
                                 where ID == order.CustomerID
                                 select order;
-
-            foreach (var cOrderQuery in orderQuery)
+            List<Order> orderQueryn = new List<Order>();
+            foreach(var i in orderQuery)
             {
+                orderQueryn.Add(i);
+            }
+
+            for (int k = 0; k < orderQuery.Count() - 1; k++)
+            {
+                for (int j = 0; j < orderQuery.Count() - 1 - k; j++)
+                {
+                    if (orderQueryn[j].OrderTime < orderQueryn[j + 1].OrderTime)
+                    {
+                        Order so = orderQueryn[j];
+                        orderQueryn[j] = orderQueryn[j + 1];
+                        orderQueryn[j + 1] = so;
+                    }
+                }
+            }
+
+            foreach (var cOrderQuery in orderQueryn) { 
                 ViewBag.OrderID += cOrderQuery.OrderID;
                 ViewBag.OrderID += "*";
                 //ViewBag.OrderID = String.Join(String.Join(ViewBag.OrderID, "*"), cOrderQuery.OrderID);

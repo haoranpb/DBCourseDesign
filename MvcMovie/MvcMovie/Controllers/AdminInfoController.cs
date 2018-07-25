@@ -51,6 +51,26 @@ namespace MvcMovie.Controllers
             var ItemList = db.Orders.ToList();
             string itemidstring = "";
             string itemtimestring = "";
+            List<DateTime> i = new List<DateTime>();
+            //直接对itemlist里面的每一个order根据时间进行排序
+            foreach (var o in ItemList)
+            {
+                i.Add(o.OrderTime);
+            }
+            for (int k = 0; k < ItemList.Count()-1; k++) {
+                for(int j = 0; j < ItemList.Count() - 1-k; j++)
+                {
+                    if (i[j]<i[j+1])
+                    {
+                        var s = i[j];
+                        i[j] = i[j + 1];
+                        i[j + 1] = s;
+                        Order so = ItemList[j];
+                        ItemList[j] = ItemList[j + 1];
+                        ItemList[j + 1] = so;
+                    }
+                }
+            }
             foreach (var item in ItemList)
             {
                 itemidstring = itemidstring + "%" + item.OrderID;
