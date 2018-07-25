@@ -86,8 +86,9 @@ namespace MvcMovie.Controllers
             return Json(json,JsonRequestBehavior.AllowGet);
         }
 
-        // GET: ../Saler/ShopInfo?shopid=xxx
-        public ActionResult ShopInfo()
+        // ShopDetail Page
+        // GET: ../Saler/ShopDetail?shopid=100001
+        public ActionResult ShopDetail()
         {
             string shopid = Request.QueryString["shopid"];
             Shop shop = db.Shops.Find(shopid);
@@ -97,8 +98,9 @@ namespace MvcMovie.Controllers
             }
             else
             {
+                ViewBag.shopid = shopid;
                 ViewBag.ShopName = shop.ShopName; // what else to display?
-                return Content("success");
+                return PartialView();
             }
         }
 

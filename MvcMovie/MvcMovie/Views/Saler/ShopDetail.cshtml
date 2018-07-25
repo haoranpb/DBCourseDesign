@@ -1,0 +1,713 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Shop Details</title>
+  <!--[if IE]>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+  <![endif]-->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="">
+
+  <!-- Css -->
+  <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/font-icons.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/styleshop.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/color.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/style.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
+  <link rel="stylesheet" type="text/css" href="~/Content/simple-line-icons.css" media="all">
+  <link rel="stylesheet" type="text/css" href="~/Content/owl.carousel.css">
+  <link rel="stylesheet" type="text/css" href="~/Content/owl.theme.css">
+  <link rel="stylesheet" type="text/css" href="~/Content/jquery.bxslider.css">
+  <link rel="stylesheet" type="text/css" href="~/Content/jquery.mobile-menu.css">
+  <link rel="stylesheet" type="text/css" href="~/Content/revslider.css" >
+  <link rel="stylesheet" type="text/css" href="~/Content/products.css" />
+  <link rel="stylesheet" type="text/css" href="~/Content/displaydiv.css" />
+  <script src="~/Scripts/jquery-3.3.1.js"></script>
+  <script>
+  	$(document).ready(function()
+  	{
+  	  //因为页面不显示商品id 并且没有通过商品名称获得商品id的接口 所以用一个13个元素的数组存储对应的12个id
+  	  //索引从1开始 0用来存储实际加载的商品数目
+    	//存储12个商品的id
+    	var itemsid=new Array(13);
+    	/*---------------------加载内容---------------------*/
+    	var shopid="@ViewBag.shopid";
+    	var shop_urlstr="/Shop/ListID?shopid=" + shopid;
+  		//返回商品列表 string
+      $.get(shop_urlstr,function(itemstr)
+      {
+        //  alert(itemstr); successfully get itemlist
+        var itemList=itemstr.split(" "); // get item list
+        //加载信息
+        for(var i=1;i<itemList.length;i++){
+            var item_urlstr ="/Shop/ItemInfo?itemid=" + itemList[i] + "&itemnum=" + i + "&itemcount=1";
+    		  //获取商品信息
+            $.get(item_urlstr,function(itemjson)
+    			{
+    				//解析json
+    				var itemObj=eval(itemjson);
+
+    				var num=itemObj.ItemNum;
+          	        var id=itemObj.ItemID;
+          	        var info=itemObj.ItemInfo;
+          	        var name=itemObj.ItemName;
+          	        var pic=itemObj.ItemPic;
+          	        var price=itemObj.ItemPrice;
+
+          	        itemsid[parseInt(num)]=id;
+
+          	        $("#item"+num+"p").attr("src","../Images/img/images/"+id+".jpg");   //图片
+          	        $("#item"+num+"p").attr("alt",name);  //图片无法显示时的文字
+          	        $("#item"+num+"t").text(name);        //名称
+          	        $("#item"+num+"pr").text("$"+price);	//价格
+        	    });
+        }
+        //循环完后修改0元素中存储的数目
+        itemsid[0]=itemList.length-1; // is it useful???
+      });
+      /*---------------------编辑商品---------------------*/
+  		$(".edit").click(function()
+  		{
+  			//获得当前点击的按钮id
+            var id = $(this).attr("id");
+  			//获得最后一位 e为修改商品 d为删除商品
+  			var type=id.substr(id.length-1,1);
+  			//获得id中的数字即商品编号 1-12
+  			var num=$(this).attr("id").replace(/[^0-9]/ig,"");
+  			//从数组中获得数据库中的商品id
+  			var itemid=itemsid[num];
+
+   			if(type=='e'){
+  				var item_urlstr="/Shop/Iteminfo?itemid="+itemid+"&itemnum=1&itemcount=1";
+    		  //获取商品信息
+               $.get(item_urlstr,function(itemjson)
+    			{
+    				//解析json
+    				var itemObj=eval(itemjson);
+
+          	        var id=itemObj.ItemID;
+          	        var info=itemObj.ItemInfo;
+          	        var name=itemObj.ItemName;
+          	        var pic=itemObj.ItemPic;
+          	        var price=itemObj.ItemPrice;
+
+          	        $("#picname").attr("value",pic);		//表单图片名称
+          	        $("#picpath").attr("value","~/Images/img/images/");		//表单图片路径
+          	        $("#name").attr("value",name);		//表单商品名称
+          	        $("#price").attr("value",price);	//表单商品价格
+  				});
+
+  				/*---------------------提交修改---------------------*/
+    			$("#confirm").click(function()
+    			{
+    				var picname=$("#picname").val();
+    				var picpath=$("#picpath").val();
+    				var name=$("#name").val();
+    				var price=$("#price").val();
+
+                    //没有iteminfo和shopid
+                    var modify_url = "/Shop/Edititem?ItemId=" + itemid + "&ItemInfo="+ name+"&ItemName=" + name + "&ItemPic=" + picname + "&PATH=" + picpath + "&ItemPrice=" + price + "&ItemRemain=500&ShopID=" + shopid; 
+    				$.get(modify_url,function(data)
+    				{
+    					if(data=="success"){
+    						alert("Edited Successfully");
+    						//刷新 跳转到当前页面 url不知道
+                            window.location.reload();
+    					}
+    					else{
+    						alert("Failed to Edit");
+    					}
+    				});
+    			});
+    		}
+    	});
+
+			/*---------------------删除商品---------------------*/
+  		$("button").click(function()
+  		{
+  			//获得当前点击的按钮id
+  			var id=$(this).attr("id");
+  			//获得最后一位 e为修改商品 d为删除商品
+  			var type=id.substr(id.length-1,1);
+  			//获得id中的数字即商品编号 1-12
+  			var num=$(this).attr("id").replace(/[^0-9]/ig,"");
+  			//从数组中获得数据库中的商品id
+  			var itemid=itemsid[num];
+
+  			if(type=='d'){
+  				var delete_url="/Shop/Delitem?ItemId="+itemid;
+  				$.get(delete_url,function(data)
+  				{
+  					if(data=="success"){
+  						alert("Confirmed Successfully!");
+  						//刷新 重新跳转到当前页面 url不知道
+                        window.location.reload();
+  					}
+  					else{
+  						alert("Failed to Confirm");
+  					}
+  				});
+  			}
+  		});
+  	});
+  </script>
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div class="loader-mask">
+    <div class="loader">
+      <div></div>
+    </div>
+  </div>
+
+<div id="page"> 
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="header-top">
+        <div class="container">
+          <div class="row"> 
+            <!-- Header Language -->
+            <div class="col-xs-7 col-sm-6">
+              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
+                </ul>
+              </div>
+              <!-- End Header Language --> 
+              
+              <!-- Header Currency -->
+              <div class="dropdown block-currency-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
+                </ul>
+              </div>
+              <!-- End Header Currency -->
+              
+              <div class="welcome-msg hidden-xs"> Welcome to Vibranium! </div>
+            </div>
+            <div class="col-xs-5 col-sm-6"> 
+              <div class="top-cart-contain pull-right"> 
+                <!-- Top Cart -->
+                <div class="mini-cart">
+                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
+                    <div>
+                      <div class="top-cart-content" style="display: none;">
+                        <div class="actions">
+                          <!-- THIS VIEWCART BUTTON CAN SWITCH THE PAGES. -->
+                          <button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
+                          <a href="#" class="view-cart" ><span>View Cart</span></a>
+                        </div>
+                        <!--block-subtitle-->
+                        <ul class="mini-products-list" id="cart-sidebar">
+                          <li class="item first">
+                            <div class="item-inner">
+                              <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href=""><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="../Images/products-images/p4.jpg"></a>
+                              <div class="product-details">
+                                <div class="access">
+                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+                                </div>
+                                <!--access-->
+                                <strong>1</strong> x <span class="price">$179.99</span>
+                                <p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="item last">
+                            <div class="item-inner">
+                              <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
+                              <div class="product-details">
+                                <div class="access">
+                                  <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+                                  <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+                                </div>
+                                <!--access-->
+                                <strong>1</strong> x <span class="price">$80.00</span>
+                                <p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      <!--actions--> 
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Top Cart -->
+                  <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
+                    <input value="" type="hidden">
+                    <input id="enable_module" value="1" type="hidden">
+                    <input class="effect_to_cart" value="1" type="hidden">
+                    <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
+                  </div>
+                </div>
+          
+                <div class="top-search">
+                  <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
+                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
+                          </div>
+                          <div class="modal-body">
+                            <form class="navbar-form">
+                              <div id="search">
+                                <div class="input-group">
+                                  <input name="search" placeholder="Search" class="form-control" type="text">
+                                  <!-- SEARCH BUTTON. SWITCH TO INPUT TYPE PRODUCTS -->
+                                  <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>                 
+                 <!-- Header Top Links -->
+                <div class="toplinks">
+                  <div class="links">    
+                    <!-- SWITCH TO MY ACCOUNT DETAILS. -->          
+                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">My Account</span></a></div>
+                  </div>           
+                </div>
+                <!-- End Header Top Links -->      
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </header>
+  <!-- end header --> 
+
+	<form id="msform" class="white_content"style="position:absolute;top:64px">
+		<fieldset style="position: relative;left:0px">
+			<h2 class="fs-title">Item Information</h2>
+			<input id="picname" type="text" name="picname" placeholder="ItemPictureName" />
+			<input id="picpath" type="text" name="picpath" placeholder="ItemPicturePath" />
+			<input id="name" type="text" name="name" placeholder="ItemName" />
+			<input id="price" type="text" name="price" placeholder="ItemPrice" />
+			<button id="confirm" type="button" style="color:green;" onclick = "document.getElementById('msform').style.display='none';document.getElementById('fade').style.display='none'">OK</button>
+		</fieldset>
+	</form>
+  <div id="fade" class="black_overlay"></div>
+  
+  <main class="main oh" id="main"  style="position: relative; top: -64px">
+    <!-- Best Seller -->
+    <section id="bestseller" class="section-wrap pb-30">
+      <div class="container">
+      	<!-- Breadcrumbs -->
+        <ol class="breadcrumbs" >
+          <li>
+            <a href="">Products</a>
+          </li>
+          <li>
+            <a href="">All Products</a>
+          </li>
+        </ol>
+        <div class="heading-row">
+          <div class="text-center">
+            <h2 class="heading bottom-line">All Products</h2>
+          </div>
+        </div>
+
+        <div class="row row-8">
+          <!-- ITEM 01 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item1pl" href="" class="product__link" aria-label="Product">
+                <img id="item1p" src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+              <a id="item1t" href="">no more item ...</a>
+              <button class="edit" id="item1e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item1pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item1d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <!-- ITEM 02 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item2pl" href="" class="product__link" aria-label="Product">
+                <img id="item2p"src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+               <a id="item2t"href="">no more item ...</a>
+              <button class="edit" id="item2e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item2pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item2d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <!-- ITEM 03 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item3pl" href="" class="product__link" aria-label="Product">
+                <img id="item3p" src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+              <a id="item3t" href="">no more item ...</a>
+              <button class="edit" id="item3e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item3pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item3d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <!-- ITEM 04 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item4pl" href="" class="product__link" aria-label="Product">
+                <img id="item4p" src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+              <a id="item4t" href="">no more item ...</a>
+              <button class="edit" id="item4e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item4pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item4d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <!-- ITEM 05 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item5pl" href="" class="product__link" aria-label="Product">
+                <img id="item5p" src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+		        <a id="item5t" href="">no more item ...</a>
+		        <button class="edit" id="item5e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item5pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item5d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <!-- ITEM 06 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item6pl" href="" class="product__link" aria-label="Product">
+                <img id="item6p" src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+              <a id="item6t" href="">no more item ...</a>
+ 				<button class="edit" id="item6e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item6pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item6d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+        </div> 
+        <!-- end row -->
+      </div> 
+      <!-- end container -->
+    </section> 
+    <!-- end best seller -->
+
+    <!-- New Arrivals -->
+    <section class="section-wrap no-padding">
+      <div class="container">
+        <div class="heading-row">
+        </div>
+
+        <div class="row row-8">
+          <!-- ITEM 07 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item7pl" href="" class="product__link" aria-label="Product">
+                <img id="item7p" src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+              <a id="item7t" href="">no more item ...</a>
+			  <button class="edit" id="item7e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item7pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item7d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <!-- ITEM 08 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item8pl" href="" class="product__link" aria-label="Product">
+                <img id="item8p" src="" alt="" class="product__img">
+            </div>
+
+            <div class="product__details">
+              <a id="item8t" href="">no more item ...</a>
+ 		        <button class="edit" id="item8e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item8pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item8d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <!-- ITEM 09 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item9pl" href="" class="product__link" aria-label="Product">
+                <img id="item9p" src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+              <a id="item9t" href="">no more item ...</a>
+ 				<button class="edit" id="item9e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item9pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item9d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <!-- ITEM 10 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item10pl" href="" class="product__link" aria-label="Product">
+                <img id="item10p" src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+              <a id="item10t" href="">no more item ...</a>
+ 			  <button class="edit" id="item10e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item10pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item10d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <!-- ITEM 11 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item11pl" href="" class="product__link" aria-label="Product">
+                <img id="item11p" src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+              <a id="item11t" href="">no more item ...</a>
+ 			  <button class="edit" id="item11e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item11pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item11d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product -->
+
+          <!-- ITEM 12 -->
+          <div class="col-lg-2 col-sm-4 product">
+            <div class="product__img-holder">
+              <a id="item12pl" href="" class="product__link" aria-label="Product">
+                <img id="item12p" src="" alt="" class="product__img">
+              </a>
+            </div>
+
+            <div class="product__details">
+              <a id="item12t" href="">no more item ...</a>
+							<button class="edit" id="item12e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+            </div>
+
+            <span class="product__price">
+              <ins>
+                <span id="item12pr" class="amount">$0.00</span>
+              </ins>
+              <button class="delete" id="item12d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+            </span>
+          </div> 
+          <!-- end product --> 
+        </div> 
+        <!-- end row -->
+      </div> 
+      <!-- end container -->
+    </section> 
+    <!-- end new arrivals -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-lg-8">
+              <div class="footer-column pull-left">
+                <h4>CUSTOMMER SERVICE</h4>
+                <ul class="links">
+                  <li class="first"><a href="#" title="Contact us">My Account</a></li>
+                  <li><a href="#" title="About us">Order History</a></li>
+                  <li><a href="#" title="faq">FAQ</a></li>
+                  <li><a href="#" title="Popular Searches">Specials</a></li>
+                  <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
+                </ul>
+              </div>
+              <div class="footer-column pull-left">
+                <h4>Corporation</h4>
+                <ul class="links">
+                  <li class="first"><a title="Your Account" href="#">About us</a></li>
+                  <li><a title="Information" href="#">Customer Service</a></li>
+                  <li><a title="Addresses" href="#">Company</a></li>
+                  <li><a title="Addresses" href="#">Investor Relations</a></li>
+                  <li class="last"><a title="Orders History" href="#">Advanced Search</a></li>             
+                </ul>
+              </div>
+              <div class="footer-column pull-left">
+                <h4>Why choose Us</h4>
+                <ul class="links">
+                  <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
+                  <li><a href="#" title="Company">Company</a></li>
+                  <li><a href="#" title="Investor Relations">Investor Relations</a></li>
+                  <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xs-12 col-lg-4">
+              <div class="footer-column-last">
+                <div class="newsletter-wrap">
+                  <h4>Sign up for emails</h4>
+                  <form id="newsletter-validate-detail" method="post" action="#">
+                    <div id="container_form_news">
+                      <div id="container_form_news2">
+                        <input type="text" class="input-text required-entry validate-email" value="Enter your email address" onFocus=" this.value='' " title="Sign up for our newsletter" id="newsletter" name="email">
+                      <!-- HERE. ONE BOX OR WINDOW NEEDED. SHOW SOME REACTION. -->
+                        <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <br>
+                <div class="social">
+                  <h4>Follow Us</h4>
+                  <ul class="link">
+                    <li class="fb pull-left"><a href="#"></a></li>
+                    <li class="tw pull-left"><a href="#"></a></li>
+                    <li class="googleplus pull-left"><a href="#"></a></li>
+                    <li class="rss pull-left"><a href="#"></a></li>
+                    <li class="pintrest pull-left"><a href="#"></a></li>
+                    <li class="linkedin pull-left"><a href="#"></a></li>
+                    <li class="youtube pull-left"><a href="#"></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="../Images/images/logo.png"></div>
+          <address>
+            <!-- CHANGE THE ADDRESS AND CONTACT INFORMATION!!! -->
+            <i class="fa fa-map-marker"></i>ThemesGround, 789 Main rd, Anytown, CA 12345  USA <i class="fa fa-mobile"></i><span> +(888) 123-4567</span> <i class="fa fa-envelope"></i><span> superb@themesground.com</span>
+          </address>
+        </div>
+      </div>
+    
+      <!-- COPYRIGHT -->
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 coppyright">Copyright &copy; 2018. All rights reserved.</div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer --> 
+
+    <div id="back-to-top">
+      <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
+    </div>
+
+  </main> 
+  <!-- end main-wrapper -->
+</div>
+
+<!-- jQuery Scripts -->
+<script type="text/javascript" src="~/Scripts/jquery.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/Scripts/easing.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="~/Scripts/owl-carousel.min.js"></script>  
+<script type="text/javascript" src="~/Scripts/flickity.pkgd.min.js"></script>
+<script type="text/javascript" src="~/Scripts/modernizr.min.js"></script>
+<script type="text/javascript" src="~/Scripts/scripts.js"></script>
+
+</body>
+</html>
