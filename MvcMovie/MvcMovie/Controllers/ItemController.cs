@@ -32,6 +32,18 @@ namespace MvcMovie.Controllers
             ViewBag.ItemInfo = good.ItemInfo;
             ViewBag.img = "../Images/img/images/" + good.ItemID + ".jpg";
 
+            string itemID = ViewBag.id;
+
+            ViewBag.reviews = "";
+            var query = from s in db.OrderDetails
+                        join c in db.Comments on s.OrderID equals c.ID
+                        where s.ItemID == itemID
+                        select c;
+            foreach (var Sub in query)
+            {
+                ViewBag.reviews += Sub.CommentInfo;
+                ViewBag.reviews += '\n';
+            }
             return PartialView();
             
         }
