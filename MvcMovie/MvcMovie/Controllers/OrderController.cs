@@ -268,19 +268,16 @@ namespace MvcMovie.Controllers
                                   where od.OrderID == OrderID
                                   select od;
 
-            //返回所有orderdetail连成字符串，格式为 *id=num*id=num*
+            //viewbag传送orderdetail连成字符串，格式为 *id=num*id=num*
             string odListString = "*";
             foreach(var od in orderDetailList)
             {
                 odListString = odListString + od.ItemID + "=" + od.OrderDetailCount + "*";
             }
 
-            return Content(odListString);
-                                  
+            ViewBag.odListString = odListString;
 
-
-
-            return View();
+            return PartialView();
         }
 
     }
