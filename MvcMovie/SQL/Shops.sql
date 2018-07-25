@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  ÎÄ¼þÒÑ´´½¨ - ÐÇÆÚ¶þ-ÆßÔÂ-24-2018   
+--  æ–‡ä»¶å·²åˆ›å»º - æ˜ŸæœŸä¸‰-ä¸ƒæœˆ-25-2018   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table Shops
@@ -35,6 +35,18 @@ Insert into C##LUDAN."Shops" ("ShopID","SalerID","ShopName","SalerCredit") value
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM" ;
 --------------------------------------------------------
+--  DDL for Trigger SHOP_ITEM_TRIGGER
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "C##LUDAN"."SHOP_ITEM_TRIGGER" 
+BEFORE DELETE ON "Shops" 
+FOR EACH ROW
+BEGIN
+  DELETE "Items" WHERE "ShopID" =:old."ShopID";
+END;
+/
+ALTER TRIGGER "C##LUDAN"."SHOP_ITEM_TRIGGER" ENABLE;
+--------------------------------------------------------
 --  Constraints for Table Shops
 --------------------------------------------------------
 
@@ -45,9 +57,3 @@ Insert into C##LUDAN."Shops" ("ShopID","SalerID","ShopName","SalerCredit") value
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM"  ENABLE;
---------------------------------------------------------
---  Ref Constraints for Table Shops
---------------------------------------------------------
-
-  ALTER TABLE "C##LUDAN"."Shops" ADD CONSTRAINT "SALERSHOP" FOREIGN KEY ("SalerID")
-	  REFERENCES "C##LUDAN"."Salers" ("SalerID") ENABLE;

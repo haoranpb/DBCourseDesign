@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  ÎÄ¼þÒÑ´´½¨ - ÐÇÆÚ¶þ-ÆßÔÂ-24-2018   
+--  æ–‡ä»¶å·²åˆ›å»º - æ˜ŸæœŸä¸‰-ä¸ƒæœˆ-25-2018   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table Customers
@@ -21,13 +21,11 @@
   TABLESPACE "SYSTEM" ;
 REM INSERTING into C##LUDAN."Customers"
 SET DEFINE OFF;
-Insert into C##LUDAN."Customers" (ID,"CustomerAge","CustomerPassword","CustomerGender","CustomerPhone","CustomerCredit") values ('ludan',0,'509','1','10086','1');
+Insert into C##LUDAN."Customers" (ID,"CustomerAge","CustomerPassword","CustomerGender","CustomerPhone","CustomerCredit") values ('ludan',0,'509','Female','12345','1');
 Insert into C##LUDAN."Customers" (ID,"CustomerAge","CustomerPassword","CustomerGender","CustomerPhone","CustomerCredit") values ('test',0,'516','1','911','1');
 Insert into C##LUDAN."Customers" (ID,"CustomerAge","CustomerPassword","CustomerGender","CustomerPhone","CustomerCredit") values ('liangjunqing',0,'111111','1','13313530656','1');
 Insert into C##LUDAN."Customers" (ID,"CustomerAge","CustomerPassword","CustomerGender","CustomerPhone","CustomerCredit") values ('bukeneng',0,'509','1','119','1');
 Insert into C##LUDAN."Customers" (ID,"CustomerAge","CustomerPassword","CustomerGender","CustomerPhone","CustomerCredit") values ('pdzsbl',0,'1111','1','13313530656','1');
-Insert into C##LUDAN."Customers" (ID,"CustomerAge","CustomerPassword","CustomerGender","CustomerPhone","CustomerCredit") values ('yl',0,'1234','1','1000000','1');
-Insert into C##LUDAN."Customers" (ID,"CustomerAge","CustomerPassword","CustomerGender","CustomerPhone","CustomerCredit") values ('1234',0,'1234','1','1234','1');
 --------------------------------------------------------
 --  DDL for Index TABLE1_PK
 --------------------------------------------------------
@@ -38,6 +36,21 @@ Insert into C##LUDAN."Customers" (ID,"CustomerAge","CustomerPassword","CustomerG
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Trigger CUSTOMER_TRIGGERS
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "C##LUDAN"."CUSTOMER_TRIGGERS" 
+BEFORE DELETE ON "Customers" 
+FOR EACH ROW
+BEGIN
+    DELETE "Carts" WHERE "CustomerID" =:old."ID";
+    DELETE "Addresses" WHERE "ID" =:old."ID";
+    DELETE "Browsings" WHERE "ID" =:old."ID";
+    DELETE "CreditCards" WHERE "CustomerID" =:old."ID";
+END;
+/
+ALTER TRIGGER "C##LUDAN"."CUSTOMER_TRIGGERS" ENABLE;
 --------------------------------------------------------
 --  Constraints for Table Customers
 --------------------------------------------------------

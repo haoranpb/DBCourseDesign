@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  ÎÄ¼þÒÑ´´½¨ - ÐÇÆÚ¶þ-ÆßÔÂ-24-2018   
+--  æ–‡ä»¶å·²åˆ›å»º - æ˜ŸæœŸä¸‰-ä¸ƒæœˆ-25-2018   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table Salers
@@ -19,17 +19,10 @@
   TABLESPACE "SYSTEM" ;
 REM INSERTING into C##LUDAN."Salers"
 SET DEFINE OFF;
-Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('111','qqq','what','123');
 Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('Lucas','123456',null,'13012345678');
 Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('Ludan','123456',null,'13112345678');
 Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('Tom','123456',null,'13212345678');
 Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('Jack','123456',null,'13312345678');
-Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('2222','1111',null,'13313530656');
-Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('123','1111',null,'13313530656');
-Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('123124','1234',null,'13313530656');
-Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('1111','234',null,'1235');
-Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('usr','usr',null,'133');
-Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone") values ('12344','1234',null,'1234');
 --------------------------------------------------------
 --  DDL for Index Saler_PK
 --------------------------------------------------------
@@ -40,6 +33,18 @@ Insert into C##LUDAN."Salers" ("SalerID","SalerPassword","SalerInfo","SalerPhone
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Trigger SALER_SHOP_TRIGGER
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "C##LUDAN"."SALER_SHOP_TRIGGER" 
+BEFORE DELETE ON "Salers" 
+FOR EACH ROW
+BEGIN
+  DELETE "Shops" WHERE "SalerID" =:old."SalerID";
+END;
+/
+ALTER TRIGGER "C##LUDAN"."SALER_SHOP_TRIGGER" ENABLE;
 --------------------------------------------------------
 --  Constraints for Table Salers
 --------------------------------------------------------

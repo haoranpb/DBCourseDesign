@@ -1,12 +1,12 @@
 --------------------------------------------------------
---  ÎÄ¼þÒÑ´´½¨ - ÐÇÆÚ¶þ-ÆßÔÂ-24-2018   
+--  æ–‡ä»¶å·²åˆ›å»º - æ˜ŸæœŸä¸‰-ä¸ƒæœˆ-25-2018   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table Orders
 --------------------------------------------------------
 
   CREATE TABLE "C##LUDAN"."Orders" 
-   (	"OrderID" VARCHAR2(20 BYTE), 
+   (	"OrderID" VARCHAR2(50 BYTE), 
 	"ShopID" VARCHAR2(20 BYTE), 
 	"CustomerID" VARCHAR2(20 BYTE), 
 	"OrderPrice" NUMBER(38,0), 
@@ -24,8 +24,7 @@
   TABLESPACE "SYSTEM" ;
 REM INSERTING into C##LUDAN."Orders"
 SET DEFINE OFF;
-Insert into C##LUDAN."Orders" ("OrderID","ShopID","CustomerID","OrderPrice","OrderCount","OrderTime","OrderState","OrderAddress","OrderPhone") values ('1','100001','ludan',1250,2,to_date('24-7ÔÂ -18','DD-MON-RR'),'Finish','ÉÏº£ÊÐ¼Î¶¨Çø²Ü°²¹«Â·4800ºÅÍ¬¼Ã´óÑ§¼Î¶¨Ð£Çø','13112345678');
-Insert into C##LUDAN."Orders" ("OrderID","ShopID","CustomerID","OrderPrice","OrderCount","OrderTime","OrderState","OrderAddress","OrderPhone") values ('2','100001','ludan',826,3,to_date('24-7ÔÂ -18','DD-MON-RR'),'Pay','ÉÏº£ÊÐ¼Î¶¨Çø²Ü°²¹«Â·4800ºÅÍ¬¼Ã´óÑ§¼Î¶¨Ð£Çø','13112345678');
+Insert into C##LUDAN."Orders" ("OrderID","ShopID","CustomerID","OrderPrice","OrderCount","OrderTime","OrderState","OrderAddress","OrderPhone") values ('2018/7/24 20:54:47100001ludan','100001','ludan',0,0,to_date('24-7æœˆ -18','DD-MON-RR'),'Cancel','Tongji University','13012345678');
 --------------------------------------------------------
 --  DDL for Index Order_PK
 --------------------------------------------------------
@@ -37,6 +36,19 @@ Insert into C##LUDAN."Orders" ("OrderID","ShopID","CustomerID","OrderPrice","Ord
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM" ;
 --------------------------------------------------------
+--  DDL for Trigger ORDER_ORDERDETAIL_TRIGGER
+--------------------------------------------------------
+
+  CREATE OR REPLACE EDITIONABLE TRIGGER "C##LUDAN"."ORDER_ORDERDETAIL_TRIGGER" 
+BEFORE DELETE ON "Orders"
+FOR EACH ROW
+BEGIN
+  DELETE "OrderDetails" WHERE "OrderID" =:old."OrderID";
+  DELETE "Comments" WHERE "ID" =:old."OrderID";
+END;
+/
+ALTER TRIGGER "C##LUDAN"."ORDER_ORDERDETAIL_TRIGGER" ENABLE;
+--------------------------------------------------------
 --  Constraints for Table Orders
 --------------------------------------------------------
 
@@ -47,11 +59,3 @@ Insert into C##LUDAN."Orders" ("OrderID","ShopID","CustomerID","OrderPrice","Ord
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
   BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "SYSTEM"  ENABLE;
---------------------------------------------------------
---  Ref Constraints for Table Orders
---------------------------------------------------------
-
-  ALTER TABLE "C##LUDAN"."Orders" ADD CONSTRAINT "CUSTOMERORDER" FOREIGN KEY ("CustomerID")
-	  REFERENCES "C##LUDAN"."Customers" ("ID") ENABLE;
-  ALTER TABLE "C##LUDAN"."Orders" ADD CONSTRAINT "SHOPORDER" FOREIGN KEY ("ShopID")
-	  REFERENCES "C##LUDAN"."Shops" ("ShopID") ENABLE;
