@@ -210,7 +210,36 @@ namespace MvcMovie.Controllers
             return Content(del);
         }
 
+        //显示浏览历史 /Personalinfo/GetHistory?ID=test
+        //返回字符串 *id*id*id* 且最多显示三个
+        public ActionResult GetHistory()//获取
+        {
+            string ID = Request.QueryString["ID"];
+            Customer cus = db.Customers.Find(ID);
+            ViewBag.age = cus.CustomerAge;
+            ViewBag.key = cus.CustomerPassword;
+            ViewBag.id = ID;
+            ViewBag.gender = cus.CustomerGender;
+            ViewBag.credit = cus.CustomerCredit;
+            ViewBag.phone = cus.CustomerPhone;
+            var historyQuery = from item in db.Browsings
+                               where item.ID == ID
+                               orderby item.BrowsingTime descending
+                               select item;
 
+            //返回字符串 *id*id*
+            string browsingString = "*";
+            int count = 0;
+            foreach (var item in historyQuery)
+            {
+                browsingString = browsingString + item.ItemID + "*";
+                count++;
+                if (count >= 3) break; //最多显示三个
+            }
+            
+            
+            return Content(browsingString);
+        }
 
 
     }

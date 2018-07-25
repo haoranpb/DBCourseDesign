@@ -229,5 +229,33 @@ namespace MvcMovie.Controllers
          * 完了之后重定向，就相当于把当前页面刷新一下
          * 这样子动态加载就会把里面的信息换掉了
          */
+
+        
+        //通过关键词搜索店铺内物品 /Saler/SearchItem?ShopID=100001&Keyword=LILIFAN
+        //返回字符串 *id*id* 最多显示12个
+        public ActionResult SearchItem()
+        {
+            string ShopID = Request.QueryString["ShopID"];
+            string Keyword = Request.QueryString["Keyword"];
+
+
+            var itemQuery = from item in db.Items
+                            where (item.ShopID == ShopID)&&(item.ItemName.Contains(Keyword))
+                            select item;
+            
+            string ItemIDString = "*";
+            int count = 0;
+            foreach (var item in itemQuery)
+            {
+                ItemIDString = ItemIDString + item.ItemID + "*";
+                count++;
+                if (count >= 12) break;
+            }
+
+
+            return Content(ItemIDString);
+        }
+
+
     }
 }
