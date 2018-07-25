@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MvcMovie.Models;
 using MvcMovie.DAL;
+using System.Data.Entity;
 
 namespace MvcMovie.Controllers
 
@@ -50,9 +51,9 @@ namespace MvcMovie.Controllers
             // Cart cart = db.Carts.Find(itemID, customerID); primary key do not match!Tempory solution: cnt===1
             var cart = (from i in db.Carts // 
                         where i.CustomerID == customerID & i.CartID == itemID
-                        select i);
+                        select i).First();
 
-            if (cart.Count() == 0) // the item is not in the cart
+            if (cart == null) // the item is not in the cart
             {
                 var p = (from j in db.Carts
                          where j.CustomerID == customerID
@@ -73,9 +74,10 @@ namespace MvcMovie.Controllers
             }
             else
             {
-                //cart.ItemCount += cnt;
-                //cart.CartPrice += good.ItemPrice * cnt;
-                //db.SaveChanges();
+                cart.ItemCount += cnt;
+                cart.CartPrice += good.ItemPrice * cnt;
+                db.Entry(cart).State = EntityState.Modified;
+                db.SaveChanges();
                 return Content("already_in");
             }
             return Content("success");
