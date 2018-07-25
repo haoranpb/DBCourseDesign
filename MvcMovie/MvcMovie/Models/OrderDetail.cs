@@ -16,8 +16,8 @@ namespace MvcMovie.Models
     public partial class OrderDetail
     {
        
-        public string OrderDetailID { get; set; }
-        public string OrderID { get; set; }
+        public string OrderDetailID { get; set; } //订单中本商品对应订单、物品、物件表作为tuple时新增主键取代双主键
+        public string OrderID { get; set; } //订单编号
         public string ItemID { get; set; }
         public int OrderDetailCount { get; set; }
     

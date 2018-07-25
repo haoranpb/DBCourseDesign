@@ -245,5 +245,43 @@ namespace MvcMovie.Controllers
             var P = new { number = number.ToString(), idstring = idstring, sumstring = sumstring };
             return Json(P);
         }
+
+        //显示OrderDetail /Order/ShowOrderDetail?OrderID=test
+        public ActionResult ShowOrderDetail()
+        {
+            string OrderID = Request.QueryString["OrderID"];
+            Order order = db.Orders.Find(OrderID);
+
+            //返回Order表所有信息
+            ViewBag.OrderID = order.OrderID;
+            ViewBag.ShopID = order.ShopID;
+            ViewBag.CustomerID = order.CustomerID;
+            ViewBag.OrderPrice = order.OrderPrice;
+            ViewBag.OrderCount = order.OrderCount;
+            ViewBag.OrderTime = order.OrderTime;
+            ViewBag.OrderState = order.OrderState;
+            ViewBag.OrderAddress = order.OrderAddress;
+            ViewBag.OrderPhone = order.OrderPhone;
+
+            var orderDetailList = from o in db.Orders
+                                  join od in db.OrderDetails on o.OrderID equals od.OrderID
+                                  where od.OrderID == OrderID
+                                  select od;
+
+            //返回所有orderdetail连成字符串，格式为 *id=num*id=num*
+            string odListString = "*";
+            foreach(var od in orderDetailList)
+            {
+                odListString = odListString + od.ItemID + "=" + od.OrderDetailCount + "*";
+            }
+
+            return Content(odListString);
+                                  
+
+
+
+            return View();
+        }
+
     }
 }
