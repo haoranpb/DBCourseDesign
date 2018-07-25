@@ -9,7 +9,7 @@ namespace MvcMovie.Models
     public partial class Comment
     {
         public string ID { get; set; }//ORDERID
-        public string ItemItemID { get; set; }
+        public string ItemItemID { get; set; }//ItemID
         public string CommentInfo { get; set; }
         public string Reply { get; set; }
     }

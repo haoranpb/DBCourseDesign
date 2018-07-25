@@ -15,6 +15,11 @@ namespace MvcMovie.Controllers
         // GET: Personalinfo/Index?ID=XXX&role=xxxxx
         public ActionResult Index(string ID)//获取买家信息
         {
+<<<<<<< Updated upstream
+=======
+            ViewBag.card = "";
+            string ID = Request.QueryString["id"];
+>>>>>>> Stashed changes
             Customer cus = db.Customers.Find(ID);
             ViewBag.age = cus.CustomerAge;
             ViewBag.key = cus.CustomerPassword;
@@ -22,6 +27,44 @@ namespace MvcMovie.Controllers
             ViewBag.gender = cus.CustomerGender;
             ViewBag.credit = cus.CustomerCredit;
             ViewBag.phone = cus.CustomerPhone;
+<<<<<<< Updated upstream
+=======
+            var query = from credit in db.CreditCards
+                            where credit.CustomerID == ID
+                            select credit;
+            foreach (var c in query)
+            {
+                ViewBag.card += c.CreditCardID;
+                ViewBag.card += "*";
+            }
+
+            ViewBag.OrderID = "";
+            ViewBag.Time = "";
+            ViewBag.ShopID = "";
+
+            var orderQuery = from order in db.Orders
+                                where ID == order.CustomerID
+                                select order;
+
+            foreach (var cOrderQuery in orderQuery)
+            {
+                ViewBag.OrderID += cOrderQuery.OrderID;
+                ViewBag.OrderID += "*";
+                //ViewBag.OrderID = String.Join(String.Join(ViewBag.OrderID, "*"), cOrderQuery.OrderID);
+                ViewBag.Time += cOrderQuery.OrderTime;
+                ViewBag.Time += "*";
+                //ViewBag.Time = String.Join(String.Join(ViewBag.Time, "*"), cOrderQuery.OrderTime);
+                ViewBag.ShopID += cOrderQuery.ShopID;
+                ViewBag.ShopID += "*";
+                //ViewBag.ShopID = String.Join(String.Join(ViewBag.ShopID, "*"), cOrderQuery.ShopID);
+            }
+
+
+
+
+            //CreditCard cuscard = db.CreditCards.Find(ID);
+            //ViewBag.card = cuscard.CreditCardID;
+>>>>>>> Stashed changes
             return PartialView();
         }
 
@@ -31,21 +74,30 @@ namespace MvcMovie.Controllers
             Order order = db.Orders.Find(orderID);
             order.OrderState = "Finished";
             db.SaveChanges();
-            return Content("receipt");
+            return Content(orderID);
+        }
+
+        public ActionResult EditAddress()
+        {
+            string customerID = Request.QueryString["id"];
+            string address = Request.QueryString["addr"];
+            //Customer cus = db.Customers.Find(customerID);
+            
+            return Content("Hello");
         }
 
         public ActionResult AddComment()//添加评论，传入订单ID，商品ID，评论内容
         {
             string orderID = Request.QueryString["orderID"];//订单ID
-            string itemID = Request.QueryString["itemID"];//商品ID
+            //string itemID = Request.QueryString["itemID"];//商品ID
             string commentInfo = Request.QueryString["commentInfo"];//评论内容
-            Comment comment = db.Comments.Find(orderID, itemID);
+            Comment comment = db.Comments.Find(orderID);
             if (comment == null)
             {
                 Comment newComment = new Comment()
                 {
                     ID = orderID,
-                    ItemItemID = itemID,
+                    ItemItemID = "11121",
                     CommentInfo = commentInfo,
                     Reply = "",
                 };
@@ -58,7 +110,7 @@ namespace MvcMovie.Controllers
                 db.SaveChanges();
             }
 
-            return Content("done");
+            return Content(orderID);
         }
 
         public ActionResult CancelOrder()//退货，传入订单ID
@@ -85,6 +137,71 @@ namespace MvcMovie.Controllers
             db.SaveChanges();
             return Content("successEditing");
         }
+
+        public ActionResult EditGender()
+        {
+            string ID = Request.QueryString["id"];
+            string gender = Request.QueryString["ge"];
+            Customer cus = db.Customers.Find(ID);
+            cus.CustomerGender = gender;
+            db.SaveChanges();
+            return Content(gender);
+        }
+
+        public ActionResult EditPhone()
+        {
+            string ID = Request.QueryString["id"];
+            string phone = Request.QueryString["ph"];
+            Customer cus = db.Customers.Find(ID);
+            cus.CustomerPhone = phone;
+            db.SaveChanges();
+            return Content(phone);
+        }
+
+        public ActionResult EditCard()
+        {
+            string pre = Request.QueryString["pre"];
+            string fut = Request.QueryString["fut"];
+            string id = Request.QueryString["id"];
+            //var card = db.CreditCards.SingleOrDefault<CreditCard>(s => s.CustomerID == ID);
+            CreditCard cd = db.CreditCards.Find(pre);
+            db.CreditCards.Remove(cd);
+
+
+            CreditCard newcd = new CreditCard()
+            {
+                CustomerID = id,
+                CreditCardID = fut,
+            };
+
+            db.CreditCards.Add(newcd);
+            db.SaveChanges();
+            //card.CreditCardID = cardValue;
+            //Oracle 修改外键
+            //db.SaveChanges();   
+            return Content(fut);
+        }
+
+        public ActionResult DeleteCard()
+        {
+            string del = Request.QueryString["del"];
+           
+            //var card = db.CreditCards.SingleOrDefault<CreditCard>(s => s.CustomerID == ID);
+            CreditCard item = db.CreditCards.Find(del);
+            db.CreditCards.Remove(item);
+
+
+
+            db.SaveChanges();
+            //card.CreditCardID = cardValue;
+            //Oracle 修改外键
+            //db.SaveChanges();   
+            return Content(del);
+        }
+
+
+
+
     }
 
 }
