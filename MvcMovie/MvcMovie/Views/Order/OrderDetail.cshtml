@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--[if IE]>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Favicons Icon -->
+<title>Seller Account</title>
+<!-- Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<!-- CSS Style -->
+<link rel="stylesheet" type="text/css" href=" ~/Content/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href=" ~/Content/font-awesome.css" media="all">
+<link rel="stylesheet" type="text/css" href=" ~/Content/style.css" media="all">
+<link rel="stylesheet" href=" ~/Content/ms-style.min.css" />
+<link rel="stylesheet" href=" ~/Content/personal_member.min.css" />
+<link rel="stylesheet" href=" ~/Content/sui.css" />
+<script type="text/javascript" src="~/Scripts/address_all.js"></script> 
+<script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js" ></script>
+<script type="text/javascript" src="~/Scripts/sui.js" ></script>
+<link rel="stylesheet" type="text/css" href=" ~/Content/finishOut.css"/>
+<link rel="stylesheet" type="text/css" href=" ~/Content/seller_account.css"/>
+<link rel="stylesheet" type="text/css" href=" ~/Content/account_table.css"/>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+	//OrderID
+	var orderid="@ViewBag.OrderID";
+	$("#orderid").text(orderid);
+
+	//ItemID & OrderDetailCount
+	var orderlist="@ViewBag.odListString";
+	var odlist=orderlist.split("*");
+	//如果从最开始添加订单处可以保证每个订单最多三件商品那么这里直接小于等于3即可
+	//否则需比较3和length取小值
+	for(var i=1;i<odlist.length-1;i++){
+		var item=(odlist[i]).split("=");
+		$("#item"+i+"id").text(item[0]);
+		$("#item"+i+"dc").text(item[1]);
+	}
+});
+</script>
+
+</head>
+
+<body>
+	<header>
+    <div class="header-container">
+      <div class="header-top">
+        <div class="container">
+          <div class="row"> 
+           
+            <div class="col-xs-7 col-sm-6">
+              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
+                </ul>
+              </div>
+           
+             
+              <div class="dropdown block-currency-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
+                </ul>
+              </div>
+              
+              
+              <div class="welcome-msg hidden-xs"> Welcome to Tongji University! </div>
+            </div>
+            <div class="col-xs-5 col-sm-6"> 
+              <div class="top-cart-contain pull-right"> 
+               
+                <div class="mini-cart">
+                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
+
+                  </div>
+                 
+                  <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
+                    <input value="" type="hidden">
+                    <input id="enable_module" value="1" type="hidden">
+                    <input class="effect_to_cart" value="1" type="hidden">
+                    <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
+                  </div>
+                </div>
+          
+                <div class="top-search">
+                  <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
+                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
+                          </div>
+                          <div class="modal-body">
+                            <form class="navbar-form">
+                              <div id="search">
+                                <div class="input-group">
+                                  <input name="search" placeholder="Search" class="form-control" type="text">
+                                  <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>                 
+                
+                <div class="toplinks">
+                  <div class="links">              
+                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">SELLER NAME</span></a></div>
+                
+                 
+
+                  </div>           
+                </div>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </header>
+
+
+<!-- PERSONAL ACCOUNT -->
+<section style="position:relative;">
+  <div class="cont">
+		<div class="cont-main" style="margin-left: 20%">
+      <div class="main-wrap mt15" style="border: 0px;">
+        <div class="server-wrapper">
+          <div class="server-tab" style="margin-top: 26px;">
+            <div style=" float: left;vertical-align: bottom;text-align: center;"> 
+              <div style="width: 800px;padding:10px;display: inline-block; float: left;margin-top: 20px;background-color: #fff;">
+                <div style="border-bottom: 1px #ccc solid;position: absolute;left:256px;top:64px">
+                  <p style="font-size: 20px;text-align: left;"><b>Order Details</b></p>
+                </div>
+                <table class="dataintable" style="font-size: 15px;position: absolute;left:256px;top:96px;width:768px" >
+                  <tr>
+                    <th>OrderID</th>
+                    <th>ItemID</th>
+                    <th>OrderDetailCount</th>
+                  </tr>
+                  <tr>
+                    <td rowspan="3" id="orderid" style="vertical-align: middle">---</td>
+                    <td id="item1id">---</td>
+                    <td id="item1dc">0</td>
+                  </tr>     
+                  <tr>
+                    <td id="item2id">---</td>
+                    <td id="item2dc">0</td>
+                  </tr>
+									<tr>
+                    <td id="item3id">---</td>
+                    <td id="item3dc">0</td>
+                  </tr> 
+                </table>
+
+          		</div>
+        		</div>
+      		</div>
+   			</div>
+  		</div>
+		</div>
+	</div>
+</section>
+<!-- END OF PERSONAL ACCOUNT -->
+
+</body>

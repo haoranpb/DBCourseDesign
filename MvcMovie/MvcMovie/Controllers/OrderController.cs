@@ -246,8 +246,8 @@ namespace MvcMovie.Controllers
             return Json(P);
         }
 
-        //显示OrderDetail /Order/ShowOrderDetail?OrderID=test
-        public ActionResult ShowOrderDetail()
+        //显示OrderDetail /Order/OrderDetail?OrderID=test
+        public ActionResult OrderDetail()
         {
             string OrderID = Request.QueryString["OrderID"];
             Order order = db.Orders.Find(OrderID);
