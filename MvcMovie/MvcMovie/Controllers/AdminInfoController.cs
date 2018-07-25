@@ -33,6 +33,17 @@ namespace MvcMovie.Controllers
             return PartialView(); // finish redirect url in the front-end. Qustion: need to pass admin id through index func?
         }
 
+        public ActionResult Itemsearch()
+        {
+            string id = Request.QueryString["itemid"];
+            string adminID = Request.QueryString["ID"];
+            ViewBag.itemidstring = " " + id;
+            var j = db.Items.Find(id);
+            ViewBag.shopstring = "%" + j.ShopID;
+            ViewBag.ID = adminID;
+            return PartialView("Item");
+        }
+
         public ActionResult Order()
         {
             string adminID = Request.QueryString["ID"];
@@ -51,6 +62,16 @@ namespace MvcMovie.Controllers
             return PartialView(); // finish redirect url in the front-end. Qustion: need to pass admin id through index func?
         }
 
+        public ActionResult Ordersearch()
+        {
+            string id = Request.QueryString["orderid"];
+            string adminID = Request.QueryString["ID"];
+            ViewBag.orderidstring = "%" + id;
+            ViewBag.ordertimestring = "%" + Convert.ToDateTime(db.Orders.Find(id).OrderTime);
+            ViewBag.ID = adminID;
+            return PartialView("Order");
+        }
+
         public ActionResult Customer()
         {
             string adminID = Request.QueryString["ID"];
@@ -64,6 +85,15 @@ namespace MvcMovie.Controllers
             ViewBag.cusidstring = itemidstring;
             ViewBag.ID = adminID;
             return PartialView(); // finish redirect url in the front-end. Qustion: need to pass admin id through index func?
+        }
+
+        public ActionResult Customersearch()
+        {
+            string id = Request.QueryString["cusid"];
+            string adminID = Request.QueryString["ID"];
+            ViewBag.cusidstring = " " + id;
+            ViewBag.ID = adminID;
+            return PartialView("Customer");
         }
 
         public ActionResult Saler()
@@ -80,6 +110,16 @@ namespace MvcMovie.Controllers
             ViewBag.ID = adminID;
             return PartialView(); // finish redirect url in the front-end. Qustion: need to pass admin id through index func?
         }
+
+        public ActionResult Salersearch()
+        {
+            string id = Request.QueryString["salid"];
+            string adminID = Request.QueryString["ID"];
+            ViewBag.salerstring = " " + id;
+            ViewBag.ID = adminID;
+            return PartialView("Saler");
+        }
+
         // GET: AdminInfo/AdminInfo?adminID=xxx
         //管理员信息
         public ActionResult AdminInfo(string adminID)
@@ -137,28 +177,17 @@ namespace MvcMovie.Controllers
             return Content("success"); // redirect to index via front-end
         }
 
-        // GET:  AdminInfo/SearchCustomer/ID
+        // GET:  AdminInfo/SearchCustomer
         // 根据ID搜索
-        public ActionResult SearchCustomer(string ID)
+        public ActionResult SearchCustomer()
         {
+            string ID = Request.QueryString["id"];
             Customer customer = db.Customers.Find(ID);
             Saler saler = db.Salers.Find(ID);
             Item item = db.Items.Find(ID);
             Order order = db.Orders.Find(ID);
-
-            if (customer == null) return Content("not found"); //没找到
-            else
-            {
-                var CustomerInfo = new
-                {
-                    ID = customer.ID,
-                    Age = customer.CustomerAge,
-                    Gender = customer.CustomerGender,
-                    Phone = customer.CustomerPhone,
-                    Credit = customer.CustomerCredit,
-                };
-                return Json(CustomerInfo);
-            }
+            if (customer == null) return Content("no"); //没找到
+            else return Content("success");
             // url重定向在前端实现 
         }
 
@@ -166,72 +195,45 @@ namespace MvcMovie.Controllers
 
         // GET:  AdminInfo/SearchSaler/ID
         // 根据ID搜索
-        public ActionResult SearchSaler(string ID) //搜索卖家
+        public ActionResult SearchSaler() //搜索卖家
         {
-            Saler saler = db.Salers.Find(ID);
-
-            if (saler == null) return Content("not found"); //没找到
-            else
-            {
-                var ShopIDs = from shops in db.Shops where shops.SalerID == ID select shops;
-                var SalerInfo = new
-                {
-                    ID = saler.SalerID,
-                    Info = saler.SalerInfo,
-                    Phone = saler.SalerPhone,
-                    ShopList = ShopIDs.ToList(),
-                };
-                return Json(SalerInfo);
-            }
+            string ID1 = Request.QueryString["id"];
+            Customer customer = db.Customers.Find(ID1);
+            Saler saler = db.Salers.Find(ID1);
+            Item item = db.Items.Find(ID1);
+            Order order = db.Orders.Find(ID1);
+            if (saler == null) return Content("no"); //没找到
+            else return Content("success");
             // url重定向在前端实现 
         }
 
 
         // GET:  AdminInfo/SearchItem/ID
         // 根据ID搜索
-        public ActionResult SearchItem(string ID) //搜索商品
+        public ActionResult SearchItem() //搜索商品
         {
-            Item item = db.Items.Find(ID);
-
-            if (item == null) return Content("not found"); //没找到
-            else
-            {
-                var ItemInfo = new
-                {
-                    ItemID = item.ItemID,
-                    ShopID = item.ShopID,
-                    Price = item.ItemPrice,
-                    Name = item.ItemName,
-                    Info = item.ItemInfo,
-                    Pic = item.ItemPic,
-                    Sales = item.ItemSales,
-                    Remain = item.ItemRemain,
-
-                };
-                return Json(ItemInfo);
-            }
+            string ID2 = Request.QueryString["id"];
+            Customer customer = db.Customers.Find(ID2);
+            Saler saler = db.Salers.Find(ID2);
+            Item item = db.Items.Find(ID2);
+            Order order = db.Orders.Find(ID2);
+            if (item == null) return Content("no"); //没找到
+            else return Content("success");
             // url重定向在前端实现 
         }
 
         // GET:  AdminInfo/SearchOrder/ID
         // 根据ID搜索
 
-        public ActionResult SearchOrder(string ID) //搜索订单
+        public ActionResult SearchOrder() //搜索订单
         {
+            string ID = Request.QueryString["id"];
+            Customer customer = db.Customers.Find(ID);
+            Saler saler = db.Salers.Find(ID);
             Item item = db.Items.Find(ID);
-
-            var OrderIDs = from orders in db.Orders where orders.OrderID == ID select orders; //可能会有多个订单号相同     
-
-            var orderlist = "";
-            foreach (var order in OrderIDs)
-            {
-                orderlist = orderlist + "#" + order.OrderID + " " + order.ShopID + " " + order.CustomerID + " "
-                            + order.OrderState + " " + order.OrderPrice + " " + order.OrderCount;
-            }
-
-            if (orderlist == null) return Content("not found");
-            else return Content(orderlist);
-
+            Order order = db.Orders.Find(ID);
+            if (order == null) return Content("no"); //没找到
+            else return Content("success");
             // url重定向在前端实现 
         }
 

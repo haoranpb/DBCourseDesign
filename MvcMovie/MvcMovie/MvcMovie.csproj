@@ -184,16 +184,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\account_table.css" />
     <Content Include="Content\base.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap_admin.css" />
+    <Content Include="Content\button_delete.css" />
     <Content Include="Content\buyConfirm.css" />
     <Content Include="Content\cart.css" />
     <Content Include="Content\checkOut.css" />
     <Content Include="Content\color.css" />
+    <Content Include="Content\displaydiv.css" />
     <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\font-awesome_admin.css" />
     <Content Include="Content\font-icons.css" />
     <Content Include="Content\footerstyle.css" />
     <Content Include="Content\jquery.bxslider.css" />
@@ -203,16 +209,28 @@
     <Content Include="Content\owl.carousel.css" />
     <Content Include="Content\owl.theme.css" />
     <Content Include="Content\personal_member.min.css" />
+    <Content Include="Content\products.css" />
     <Content Include="Content\public.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\revslider.css" />
+    <Content Include="Content\search_form.css" />
+    <Content Include="Content\seller_account.css" />
     <Content Include="Content\signup-table.css" />
     <Content Include="Content\simple-line-icons.css" />
     <Content Include="Content\Snaddress.min.css" />
+    <Content Include="Content\style-responsive_admin.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\styleregis.css" />
     <Content Include="Content\styleshop.css" />
+    <Content Include="Content\style_admin.css" />
     <Content Include="Content\sui.css" />
+    <Content Include="Content\syx-ms-style.min.css" />
+    <Content Include="Content\syx-personal_member.min.css" />
+    <Content Include="Content\syx-seller_account.css" />
+    <Content Include="Content\syx-sui.css" />
+    <Content Include="Content\table-responsive_admin.css" />
+    <Content Include="Content\to-do_admin.css" />
+    <Content Include="Content\zabuto_calendar_admin.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -371,6 +389,9 @@
     <Content Include="fonts\ui-icons.ttf" />
     <Content Include="fonts\ui-icons.woff" />
     <Content Include="fonts\ui-icons.woff2" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\buyConfirm.js" />
     <Content Include="Scripts\checkout.min.js" />
@@ -416,6 +437,10 @@
     <Content Include="Scripts\unslider.min.js" />
     <Content Include="Views\Catalog\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Admininfo\Customer.cshtml" />
+    <Content Include="Views\Admininfo\Item.cshtml" />
+    <Content Include="Views\Admininfo\Order.cshtml" />
+    <Content Include="Views\Admininfo\Saler.cshtml" />
     <None Include="Views\HomePage\Index.cshtml" />
     <None Include="Views\Login\Register.cshtml" />
     <None Include="Views\Personalinfo\Index.cshtml" />
@@ -445,7 +470,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admininfo\" />
     <Folder Include="Views\Item\" />
   </ItemGroup>
   <ItemGroup>

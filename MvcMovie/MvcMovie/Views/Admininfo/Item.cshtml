@@ -8,6 +8,8 @@
 	<link href="~/Content/style_admin.css" rel="stylesheet">
 	<link href="~/Content/style-responsive_admin.css" rel="stylesheet">
 	<link href="~/Content/button_delete.css" rel="stylesheet">
+	<link href="~/Content/search_form.css" rel="stylesheet">
+	<link href="~/Content/font-awesome.min.css" rel="stylesheet">
 
 	<script src="~/Scripts/jquery.js"></script>
 	<script src="~/Scripts/bootstrap.min.js"></script>
@@ -35,6 +37,18 @@
 					});
 				});
 			}
+			$("#searchbtn").click(function () {
+				var id = $("#search").val();
+				console.log(id);
+				$.get("/AdminInfo/SearchItem?id=" + id, function (data) {
+					console.log(id);
+					if (data == "no")
+						alert("Not found");
+					else
+						$(window).attr("location", "../AdminInfo/Itemsearch?itemid=" + id + "&ID=@ViewBag.ID");
+				});
+				
+			});
 
 		});
 	</script>
@@ -85,10 +99,14 @@
 
    	<!-- main content -->
    	<section id="main-content">
-          <section class="wrapper">
+   		<section class="wrapper">
+   		<!-- search form -->
+				<div class="search d1">
+					<input id="search" type="text" placeholder="Search from here">
+					<button id="searchbtn"></button>
+				</div>
+				<!-- end of search form -->
           	<h3>View the Information</h3>
-       
-
 <div class="row">
             <div class="col-md-12">
                       <div class="content-panel"> 
