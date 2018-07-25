@@ -49,11 +49,11 @@ namespace MvcMovie.Controllers
                 return Content("low_stock");//库存不足
 
             // Cart cart = db.Carts.Find(itemID, customerID); primary key do not match!Tempory solution: cnt===1
-            var cart = (from i in db.Carts // 
+            var cart1 = (from i in db.Carts // 
                         where i.CustomerID == customerID & i.CartID == itemID
-                        select i).First();
-
-            if (cart == null) // the item is not in the cart
+                        select i);
+            
+            if (cart1.Count()==0) // the item is not in the cart
             {
                 var p = (from j in db.Carts
                          where j.CustomerID == customerID
@@ -74,6 +74,7 @@ namespace MvcMovie.Controllers
             }
             else
             {
+                Cart cart = cart1.First();
                 cart.ItemCount += cnt;
                 cart.CartPrice += good.ItemPrice * cnt;
                 db.Entry(cart).State = EntityState.Modified;
