@@ -13,13 +13,10 @@ namespace MvcMovie.Controllers
     {
         private MovieDBContext db = new MovieDBContext();
         // GET: Personalinfo/Index?ID=XXX&role=xxxxx
-        public ActionResult Index(string ID)//获取买家信息
+        public ActionResult Index()//获取买家信息
         {
-<<<<<<< Updated upstream
-=======
             ViewBag.card = "";
             string ID = Request.QueryString["id"];
->>>>>>> Stashed changes
             Customer cus = db.Customers.Find(ID);
             ViewBag.age = cus.CustomerAge;
             ViewBag.key = cus.CustomerPassword;
@@ -27,8 +24,6 @@ namespace MvcMovie.Controllers
             ViewBag.gender = cus.CustomerGender;
             ViewBag.credit = cus.CustomerCredit;
             ViewBag.phone = cus.CustomerPhone;
-<<<<<<< Updated upstream
-=======
             var query = from credit in db.CreditCards
                             where credit.CustomerID == ID
                             select credit;
@@ -64,7 +59,6 @@ namespace MvcMovie.Controllers
 
             //CreditCard cuscard = db.CreditCards.Find(ID);
             //ViewBag.card = cuscard.CreditCardID;
->>>>>>> Stashed changes
             return PartialView();
         }
 

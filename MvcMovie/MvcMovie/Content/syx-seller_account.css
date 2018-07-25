@@ -1,0 +1,150 @@
+.black_overlay{ 
+            display: none; 
+            position: absolute; 
+            top: 0%; 
+            left: 0%; 
+            width: 100%; 
+            height: 150%; 
+            background-color: black; 
+            z-index:1001; 
+            -moz-opacity: 0.8; 
+            opacity:.80; 
+            filter: alpha(opacity=88); 
+        } 
+.white_content { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 55%; 
+            height: 70%; 
+            padding: 20px; 
+            border: 10px solid orange; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+      }
+
+.white_content2 { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 30%; 
+            height: 40%; 
+            padding: 20px; 
+            border: 10px solid grey; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+      }
+
+.white_content3 { 
+            display: none; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 40%; 
+            height: 50%; 
+            padding: 20px; 
+            border: 10px solid gold; 
+            background-color: white; 
+            z-index:1002; 
+            overflow: auto; 
+      }
+
+.comment_content{
+            display: none;
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 40%; 
+            height: 60%; 
+            padding: 20px; 
+            border: 10px solid pink; 
+            background-color: white;
+            z-index:1002; 
+            overflow: auto; 
+}
+
+.button_Blue{
+background-color: #42a4e0;
+border-radius: 5px;
+color: #fff; 
+font-size:14px;
+border: 0px;
+width: 107px;
+height: 26px;
+top: 10px;
+}
+ select#selectTravelCity
+            {
+               width                    : 14em;
+               height                   : 3.2em;
+               padding                  : 0.2em 0.4em 0.2em 0.4em;
+               vertical-align           : middle;
+               border                   : 1px solid #94c1e7;
+               -moz-border-radius       : 0.2em;
+               -webkit-border-radius    : 0.2em;
+               border-radius            : 0.2em;
+               -webkit-appearance       : none;
+               -moz-appearance          : none;
+               appearance               : none;
+               background               : #ffffff;
+               font-family              : SimHei;
+               font-size                : 1.1em;
+               color                    : RGBA(102,102,102,0.7);
+               cursor                   : pointer;
+            }
+
+            /*SELECT W/DOWN-ARROW*/
+            select#selectPointOfInterest
+            {
+               width                    : 185pt;
+               height                   : 40pt;
+               line-height              : 40pt;
+               padding-right            : 20pt;
+               text-indent              : 4pt;
+               text-align               : left;
+               vertical-align           : middle;
+               border                   : 1px solid #94c1e7;
+               -moz-border-radius       : 6px;
+               -webkit-border-radius    : 6px;
+               border-radius            : 6px;
+               -webkit-appearance       : none;
+               -moz-appearance          : none;
+               appearance               : none;
+               font-family              : SimHei;
+               font-size                : 18pt;
+               font-weight              : 500;
+               color                    : RGBA(102,102,102,0.7);
+               cursor                   : pointer;
+               outline                  : none;
+            }
+
+
+            /*LABEL FOR SELECT*/
+            label#lblSelect{ position: relative; display: inline-block;height: 32pt;}
+
+
+            /*DOWNWARD ARROW (25bc)*/
+            label#lblSelect::after
+            {
+                content                 : "\25bc";
+                position                : absolute;
+                top                     : 0;
+                right                   : 0;
+                bottom                  : 0;
+                width                   : 20pt;
+                line-height             : 40pt;
+                vertical-align          : middle;
+                text-align              : center;
+                background              : #94c1e7;
+                color                   : #2984ce;
+               -moz-border-radius       : 0 6px 6px 0;
+               -webkit-border-radius    : 0 6px 6px 0;
+                border-radius           : 0 6px 6px 0;
+                pointer-events          : none;
+            }
+
+            

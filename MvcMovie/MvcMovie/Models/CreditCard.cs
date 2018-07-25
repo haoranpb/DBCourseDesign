@@ -10,10 +10,7 @@ namespace MvcMovie.Models
     {
         public string CustomerID { get; set; }
         public string CreditCardID { get; set; }
-<<<<<<< Updated upstream
-=======
         //public string ReceivingInfoCustomerID { get; set; }
->>>>>>> Stashed changes
    
     }
     
