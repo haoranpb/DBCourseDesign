@@ -17,8 +17,6 @@ namespace MvcMovie.Models
         public string ItemPic { get; set; }
         public int ItemSales { get; set; }
         public int ItemRemain { get; set; }
-    
-
     }
 
 }

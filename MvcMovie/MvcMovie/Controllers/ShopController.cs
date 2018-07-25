@@ -45,21 +45,21 @@ namespace MvcMovie.Controllers
 
         ////商店信息
         //// GET: Shop/ShopInfo?id=xxx
-        //public ActionResult ShopInfo(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    Shop shop = db.Shops.Find(id);
-        //    var ShopInfo = new
-        //    {
-        //        Name = shop.ShopName,
-        //        ID = shop.ShopID,
-        //        Saler = shop.SalerID,
-        //    };
-        //    return Json(ShopInfo);
-        //}
+        public ActionResult ShopInfo()
+        {
+            string id = Request.QueryString["shopid"];
+            string i = Request.QueryString["i"];
+            Shop shop = db.Shops.Find(id);
+            var ShopInfo = new
+            {
+                Name = shop.ShopName,
+                ID = shop.ShopID,
+                Saler = shop.SalerID,
+                SalerCredit = shop.SalerCredit,
+                i = i,
+            };
+            return Json(ShopInfo,JsonRequestBehavior.AllowGet);
+        }
 
         // GET: Shop/SalerInfo/id
         //卖家信息

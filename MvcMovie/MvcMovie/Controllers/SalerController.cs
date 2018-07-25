@@ -14,12 +14,12 @@ namespace MvcMovie.Controllers
         private MovieDBContext db = new MovieDBContext();
 
         // GET: /Saler/Index?ID=xxx
-        public ActionResult Index( )
+        public ActionResult Index()
         {
             string ID = Request.QueryString["ID"];
-            //return saler info via viewbag
+            //return saler info via viewbag           
             //ViewBag里面加入两个
-            //ViewBag.SalerName=名字
+            ViewBag.SalerName = ID;
             //ViewBag.SalerCredit=credit对应的这个值 信用值？
             Saler saler = db.Salers.Find(ID);
             ViewBag.Salerinfo = saler.SalerInfo;
@@ -29,8 +29,8 @@ namespace MvcMovie.Controllers
 
             //提取店铺信息
             var shopquery = from shops in db.Shops
-                           where shops.SalerID == ID
-                           select shops;
+                            where shops.SalerID == ID
+                            select shops;
 
             //return shoplist of id
             string ShopIdString = "";
@@ -53,58 +53,49 @@ namespace MvcMovie.Controllers
 
             var shopid3 = Request.QueryString["shopid3"];
             string p = "";
-            List<Order> ol = new List<Order>();
-            var orderinfo1 = (from i in db.Orders where i.ShopID == shopid1 select i);
+            var orderinfo1 = (from i in db.Orders
+                              where i.ShopID == shopid1
+                              select i);
             var orderinfo2 = (from i in db.Orders where i.ShopID == shopid2 select i);
             var orderinfo3 = (from i in db.Orders where i.ShopID == shopid3 select i);
-            foreach (var i in orderinfo1) {
-                ol.Add(i);
-            }
-            foreach (var i in orderinfo2)
-            {
-                ol.Add(i);
-            }
-            foreach (var i in orderinfo3)
-            {
-                ol.Add(i);
-            }
-            for (int k = 0; k < ol.Count() - 1; k++)
-            {
-                for (int j = 0; j < ol.Count() - 1 - k; j++)
+            if (orderinfo1.Count() != 0)
+                foreach (var o in orderinfo1)
                 {
-                    if (ol[j].OrderTime < ol[j + 1].OrderTime)
-                    {
-                        Order so = ol[j];
-                        ol[j] = ol[j + 1];
-                        ol[j + 1] = so;
-                    }
+                    p = p + " " + o.OrderID;
                 }
-            }
-            foreach (var o in ol)
-            {
-                p = p + " " + o.OrderID;
-            }
+            if (orderinfo2.Count() != 0)
+                foreach (var o in orderinfo2)
+                {
+                    p = p + " " + o.OrderID;
+                }
+            if (orderinfo3.Count() != 0)
+                foreach (var o in orderinfo3)
+                {
+                    p = p + " " + o.OrderID;
+                }
             return Content(p);
         }
 
         public ActionResult Orderinfo()
         {
             string Orderid = Request.QueryString["Orderid"];
+            string ii = Request.QueryString["i"];
             Order order = db.Orders.Find(Orderid);
             string ordertime = order.OrderTime.ToString();
             string shopid = order.ShopID;
             var json = new
             {
                 //这里还需要order的其他信息
-                //OrderStatus=订单状态 完成或者未完成 用于设置订单的Finish按钮是否可用
-                //OrderPhone=手机号
-                //OrderAddress=地址
-                //OrderPrice=价格
+                OrderStatus = order.OrderState,
+                OrderPhone=order.OrderPhone,
+                OrderAddress=order.OrderPhone,
+                OrderPrice=order.OrderPrice,
+                ii = ii,
                 OrderId = Orderid,
                 OrderTime = ordertime,
                 ShopId = shopid
             };
-            return Json(json,JsonRequestBehavior.AllowGet);
+            return Json(json, JsonRequestBehavior.AllowGet);
         }
 
         // ShopDetail Page
@@ -145,13 +136,22 @@ namespace MvcMovie.Controllers
         //添加店铺 /Saler/CreateShop?ShopName=111&SalerCredit=111&SalerID=Lucas
         public ActionResult CreateShop()
         {
+            long shopid = 0;
             //随机生成shopid
+            while (true)
+            {
+                Random rd = new Random();
+                shopid = rd.Next(1, 1000000);
+                if (db.Shops.Find(shopid.ToString()) == null)
+                    break;
+            }
+            string Shopid = shopid.ToString();
             string ShopName = Request.QueryString["ShopName"];
             string SalerCredit = Request.QueryString["SalerCredit"];
             string SalerID = Request.QueryString["SalerID"];
 
             Shop shop = new Shop();
-            //shop.ShopID = ShopID; 生成一个shopid
+            shop.ShopID = Shopid;// 生成一个shopid
             shop.ShopName = ShopName;
             shop.SalerCredit = SalerCredit;
             shop.SalerID = SalerID;
@@ -160,18 +160,19 @@ namespace MvcMovie.Controllers
             {
                 db.Shops.Add(shop);
                 db.SaveChanges();
-                return RedirectToAction("Index/"+shop.SalerID);
+                ViewBag.shopid = Shopid;
+                return Content("success");
             }
 
             return Content("failure");
         }
-        
+
         // delete shop button wait to add
         public ActionResult DeleteShop()
         {
             string ID = Request.QueryString["ID"];
             Shop shop = db.Shops.Find(ID);
-            if(shop == null)
+            if (shop == null)
             {
                 return Content("failure");
             }
@@ -212,10 +213,26 @@ namespace MvcMovie.Controllers
                 db.SaveChanges();
                 return Content("success");
             }
-            
+
             return Content("failed");
         }
 
+
+
+        public ActionResult orderedit() {
+            var price = int.Parse(Request.QueryString["price"]);
+            var address = Request.QueryString["address"];
+            var phone = Request.QueryString["phone"];
+            var orderid = Request.QueryString["orderid"];
+            Order order = db.Orders.Find(orderid);
+            if (order == null) return Content("failed");
+            order.OrderPrice = price;
+            order.OrderAddress = address;
+            order.OrderPhone = phone;
+            db.Entry(order).State = EntityState.Modified;
+            db.SaveChanges();
+            return Content("success");
+        }
         /*需要一个可以用来修改订单的函数
          *前端可以传回来修改之后的订单
          * 的价格，地址，手机号
@@ -229,9 +246,17 @@ namespace MvcMovie.Controllers
          * 完了之后重定向，就相当于把当前页面刷新一下
          * 这样子动态加载就会把里面的信息换掉了
          */
+        public ActionResult orderstatusedit() {
+            var ordernewstatus = Request.QueryString["orderstatus"];
+            Order order = db.Orders.Find(Request.QueryString["orderid"]);
+            if (order == null) return Content("failed");
+            order.OrderState = ordernewstatus;
+            db.Entry(order).State = EntityState.Modified;
+            db.SaveChanges();
+            return Content("success");
+        }
 
-        
-        //通过关键词搜索店铺内物品 /Saler/SearchItem?ShopID=100001&Keyword=LILIFAN
+         //通过关键词搜索店铺内物品 /Saler/SearchItem?ShopID=100001&Keyword=LILIFAN
         //返回字符串 *id*id* 最多显示12个
         public ActionResult SearchItem()
         {
@@ -255,7 +280,6 @@ namespace MvcMovie.Controllers
 
             return Content(ItemIDString);
         }
-
 
     }
 }

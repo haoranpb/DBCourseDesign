@@ -28,6 +28,7 @@
     <script>
         $(document).ready(function ()
         {
+            var saler_id = "@ViewBag.ID";
             //代码里面因为后端controller里面有些地方需要改，所以前端代码有的地方需要根据相应的注释来改
             
             /*---------------------加载店铺---------------------*/
@@ -35,35 +36,36 @@
             var shopidstring = "@ViewBag.shopidstring";
             //卖家的店铺list
             var shoplist = shopidstring.split(" ");
-            for (var i = 1; i < shoplist.length; i++) {
-                var shop_url = "../Saler/ShopInfo?shopid=" + shoplist[i];
-                $.get(shop_url, function (data)
-                {
-                    //没有第i个店铺，设置为新店铺，可添加店铺添加商品
-                    if (data == "shop not exist") {
-                        $("#shop" + i + "outer").text("New Shop");
-                        $("#shop" + i + "v").text("Add");
-                    }
-                    //有第i个店铺，显示店铺名
-                    else if (data == "success") {
-                        $("#shop" + i + "outer").text("@ViewBag.ShopName");
-                    }
-                })
+            for (var i = 1; i <= Math.min(3, shoplist.length - 1); i++) {
+                var shop_url = "/Shop/ShopInfo?shopid=" + shoplist[i] + "&i=" + i;
+
+                $.get(shop_url, function (data) {
+                    var shopObj = eval(data);
+                    var ii = shopObj.i;
+                    var shopname = shopObj.Name;
+                    var shopid = shopObj.ID;
+                    var salerid = shopObj.Saler;
+                    var salercredit = shopObj.SalerCredit;
+                    $("#shop" + ii + "outer").text(shopname);
+                    $("#shop" + ii + "v").text("View");
+
+                });
             }
             /*---------------------加载订单---------------------*/
-            var order_url = "../Saler/Order?shopid1=" + shoplist[1] + "&shopid2=" + shoplist[2] + "&shopid3=" + shoplist[3];
+            var order_url = "/Saler/Order?shopid1=" + shoplist[1] + "&shopid2=" + shoplist[2] + "&shopid3=" + shoplist[3];
             $.get(order_url, function (data) {
                 //订单string
                 var orderstr = data;
                 //订单list
                 var orderlist = orderstr.split(" ");
-                for (var i = 1; i <= 3; i++) {
+                console.log(orderlist);
+                for (var i = 1; i <= Math.min(orderlist.length-1,3); i++) {
                     //获取订单信息
-                    var orderinfo_url = "../Saler/Orderinfo?Orderid=" + orderlist[i];
+                    var orderinfo_url = "/Saler/Orderinfo?Orderid=" + orderlist[i]+"&i="+i;
                     $.get(orderinfo_url, function (data) {
                         //解析JSON
                         var orderinfo = eval(data);
-
+                        console.log(data);
                         //需要额外的属性 Controller里JSON需要添加数据
                         var orderid = orderinfo.OrderId;
                         var ordertime = orderinfo.OrderTime;
@@ -72,21 +74,21 @@
                         var orderaddress = orderinfo.OrderAddress;
                         var orderprice = orderinfo.OrderPrice;
                         var orderstatus = orderinfo.OrderStatus;
-
+                        var ii = orderinfo.ii;
                         //显示的订单信息
-                        $("#order" + i + "id").text(orderid);
-                        $("#order" + i + "time").text(ordertime);
-                        $("#order" + i + "shop").text(shopid);
+                        $("#order" + ii + "id").text(orderid);
+                        $("#order" + ii + "time").text(ordertime);
+                        $("#order" + ii + "shop").text(shopid);
                         //修改订单弹出页面的信息 提前加载
-                        $("#eprice" + i).attr("value", orderprice);
-                        $("#ephone" + i).attr("value", orderphone);
-                        $("#eaddress" + i).attr("value", orderaddress);
+                        $("#eprice" + ii).attr("value", orderprice);
+                        $("#ephone" + ii).attr("value", orderphone);
+                        $("#eaddress" + ii).attr("value", orderaddress);
 
                         //如果订单状态为已完成，不可使用Edit和Finish按钮
                         //我不知道订单状态回返回什么，我这里用的是finished，要根据实际数据修改
                         if (orderstatus == "finished") {
-                            $("#editorder" + i).attr("disable", true);
-                            $("#finish" + i).attr("disable", true);
+                            $("#editorder" + ii).attr("disabled", true);
+                            $("#finish" + ii).attr("disabled", true);
                         }
                     })
                 }
@@ -98,75 +100,102 @@
                 //获得内容 view为查看店铺 add为添加店铺
                 var type = $(this).text();
                 //获得id中的数字即店铺 1-3
-                var num = $(this).attr("id").replace(/[^0-9]/ig, "");
+                var num = $(this).attr("id").replace(/[^0-9]/ig,"");
 
                 if (type == "View") {
-                    var shopinfo_url = "../Saler/ShopInfo?shopid=" + shoplist[num];
+                    var shopinfo_url = "/Shop/ShopInfo?shopid=" + shoplist[num]+"&i=1";
                     $.get(shopinfo_url, function (data) {
-                        $("#shopn").text(data);
-                        $("#salern").text("@ViewBag.SalerName");
-                        $("#salercr").text("@ViewBag.SalerCredit");
+                        var shopObj = eval(data);
+                        var shopname = shopObj.Name;
+                        var shopid = shopObj.ID;
+                        var salerid = shopObj.Saler;
+                        var salercredit = shopObj.SalerCredit;
+
+                        $("#shopn").text(shopname);
+                        $("#salern").text(salerid);
+                        $("#salercr").text(salercredit);
                     });
+
+                    document.getElementById('view_shop2').style.display = 'block';
+                    document.getElementById('fade_view_shop2').style.display = 'block';
                 }
             });
             /*---------------------添加店铺---------------------*/
             $("button").click(function () {
+
                 //获得当前点击的按钮id
                 var id = $(this).attr("id");
                 //获得内容 view为查看店铺 add为添加店铺
                 var type = $(this).text();
+                console.log(type);
                 //获得id中的数字即店铺 1-3
                 var num = $(this).attr("id").replace(/[^0-9]/ig, "");
-
+                console.log(num);
                 if (type == "Add") {
-                    var shopname = $("#nshopn").val();
-                    var addshop_url = "../Saler/CreateShop?ShopName=" + shopname + "&SalerCredit=@ViewBag.SalerCredit&SalerName=@ViewBag.SalerName";
-                    $.get(addshop_url, function (data) {
-                        if (data == "failure") {
-                            alert("Failed to Add a New Shop");
-                        }
-                        else {
-                            //Controller里面好像是重定向了，那这里应该就不用做了吧我也不知道
-                        }
-                    })
+                    alert("here");
+                    document.getElementById('add_shop').style.display = 'block';
+                    document.getElementById('fade_add_shop').style.display = 'block';
                 }
             })
+            /*---------------------confirm new shop---------------------*/
+            $("#confirmshop").click(function () { // select nothing
+                var shopname = $("#nshopn").val();
+                var addshop_url = "/Saler/CreateShop?ShopName=" + shopname + "&SalerCredit=0&SalerID=@ViewBag.SalerName";
+                $.get(addshop_url, function (data) {
+                    if (data == "failure") {
+                        alert("Failed to Add a New Shop");
+                    }
+                    else {
+                        alert("Success!");
+                        window.location.reload();
+                        //Controller里面好像是重定向了，那这里应该就不用做了吧我也不知道
+                    }
+                });
+            });
             /*---------------------查看商品---------------------*/
             $("button").click(function () {
                 //获得当前点击的按钮id
                 var id = $(this).attr("id");
                 //获得内容 Products则定向到商品页面
                 var type = $(this).text();
+                console.log(type);
                 if (type == "Products") {
-                    //重定向到allproducts那个页面 不会写url噗
-                    $(window).attr('location', '..');
+                    console.log("fuck");
+                    var num = ($(this).attr("id")).replace(/[^0-9]/ig, "");
+                    var shopid = shoplist[num];
+                    // redirect to ShopDetail  
+                    $(window).attr('location', "../Saler/ShopDetail?&shopid=" + shopid);
                 }
-            })
+            });
             /*---------------------编辑订单---------------------*/
             $("button").click(function () {
                 //获得当前点击的按钮id
-                var id = $(this).attr("id");
+                var type = $(this).attr("id");
                 //获得内容 econfirm则提交编辑订单 就是点击edit之后弹出窗口里面的那个Confirm
-                var type = $(this).text();
-                type = type.substr(0, type.length - 1);
+                type = type.substr(0, type.length-1);
                 //获得id中的数字即订单编号 1-3
                 var num = $(this).attr("id").replace(/[^0-9]/ig, "");
-
-                if (type == "ecomfirm") {
+                if (type == "econfirm") {
+                    
                     var price = $("#eprice" + num).val();
                     var phone = $("#ephone" + num).val();
                     var address = $("eaddress" + num).val();
-
-                    //controller里面没有用来修改order的API哇😭
-                    //我在controller里面也加了注释了😭
+                    $.get("/Saler/orderedit?price=" + price + "&phone=" + phone + "&address=" + address + "&orderid=" + $("#order" + num + "id").text(), function (data) {
+                        console.log("getting back");
+                        if (data == "success") {
+                            alert("success!"); location.reload();
+                        }
+                        else {
+                            alert("sry,failed");
+                        }
+                    });
                 }
-            })
+            });
             /*---------------------完成订单---------------------*/
             $("button").click(function () {
                 //获得当前点击的按钮id
-                var id = $(this).attr("id");
+                var type = $(this).attr("id");
                 //获得内容 finish则完成订单 修改状态
-                var type = $(this).text();
                 type = type.substr(0, type.length - 1);
                 //获得id中的数字即订单编号 1-3
                 var num = $(this).attr("id").replace(/[^0-9]/ig, "");
@@ -174,15 +203,31 @@
                 if (type == "finish") {
                     //获取订单id 可以用在之后向Controller传递数据
                     var orderid = $("#order" + num + "id").text();
+                    $.get("../Saler/orderstatusedit?orderid=" + orderid + "&orderstatus=finished", function (data) {
 
-                    //我发现Controller里面还是没有API😭
+                        if (data == "success") {
+                            alert("success!");
+                            $(this).attr("disabled", true);
 
-                    //修改按钮状态 订单完成之后 Edit和Finish按钮不可用
-                    //如果后端函数里进行重定向，那么可以删掉这两行 因为重定向刷新之后会动态加载
-                    $(this).attr("disable", true);
-                    $("#editorder" + num).attr("disable", true);
+                            $("#editorder" + num).attr("disabled", true);
+                            location.reload();
+                        }
+                        else alert("failed");
+                    });
                 }
-            })
+            });
+            /*---------------------Log Out---------------------*/
+            $("#logout").click(function () {
+                //no matched function
+                //one parameter : salerid
+                var salerid = "@ViewBag.ID";
+                
+                var logout_url = "..";
+                $.get(logout_url, function () {
+
+                })
+            });
+
         });
     </script>
 </head>
@@ -214,47 +259,7 @@
                   <div class="top-cart-contain pull-right"> 
                
                     <div class="mini-cart">
-                      <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
-                        <div>
-                          <div class="top-cart-content" style="display: none;">
-                            <div class="actions">
-                              <button class="btn-finishout" title="finishout" type="button"><span>finishout</span></button>
-                              <a href="#" class="view-cart" ><span>View Cart</span></a>
-                            </div>
-                      
-                            <ul class="mini-products-list" id="cart-sidebar">
-                              <li class="item first">
-                                <div class="item-inner">
-                                  <a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="products-images/p4.jpg"></a>
-                                  <div class="product-details">
-                                    <div class="access">
-                                      <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
-                                      <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
-                                    </div>
-                               
-                                    <strong>1</strong> x <span class="price">$179.99</span>
-                                    <p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
-                                  </div>
-                                </div>
-                              </li>
-                              <li class="item last">
-                                <div class="item-inner">
-                                  <a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="products-images/p3.jpg"></a>
-                                  <div class="product-details">
-                                    <div class="access">
-                                      <a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
-                                      <a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
-                                    </div>
-                               
-                                    <strong>1</strong> x <span class="price">$80.00</span>
-                                    <p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
-                                  </div>
-                                </div>.
-                              </li>
-                            </ul>
-                     
-                          </div>
-                        </div>
+                      <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><button id="logout" type="button" style="height:41px;background-color:gold">Log Out</button></div>
                       </div>
                  
                       <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
@@ -315,25 +320,25 @@
               </div>
               <div class="ms-side" style="margin-top: 20px;">
                 <article class="side-menu side-menu-off">
-                  <dl class="side-menu-tree" style="padding-left: 50px;">
-                    <dt><img src="../Images/images/mycart.png"  style="margin-right: 10px;margin-left: -20px;"/>My Account</dt>
-                    <dt><img src="../Images/images/file.png"  style="margin-right: 10px;margin-left: -20px;"/>My Shops</dt>
-                    <dd>
-                      <!-- SWITCH TO ALL PRODUCTS -->
-                      <a href="">Management</a> <!--卖家进行店铺的增加和删除 -->
-                    </dd>
-                    <dt><img src="../Images/images/myvibra.png"  style="margin-right: 10px;margin-left: -20px;"/>My Orders</dt>
-                    <dd>
-                      <a>Orders</a> 
-                    </dd>
-   <!--             <dd>
-                      <a>History Orders</a> 
-                    </dd> -->
-                    <dt><img src="../Images/images/v-card-3.png"  style="margin-right: 10px;margin-left: -20px;"/>Edit Info</dt>
-                    <dd>
-                      <a>Edit Info</a>
-                    </dd>
-                  </dl>
+                    <dl class="side-menu-tree" style="padding-left: 50px;">
+                        <dt><img src="../Images/images/mycart.png" style="margin-right: 10px;margin-left: -20px;" />My Account</dt>
+                        <dt><img src="../Images/images/file.png" style="margin-right: 10px;margin-left: -20px;" />My Shops</dt>
+                        <dd>
+                            <!-- SWITCH TO ALL PRODUCTS -->
+                            <a href="">Management</a> <!--卖家进行店铺的增加和删除 -->
+                        </dd>
+                        <dt><img src="../Images/images/myvibra.png" style="margin-right: 10px;margin-left: -20px;" />My Orders</dt>
+                        <dd>
+                            <a>Orders</a>
+                        </dd>
+                        <!--             <dd>
+                       <a>History Orders</a>
+                     </dd> -->
+                        <dt><img src="../Images/images/v-card-3.png" style="margin-right: 10px;margin-left: -20px;" />Edit Info</dt>
+                        <dd>
+                            <a>Edit Info</a>
+                        </dd>
+                    </dl>
 
                   <a ison="on" class="switch-side-menu icon-up-side"><i></i></a>
                 </article>
@@ -348,10 +353,10 @@
                     <div style="width: 680px;padding: 10px;float: left;background-color: #fff;height: 250px;">
                     <div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                         <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                            <span id="shop1outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">shop1 name</span>
+                            <span id="shop1outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">New Shop</span>
                             <!--本按钮应调用数据库数据，目前暂时为静态且与shop2按钮相同-->
-                            <button id="shop1v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">View </button>
-                            <button id="shop1p" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products </button>
+                            <button id="shop1v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">Add</button>
+                            <button id="shop1p" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products</button>
                         
                         
                         </div>
@@ -359,9 +364,9 @@
                 
                     <div style="float: left;width:200px ;height: 152px;;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                         <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                            <span id="shop2outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">Shop2 name</span>
-                            <button id="shop2v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">View </button>
-                            <button id="shop2v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products </button>
+                            <span id="shop2outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">New Shop</span>
+                            <button id="shop2v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">Add</button>
+                            <button id="shop2p" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products</button>
 
                             <!-- 点击view后跳出店铺信息 -->
                             <div id="view_shop2" class="white_content"
@@ -371,15 +376,15 @@
                                 <table class="dataintable" style="font-size: 12px;margin: auto;width: 600px;">
                                     <tr>
                                         <td style="font-size: 18px;"><b>ShopName</b></td>
-                                        <td id="shopn" style="font-size: 18px;"><b>Shop2</b></td>
+                                        <td id="shopn" style="font-size: 18px;"><b>null</b></td>
                                     </tr>
                                     <tr>
                                         <td style="font-size: 18px;"><b>SalerID</b></td>
-                                        <td id="salern" style="font-size: 18px;">Lucas</td>
+                                        <td id="salern" style="font-size: 18px;">null</td>
                                     </tr>
                                     <tr>
                                         <td style="font-size: 18px;"><b>SalerCredit</b></td>
-                                        <td id="salercr" style="font-size: 18px;">100</td>
+                                        <td id="salercr" style="font-size: 18px;">null</td>
                                     </tr>
                                 </table>
 
@@ -410,9 +415,9 @@
                 
                     <div style="float: left;width:200px ;height: 152px;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                       <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                        <span id="shop3outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">new Shop</span>
-                         <input type="button" value="Add" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" onclick="document.getElementById('add_shop').style.display='block'; document.getElementById('fade_add_shop').style.display='block'"/>
-                          <button id="shop3v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products </button>
+                        <span id="shop3outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">New Shop</span>
+                         <button id="shop3v" type="button" value="Add" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">Add</button>
+                          <button id="shop3v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products</button>
                               <!-- 新建店铺 ShopID由后端生成而非用户填写 -->
                               <div id="add_shop" class="white_content">
                                     <h1 style="align-content:center;margin-top: -10px;">Add Shop</h1>
@@ -473,9 +478,9 @@
                             <th>Options</th>
                           </tr>
                           <tr>
-                            <td id="order1id"><b>98542257</b></td>
-                            <td id="order1time">2016-04-10 12:20:30</td>
-                            <td id="order1shop">554564</td>
+                            <td id="order1id"><b>0</b></td>
+                            <td id="order1time">0-0-0 00:00:00</td>
+                            <td id="order1shop">0</td>
                             <td>
                                <button id="editorder1" onclick="document.getElementById('edit_1').style.display='block';
                              document.getElementById('fade_1').style.display='block'"
@@ -490,7 +495,7 @@
                               <!-- 以下为点击edit后,卖家对order的操作 -->
                               <div id="edit_1" class="white_content">
                                     <h1 style="align-content:center;margin-top: -10px;">Manage this order</h1>
-                                    <h2 style="align-content: center;">Order ID <b>98542257</b></h2>
+                                    <h2 style="align-content: center;">Order ID <b>0</b></h2>
                                     <table class="dataintable" style="font-size: 12px;margin: auto;width: 750px;">
                                        <tr>
                                         <th style="font-size: 18px;">Edit</th>
@@ -550,9 +555,9 @@
                           </tr>
                         
                           <tr>
-                            <td id="order2id"><b>98542287</b></td>
-                            <td id="order2time">2016-04-10 12:20:30</td>
-                            <td id="order2shop">755458</td>
+                            <td id="order2id"><b>0</b></td>
+                            <td id="order2time">0-0-0 00:00:00</td>
+                            <td id="order2shop">0</td>
                             <td>
                                <button id="editorder2" onclick="document.getElementById('edit_2').style.display='block';
                                    document.getElementById('fade_2').style.display='block'"
@@ -566,7 +571,7 @@
                                      <!-- 以下为点击edit后,卖家对order的操作 -->
                                    <div id="edit_2" class="white_content">
                                       <h1 style="align-content:center;margin-top: -10px;">Manage this order</h1>
-                                      <h2 style="align-content: center;">Order ID <b>98542287</b></h2>
+                                      <h2 style="align-content: center;">Order ID <b>0</b></h2>
                                      <table class="dataintable" style="font-size: 12px;margin: auto;width: 750px;">
                                        <tr>
                                         <th style="font-size: 18px;">Edit</th>
@@ -626,9 +631,9 @@
 
                         
                           <tr>
-                            <td id="order3id"><b>98542751</b></td>
-                            <td id="order3time">2016-04-10 12:20:30</td>
-                            <td id="order3shop">825990</td>
+                            <td id="order3id"><b>0</b></td>
+                            <td id="order3time">0-0-0 00:00:00</td>
+                            <td id="order3shop">0</td>
                             <td>
                                <button id="editorder3" onclick="document.getElementById('edit_3').style.display='block';
                                    document.getElementById('fade_3').style.display='block'"
@@ -642,7 +647,7 @@
                               <div id="edit_3" class="white_content">
                                 <!-- 以下为点击edit后,卖家对order的操作 -->
                                    <h1 style="align-content:center;margin-top: -10px;">Manage this order</h1>
-                                   <h2 style="align-content: center;">Order ID <b>98542751</b></h2>
+                                   <h2 style="align-content: center;">Order ID <b>0</b></h2>
                                      <table class="dataintable" style="font-size: 12px;margin: auto;width: 750px;">
                                        <tr>
                                         <th>Edit</th>
