@@ -18,6 +18,9 @@ namespace MvcMovie.Controllers
         {
             string ID = Request.QueryString["ID"];
             //return saler info via viewbag
+            //ViewBag里面加入两个
+            //ViewBag.SalerName=名字
+            //ViewBag.SalerCredit=credit对应的这个值 信用值？
             Saler saler = db.Salers.Find(ID);
             ViewBag.Salerinfo = saler.SalerInfo;
             ViewBag.SalerPassword = saler.SalerPassword;
@@ -79,6 +82,11 @@ namespace MvcMovie.Controllers
             string shopid = order.ShopID;
             var json = new
             {
+                //这里还需要order的其他信息
+                //OrderStatus=订单状态 完成或者未完成 用于设置订单的Finish按钮是否可用
+                //OrderPhone=手机号
+                //OrderAddress=地址
+                //OrderPrice=价格
                 OrderId = Orderid,
                 OrderTime = ordertime,
                 ShopId = shopid
@@ -119,11 +127,16 @@ namespace MvcMovie.Controllers
         }
 
 
-        //添加店铺 /Saler/CreateShop?ShopID=111&ShopName=111&SalerCredit=111&SalerID=Lucas
-        public ActionResult CreateShop(string ShopID, string ShopName, string SalerCredit, string SalerID)
+        //添加店铺 /Saler/CreateShop?ShopName=111&SalerCredit=111&SalerID=Lucas
+        public ActionResult CreateShop()
         {
+            //随机生成shopid
+            string ShopName = Request.QueryString["ShopName"];
+            string SalerCredit = Request.QueryString["SalerCredit"];
+            string SalerID = Request.QueryString["SalerID"];
+
             Shop shop = new Shop();
-            shop.ShopID = ShopID;
+            //shop.ShopID = ShopID; 生成一个shopid
             shop.ShopName = ShopName;
             shop.SalerCredit = SalerCredit;
             shop.SalerID = SalerID;
@@ -188,5 +201,18 @@ namespace MvcMovie.Controllers
             return Content("failed");
         }
 
+        /*需要一个可以用来修改订单的函数
+         *前端可以传回来修改之后的订单
+         * 的价格，地址，手机号
+         * 需要后端去修改数据库
+         * 修改完之后比较好的操作我不太清楚应该怎么样
+         * 因为我们这个订单修改完之后，其实在SalerAccount这个界面里是显示不出来的
+         * 因为页面里只展示订单的ID，时间，店铺
+         * 但是如果再次点击Edit那个按钮就会发现里面的内容没有变
+         * 所以建议是后端这边
+         * 去修改数据库
+         * 完了之后重定向，就相当于把当前页面刷新一下
+         * 这样子动态加载就会把里面的信息换掉了
+         */
     }
 }

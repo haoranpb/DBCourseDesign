@@ -26,45 +26,163 @@
     <link rel="stylesheet" type="text/css" href="~/Content/account_table.css" />
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script>
-        $(document).ready(function () {
-            var shopidstring = @ViewBag.shopidstring; // backspace to split, shopID store in it
-            alert(shopidstring);
+        $(document).ready(function ()
+        {
+            //代码里面因为后端controller里面有些地方需要改，所以前端代码有的地方需要根据相应的注释来改
+            
+            /*---------------------加载店铺---------------------*/
+            //卖家的店铺string
+            var shopidstring = "@ViewBag.shopidstring";
+            //卖家的店铺list
             var shoplist = shopidstring.split(" ");
-            alert();
-            //for (var shop in shoplist) {
-            //    $("#shop" + shop[5] + "outer").text = shop;
-            //}
+            for (var i = 1; i < shoplist.length; i++) {
+                var shop_url = "../Saler/ShopInfo?shopid=" + shoplist[i];
+                $.get(shop_url, function (data)
+                {
+                    //没有第i个店铺，设置为新店铺，可添加店铺添加商品
+                    if (data == "shop not exist") {
+                        $("#shop" + i + "outer").text("New Shop");
+                        $("#shop" + i + "v").text("Add");
+                    }
+                    //有第i个店铺，显示店铺名
+                    else if (data == "success") {
+                        $("#shop" + i + "outer").text("@ViewBag.ShopName");
+                    }
+                })
+            }
+            /*---------------------加载订单---------------------*/
+            var order_url = "../Saler/Order?shopid1=" + shoplist[1] + "&shopid2=" + shoplist[2] + "&shopid3=" + shoplist[3];
+            $.get(order_url, function (data) {
+                //订单string
+                var orderstr = data;
+                //订单list
+                var orderlist = orderstr.split(" ");
+                for (var i = 1; i <= 3; i++) {
+                    //获取订单信息
+                    var orderinfo_url = "../Saler/Orderinfo?Orderid=" + orderlist[i];
+                    $.get(orderinfo_url, function (data) {
+                        //解析JSON
+                        var orderinfo = eval(data);
 
-            //var urlstr = "/Saler/Order?shopid1=" ; // get order ID list
-            //$.get(urlstr, function (data) {
-                
-            //}); // get order detail through order id list
+                        //需要额外的属性 Controller里JSON需要添加数据
+                        var orderid = orderinfo.OrderId;
+                        var ordertime = orderinfo.OrderTime;
+                        var shopid = orderinfo.ShopId;
+                        var orderphone = orderinfo.OrderPhone;
+                        var orderaddress = orderinfo.OrderAddress;
+                        var orderprice = orderinfo.OrderPrice;
+                        var orderstatus = orderinfo.OrderStatus;
 
-            // view shop info pop up button 
+                        //显示的订单信息
+                        $("#order" + i + "id").text(orderid);
+                        $("#order" + i + "time").text(ordertime);
+                        $("#order" + i + "shop").text(shopid);
+                        //修改订单弹出页面的信息 提前加载
+                        $("#eprice" + i).attr("value", orderprice);
+                        $("#ephone" + i).attr("value", orderphone);
+                        $("#eaddress" + i).attr("value", orderaddress);
 
-            $("#shop1viewbutton").click(function () {
-                //if (shoplist >=1)
-                document.getElementById('view_shop2').style.display = 'block';
-                document.getElementById('fade_view_shop2').style.display = 'block';
-
-                var urlstr = "/Saler/ShopInfo?shopid=" + shoplist[0];
-                $.get(urlstr, function (data) { // get shop detail and set shop detail
-                    //@ViewBag.ShopName; // data get from back-end
-                });
+                        //如果订单状态为已完成，不可使用Edit和Finish按钮
+                        //我不知道订单状态回返回什么，我这里用的是finished，要根据实际数据修改
+                        if (orderstatus == "finished") {
+                            $("#editorder" + i).attr("disable", true);
+                            $("#finish" + i).attr("disable", true);
+                        }
+                    })
+                }
             });
+            /*---------------------查看店铺---------------------*/
+            $("button").click(function () {
+                //获得当前点击的按钮id
+                var id = $(this).attr("id");
+                //获得内容 view为查看店铺 add为添加店铺
+                var type = $(this).text();
+                //获得id中的数字即店铺 1-3
+                var num = $(this).attr("id").replace(/[^0-9]/ig, "");
 
-            $("#shop2viewbutton").click(function () {
-                //if (shoplist >=2)
-                document.getElementById('view_shop2').style.display = 'block';
-                document.getElementById('fade_view_shop2').style.display = 'block';
-
-                var urlstr = "";
-                $.get(urlstr, function (data) { // get shop detail and set shop detail
-
-                });
+                if (type == "View") {
+                    var shopinfo_url = "../Saler/ShopInfo?shopid=" + shoplist[num];
+                    $.get(shopinfo_url, function (data) {
+                        $("#shopn").text(data);
+                        $("#salern").text("@ViewBag.SalerName");
+                        $("#salercr").text("@ViewBag.SalerCredit");
+                    });
+                }
             });
+            /*---------------------添加店铺---------------------*/
+            $("button").click(function () {
+                //获得当前点击的按钮id
+                var id = $(this).attr("id");
+                //获得内容 view为查看店铺 add为添加店铺
+                var type = $(this).text();
+                //获得id中的数字即店铺 1-3
+                var num = $(this).attr("id").replace(/[^0-9]/ig, "");
 
+                if (type == "Add") {
+                    var shopname = $("#nshopn").val();
+                    var addshop_url = "../Saler/CreateShop?ShopName=" + shopname + "&SalerCredit=@ViewBag.SalerCredit&SalerName=@ViewBag.SalerName";
+                    $.get(addshop_url, function (data) {
+                        if (data == "failure") {
+                            alert("Failed to Add a New Shop");
+                        }
+                        else {
+                            //Controller里面好像是重定向了，那这里应该就不用做了吧我也不知道
+                        }
+                    })
+                }
+            })
+            /*---------------------查看商品---------------------*/
+            $("button").click(function () {
+                //获得当前点击的按钮id
+                var id = $(this).attr("id");
+                //获得内容 Products则定向到商品页面
+                var type = $(this).text();
+                if (type == "Products") {
+                    //重定向到allproducts那个页面 不会写url噗
+                    $(window).attr('location', '..');
+                }
+            })
+            /*---------------------编辑订单---------------------*/
+            $("button").click(function () {
+                //获得当前点击的按钮id
+                var id = $(this).attr("id");
+                //获得内容 econfirm则提交编辑订单 就是点击edit之后弹出窗口里面的那个Confirm
+                var type = $(this).text();
+                type = type.substr(0, type.length - 1);
+                //获得id中的数字即订单编号 1-3
+                var num = $(this).attr("id").replace(/[^0-9]/ig, "");
 
+                if (type == "ecomfirm") {
+                    var price = $("#eprice" + num).val();
+                    var phone = $("#ephone" + num).val();
+                    var address = $("eaddress" + num).val();
+
+                    //controller里面没有用来修改order的API哇😭
+                    //我在controller里面也加了注释了😭
+                }
+            })
+            /*---------------------完成订单---------------------*/
+            $("button").click(function () {
+                //获得当前点击的按钮id
+                var id = $(this).attr("id");
+                //获得内容 finish则完成订单 修改状态
+                var type = $(this).text();
+                type = type.substr(0, type.length - 1);
+                //获得id中的数字即订单编号 1-3
+                var num = $(this).attr("id").replace(/[^0-9]/ig, "");
+
+                if (type == "finish") {
+                    //获取订单id 可以用在之后向Controller传递数据
+                    var orderid = $("#order" + num + "id").text();
+
+                    //我发现Controller里面还是没有API😭
+
+                    //修改按钮状态 订单完成之后 Edit和Finish按钮不可用
+                    //如果后端函数里进行重定向，那么可以删掉这两行 因为重定向刷新之后会动态加载
+                    $(this).attr("disable", true);
+                    $("#editorder" + num).attr("disable", true);
+                }
+            })
         });
     </script>
 </head>
@@ -77,11 +195,11 @@
               <div class="row"> 
            
                 <div class="col-xs-7 col-sm-6">
-                  <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="images/english.png" alt="language"> English <span class="caret"></span></a>
+                  <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/english.png" alt="language"> English </a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/francais.png" alt="language"> French </a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/german.png" alt="language"> German </a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
                     </ul>
                   </div>
            
@@ -153,7 +271,7 @@
                           <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="images/interstitial-close.png" alt="close"> </button>
+                                <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
                               </div>
                               <div class="modal-body">
                                 <form class="navbar-form">
@@ -198,23 +316,20 @@
               <div class="ms-side" style="margin-top: 20px;">
                 <article class="side-menu side-menu-off">
                   <dl class="side-menu-tree" style="padding-left: 50px;">
-                    <dt><img src="images/mycart.png"  style="margin-right: 10px;margin-left: -20px;"/>My Account</dt>
-                    <dt><img src="images/file.png"  style="margin-right: 10px;margin-left: -20px;"/>My Shops</dt>
+                    <dt><img src="../Images/images/mycart.png"  style="margin-right: 10px;margin-left: -20px;"/>My Account</dt>
+                    <dt><img src="../Images/images/file.png"  style="margin-right: 10px;margin-left: -20px;"/>My Shops</dt>
                     <dd>
-                      <a>My Shops</a>
+                      <!-- SWITCH TO ALL PRODUCTS -->
+                      <a href="">Management</a> <!--卖家进行店铺的增加和删除 -->
                     </dd>
+                    <dt><img src="../Images/images/myvibra.png"  style="margin-right: 10px;margin-left: -20px;"/>My Orders</dt>
                     <dd>
-                      <a>Shop Management</a> <!--卖家进行店铺的增加和删除 -->
+                      <a>Orders</a> 
                     </dd>
-                
-                    <dt><img src="images/myvibra.png"  style="margin-right: 10px;margin-left: -20px;"/>My Orders</dt>
-                    <dd>
-                      <a>Orders</a> <!--卖家查看当前未完成订单 -->
-                    </dd>
-                    <dd>
-                      <a>History Orders</a> <!--卖家查看历史订单 -->
-                    </dd>
-                    <dt><img src="images/v-card-3.png"  style="margin-right: 10px;margin-left: -20px;"/>Edit Info</dt>
+   <!--             <dd>
+                      <a>History Orders</a> 
+                    </dd> -->
+                    <dt><img src="../Images/images/v-card-3.png"  style="margin-right: 10px;margin-left: -20px;"/>Edit Info</dt>
                     <dd>
                       <a>Edit Info</a>
                     </dd>
@@ -232,73 +347,79 @@
                     <div style=" float: left;vertical-align: bottom;text-align: center;">
                     <div style="width: 680px;padding: 10px;float: left;background-color: #fff;height: 250px;">
                     <div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
-                      <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                        <span id="shop1outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">shop1 name</span>
-                           <!--本按钮应调用数据库数据，目前暂时为静态且与shop2按钮相同-->
-                           <button id="shop1viewbutton" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">View </button>
-                      </div>
+                        <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
+                            <span id="shop1outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">shop1 name</span>
+                            <!--本按钮应调用数据库数据，目前暂时为静态且与shop2按钮相同-->
+                            <button id="shop1v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">View </button>
+                            <button id="shop1p" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products </button>
+                        
+                        
+                        </div>
                     </div>
                 
                     <div style="float: left;width:200px ;height: 152px;;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
-                      <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                        <span id="shop2outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">Shop2 name</span>
-                         <button id="shop2viewbutton" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">View </button>
+                        <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
+                            <span id="shop2outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">Shop2 name</span>
+                            <button id="shop2v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">View </button>
+                            <button id="shop2v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products </button>
 
-                               <!-- 点击view后跳出店铺信息 -->
-                               <div id="view_shop2" class="white_content"
-                               style="width: 800px;margin-top: 20px;background-color: #fff;">
+                            <!-- 点击view后跳出店铺信息 -->
+                            <div id="view_shop2" class="white_content"
+                                 style="width: 800px;margin-top: 20px;background-color: #fff;">
 
-                                  <h1 style="align-content:center;margin-top: -10px;">ShopInformation</h1>
-                                  <table class="dataintable" style="font-size: 12px;margin: auto;width: 600px;">
-                                     <tr>
-                                      <td style="font-size: 18px;"><b>ShopName</b></td>
-                                      <td style="font-size: 18px;"><b>Shop2</b></td>
-                                     </tr>
-                                     <tr>
-                                      <td style="font-size: 18px;"><b>SalerID</b></td>
-                                      <td style="font-size: 18px;">Lucas</td>
-                                     </tr>
-                                      <tr>
-                                      <td style="font-size: 18px;"><b>SalerCredit</b></td>
-                                      <td style="font-size: 18px;">100</td>
-                                     </tr>
-                                  </table>
+                                <h1 style="align-content:center;margin-top: -10px;">ShopInformation</h1>
+                                <table class="dataintable" style="font-size: 12px;margin: auto;width: 600px;">
+                                    <tr>
+                                        <td style="font-size: 18px;"><b>ShopName</b></td>
+                                        <td id="shopn" style="font-size: 18px;"><b>Shop2</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px;"><b>SalerID</b></td>
+                                        <td id="salern" style="font-size: 18px;">Lucas</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 18px;"><b>SalerCredit</b></td>
+                                        <td id="salercr" style="font-size: 18px;">100</td>
+                                    </tr>
+                                </table>
 
-                                  <!-- 关闭按钮 -->
-                                  <button onclick="document.getElementById('view_shop2').style.display='none';
+                                <!-- 关闭按钮 -->
+                                <button onclick="document.getElementById('view_shop2').style.display='none';
                                            document.getElementById('fade_view_shop2').style.display='none'"
-                                           style="background-color: #42a4e0;
+                                        style="background-color: #42a4e0;
                                             border-radius: 5px;
-                                            color: #fff; 
+                                            color: #fff;
                                             font-size:14px;
                                             border: 0px;
                                             width: 107px;
                                             height: 26px;
                                             top: 10px;
                                             position: relative;
-                                            margin-bottom: 300px;">Close</button>
-                                </div>
+                                            margin-bottom: 300px;">
+                                    Close
+                                </button>
+                            </div>
 
-                                <!-- 背景变黑 -->
-                                <div id="fade_view_shop2" class="black_overlay"></div>
-                    
-                      </div>
+                            <!-- 背景变黑 -->
+                            <div id="fade_view_shop2" class="black_overlay"></div>
+
+                        </div>
 
                     </div>
 
                 
-                    <div style="float: left;width:200px ;height: 152px;;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
+                    <div style="float: left;width:200px ;height: 152px;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
                       <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                        <span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">new Shop</span>
-                         <input  type="button" value="Add" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" onclick="document.getElementById('add_shop').style.display='block'; document.getElementById('fade_add_shop').style.display='block'"/>
-
+                        <span id="shop3outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">new Shop</span>
+                         <input type="button" value="Add" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;" onclick="document.getElementById('add_shop').style.display='block'; document.getElementById('fade_add_shop').style.display='block'"/>
+                          <button id="shop3v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products </button>
                               <!-- 新建店铺 ShopID由后端生成而非用户填写 -->
                               <div id="add_shop" class="white_content">
                                     <h1 style="align-content:center;margin-top: -10px;">Add Shop</h1>
                                     <table class="dataintable" style="font-size: 12px;margin: auto;width: 750px;">
                                        <tr>
                                         <td style="font-size: 18px;"><b>ShopName</b></td>
-                                        <td><input type="" name="editPrice" placeholder="Please enter shop name"></td>
+                                        <td><input id="nshopn" type="text" name="editPrice" placeholder="Please enter shop name"></td>
                                        </tr>
                                     </table>
 
@@ -317,7 +438,7 @@
                                     margin-bottom: 300px;">cancel</button>
                                 
                                     <!-- confirm button -->
-                                      <button onclick="document.getElementById('add_shop').style.display='none';
+                                      <button id="confirmshop" onclick="document.getElementById('add_shop').style.display='none';
                                    document.getElementById('fade_add_shop').style.display='none'"
                                    style="background-color: #42a4e0;
                                     border-radius: 5px;
@@ -352,11 +473,11 @@
                             <th>Options</th>
                           </tr>
                           <tr>
-                            <td><b>98542257</b></td>
-                            <td>2016-04-10 12:20:30</td>
-                            <td>554564</td>
+                            <td id="order1id"><b>98542257</b></td>
+                            <td id="order1time">2016-04-10 12:20:30</td>
+                            <td id="order1shop">554564</td>
                             <td>
-                               <button onclick="document.getElementById('edit_1').style.display='block';
+                               <button id="editorder1" onclick="document.getElementById('edit_1').style.display='block';
                              document.getElementById('fade_1').style.display='block'"
                              style="background-color: #42a4e0;
                               border-radius: 5px;
@@ -377,15 +498,15 @@
                                        </tr>
                                        <tr>
                                         <td style="font-size: 18px;"><b>Edit the price</b></td>
-                                        <td><input type="" name="editPrice" placeholder="$800"></td>
+                                        <td><input id="eprice1"type="text" name="editPrice" placeholder="$800"></td>
                                        </tr>
                                        <tr>
                                         <td style="font-size: 18px;"><b>Edit the Telephone</b></td>
-                                        <td><input type="" name="editPhone" placeholder="8518-8456"></td>
+                                        <td><input id="ephone1" type="text" name="editPhone" placeholder="8518-8456"></td>
                                        </tr>
                                         <tr>
                                         <td style="font-size: 18px;"><b>Edit the Address</b></td>
-                                        <td><input type="" name="editAdrs" placeholder="Tongji University"
+                                        <td><input id="eaddress1" type="text" name="editAdrs" placeholder="Tongji University"
                                           style="height: 100px;"></td>
                                        </tr>
                                     </table>
@@ -404,7 +525,7 @@
                                     position: relative;
                                     margin-bottom: 300px;">cancel</button>
                                     <!-- confirm button -->
-                                      <button onclick="document.getElementById('edit_1').style.display='none';
+                                      <button id="econfirm1" onclick="document.getElementById('edit_1').style.display='none';
                                    document.getElementById('fade_1').style.display='none'"
                                    style="background-color: #42a4e0;
                                     border-radius: 5px;
@@ -418,7 +539,7 @@
                                     margin-bottom: 300px;">comfirm</button>
                               </div>
                               <div id="fade_1" class="black_overlay"></div>
-                              <button style="background-color: #42a4e0;
+                              <button id="finish1" style="background-color: #42a4e0;
                                     border-radius: 5px;
                                     color: #fff; 
                                     font-size:14px;
@@ -429,11 +550,11 @@
                           </tr>
                         
                           <tr>
-                            <td><b>98542287</b></td>
-                            <td>2016-04-10 12:20:30</td>
-                            <td>755458</td>
+                            <td id="order2id"><b>98542287</b></td>
+                            <td id="order2time">2016-04-10 12:20:30</td>
+                            <td id="order2shop">755458</td>
                             <td>
-                               <button onclick="document.getElementById('edit_2').style.display='block';
+                               <button id="editorder2" onclick="document.getElementById('edit_2').style.display='block';
                                    document.getElementById('fade_2').style.display='block'"
                                    style="background-color: #42a4e0;
                                     border-radius: 5px;
@@ -453,15 +574,15 @@
                                        </tr>
                                        <tr>
                                         <td style="font-size: 18px;"><b>Edit the price</b></td>
-                                        <td><input type="" name="editPrice" placeholder="$800"></td>
+                                        <td><input id="eprice2" type="text" name="editPrice" placeholder="$800"></td>
                                        </tr>
                                        <tr>
                                         <td style="font-size: 18px;"><b>Edit the Telephone</b></td>
-                                        <td><input type="" name="editPhone" placeholder="8518-8456"></td>
+                                        <td><input id="ephone2" type="text" name="editPhone" placeholder="8518-8456"></td>
                                        </tr style="font-size: 18px;">
                                         <tr>
                                         <td style="font-size: 18px;"><b>Edit the Address</b></td>
-                                        <td><input type="" name="editAdrs" placeholder="Tongji University"
+                                        <td><input id="eaddress2" type="text" name="editAdrs" placeholder="Tongji University"
                                           style="height: 100px;"></td>
                                        </tr>
                                     </table>
@@ -479,7 +600,7 @@
                                     position: relative;
                                     margin-bottom: 300px;">cancel</button>
                                     <!-- confirm button -->
-                                     <button onclick="document.getElementById('edit_2').style.display='none';
+                                     <button id="econfirm2"onclick="document.getElementById('edit_2').style.display='none';
                                    document.getElementById('fade_2').style.display='none'"
                                    style="background-color: #42a4e0;
                                     border-radius: 5px;
@@ -493,7 +614,7 @@
                                     margin-bottom: 300px;">comfirm</button>
                               </div>
                               <div id="fade_2" class="black_overlay"></div>
-                              <button style="background-color: #42a4e0;
+                              <button id="finish2" style="background-color: #42a4e0;
                                     border-radius: 5px;
                                     color: #fff; 
                                     font-size:14px;
@@ -505,11 +626,11 @@
 
                         
                           <tr>
-                            <td><b>98542751</b></td>
-                            <td>2016-04-10 12:20:30</td>
-                            <td>825990</td>
+                            <td id="order3id"><b>98542751</b></td>
+                            <td id="order3time">2016-04-10 12:20:30</td>
+                            <td id="order3shop">825990</td>
                             <td>
-                               <button onclick="document.getElementById('edit_3').style.display='block';
+                               <button id="editorder3" onclick="document.getElementById('edit_3').style.display='block';
                                    document.getElementById('fade_3').style.display='block'"
                                    style="background-color: #42a4e0;
                                     border-radius: 5px;
@@ -529,15 +650,15 @@
                                        </tr>
                                        <tr>
                                         <td style="font-size: 18px;"><b>Edit the price</b></td>
-                                        <td><input type="" name="editPrice" placeholder="$1000"></td>
+                                        <td><input id="eprice3" type="text" name="editPrice" placeholder="$1000"></td>
                                        </tr>
                                        <tr>
                                         <td style="font-size: 18px;"><b>Edit the Telephone</b></td>
-                                        <td><input type="" name="editPhone" placeholder="8518-8456"></td>
+                                        <td><input id="ephone3" type="text" name="editPhone" placeholder="8518-8456"></td>
                                        </tr>
                                         <tr>
                                         <td style="font-size: 18px;"><b>Edit the Address</b></td>
-                                        <td><input type="" name="editAdrs" placeholder="Tongji University"
+                                        <td><input id="eaddress3" type="text" name="editAdrs" placeholder="Tongji University"
                                           style="height: 100px;"></td>
                                        </tr>
                                     </table>
@@ -555,7 +676,7 @@
                                     position: relative;
                                     margin-bottom: 300px;">cancel</button>
                                     <!-- confirm button -->
-                                     <button onclick="document.getElementById('edit_3').style.display='none';
+                                     <button id="econfirm3" onclick="document.getElementById('edit_3').style.display='none';
                                    document.getElementById('fade_3').style.display='none'"
                                    style="background-color: #42a4e0;
                                     border-radius: 5px;
@@ -569,7 +690,7 @@
                                     margin-bottom: 300px;">comfirm</button>
                               </div>
                               <div id="fade_3" class="black_overlay"></div>
-                              <button style="background-color: #42a4e0;
+                              <button id="finish3" style="background-color: #42a4e0;
                                     border-radius: 5px;
                                     color: #fff; 
                                     font-size:14px;
@@ -661,7 +782,7 @@
             </div>
           </div>
           <div class="container">
-            <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="images/logo.png"></div>
+            <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="../Images/images/logo.png"></div>
             <address>
               <i class="fa fa-map-marker"></i>DB Design Project <i class="fa fa-mobile"></i><span> +(888) 123-4567</span> <i class="fa fa-envelope"></i><span> Tongji University </span>
             </address>
