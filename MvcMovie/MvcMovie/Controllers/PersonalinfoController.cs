@@ -22,7 +22,7 @@ namespace MvcMovie.Controllers
             ViewBag.gender = cus.CustomerGender;
             ViewBag.credit = cus.CustomerCredit;
             ViewBag.phone = cus.CustomerPhone;
-            return View();
+            return PartialView();
         }
 
         public ActionResult ConfirmReceipt()//确认收货,传入订单ID

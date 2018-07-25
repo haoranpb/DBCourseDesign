@@ -84,6 +84,7 @@ namespace MvcMovie.Controllers
         {
             string itemid = Request.QueryString["itemid"];
             string itemnum = Request.QueryString["itemnum"];
+            string itemcount = Request.QueryString["itemcount"];
 
             Item item = db.Items.Find(itemid);
             if (item == null)
@@ -91,7 +92,7 @@ namespace MvcMovie.Controllers
                 return HttpNotFound();
             }
             var json = new {
-                ItemCount = Request.QueryString["itemcount"],
+                ItemCount = itemcount,
                 ItemID = item.ItemID,
                 ItemInfo = item.ItemInfo,
                 ItemName = item.ItemName,
@@ -113,7 +114,8 @@ namespace MvcMovie.Controllers
             p.ItemName = Request.QueryString["ItemName"];
             p.ItemPic = Request.QueryString["ItemPic"];
             string PATH = Request.QueryString["PATH"];
-            System.IO.File.Copy(PATH+p.ItemPic+".jpg", "~/Images/img/images+"+ p.ItemPic + ".jpg", true);
+            
+            //System.IO.File.Copy(PATH, "/Users/ludanxer/Downloads/DBCourseDesign/MvcMovie/MvcMovie/Images/img/images/" + p.ItemPic + ".jpg", true); // can not find path
             //前端看完下面这个注释记得删了，别让袁阿姨看见
             //这里注意一下，我们的逻辑上是，将图片从本地的一个地方移动道本地的服务器images文件夹下面，然后就可以调用图片了
             //所以演示时的图片名字最好不要带中文
@@ -144,7 +146,7 @@ namespace MvcMovie.Controllers
             p.ItemName = Request.QueryString["ItemName"];
             p.ItemPic = Request.QueryString["ItemPic"];
             string PATH = Request.QueryString["PATH"];
-            System.IO.File.Copy(PATH + p.ItemPic + ".jpg", "~/Images/img/images+" + p.ItemPic + ".jpg", true);
+            System.IO.File.Copy(PATH, "~/Images/img/images+" + p.ItemPic + ".jpg", true);
             //这里注释与上面edit那里的相同，先看这个的话记得把上面edit的也删了
             //前端看完下面这个注释记得删了，别让袁阿姨看见
             //这里注意一下，我们的逻辑上是，将图片从本地的一个地方移动道本地的服务器images文件夹下面，然后就可以调用图片了

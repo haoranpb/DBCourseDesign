@@ -71,8 +71,10 @@ namespace MvcMovie.Controllers
 
         // GET: /HomePage/Search?keyword=LILIFAN
         // 搜索商品
-        public ActionResult Search(string keyword)
+        public ActionResult Search()
         {
+            string id = Request.QueryString["id"];
+            string keyword = Request.QueryString["keyword"];
             var items = from item in db.Items
                         where item.ItemName.Contains(keyword)
                         select item;
@@ -81,11 +83,15 @@ namespace MvcMovie.Controllers
             string ItemIdString = "";
             foreach (var item in items)
             {
-                ItemIdString = String.Join(ItemIdString, "   ", item.ItemID);
+                ItemIdString = ItemIdString + " " + item.ItemID;
             }
-            return Content(ItemIdString);
+            ViewBag.ItemIdString = ItemIdString;
+            ViewBag.id = id;
+            return PartialView();
 
             //return View(items.ToList());
         }
     }
+
+
 }

@@ -39,7 +39,7 @@
                     else if (data == "low_stock")
                         alert("Inventory Shortage!");
                     else if (data == "already_in")
-                        alert("The item is already in the cart!");
+						alert("The item is already in the cart and it's count adds 1");
                     else if (data == "full")
                         alert("The cart is full!");
                     else
@@ -50,12 +50,14 @@
             $(".buynow").click(function () {//GET: /Item/Add?ID=X&customerID&cnt=xx
                 var urlstr = "/Item/Add?ID=" + "@ViewBag.id" + "&customerID=" + "@ViewBag.user_id" + "&cnt=1";
                 $.get(urlstr, function (data) {
-                    if (data == "success")
-                        $(window).attr('location', "../Cart/Index?id=" + "@ViewBag.user_id");
-                    else if (data == "low_stock")
-                        alert("Inventory Shortage!");
-                    else if (data == "already_in")
-                        alert("The item is already in the cart!");
+					if (data == "success")
+						$(window).attr('location', "../Cart/Index?id=" + "@ViewBag.user_id");
+					else if (data == "low_stock")
+						alert("Inventory Shortage!");
+					else if (data == "already_in") {
+						alert("The item is already in the cart and it's count adds 1");
+						$(window).attr('location', "../Cart/Index?id=" + "@ViewBag.user_id");
+					}
                     else if (data == "full")
                         alert("The cart is full!");
                     else
