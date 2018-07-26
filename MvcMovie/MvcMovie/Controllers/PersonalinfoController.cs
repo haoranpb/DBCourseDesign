@@ -25,8 +25,8 @@ namespace MvcMovie.Controllers
             ViewBag.credit = cus.CustomerCredit;
             ViewBag.phone = cus.CustomerPhone;
             var query = from credit in db.CreditCards
-                            where credit.CustomerID == ID
-                            select credit;
+                        where credit.CustomerID == ID
+                        select credit;
             foreach (var c in query)
             {
                 ViewBag.card += c.CreditCardID;
@@ -37,11 +37,11 @@ namespace MvcMovie.Controllers
             ViewBag.Time = "";
             ViewBag.ShopID = "";
 
-            var orderQuery =  from order in db.Orders
-                                where ID == order.CustomerID
-                                select order;
+            var orderQuery = from order in db.Orders
+                             where ID == order.CustomerID
+                             select order;
             List<Order> orderQueryn = new List<Order>();
-            foreach(var i in orderQuery)
+            foreach (var i in orderQuery)
             {
                 orderQueryn.Add(i);
             }
@@ -59,7 +59,8 @@ namespace MvcMovie.Controllers
                 }
             }
 
-            foreach (var cOrderQuery in orderQueryn) { 
+            foreach (var cOrderQuery in orderQueryn)
+            {
                 ViewBag.OrderID += cOrderQuery.OrderID;
                 ViewBag.OrderID += "*";
                 //ViewBag.OrderID = String.Join(String.Join(ViewBag.OrderID, "*"), cOrderQuery.OrderID);
@@ -93,7 +94,7 @@ namespace MvcMovie.Controllers
             string customerID = Request.QueryString["id"];
             string address = Request.QueryString["addr"];
             //Customer cus = db.Customers.Find(customerID);
-            
+
             return Content("Hello");
         }
 
@@ -196,7 +197,7 @@ namespace MvcMovie.Controllers
         public ActionResult DeleteCard()
         {
             string del = Request.QueryString["del"];
-           
+
             //var card = db.CreditCards.SingleOrDefault<CreditCard>(s => s.CustomerID == ID);
             CreditCard item = db.CreditCards.Find(del);
             db.CreditCards.Remove(item);
@@ -236,12 +237,47 @@ namespace MvcMovie.Controllers
                 count++;
                 if (count >= 3) break; //最多显示三个
             }
-            
-            
+
+
             return Content(browsingString);
         }
 
+        public ActionResult SearchOrder()
+        {
+            ViewBag.card = "";
+            string ID = Request.QueryString["id"];
+            Customer cus = db.Customers.Find(ID);
+            ViewBag.age = cus.CustomerAge;
+            ViewBag.key = cus.CustomerPassword;
+            ViewBag.id = ID;
+            ViewBag.gender = cus.CustomerGender;
+            ViewBag.credit = cus.CustomerCredit;
+            ViewBag.phone = cus.CustomerPhone;
+            var query = from credit in db.CreditCards
+                        where credit.CustomerID == ID
+                        select credit;
+            foreach (var c in query)
+            {
+                ViewBag.card += c.CreditCardID;
+                ViewBag.card += "*";
+            }
 
+            string order = Request.QueryString["orderid"];
+            Order o = db.Orders.Find(order);
+            if (o == null || o.CustomerID != ID) return HttpNotFound();
+            ViewBag.OrderID = "";
+            ViewBag.Time = "";
+            ViewBag.ShopID = "";
+            ViewBag.OrderID += o.OrderID;
+            ViewBag.OrderID += "*";
+            //ViewBag.OrderID = String.Join(String.Join(ViewBag.OrderID, "*"), cOrderQuery.OrderID);
+            ViewBag.Time += o.OrderTime;
+            ViewBag.Time += "*";
+            //ViewBag.Time = String.Join(String.Join(ViewBag.Time, "*"), cOrderQuery.OrderTime);
+            ViewBag.ShopID += o.ShopID;
+            ViewBag.ShopID += "*";
+            return PartialView("Index");
+        }
     }
 
 }

@@ -1,16 +1,841 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<!--[if IE]>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<![endif]-->
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="">
-<!-- Favicons Icon -->
-<title>Personal Account</title>
-<!-- Mobile Specific -->
+	<meta charset="utf-8">
+	<!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Favicons Icon -->
+	<title>Personal Account</title>
+	<!-- Mobile Specific -->
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<!--[if IE]>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<![endif]-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<!-- Favicons Icon -->
+		<title>Personal Account</title>
+		<!-- Mobile Specific -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<!-- CSS Style -->
+		<link rel="stylesheet" type="text/css" href="~/Content/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="~/Content/font-awesome.css" media="all">
+		<link rel="stylesheet" type="text/css" href="~/Content/style.css" media="all">
+		<link rel="stylesheet" href="~/Content/syx-ms-style.min.css" />
+		<link rel="stylesheet" href="~/Content/syx-personal_member.min.css" />
+		<link rel="stylesheet" href="~/Content/syx-sui.css" />
+		<script type="text/javascript" src="~/Scripts/address_all.js"></script>
+		<script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="~/Scripts/sui.js"></script>
+		<link rel="stylesheet" type="text/css" href="~/Content/checkOut.css" />
+		<link rel="stylesheet" type="text/css" href="~/Content/account_table.css" />
+		<link rel="stylesheet" type="text/css" href="~/Content/syx-seller_account.css" />
+		<link rel="stylesheet" type="text/css" href="~/Content/search_form.css" />
+		<link rel="stylesheet" type="text/css" href="~/Content/font-awesome.min.css" />
+	</head>
+
+	<body>
+		<script>
+			$(document).ready(function () {
+				var ID = "@ViewBag.id";
+				$("#2").click(function () {
+				var id = $("#1").val();
+				$(window).attr("location", "/Personalinfo/SearchOrder?id=" + ID + "&orderid=" + id);
+			});
+            var orderSelected = "";
+            var bankCardSelected = "";
+            var globalID = "";
+            console.log("@ViewBag.card");
+
+            let tbody = document.querySelector('#orderTable');
+            let bankTBody = document.querySelector('#tbodyBankCard');
+
+
+            for (let i = 0; i < "@ViewBag.card".split('*').length - 1; ++i) {
+                bankTBody.insertRow(i);
+                bankTBody.rows[i].insertCell(0);
+                bankTBody.rows[i].cells[0].appendChild(document.createTextNode("@ViewBag.card".split('*')[i]));
+                bankTBody.rows[i].cells[0].id = '*' + i;
+                let complex = bankTBody.rows[i].insertCell(1);
+
+                let editButton = document.createElement('button');
+                complex.appendChild(editButton);
+                editButton.appendChild(document.createTextNode('Edit'));
+                editButton.style.backgroundColor = '#42a4e0';
+                editButton.style.borderRadius = '5px';
+                editButton.style.color = '#fff';
+                editButton.style.fontSize = '14px';
+                editButton.style.border = '0px';
+                editButton.style.width = '107px';
+                editButton.style.height = '26px';
+
+                editButton.addEventListener('click', function () {
+                    document.getElementById('editCard_1').style.display = 'block';
+                    document.getElementById('fade_1').style.display = 'block';
+                    bankCardSelected = "@ViewBag.card".split('*')[i];
+                    console.log(bankCardSelected);
+                    globalID = '*' + i;
+                })
+
+                let deleteButton = document.createElement('button');
+                complex.appendChild(deleteButton);
+                deleteButton.appendChild(document.createTextNode('Delete'));
+                deleteButton.style.borderRadius = "5px";
+                deleteButton.style.color = "#fff";
+                deleteButton.style.fontSize = "14px";
+                deleteButton.style.border = "0px";
+                deleteButton.style.width = "107px";
+                deleteButton.style.height = "26px";
+                deleteButton.style.backgroundColor = "red";
+                deleteButton.style.margin = "10px";
+                deleteButton.addEventListener('click', function () {
+                    bankCardSelected = "@ViewBag.card".split('*')[i];
+                    bankTBody.deleteRow(i);
+                    $.get('DeleteCard?del=' + bankCardSelected, function (data) {
+                        console.log(data);
+                    })
+                })
+
+
+            }
+
+            for (let i = 0; i < "@ViewBag.Time".split('*').length - 1; ++i) {
+                tbody.insertRow(i);
+                tbody.rows[i].insertCell(0);
+                tbody.rows[i].cells[0].appendChild(document.createTextNode("@ViewBag.OrderID".split('*')[i]));
+                tbody.rows[i].insertCell(1);
+                tbody.rows[i].cells[1].appendChild(document.createTextNode("@ViewBag.Time".split('*')[i]));
+                tbody.rows[i].insertCell(2);
+                tbody.rows[i].cells[2].appendChild(document.createTextNode("@ViewBag.ShopID".split('*')[i]));
+
+
+
+
+
+                let complex = tbody.rows[i].insertCell(3);
+
+
+                let returnInput = document.createElement('input');
+                complex.appendChild(returnInput);
+                returnInput.setAttribute('type', 'button');
+                returnInput.setAttribute('value', 'Cancel');
+                returnInput.setAttribute('class', 'button_blue');
+
+                returnInput.addEventListener('click', function () {
+                    $.get('CancelOrder?orderID=' + "@ViewBag.OrderID".split('*')[i], function (data) {
+                        console.log(data);
+                    })
+                })
+
+                let commentInput = document.createElement('input');
+                complex.appendChild(commentInput);
+                commentInput.setAttribute('type', 'button');
+                commentInput.setAttribute('value', 'Comment');
+                commentInput.setAttribute('class', 'button_blue');
+                commentInput.setAttribute('style', 'margin:5px');
+
+                commentInput.addEventListener('click', function () {
+                    document.getElementById('comment_1').style.display = 'block';
+                    document.getElementById('fade_4').style.display = 'block';
+                    orderSelected = "@ViewBag.OrderID".split('*')[i];
+                })
+
+
+
+
+
+
+            let checkInput = document.createElement('input');
+                complex.appendChild(checkInput);
+                checkInput.setAttribute('type', 'button');
+                checkInput.setAttribute('value', 'Confirm');
+                checkInput.setAttribute('class', 'button_blue');
+                checkInput.addEventListener('click', function () {
+                    $.get('ConfirmReceipt?orderID=' + "@ViewBag.OrderID".split('*')[i], function (data) {
+                        console.log(data);
+                    })
+                })
+            }
+
+
+
+            document.querySelector('#commentSave').addEventListener('click', function () {
+                document.getElementById('comment_1').style.display = 'none';
+                document.getElementById('fade_4').style.display = 'none';
+                console.log(orderSelected);
+                console.log(document.querySelector('#commentInput').value);
+                $.get('AddComment?orderID=' + orderSelected + '&commentInfo=' + document.querySelector('#commentInput').value, function (data) {
+                    console.log(data);
+                })
+            })
+
+
+             document.querySelector('#saveCard').addEventListener('click', function () {
+                document.getElementById('editCard_1').style.display = 'none';
+                document.getElementById('fade_1').style.display = 'none'
+                 console.log(bankCardSelected);
+                 document.getElementById(globalID).innerHTML = document.querySelector('#inputCard').value;
+                 console.log(document.querySelector('#inputCard').value);
+                 $.get('EditCard?pre=' + bankCardSelected + '&fut=' + document.querySelector('#inputCard').value +'&id=' + "@ViewBag.id", function (data) {
+                    console.log(data);
+                })
+            })
+
+            document.querySelector('#editAddress').addEventListener('click', function () {
+                console.log(document.querySelector('#editAddress'));
+                document.getElementById('editAdrs').style.display = 'block';
+                document.getElementById('fade_1').style.display = 'block';
+            })
+
+            document.querySelector('#editAddressCancel').addEventListener('click', function () {
+               console.log('editAddressCancel');
+                document.getElementById('editAdrs').style.display = 'none';
+                document.getElementById('fade_1').style.display = 'none';
+            })
+
+
+            document.querySelector('#editAddressSave').addEventListener('click', function () {
+                //console.log('editAddressSave');
+                document.getElementById('editAdrs').style.display = 'none';
+                document.getElementById('fade_1').style.display = 'none';
+                //console.log(document.getElementById('address'));
+                //console.log(document.querySelector('#inputAddress').value);
+                let tempAddr = document.querySelector('#inputAddress').value;
+                //console.log(tempAddr);
+                document.querySelector('#address').innerHTML = document.querySelector('#inputAddress').value;
+                $.get('EditAddress?id=' + '@ViewBag.id' + '&addr=' + tempAddr, function (data) {
+                    //console.log(data);
+                });
+            })
+
+             document.querySelector('#editGenderCancel').addEventListener('click', function () {
+                document.getElementById('editGender').style.display = 'none';
+                document.getElementById('fade_2').style.display = 'none';
+            })
+
+             document.querySelector('#editGenderSave').addEventListener('click', function () {
+                document.getElementById('editGender').style.display = 'none';
+                document.getElementById('fade_2').style.display = 'none';
+                //console.log('editGenderSave');
+                //console.log(document.querySelector('#selectGender').value);
+                let gender = document.querySelector('#selectGender').value;
+                document.querySelector('#gender').innerHTML = gender;
+                $.get('EditGender?id=' + '@ViewBag.id' + '&ge=' + gender, function (data) {
+                    console.log(data);
+                })
+            })
+
+            document.querySelector('#editPhoneSave').addEventListener('click', function () {
+                document.getElementById('editPhone').style.display='none';
+                document.getElementById('fade_3').style.display = 'none';
+                //let phone = document.querySelector('#phoneReal').innerHTML;
+                let phone = document.querySelector('#inputPhone').value;
+                document.querySelector('#phoneReal').innerHTML = phone;
+                $.get('EditPhone?id=' + '@ViewBag.id' + '&ph=' + phone, function (data) {
+                    console.log(data);
+                })
+                //console.log(phone);
+            })
+
+
+
+        })
+		</script>
+
+		<header>
+			<div class="header-container">
+				<div class="header-top">
+					<div class="container">
+						<div class="row">
+
+							<div class="col-xs-7 col-sm-6">
+								<div class="dropdown block-language-wrapper hidden-xs">
+									<a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
+									</ul>
+								</div>
+
+
+								<div class="dropdown block-currency-wrapper hidden-xs">
+									<a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
+									</ul>
+								</div>
+
+
+								<div class="welcome-msg hidden-xs"> Welcome to Tongji University! </div>
+							</div>
+							<div class="col-xs-5 col-sm-6">
+								<div class="top-cart-contain pull-right">
+
+									<div class="mini-cart">
+										<div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="#">  My Cart <span class="cart_count">2</span></a></div>
+										<div>
+											<div class="top-cart-content" style="display: none;">
+												<div class="actions">
+													<button class="btn-checkout" title="Checkout" type="button"><span>Checkout</span></button>
+													<a href="#" class="view-cart"><span>View Cart</span></a>
+												</div>
+
+												<ul class="mini-products-list" id="cart-sidebar">
+													<li class="item first">
+														<div class="item-inner">
+															<a class="product-image" title="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" href="#l"><img alt="timi &amp; leslie Sophia Diaper Bag, Lemon Yellow/Shadow White" src="products-images/p4.jpg"></a>
+															<div class="product-details">
+																<div class="access">
+																	<a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+																	<a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+																</div>
+
+																<strong>1</strong> x <span class="price">$179.99</span>
+																<p class="product-name"><a href="#">timi &amp; leslie Sophia Diaper Bag...</a></p>
+															</div>
+														</div>
+													</li>
+													<li class="item last">
+														<div class="item-inner">
+															<a class="product-image" title="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" href="#"><img alt="JP Lizzy Satchel Designer Diaper Bag - Slate Citron" src="../Images/products-images/p3.jpg"></a>
+															<div class="product-details">
+																<div class="access">
+																	<a class="btn-remove1" title="Remove This Item" href="#">Remove</a>
+																	<a class="btn-edit" title="Edit item" href="#"><i class="icon-pencil"></i><span class="hidden">Edit item</span></a>
+																</div>
+
+																<strong>1</strong> x <span class="price">$80.00</span>
+																<p class="product-name"><a href="#">JP Lizzy Satchel Designer Diaper Ba...</a></p>
+															</div>
+														</div>.
+													</li>
+												</ul>
+
+											</div>
+										</div>
+									</div>
+
+									<div id="ajaxconfig_info" style="display:none">
+										<a href="#/"></a>
+										<input value="" type="hidden">
+										<input id="enable_module" value="1" type="hidden">
+										<input class="effect_to_cart" value="1" type="hidden">
+										<input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
+									</div>
+								</div>
+
+								<div class="top-search">
+									<div class="block-icon pull-right">
+										<a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
+										<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content">
+													<div class="modal-header">
+														<button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
+													</div>
+													<div class="modal-body">
+														<form class="navbar-form">
+															<div id="search">
+																<div class="input-group">
+																	<input name="search" placeholder="Search" class="form-control" type="text">
+																	<button type="button" class="btn-search"><i class="fa fa-search"></i></button>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="toplinks">
+									<div class="links">
+										<div class="myaccount">
+											<button style="background-color: rgb(51, 51, 51);
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 40px;
+                                    ">
+												<b>Log out</b>
+											</button>
+										</div>
+
+
+
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+
+		<!-- PERSONAL ACCOUNT -->
+		<section style="position:relative;">
+
+			<!-- search form -->
+			<div class="search d2">
+				<form>
+					<input id ="1"type="text" placeholder="Search Orders">
+					<button id ="2"type="button" style="left: 458px;bottom: 84px;"></button>
+				</form>
+			</div>
+			<!-- end of search form -->
+
+			<div class="cont-main" style="margin-left: 20%">
+				<div class="main-wrap mt15" style="border: 0px;">
+					<div class="server-wrapper">
+						<div class="server-tab" style="margin-top: 26px;">
+							<div style=" float: left;vertical-align: bottom;text-align: center;">
+								<div style="width: 680px;padding: 10px;float: left;background-color: #fff;height: 250px;">
+									<div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;display:none">
+										<div style="width: 100%;height: 100%;border: 1px #F2873B dashed;display:none">
+											<span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: none; margin:auto;margin-top:20px;">Address : </span>
+											<span id="address" style="font-size: 15px;color: #686868;font-weight:;display: none; margin:auto;margin-top:20px;">Tongji University, Shanghai, China </span>
+											<!--edit the address -->
+											<button id="editAddress" style="background-color:#f56a48;border-radius:5px;color:#fff;font-size:14px;border:0px;width:107px;height:26px;margin-top:5px;display:none">
+												Edit
+											</button>
+											<!-- 以下为点击edit后,对address的操作 -->
+											<div id="editAdrs" class="white_content">
+												<h1 style="align-content:center;margin-top: -10px;">Edit your address</h1>
+												<input id="inputAddress" name="edit the address"
+													   style="height: 250px;width: 400px;
+                                   margin: auto;
+                                   margin-top:20px;" placeholder="Input your new address:country/city/district/street.">
+												<!--Buttons-->
+												<center>
+													<button id="editAddressCancel" style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                   margin-top: 20px;
+                                    ">
+														cancel
+													</button>
+												</center>
+												<center>
+													<button id="editAddressSave"
+															style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-top: 30px;
+                                    ">
+														save
+													</button>
+												</center>
+												<!-- end of buttons -->
+											</div>
+											<div id="fade_1" class="black_overlay"></div>
+										</div>
+									</div>
+									<div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
+										<div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
+											<span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">Gender : </span>
+											<span id="gender" style="font-size: 15px;color: #686868;font-weight:;display: block;display: block; margin:auto;margin-top:20px;">@ViewBag.gender </span>
+											<button onclick="document.getElementById('editGender').style.display='block';
+                              document.getElementById('fade_2').style.display='block'"
+													style="background-color: #f56a48;
+                              border-radius: 5px;color: #fff;
+                              font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 22px;">
+												Edit
+											</button>
+											<!-- 以下为点击edit后,对gender的操作 -->
+											<div id="editGender" class="white_content2" style="left:530px;">
+												<h1 style="align-content:center;margin-top: -10px;">Change your Gender</h1>
+												<!-- edit gender -->
+												<label id="lblSelect" style="margin-top:20px;">
+													<select id="selectGender" title="Select Gender">
+														<option value="Male" style="font-size: 15px">----Male----</option>
+														<option value="Female" style="font-size: 15px">--Female--</option>
+													</select>
+
+													<!--Buttons-->
+													<center>
+														<button id="editGenderCancel"
+																style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                   margin-top: 20px;
+                                    ">
+															cancel
+														</button>
+													</center>
+													<center>
+														<button id="editGenderSave"
+																style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-top: 30px;
+                                    ">
+															save
+														</button>
+													</center>
+													<!-- end of buttons -->
+											</div>
+											<div id="fade_2" class="black_overlay"></div>
+										</div>
+									</div>
+
+									<div style="float: left;width:200px ;height: 152px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
+										<div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
+											<span style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">Phone : </span>
+											<span id="phoneReal" style="font-size: 15px;color: #686868;font-weight:;display: block;display: block; margin:auto;margin-top:20px;">@ViewBag.phone </span>
+											<button onclick="document.getElementById('editPhone').style.display='block';
+                              document.getElementById('fade_3').style.display='block'"
+													style="background-color: #f56a48;
+                              border-radius: 5px;color: #fff;
+                              font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 22px;">
+												Edit
+											</button>
+											<!-- edit the Phone -->
+											<div id="editPhone" class="white_content3" style="left: 480px;">
+												<h1 style="align-content:center;margin-top: -10px;z-index: 9999">Edit Your Phone Number</h1>
+												<!-- edit card no. -->
+												<h2 style="align-content:center;margin-top: 30px;">
+													Change Number</h1>
+													<input id="inputPhone" style="width:500px;margin-top: 20px;position: relative;" type="" name="editNo" placeholder="Input your new phone number(11 digits)">
+													<!-- end of edit -->
+													<center>
+														<button onclick="document.getElementById('editPhone').style.display='none';
+                                   document.getElementById('fade_3').style.display='none'"
+																style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -200px;
+                                    ">
+															cancel
+														</button>
+													</center>
+
+													<center>
+														<button id="editPhoneSave"
+																style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -250px;
+                                    ">
+															save
+														</button>
+													</center>
+											</div>
+											<div id="fade_3" class="black_overlay"></div>
+											<!--end of edit the bank card-->
+
+										</div>
+									</div>
+								</div>
+
+								<!--右侧---end------->
+								<!-- my orders information -->
+								<div style="width: 800px;padding:10px;display: inline-block; float: left;margin-top: 20px;background-color: #fff;">
+									<div style="border-bottom: 1px #ccc solid;">
+										<p style="font-size: 20px;text-align: left;">Order History</p>
+									</div>
+
+									<table class="dataintable" style="font-size: 15px">
+										<tr>
+											<th>Order ID</th>
+											<th>Time</th>
+											<th>Shop ID</th>
+											<th>Options</th>
+										</tr>
+										<tbody id="orderTable">
+
+											<!-- 以下为点击edit后,对comment的操作 -->
+											<div id="comment_1" class="comment_content" style="left: 500px;">
+												<h1 style="align-content:center;margin-top: -10px;">Welcome to comment!</h1>
+												<input id="commentInput" type="" name="comment"
+													   style="height: 200px;width: 400px;
+                                   margin: auto;
+                                   margin-top:20px;
+                                   " placeholder="Welcome to comment!">
+												<!--Buttons-->
+												<center>
+													<button onclick="document.getElementById('comment_1').style.display='none';
+                                   document.getElementById('fade_4').style.display='none'"
+															style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                   margin-top: 20px;
+                                    ">
+														cancel
+													</button>
+												</center>
+												<center>
+													<button id="commentSave"
+															style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-top: 30px;
+                                    ">
+														Save
+													</button>
+												</center>
+												<!-- end of buttons -->
+											</div>
+											<div id="fade_4" class="black_overlay"></div>
+											<!-- end of comment-->
+
+
+										</tbody>
+									</table>
+								</div>
+								<!-- end of my orders information -->
+								<!-- my bankcard information -->
+								<div style="width: 800px;padding:10px;display: inline-block; float: left;margin-top: 20px;background-color: #fff;">
+									<div style="border-bottom: 1px #ccc solid;">
+										<p style="font-size: 20px;text-align: left;">Bank Cards</p>
+									</div>
+									<table class="dataintable" style="font-size: 15px;">
+										<tr style="text-align:center;">
+											<th>Bank Card No.</th>
+											<th> &nbsp &nbsp &nbsp Options</th>
+										</tr>
+										<tbody id="tbodyBankCard">
+											<div id="editCard_1" class="white_content">
+												<h1 style="align-content:center;margin-top: -10px;z-index: 9999">Edit Your Bank Card</h1>
+												<!-- edit card no. -->
+												<h2 style="align-content:center;margin-top: 30px;">
+													Change Number</h1>
+													<input id="inputCard" style="width:500px;margin-top: 20px;position: relative;" type="" name="editNo" placeholder="Input your new card number(16~19 digits)">
+													<!-- end of edit -->
+													<center>
+														<button onclick="document.getElementById('editCard_1').style.display='none';
+                                   document.getElementById('fade_1').style.display='none'"
+																style="background-color: #FF0000;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -200px;
+                                    ">
+															cancel
+														</button>
+													</center>
+
+													<center>
+														<button id="saveCard"
+																style="background-color: #42a4e0;
+                                    border-radius: 5px;
+                                    color: #fff;
+                                    font-size:14px;
+                                    border: 0px;
+                                    width: 107px;
+                                    height: 26px;
+                                    top: 10px;
+                                    margin: auto;
+                                    margin-bottom: -250px;
+                                    ">
+															save
+														</button>
+													</center>
+											</div>
+											<div id="fade_1" class="black_overlay"></div>
+										</tbody>
+
+
+									</table>
+									<p style="font-size: 15px;color: #CDC8B1;text-align: left;">You can only have up to three bank cards.</p>
+
+									<!-- end of my bankcard information -->
+
+
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- browsing -->
+				<div style="width: 800px;padding:10px;display: inline-block; float: left;margin-top: 20px;margin-left: 170px;background-color: #fff;">
+
+					<div style="border-bottom: 1px #ccc solid;">
+						<p style="font-size: 20px;text-align: left;">Browsing</p>
+					</div>
+
+					<table class="dataintable" style="font-size: 15px;">
+						<tr>
+							<th>Item ID</th>
+							<th>Time</th>
+						</tr>
+						<tr>
+							<td>25888</td>
+							<td>2018-7-25 20:44:50</td>
+						</tr>
+						<tr>
+							<td>25888</td>
+							<td>2018-7-25 20:44:50</td>
+						</tr>
+						<tr>
+							<td>25888</td>
+							<td>2018-7-25 20:44:50</td>
+						</tr>
+					</table>
+
+				</div>
+				<!-- end of browsing -->
+
+		</section>
+		<!-- END OF PERSONAL ACCOUNT -->
+		<!-- FOOTER -->
+		<footer style="margin-top: -50px;z-index: 9999;position: relative;top: 200px;">
+			<div class="footer-inner">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12 col-lg-8">
+							<div class="footer-column pull-left">
+								<h4>CUSTOMMER SERVICE</h4>
+								<ul class="links">
+									<li class="first"><a href="#" title="Contact us">My Account</a></li>
+									<li><a href="#" title="About us">Order History</a></li>
+									<li><a href="#" title="faq">FAQ</a></li>
+									<li><a href="#" title="Popular Searches">Specials</a></li>
+									<li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
+								</ul>
+							</div>
+							<div class="footer-column pull-left">
+								<h4>Corporation</h4>
+								<ul class="links">
+									<li class="first"><a title="Your Account" href="#">About us</a></li>
+									<li><a title="Information" href="#">Customer Service</a></li>
+									<li><a title="Addresses" href="#">Company</a></li>
+									<li><a title="Addresses" href="#">Investor Relations</a></li>
+									<li class="last"><a title="Orders History" href="#">Advanced Search</a></li>
+								</ul>
+							</div>
+							<div class="footer-column pull-left">
+								<h4>Why choose Us</h4>
+								<ul class="links">
+									<li class="first"><a href="#" title="About us">Shopping Guide</a></li>
+									<li><a href="#" title="Blog">Blog</a></li>
+									<li><a href="#" title="Company">Company</a></li>
+									<li><a href="#" title="Investor Relations">Investor Relations</a></li>
+									<li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-xs-12 col-lg-4">
+							<div class="footer-column-last">
+								<div class="newsletter-wrap">
+									<h4>Sign up for emails</h4>
+									<form id="newsletter-validate-detail" method="post" action="#">
+										<div id="container_form_news">
+											<div id="container_form_news2">
+												<input type="text" class="input-text required-entry validate-email" value="Enter your email address" onFocus=" this.value='' " title="Sign up for our newsletter" id="newsletter" name="email">
+												<button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
+											</div>
+										</div>
+									</form>
+								</div>
+								<br>
+								<div class="social">
+									<h4>Follow Us</h4>
+									<ul class="link">
+										<li class="fb pull-left"><a href="#"></a></li>
+										<li class="tw pull-left"><a href="#"></a></li>
+										<li class="googleplus pull-left"><a href="#"></a></li>
+										<li class="rss pull-left"><a href="#"></a></li>
+										<li class="pintrest pull-left"><a href="#"></a></li>
+										<li class="linkedin pull-left"><a href="#"></a></li>
+										<li class="youtube pull-left"><a href="#"></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="../Images/images/logo.png"></div>
+					<address>
+						<i class="fa fa-map-marker"></i>DB Design Project <i class="fa fa-mobile"></i><span> +(888) 123-4567</span> <i class="fa fa-envelope"></i><span> Tongji University </span>
+					</address>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12 col-xs-12 coppyright">Copyright &copy; 2018. All rights reserved.</div>
+
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- END OF FOOTER -->
+	</body>
+</html>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="">
 <meta name="keywords" content="">
@@ -21,12 +846,12 @@
 <link rel="stylesheet" href="~/Content/syx-ms-style.min.css" />
 <link rel="stylesheet" href="~/Content/syx-personal_member.min.css" />
 <link rel="stylesheet" href="~/Content/syx-sui.css" />
-<script type="text/javascript" src="~/Scripts/address_all.js"></script> 
-<script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js" ></script>
-<script type="text/javascript" src="~/Scripts/sui.js" ></script>
-<link rel="stylesheet" type="text/css" href="~/Content/checkOut.css"/>
-<link rel="stylesheet" type="text/css" href="~/Content/account_table.css"/>
-<link rel="stylesheet" type="text/css" href="~/Content/syx-seller_account.css"/>
+<script type="text/javascript" src="~/Scripts/address_all.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/sui.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/checkOut.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/account_table.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/syx-seller_account.css" />
 
 </head>
 

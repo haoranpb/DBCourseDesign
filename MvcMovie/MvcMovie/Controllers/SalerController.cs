@@ -87,9 +87,9 @@ namespace MvcMovie.Controllers
             {
                 //这里还需要order的其他信息
                 OrderStatus = order.OrderState,
-                OrderPhone=order.OrderPhone,
-                OrderAddress=order.OrderPhone,
-                OrderPrice=order.OrderPrice,
+                OrderPhone = order.OrderPhone,
+                OrderAddress = order.OrderPhone,
+                OrderPrice = order.OrderPrice,
                 ii = ii,
                 OrderId = Orderid,
                 OrderTime = ordertime,
@@ -219,7 +219,8 @@ namespace MvcMovie.Controllers
 
 
 
-        public ActionResult orderedit() {
+        public ActionResult orderedit()
+        {
             var price = int.Parse(Request.QueryString["price"]);
             var address = Request.QueryString["address"];
             var phone = Request.QueryString["phone"];
@@ -246,7 +247,8 @@ namespace MvcMovie.Controllers
          * 完了之后重定向，就相当于把当前页面刷新一下
          * 这样子动态加载就会把里面的信息换掉了
          */
-        public ActionResult orderstatusedit() {
+        public ActionResult orderstatusedit()
+        {
             var ordernewstatus = Request.QueryString["orderstatus"];
             Order order = db.Orders.Find(Request.QueryString["orderid"]);
             if (order == null) return Content("failed");
@@ -256,7 +258,7 @@ namespace MvcMovie.Controllers
             return Content("success");
         }
 
-         //通过关键词搜索店铺内物品 /Saler/SearchItem?ShopID=100001&Keyword=LILIFAN
+        //通过关键词搜索店铺内物品 /Saler/SearchItem?ShopID=100001&Keyword=LILIFAN
         //返回字符串 *id*id* 最多显示12个
         public ActionResult SearchItem()
         {
@@ -265,10 +267,10 @@ namespace MvcMovie.Controllers
 
 
             var itemQuery = from item in db.Items
-                            where (item.ShopID == ShopID)&&(item.ItemName.Contains(Keyword))
+                            where (item.ShopID == ShopID) && (item.ItemName.Contains(Keyword))
                             select item;
-            
-            string ItemIDString = "*";
+
+            string ItemIDString = "";
             int count = 0;
             foreach (var item in itemQuery)
             {
@@ -276,10 +278,8 @@ namespace MvcMovie.Controllers
                 count++;
                 if (count >= 12) break;
             }
-
-
             return Content(ItemIDString);
         }
-
     }
+
 }
