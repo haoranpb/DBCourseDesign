@@ -97,22 +97,12 @@
           <div class="row"> 
             <!-- Header Language -->
             <div class="col-xs-7 col-sm-6">
-              <div class="dropdown block-language-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/english.png" alt="language"> English </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/francais.png" alt="language"> French </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="../Images/images/german.png" alt="language"> German </a></li>
-                </ul>
+              <div class="dropdown block-language-wrapper hidden-xs"><a class="block-language dropdown-toggle" href="#"> <img src="../Images/images/english.png" alt="language"> English </a>
               </div>
               <!-- End Header Language --> 
               
               <!-- Header Currency -->
-              <div class="dropdown block-currency-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-currency dropdown-toggle" href="#"> USD <span class="caret"></span></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> $ - Dollar </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> £ - Pound </a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#"> € - Euro </a></li>
-                </ul>
+              <div class="dropdown block-currency-wrapper hidden-xs"> <a class="block-currency dropdown-toggle" href="../Login/Index"> Exit </a>
               </div>
               <!-- End Header Currency -->
               
@@ -123,7 +113,7 @@
                 <!-- Top Cart -->
                 <div class="mini-cart">
                 	<!-- CART INDEX -->
-                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="../Cart/Index/@ViewBag.ID">  My Cart <span class="cart_count">2</span></a></div>
+                  <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle"><a href="../Homepage/Index?id=@ViewBag.ID">  Home Page </a></div>
                     <div>
                       <div class="top-cart-content" style="display: none;">
                         <div class="actions">
@@ -175,36 +165,13 @@
                   </div>
                 </div>
           
-                <div class="top-search">
-                  <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
-                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
-                          </div>
-                          <div class="modal-body">
-                            <form class="navbar-form">
-                              <div id="search">
-                                <div class="input-group">
-                                  <input name="search" placeholder="Search" class="form-control" type="text">
-                                  <!-- SEARCH BUTTON. SWITCH TO INPUT TYPE PRODUCTS -->
-                                  <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>                 
+                         
                  <!-- Header Top Links -->
                 <div class="toplinks">
                   <div class="links">    
                     <!-- SWITCH TO MY ACCOUNT DETAILS. -->         
                     <!-- PERSONALINFO INDEX --> 
-                    <div class="myaccount"><a title="My Account" href="../Personalinfo/Index/@ViewBag.ID"><span class="hidden-xs">My Account</span></a></div>
+                    <div class="myaccount"><a title="My Account" href="../Personalinfo/Index?id=@ViewBag.ID"><span class="hidden-xs">My Account</span></a></div>
                   </div>           
                 </div>
                 <!-- End Header Top Links -->      
@@ -218,87 +185,8 @@
 
   <main class="main oh" id="main" style="margin:0;padding:0;border:0">
     <!-- Navigation -->
-    <header class="nav" style="position:relative; top:-64px;">
-      <div class="nav__holder nav--sticky" style="height: 64px">
-        <div class="container relative">
-          <div class="flex-parent">
-
-            <!-- Mobile Menu Button -->
-            <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open mobile menu">
-              <span class="nav-icon-toggle__box">
-                <span class="nav-icon-toggle__inner"></span>
-              </span>
-            </button> <!-- end mobile menu button -->
-
-            <!-- Logo -->
-            <a href="" class="logo" style="position: relative;top:-4px;left: 20px">
-              <img style="display:none" class="logo__img" src="../Images/img/logo_light.png" alt="logo">
-            </a>
-
-            <!-- Nav-wrap -->
-            <nav class="flex-child nav__wrap d-none d-lg-block" style="vertical-align: center">              
-              <ul class="nav__menu">
-
-                <li class="nav__dropdown active">
-                  <a href="">EARRING</a>
-                  <ul style="display:none" class="nav__dropdown-menu">
-                    <li><a href="#">T-shirt</a></li>
-                    <li><a href="#">Hoodie &amp; Jackets</a></li>
-                    <li><a href="#">Suits</a></li>
-                    <li><a href="#">Shorts</a></li>
-                  </ul>
-                </li>
-
-                <li class="nav__dropdown">
-                  <a href="">NECKLACE</a>
-                  <ul style="display:none" class="nav__dropdown-menu">
-                    <li><a href="#">Underwear</a></li>
-                    <li><a href="#">Hipster</a></li>
-                    <li><a href="#">Dress</a></li>
-                    <li><a href="#">Hoodie &amp; Jackets</a></li>
-                    <li><a href="#">Tees</a></li>
-                  </ul>
-                </li>
-
-                <li class="nav__dropdown">
-                  <a href="#">RING</a>
-                  <ul style="display:none" class="nav__dropdown-menu">
-                    <li><a href="#">Blog Standard</a></li>
-                    <li><a href="#">Single Post</a></li>
-                  </ul>
-                </li>
-                
-                <li class="nav__dropdown">
-                  <a href="#">WRISTBAND</a>
-                  <ul style="display:none" class="nav__dropdown-menu">
-                    <li><a href="">Catalog</a></li>
-                    <li><a href="">Single Product</a></li>
-                    <li><a href="#">Cart</a></li>
-                    <li><a href="#">Checkout</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">FAQ</a></li>
-                  </ul>
-                </li>
-
-              </ul> <!-- end menu -->
-            </nav> <!-- end nav-wrap -->
-
-
-            <!-- Search -->
-            <div class="flex-child nav__search d-none d-lg-block" style="position: relative;top: 10px">
-              <form style="display:none" ymethod="get" class="nav__search-form">
-                <input type="search" class="nav__search-input" placeholder="Search">
-                <button type="submit" class="nav__search-submit">
-                  <i class="ui-search"></i>
-                </button>
-              </form>
-            </div>
-          </div> 
-          <!-- end flex-parent -->
-        </div> 
-        <!-- end container -->
-      </div>
+    <header class="nav" style="position:relative;color:white; top:-64px;">
+      
     </header> 
     <!-- end navigation -->
 
@@ -810,75 +698,12 @@
 <!-- Footer -->
     <footer style="position: relative; top: -200px;margin-bottom:0;padding-bottom:0;border-bottom:0;">
       <div class="footer-inner">
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12 col-xs-12 col-lg-8">
-              <div class="footer-column pull-left">
-                <h4>CUSTOMMER SERVICE</h4>
-                <ul class="links">
-                  <li class="first"><a href="#" title="Contact us">My Account</a></li>
-                  <li><a href="#" title="About us">Order History</a></li>
-                  <li><a href="#" title="faq">FAQ</a></li>
-                  <li><a href="#" title="Popular Searches">Specials</a></li>
-                  <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
-                </ul>
-              </div>
-              <div class="footer-column pull-left">
-                <h4>Corporation</h4>
-                <ul class="links">
-                  <li class="first"><a title="Your Account" href="#">About us</a></li>
-                  <li><a title="Information" href="#">Customer Service</a></li>
-                  <li><a title="Addresses" href="#">Company</a></li>
-                  <li><a title="Addresses" href="#">Investor Relations</a></li>
-                  <li class="last"><a title="Orders History" href="#">Advanced Search</a></li>             
-                </ul>
-              </div>
-              <div class="footer-column pull-left">
-                <h4>Why choose Us</h4>
-                <ul class="links">
-                  <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
-                  <li><a href="#" title="Company">Company</a></li>
-                  <li><a href="#" title="Investor Relations">Investor Relations</a></li>
-                  <li class=" last"><a href="" title="Suppliers">Contact Us</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-xs-12 col-lg-4">
-              <div class="footer-column-last">
-                <div class="newsletter-wrap">
-                  <h4>Sign up for emails</h4>
-                  <form id="newsletter-validate-detail" method="post" action="#" style="width: 376px">
-                    <div id="container_form_news">
-                      <div id="container_form_news2">
-                        <input type="text" class="input-text required-entry validate-email" value="Enter your email address" onFocus=" this.value='' " title="Sign up for our newsletter" id="newsletter" name="email">
-                      <!-- HERE. ONE BOX OR WINDOW NEEDED. SHOW SOME REACTION. -->
-                        <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-                <br>
-                <div class="social" style="width: 400px">
-                  <h4>Follow Us</h4>
-                  <ul class="link">
-                    <li class="fb pull-left"><a href="#"></a></li>
-                    <li class="tw pull-left"><a href="#"></a></li>
-                    <li class="googleplus pull-left"><a href="#"></a></li>
-                    <li class="rss pull-left"><a href="#"></a></li>
-                    <li class="pintrest pull-left"><a href="#"></a></li>
-                    <li class="linkedin pull-left"><a href="#"></a></li>
-                    <li class="youtube pull-left"><a href="#"></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
         <div class="container">
           <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="../Images/images/logo.png"></div>
           <address>
             <!-- CHANGE THE ADDRESS AND CONTACT INFORMATION!!! -->
-            <i class="fa fa-map-marker"></i>ThemesGround, 789 Main rd, Anytown, CA 12345  USA <i class="fa fa-mobile"></i><span> +(888) 123-4567</span> <i class="fa fa-envelope"></i><span> superb@themesground.com</span>
+            <i class="fa fa-map-marker"></i>  Vibranium <i class="fa fa-mobile"></i><span> +(86) 123-45678910 </span> <i class="fa fa-envelope"></i><span> Tongji University </span>
           </address>
         </div>
       </div>
