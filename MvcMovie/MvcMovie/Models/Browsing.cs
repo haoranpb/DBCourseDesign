@@ -9,7 +9,7 @@ namespace MvcMovie.Models
     {
         public string ID { get; set; }//CUSTOMERID
         public string ItemID { get; set; }
-        public string BrowsingTime { get; set; }
+        public DateTime BrowsingTime { get; set; }
     }
 
     

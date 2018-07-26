@@ -26,32 +26,32 @@ namespace MvcMovie.Controllers
             ViewBag.phone = cus.CustomerPhone;
 
             ViewBag.BrowserItem = " ";
+            //ViewBag.BrowserTime = " ";
             ViewBag.BrowserTime = " ";
 
 
-            var browsingQuery = (from dd in db.Browsings
+            
+             var browsingQuery = (from dd in db.Browsings
                                  where dd.ID == ID
                                  orderby dd.BrowsingTime descending
                                  select dd.BrowsingTime);
-
-                     
-            
-
             foreach (var c in browsingQuery)
             {
-                ViewBag.BrowserTime += c;
+                ViewBag.BrowserTime += c.ToString();
                 ViewBag.BrowserTime += "*";
             }
 
-             browsingQuery =    (from dd in db.Browsings
-                                 where dd.ID == ID
-                                 orderby dd.BrowsingTime descending
-                                 select dd.ItemID);
-            foreach (var c in browsingQuery)
+            var anotherBrowsingQuery = (from dd in db.Browsings
+                                        where dd.ID == ID
+                                        orderby dd.BrowsingTime descending
+                                        select dd.ItemID);
+            foreach (var c in anotherBrowsingQuery)
             {
                 ViewBag.BrowserItem += c;
                 ViewBag.BrowserItem += "*";
             }
+
+
 
 
             //System.Console.WriteLine(browsingQuery.Count());
