@@ -66,7 +66,7 @@
                 $("#item" + num + "e").text("Edit");
                 $("#item" + num + "d").show();
                 //xiugaihide
-          	        $("#item"+num+"p").attr("src","../Images/img/images/"+id+".jpg");   //图片
+				$("#item" + num + "p").attr("src", "../Images/img/images/" + pic+".jpg");   //图片
           	        $("#item"+num+"p").attr("alt",name);  //图片无法显示时的文字
           	        $("#item"+num+"t").text(name);        //名称
           	        $("#item"+num+"pr").text("$"+price);	//价格
@@ -101,7 +101,7 @@
                         var price = itemObj.ItemPrice;
 
                         $("#picname").attr("value", pic);		//表单图片名称
-                        $("#picpath").attr("value", "~/Images/img/images/");		//表单图片路径
+						$("#picpath").attr("value", "D://MY_PROJECTS/CourseDesign/MvcMovie/MvcMovie/Images/img/images/"+pic+".jpg");		//表单图片路径
                         $("#name").attr("value", name);		//表单商品名称
                         $("#price").attr("value", price);	//表单商品价格
                     });
@@ -112,7 +112,7 @@
                         var picpath = $("#picpath").val();
                         var name = $("#name").val();
                         var price = $("#price").val();
-
+						console.log(picpath);
                         //没有iteminfo和shopid
                         var modify_url = "/Shop/Edititem?ItemId=" + itemid + "&ItemInfo=" + name + "&ItemName=" + name + "&ItemPic=" + picname + "&PATH=" + picpath + "&ItemPrice=" + price + "&ItemRemain=500&ShopID=" + shopid;
                         $.get(modify_url, function (data) {
@@ -195,8 +195,9 @@
 							var pic = itemObj.ItemPic;
                             var price = itemObj.ItemPrice;
                             var num1 = parseInt(num) + 1;
-							console.log(id+"num="+num1);
-							$("#item" + num1 + "p").attr("src", "../Images/img/images/" + id + ".jpg");   //图片
+							console.log(id + "num=" + num1);
+							itemsid[parseInt(num1)] = id;
+							$("#item" + num1 + "p").attr("src", "../Images/img/images/" + pic + ".jpg");   //图片
                             $("#item" + num1 + "a").attr("id", "item" + num + "e");
                             $("#item" + num1 + "e").text("Edit");
                             $("#item" + num1 + "d").show();
@@ -210,7 +211,6 @@
                             $("#item" + p + "e").attr("id", "item" + p + "a");
                             $("#item" + p + "a").text("Add");
                             $("#item" + p + "d").hide();
-
 							$("#item" + p + "p").attr("src", "../Images/empty.jpg");   //图片
 							$("#item" + p + "p").attr("alt", "no name");  //图片无法显示时的文字
 							$("#item" + p + "t").text("empty");        //名称
@@ -392,7 +392,7 @@
 					</div>
 
 					<!-- search form -->
-					<div class="search d3">
+					<div class="search d2">
 						<form>
 							<input id ="1"type="text" placeholder="Search Orders">
 							<button id ="2"type="button" style="left: 458px;bottom: 84px;"></button>
