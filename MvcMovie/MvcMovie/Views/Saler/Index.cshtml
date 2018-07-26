@@ -50,7 +50,8 @@
                     $("#shop" + ii + "v").text("View");
 
                 });
-            }
+			}
+
             /*---------------------加载订单---------------------*/
             var order_url = "/Saler/Order?shopid1=" + shoplist[1] + "&shopid2=" + shoplist[2] + "&shopid3=" + shoplist[3];
             $.get(order_url, function (data) {
@@ -102,7 +103,9 @@
                 //获得id中的数字即店铺 1-3
                 var num = $(this).attr("id").replace(/[^0-9]/ig,"");
 
-                if (type == "View") {
+				if (type == "View") {
+
+					
                     var shopinfo_url = "/Shop/ShopInfo?shopid=" + shoplist[num]+"&i=1";
                     $.get(shopinfo_url, function (data) {
                         var shopObj = eval(data);
@@ -115,14 +118,23 @@
                         $("#salern").text(salerid);
                         $("#salercr").text(salercredit);
                     });
-
+					
                     document.getElementById('view_shop2').style.display = 'block';
-                    document.getElementById('fade_view_shop2').style.display = 'block';
+					document.getElementById('fade_view_shop2').style.display = 'block';
+					/*---------------------delete shop---------------------*/
+					$("#delete").click(function () {
+						$.get("/Saler/DeleteShop?ID=" + shoplist[num], function (data) {
+							if (data == "success") {
+								alert("Success!");
+								window.location.reload();
+							}
+							else alert("Failed,please double check and try again.");
+						});
+					});
                 }
             });
             /*---------------------添加店铺---------------------*/
             $("button").click(function () {
-
                 //获得当前点击的按钮id
                 var id = $(this).attr("id");
                 //获得内容 view为查看店铺 add为添加店铺
@@ -136,7 +148,8 @@
                     document.getElementById('add_shop').style.display = 'block';
                     document.getElementById('fade_add_shop').style.display = 'block';
                 }
-            })
+			})
+			
             /*---------------------confirm new shop---------------------*/
             $("#confirmshop").click(function () { // select nothing
                 var shopname = $("#nshopn").val();
@@ -220,7 +233,6 @@
             $("#logout").click(function () {
                 //no matched function
                 //one parameter : salerid
-                
                 var salerid = "@ViewBag.ID";
                 console.log(salerid);
                 $.get('DeleteSaler?id=' + salerid, function (data) {
@@ -356,43 +368,40 @@
                         <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
                             <span id="shop1outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin:auto;margin-top:20px;">New Shop</span>
                             <!--本按钮应调用数据库数据，目前暂时为静态且与shop2按钮相同-->
-                            <button id="shop1v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">Add</button>
+                            <button id="shop1v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 20px;">Add</button>
                             <button id="shop1p" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products</button>
-                        
-                        
-                        </div>
+						 </div>
                     </div>
                 
                     <div style="float: left;width:200px ;height: 152px;;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
-                        <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                            <span id="shop2outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">New Shop</span>
-                            <button id="shop2v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">Add</button>
-                            <button id="shop2p" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products</button>
+						<div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
+							<span id="shop2outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">New Shop</span>
+							<button id="shop2v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 20px;">Add</button>
+							<button id="shop2p" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products</button>
+							<!-- 点击view后跳出店铺信息 -->
+							<div id="view_shop2" class="white_content"
+								 style="width: 800px;margin-top: 20px;background-color: #fff;">
 
-                            <!-- 点击view后跳出店铺信息 -->
-                            <div id="view_shop2" class="white_content"
-                                 style="width: 800px;margin-top: 20px;background-color: #fff;">
+								<h1 style="align-content:center;margin-top: -10px;">ShopInformation</h1>
+								<table class="dataintable" style="font-size: 12px;margin: auto;width: 600px;">
+									<tr>
+										<td style="font-size: 18px;"><b>ShopName</b></td>
+										<td id="shopn" style="font-size: 18px;"><b>null</b></td>
+									</tr>
+									<tr>
+										<td style="font-size: 18px;"><b>SalerID</b></td>
+										<td id="salern" style="font-size: 18px;">null</td>
+									</tr>
+									<tr>
+										<td style="font-size: 18px;"><b>SalerCredit</b></td>
+										<td id="salercr" style="font-size: 18px;">null</td>
+									</tr>
+								</table>
 
-                                <h1 style="align-content:center;margin-top: -10px;">ShopInformation</h1>
-                                <table class="dataintable" style="font-size: 12px;margin: auto;width: 600px;">
-                                    <tr>
-                                        <td style="font-size: 18px;"><b>ShopName</b></td>
-                                        <td id="shopn" style="font-size: 18px;"><b>null</b></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="font-size: 18px;"><b>SalerID</b></td>
-                                        <td id="salern" style="font-size: 18px;">null</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="font-size: 18px;"><b>SalerCredit</b></td>
-                                        <td id="salercr" style="font-size: 18px;">null</td>
-                                    </tr>
-                                </table>
-
-                                <!-- 关闭按钮 -->
-                                <button onclick="document.getElementById('view_shop2').style.display='none';
+								<!-- 关闭按钮 -->
+								<button onclick="document.getElementById('view_shop2').style.display='none';
                                            document.getElementById('fade_view_shop2').style.display='none'"
-                                        style="background-color: #42a4e0;
+										style="background-color: #42a4e0;
                                             border-radius: 5px;
                                             color: #fff;
                                             font-size:14px;
@@ -402,65 +411,81 @@
                                             top: 10px;
                                             position: relative;
                                             margin-bottom: 300px;">
-                                    Close
-                                </button>
-                            </div>
+									Close
+								</button>
+								<button id="delete" 
+										style="background-color: #42a4e0;
+                                            border-radius: 5px;
+                                            color: #fff;
+                                            font-size:14px;
+                                            border: 0px;
+                                            width: 107px;
+                                            height: 26px;
+                                            top: 10px;
+                                            position: relative;
+                                            margin-bottom: 300px;">
+									Delete
+								</button>
+							</div>
 
-                            <!-- 背景变黑 -->
-                            <div id="fade_view_shop2" class="black_overlay"></div>
+							<!-- 背景变黑 -->
+							<div id="fade_view_shop2" class="black_overlay"></div>
 
-                        </div>
+						</div>
 
                     </div>
 
                 
                     <div style="float: left;width:200px ;height: 152px;margin-left: 20px;border: 1px #ccc solid;box-shadow: 1px 1px 1px #F5F5F5;padding: 5px;">
-                      <div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
-                        <span id="shop3outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">New Shop</span>
-                         <button id="shop3v" type="button" value="Add" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 30px;">Add</button>
-                          <button id="shop3v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products</button>
-                              <!-- 新建店铺 ShopID由后端生成而非用户填写 -->
-                              <div id="add_shop" class="white_content">
-                                    <h1 style="align-content:center;margin-top: -10px;">Add Shop</h1>
-                                    <table class="dataintable" style="font-size: 12px;margin: auto;width: 750px;">
-                                       <tr>
-                                        <td style="font-size: 18px;"><b>ShopName</b></td>
-                                        <td><input id="nshopn" type="text" name="editPrice" placeholder="Please enter shop name"></td>
-                                       </tr>
-                                    </table>
+						<div style="width: 100%;height: 100%;border: 1px #F2873B dashed;">
+							<span id="shop3outer" style="font-size: 18px;color: #686868;font-weight: bold;display: block;display: block; margin: auto;margin-top:20px;">New Shop</span>
+							<button id="shop3v" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 20px;">Add</button>
+							<button id="shop3p" style="background-color: #f56a48;border-radius: 5px;color: #fff; font-size:14px;border: 0px;width: 107px;height: 26px;margin-top: 10px;">Products</button>
+							<div id="add_shop" class="white_content">
+								<h1 style="align-content:center;margin-top: -10px;">Add Shop</h1>
+								<table class="dataintable" style="font-size: 12px;margin: auto;width: 750px;">
+									<tr>
+										<td style="font-size: 18px;"><b>ShopName</b></td>
+										<td><input id="nshopn" type="text" name="editPrice" placeholder="Please enter shop name"></td>
+									</tr>
+								</table>
 
-                                    <!-- cancel button -->
-                                    <button onclick="document.getElementById('add_shop').style.display='none';
+								<!-- cancel button -->
+								<button onclick="document.getElementById('add_shop').style.display='none';
                                    document.getElementById('fade_add_shop').style.display='none'"
-                                   style="background-color: #FF0000;
+										style="background-color: #FF0000;
                                     border-radius: 5px;
-                                    color: #fff; 
+                                    color: #fff;
                                     font-size:14px;
                                     border: 0px;
                                     width: 107px;
                                     height: 26px;
                                     top: 10px;
                                     position: relative;
-                                    margin-bottom: 300px;">cancel</button>
-                                
-                                    <!-- confirm button -->
-                                      <button id="confirmshop" onclick="document.getElementById('add_shop').style.display='none';
+                                    margin-bottom: 300px;">
+									cancel
+								</button>
+
+								<!-- confirm button -->
+								<button id="confirmshop" onclick="document.getElementById('add_shop').style.display='none';
                                    document.getElementById('fade_add_shop').style.display='none'"
-                                   style="background-color: #42a4e0;
+										style="background-color: #42a4e0;
                                     border-radius: 5px;
-                                    color: #fff; 
+                                    color: #fff;
                                     font-size:14px;
                                     border: 0px;
                                     width: 107px;
                                     height: 26px;
                                     top: 10px;
                                     position: relative;
-                                    margin-bottom: 300px;">comfirm</button>
-                              </div>
+                                    margin-bottom: 300px;">
+									comfirm
+								</button>
+							</div>
 
-                              <!-- 背景变黑 -->
-                              <div id="fade_add_shop" class="black_overlay"></div>
-                      </div>
+							<!-- 背景变黑 -->
+							<div id="fade_add_shop" class="black_overlay"></div>
+						</div>
                     </div>
 
                     </div>

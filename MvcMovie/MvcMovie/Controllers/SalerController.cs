@@ -187,7 +187,7 @@ namespace MvcMovie.Controllers
             }
             db.Shops.Remove(shop);
             db.SaveChanges();
-            return RedirectToAction("Index/" + shop.SalerID);
+            return Content("success");
         }
 
         //跳转至SalerInfo /Saler/SalerInfoPage

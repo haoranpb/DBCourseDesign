@@ -71,7 +71,18 @@
           	        $("#item"+num+"t").text(name);        //名称
           	        $("#item"+num+"pr").text("$"+price);	//价格
         	    });
-        }
+		  }
+		  if (13 > itemList.length) {
+			  for (var p = itemList.length; p <= 12; p++) {
+				  $("#item" + p + "e").attr("id", "item" + p + "a");
+				  $("#item" + p + "a").text("Add");
+				  $("#item" + p + "d").hide();
+				  $("#item" + p + "p").attr("src", "../Images/empty.jpg");   //图片
+				  $("#item" + p + "p").attr("alt", "no name");  //图片无法显示时的文字
+				  $("#item" + p + "t").text("empty");        //名称
+				  $("#item" + p + "pr").text("$0.00");	//价格
+			  }
+		  }
         //循环完后修改0元素中存储的数目
         itemsid[0]=itemList.length-1; // is it useful???
       });
