@@ -44,10 +44,22 @@ namespace MvcMovie.Controllers
                 ViewBag.reviews += Sub.CommentInfo;
                 ViewBag.reviews += '\n';
             }
+
+            //string itemID = ViewBag.id;
+            string user_ID = ViewBag.user_id;
+            var queryString = from item in db.Browsings
+                              where user_ID == item.ID
+                              select item;
+            Browsing b = new Browsing();
+            b.ID = user_ID;
+            b.ItemID = itemID;
+            b.BrowsingTime = (queryString.Count() + 1).ToString();
+            db.Browsings.Add(b);
+            db.SaveChanges();
             return PartialView();
             
         }
-
+        
 
         //GET: /Item/Add?ID=X&customerID=xxx&cnt=xx
         //向购物车增加商品 cnt为数量
