@@ -28,14 +28,16 @@
     <script type="text/javascript" src="~/Scripts/address_all.js"></script>
     <script src=" ~/Scripts/jquery-3.3.1.js"></script>
     <link rel="stylesheet" type="text/css" href="~/Content/checkOut.css" />
-</head>
-<script>
+    <script>
 	$(document).ready(function () {
 		console.log("@ViewBag.idstring");
-			var j = "@ViewBag.idstring".split(" ");
+		var j = "@ViewBag.idstring".split(" ");
 		console.log(j[1]);
 		console.log(j[2]);
-		var js = [1, 2, 3, 4];
+        var js = [1, 2, 3, 4];
+        $(".fixurl").attr("href", function (i, origValue){
+                return origValue + "@ViewBag.customerID";
+			});
 		for (let i = 1; i < j.length; i++) {
 			console.log("begin");
 				var number = j[i].split("=");//number[0]->itemid, number[1]->count
@@ -51,9 +53,10 @@
 					$("#quantity" + i).text(js[i]);
 				});
 			}
-		
+
 	});
-</script>
+    </script>
+</head>
 <body>
 	<header>
     <div class="header-container">
@@ -76,7 +79,7 @@
               <div class="top-cart-contain pull-right"> 
                
                 <div class="mini-cart">
-                  <div class="basket dropdown-toggle"><a href="#"> My Cart </a></div>
+                  <div class="basket dropdown-toggle"><a class="fixurl" href="../HomePage/Index?id="> Home Page </a></div>
                   </div>
                  
                   <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
@@ -88,7 +91,7 @@
                 </div>
           
                 <div class="top-search">
-                  <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
+                  <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> </a>
                     <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                       <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -113,7 +116,7 @@
                 
                 <div class="toplinks">
                   <div class="links">              
-                    <div class="myaccount"><a title="My Account" href="#"><span class="hidden-xs">My Account</span></a></div>
+                    <div class="myaccount"><a class="fixurl" title="My Account" href="../Personalinfo/Index?id="><span class="hidden-xs">My Account</span></a></div>
                 
                  
 
@@ -191,7 +194,6 @@
     </form>
 
     <div class="buttons">
-      <div class="right"><a href="#"  class="button"></a></div> <!-- url wait to complete -->
       <div class="center"><button id="pay" class="button" style="width:300px;"><span>Pay</span></button></div>
         <script>
             document.querySelector('#pay').addEventListener('click', function () {

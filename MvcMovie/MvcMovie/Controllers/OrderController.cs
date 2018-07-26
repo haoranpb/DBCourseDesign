@@ -181,8 +181,17 @@ namespace MvcMovie.Controllers
             string time = System.DateTime.Now.ToString();
            
                 Order order = new Order();
-                order.OrderID = time + shop_id + id;
-                order.ShopID = shop_id;
+            long orderid = 0;
+            //随机生成shopid
+            while (true)
+            {
+                Random rd = new Random();
+                orderid = rd.Next(1, 1000000);
+                if (db.Shops.Find(orderid.ToString()) == null)
+                    break;
+            }
+            order.OrderID = orderid.ToString();
+            order.ShopID = shop_id;
                 order.CustomerID = id;
                 order.OrderPrice = 0;
                 order.OrderCount = 0;
