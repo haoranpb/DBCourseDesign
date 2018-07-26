@@ -65,8 +65,8 @@
             $("#item" + num+"p").attr("src","../Images/img/images/"+pic+".jpg");	//图片 picture
             $("#item" + num+"p").attr("alt",name);  //图片无法显示时的文字 picture.alt
             $("#item" + num+"t").text(name);        //名称 title
-            $("#item" + num+"pl").attr("href","../Item/Index?id="+id+"&personalId="+userid); //图片上的链接 picture link
-            $("#item" + num+"t").attr("href","../Item/Index?id="+id+"&personalId="+userid);  //文本上的链接 title.link
+			  $("#item" + num + "pl").attr("href", "../Item/Index?id=" + id +"&user_id="+userid); //图片上的链接 picture link
+			  $("#item" + num + "t").attr("href", "../Item/Index?id=" + id +"&user_id="+userid);  //文本上的链接 title.link
             $("#item" + num+"b").attr("href","../Order/Index1?user_id="+userid+"&item_id="+id); //Buy Now的链接 buy
             $("#item" + num+"pr").text("$"+price);
           });
