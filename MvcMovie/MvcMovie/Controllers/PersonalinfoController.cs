@@ -80,6 +80,15 @@ namespace MvcMovie.Controllers
             return PartialView();
         }
 
+        public ActionResult DeletePerson()
+        {
+            string id = Request.QueryString["id"];
+            Customer cd = db.Customers.Find(id);
+            db.Customers.Remove(cd);
+            db.SaveChanges();
+            return Content(id);
+        }
+
         public ActionResult ConfirmReceipt()//确认收货,传入订单ID
         {
             string orderID = Request.QueryString["orderID"];

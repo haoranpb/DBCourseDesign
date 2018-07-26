@@ -45,6 +45,15 @@ namespace MvcMovie.Controllers
             return PartialView();
         }
 
+        public ActionResult DeleteSaler()
+        {
+            string id = Request.QueryString["id"];
+            Saler toDel = db.Salers.Find(id);
+            db.Salers.Remove(toDel);
+            db.SaveChanges();
+            return Content(id);
+        }
+
         public ActionResult Order()//向页面返回全部的shop内的全部order的id
         {
             var shopid1 = Request.QueryString["shopid1"];

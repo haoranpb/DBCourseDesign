@@ -47,6 +47,16 @@
 	<body>
 		<script>
 			$(document).ready(function () {
+
+				document.querySelector('#logout').addEventListener('click', function () {
+                $.get('DeletePerson?id=' + "@ViewBag.id", function (data) {
+                    //console.log('Hello');
+                    console.log(data);
+                    window.location.href = '/Login';
+                    //window.setAttribute('url', '/Login');
+                })
+
+            })
 				var ID = "@ViewBag.id";
 				$("#2").click(function () {
 				var id = $("#1").val();
@@ -104,7 +114,10 @@
                     $.get('DeleteCard?del=' + bankCardSelected, function (data) {
                         console.log(data);
                     })
-                })
+				})
+				
+				
+
 
 
             }
@@ -164,6 +177,19 @@
                     $.get('ConfirmReceipt?orderID=' + "@ViewBag.OrderID".split('*')[i], function (data) {
                         console.log(data);
                     })
+                })
+
+
+                 let orderDetails = document.createElement('input');
+                complex.appendChild(orderDetails);
+                orderDetails.setAttribute('type', 'button');
+                orderDetails.setAttribute('value', 'View Details');
+                orderDetails.setAttribute('class', 'button_blue');
+                orderDetails.setAttribute('style', 'margin:5px');
+
+                orderDetails.addEventListener('click', function () {
+                    window.location.href = '/Order/OrderDetail?OrderID=' + "@ViewBag.OrderID".split('*')[i];
+                    console.log('D');
                 })
             }
 
@@ -365,7 +391,7 @@
 								<div class="toplinks">
 									<div class="links">
 										<div class="myaccount">
-											<button style="background-color: rgb(51, 51, 51);
+											<button id="logout" style="background-color: rgb(51, 51, 51);
                                     border-radius: 5px;
                                     color: #fff;
                                     font-size:14px;
