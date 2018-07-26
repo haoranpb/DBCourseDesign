@@ -12,6 +12,4 @@ namespace MvcMovie.Models
         public string AdminPassword { get; set; }
         public string AdminInfo { get; set; }
     }
-
-   
 }
