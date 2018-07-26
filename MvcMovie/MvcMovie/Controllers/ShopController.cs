@@ -113,13 +113,8 @@ namespace MvcMovie.Controllers
             p.ItemName = Request.QueryString["ItemName"];
             p.ItemPic = Request.QueryString["ItemPic"];
             string PATH = Request.QueryString["PATH"];
-            
-            //System.IO.File.Copy(PATH, "/Users/ludanxer/Downloads/DBCourseDesign/MvcMovie/MvcMovie/Images/img/images/" + p.ItemPic + ".jpg", true); // can not find path
-            //前端看完下面这个注释记得删了，别让袁阿姨看见
-            //这里注意一下，我们的逻辑上是，将图片从本地的一个地方移动道本地的服务器images文件夹下面，然后就可以调用图片了
-            //所以演示时的图片名字最好不要带中文
-            //然后要输入两个东西，一个是记录到数据库当中的图片名（没有后缀名），一次是图片所在文件夹
-            //所以图片的路径=图片路径+名字+.jpg
+            if(PATH!= ("D://MY_PROJECTS/CourseDesign/MvcMovie/MvcMovie/Images/img/images/" + p.ItemPic + ".jpg"))
+                System.IO.File.Copy(PATH, "D://MY_PROJECTS/CourseDesign/MvcMovie/MvcMovie/Images/img/images/" + p.ItemPic + ".jpg", true);
             p.ItemPrice = int.Parse(Request.QueryString["ItemPrice"]);
             p.ItemRemain = int.Parse(Request.QueryString["ItemRemain"]);
             p.ShopID = Request.QueryString["ShopID"];
@@ -151,15 +146,10 @@ namespace MvcMovie.Controllers
             }
             p.ItemInfo = Request.QueryString["ItemInfo"];
             p.ItemName = Request.QueryString["ItemName"];
-            //p.ItemPic = Request.QueryString["ItemPic"];
-            //string PATH = Request.QueryString["PATH"];
-            //System.IO.File.Copy(PATH, "~/Images/img/images+" + p.ItemPic + ".jpg", true);
-            //这里注释与上面edit那里的相同，先看这个的话记得把上面edit的也删了
-            //前端看完下面这个注释记得删了，别让袁阿姨看见
-            //这里注意一下，我们的逻辑上是，将图片从本地的一个地方移动道本地的服务器images文件夹下面，然后就可以调用图片了
-            //所以演示时的图片名字最好不要带中文
-            //然后要输入两个东西，一个是记录到数据库当中的图片名（没有后缀名），一次是图片所在文件夹
-            //所以图片的路径=图片路径+名字+.jpg
+            p.ItemPic = Request.QueryString["ItemPic"];
+            string PATH = Request.QueryString["PATH"];
+            System.IO.File.Copy(PATH, "D://MY_PROJECTS/CourseDesign/MvcMovie/MvcMovie/Images/img/images/" + p.ItemPic + ".jpg", true);
+            
             p.ItemPrice = int.Parse(Request.QueryString["ItemPrice"]);
             p.ItemRemain = int.Parse(Request.QueryString["ItemRemain"]);
             p.ShopID = Request.QueryString["ShopID"];
