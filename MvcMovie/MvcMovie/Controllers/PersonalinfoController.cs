@@ -283,6 +283,15 @@ namespace MvcMovie.Controllers
             return Content(browsingString);
         }
 
+         public ActionResult ExistOrder() {
+            string ID = Request.QueryString["id"];
+            string order = Request.QueryString["orderid"];
+            Order o = db.Orders.Find(order);
+            if (o == null || o.CustomerID != ID)
+                return Content("failed");
+            return Content("success");
+        }
+
         public ActionResult SearchOrder()
         {
             ViewBag.card = "";
