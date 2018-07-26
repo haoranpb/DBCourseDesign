@@ -24,6 +24,38 @@ namespace MvcMovie.Controllers
             ViewBag.gender = cus.CustomerGender;
             ViewBag.credit = cus.CustomerCredit;
             ViewBag.phone = cus.CustomerPhone;
+
+            ViewBag.BrowserItem = " ";
+            ViewBag.BrowserTime = " ";
+
+
+            var browsingQuery = (from dd in db.Browsings
+                                 where dd.ID == ID
+                                 orderby dd.BrowsingTime descending
+                                 select dd.BrowsingTime);
+
+                     
+            
+
+            foreach (var c in browsingQuery)
+            {
+                ViewBag.BrowserTime += c;
+                ViewBag.BrowserTime += "*";
+            }
+
+             browsingQuery =    (from dd in db.Browsings
+                                 where dd.ID == ID
+                                 orderby dd.BrowsingTime descending
+                                 select dd.ItemID);
+            foreach (var c in browsingQuery)
+            {
+                ViewBag.BrowserItem += c;
+                ViewBag.BrowserItem += "*";
+            }
+
+
+            //System.Console.WriteLine(browsingQuery.Count());
+
             var query = from credit in db.CreditCards
                         where credit.CustomerID == ID
                         select credit;
