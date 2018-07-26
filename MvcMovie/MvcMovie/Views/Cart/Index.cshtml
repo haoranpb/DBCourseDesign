@@ -132,70 +132,79 @@
 
 
 <!-- 购物车 -->
- <div class="table_info">
-     <form action="#" method="post" id="basket">
-      <div class="cart-info">
-        <table class="cart1">
-        	<caption style="font-size: 25px;margin-top: auto;">Shopping Cart</caption>
-          <thead>
-            <tr>
-              <td class="remove">Remove</td>
-              <td class="image">Image</td>
-              <td class="name">Product Name</td>
-              <td class="quantity">Quantity</td>
-              <td class="price">Unit Price</td>
-              <td class="total">Total</td>
-            </tr>
-          </thead>
-          <tbody>
-                        <tr>
-              <td class="remove"><input type="checkbox" name="remove[]" value="41" /></td>
-              <td class="image"><a href="#"><img id ="img1"src="../Images/empty.jpg" alt="iMac" title="iMac" style="height: 80px;
-	width: 80px;"  /></a>
-                </td>
-              <td class="name"><a id ="cart1" href="#">Empty</a>
-              <div>
-              </div>
-                </td>
-			  <td class="quantity" id="quantity1">0</td>
-              <td class="price" id="price1">$0.00</td>
-              <td class="total" id="totalprice1">$0.00</td>
-            </tr>
-                        <tr>
-              <td class="remove"><input type="checkbox" name="remove[]" value="40" /></td>
-              <td class="image"><a href="#"><img id ="img2" src="../Images/empty.jpg" alt="iPhone" title="iPhone" style="height: 80px;
-	width: 80px;" /></a>
-                </td>
-              <td class="name"><a id ="cart2" href="#">Empty</a>
-              <div>
-              </div>
-                </td>
-              <td class="quantity" id="quantity2">0</td>
-              <td class="price"id="price2">$0.00</td>
-              <td class="total" id="totalprice2">$0.00</td>
-            </tr>
-                        <tr>
-              <td class="remove"><input type="checkbox" name="remove[]" value="36" /></td>
-              <td class="image"><a href="#"><img id ="img3" src="../Images/empty.jpg" alt="iPod Nano" title="iPod Nano" style="height: 80px;
-	width: 80px;"  /></a>
-                </td>
-              <td class="name"><a id ="cart3" href="#">Empty</a>
-              <div>
-              </div>
-                </td>
-			<td class="quantity" id="quantity3">0</td>
-              <td class="price" id="price3">$0.00</td>
-              <td class="total" id="totalprice3">$0.00</td>
-            </tr>
-                                  </tbody>
+	<div class="table_info">
+		<form action="#" method="post" id="basket">
+			<div class="cart-info">
+				<table class="cart1">
+					<caption style="font-size: 25px;margin-top: auto;">Shopping Cart</caption>
+					<thead>
+						<tr>
 
-        </table>
-      </div>
-    </form>
+							<td class="image">Image</td>
+							<td class="name">Product Name</td>
+							<td class="quantity">Quantity</td>
+							<td class="price">Unit Price</td>
+							<td class="total">Total</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="image">
+								<a href="#">
+									<img id="img1" src="../Images/empty.jpg" alt="iMac" title="iMac" style="height: 80px;
+	width: 80px;" />
+								</a>
+							</td>
+							<td class="name">
+								<a id="cart1" href="#">Empty</a>
+								<div>
+								</div>
+							</td>
+							<td class="quantity" id="quantity1">0</td>
+							<td class="price" id="price1">$0.00</td>
+							<td class="total" id="totalprice1">$0.00</td>
+						</tr>
+						<tr>
+							<td class="image">
+								<a href="#">
+									<img id="img2" src="../Images/empty.jpg" alt="iPhone" title="iPhone" style="height: 80px;
+	width: 80px;" />
+								</a>
+							</td>
+							<td class="name">
+								<a id="cart2" href="#">Empty</a>
+								<div>
+								</div>
+							</td>
+							<td class="quantity" id="quantity2">0</td>
+							<td class="price" id="price2">$0.00</td>
+							<td class="total" id="totalprice2">$0.00</td>
+						</tr>
+						<tr>
+							<td class="image">
+								<a href="#">
+									<img id="img3" src="../Images/empty.jpg" alt="iPod Nano" title="iPod Nano" style="height: 80px;
+	width: 80px;" />
+								</a>
+							</td>
+							<td class="name">
+								<a id="cart3" href="#">Empty</a>
+								<div>
+								</div>
+							</td>
+							<td class="quantity" id="quantity3">0</td>
+							<td class="price" id="price3">$0.00</td>
+							<td class="total" id="totalprice3">$0.00</td>
+						</tr>
+					</tbody>
 
-    <div class="buttons">
-      <div class="center"><button id="pay" class="button" style="width:300px;"><span>Pay</span></button></div>
-        <script>
+				</table>
+			</div>
+		</form>
+
+		<div class="buttons">
+			<div class="center"><button id="pay" class="button" style="width:300px;"><span>Pay</span></button></div>
+			<script>
             document.querySelector('#pay').addEventListener('click', function () {
                 //console.log("@ViewBag.customerID");
                 $.get('../Cart/ToOrder?user_id=' + "@ViewBag.customerID", function (data) {
@@ -209,9 +218,21 @@
                     }
                 })
             });
-        </script>
-    </div>
-
+			</script>
+			<div class="center">
+				<button id="remove" class="button" style="width:300px;"><span>Clear</span></button>
+			</div>
+			<script>
+            document.querySelector('#remove').addEventListener('click', function () {
+                //console.log("@ViewBag.customerID");
+				$.get('../Cart/DeleteSome?customerID=' + "@ViewBag.customerID", function (data) {
+					alert("success!");
+					location.reload();
+				});
+            });
+			</script>
+		</div>
+	</div>
     </div>
 
 

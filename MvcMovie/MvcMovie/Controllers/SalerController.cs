@@ -119,6 +119,7 @@ namespace MvcMovie.Controllers
             }
             else
             {
+                ViewBag.id = Request.QueryString["ID"];
                 ViewBag.shopid = shopid;
                 ViewBag.ShopName = shop.ShopName; // what else to display?
                 return PartialView();
