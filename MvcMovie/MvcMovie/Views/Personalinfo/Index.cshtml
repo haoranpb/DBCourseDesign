@@ -174,17 +174,7 @@
                 let complex = tbody.rows[i].insertCell(3);
 
 
-                let returnInput = document.createElement('input');
-                complex.appendChild(returnInput);
-                returnInput.setAttribute('type', 'button');
-                returnInput.setAttribute('value', 'Cancel');
-                returnInput.setAttribute('class', 'button_blue');
-
-                returnInput.addEventListener('click', function () {
-                    $.get('CancelOrder?orderID=' + "@ViewBag.OrderID".split('*')[i], function (data) {
-                        console.log(data);
-                    })
-                })
+               
 
                 let commentInput = document.createElement('input');
                 complex.appendChild(commentInput);
@@ -192,7 +182,7 @@
                 commentInput.setAttribute('value', 'Comment');
                 commentInput.setAttribute('class', 'button_blue');
                 commentInput.setAttribute('style', 'margin:5px');
-
+                commentInput.disabled = true;
                 commentInput.addEventListener('click', function () {
                     document.getElementById('comment_1').style.display = 'block';
                     document.getElementById('fade_4').style.display = 'block';
@@ -205,7 +195,24 @@
                 checkInput.setAttribute('value', 'Confirm');
                 checkInput.setAttribute('class', 'button_blue');
                 checkInput.addEventListener('click', function () {
+                    commentInput.disabled = false;
                     $.get('ConfirmReceipt?orderID=' + "@ViewBag.OrderID".split('*')[i], function (data) {
+
+                        console.log(data);
+                    })
+                })
+
+                 let returnInput = document.createElement('input');
+                complex.appendChild(returnInput);
+                returnInput.setAttribute('type', 'button');
+                returnInput.setAttribute('value', 'Cancel');
+                returnInput.setAttribute('class', 'button_blue');
+
+                returnInput.addEventListener('click', function () {
+                    checkInput.disabled = true;
+                    returnInput.disabled = true;
+                    commentInput.disabled = true;
+                    $.get('CancelOrder?orderID=' + "@ViewBag.OrderID".split('*')[i], function (data) {
                         console.log(data);
                     })
                 })
