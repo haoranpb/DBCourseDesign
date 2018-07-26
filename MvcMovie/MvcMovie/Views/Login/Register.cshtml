@@ -31,7 +31,7 @@
 	<script>
 		$(document).ready(function () {
 			$("#signup").click(function () {
-				var phonenum = $("#phonenum").val();	
+				var phonenum = $("#phonenum").val();
 				var username = $("#username").val();
 				var password = $("#password").val();
 				var repassword = $("#repassword").val();
@@ -57,16 +57,16 @@
 					$.get(urlstr, function (data) {
 						var role = $("#identity option:checked").text();
 						if (data == "success") {
-							if(role=="Customer"){
+							if (role == "Customer") {
 								//go to Homepage.
-								$(window).attr('location', '../HomePage/Index?id='+username);
+								$(window).attr('location', '../HomePage/Index?id=' + username);
 							}
 							else if (role == "Saler") {
-								$(window).attr('location', '../Saler/Index?ID='+username);
+								$(window).attr('location', '../Saler/Index?ID=' + username);
 							}
-							else if(role=="Admin"){
+							else if (role == "Admin") {
 								//go to Administrator's Account.
-								$(window).attr('location', '../AdminInfo/Index?ID='+username);
+								$(window).attr('location', '../AdminInfo/Index?ID=' + username);
 							}
 						}
 						else {
@@ -100,17 +100,18 @@
 				<label for="password">Repeat your Password</label>
 				<input type="password" name="password" id="repassword">
 			</p>
-
 		</div>
-		<p class="p-container">
-   	 		<div>Role :
-      			<select id="identity">
-        			<option value="customer" selected="selected">Customer</option>
-        			<option value="saler">Saler</option>
-        			<option value="admin">Admin</option>
-      			</select>
-    		</div>			
-			<button type="button" id="signup">Sign Up</button>
+		<p class="p-container" style="position:absolute;top:384px">
+			<div style="color:burlywood;font-size:16px;">
+				Role :
+				<select id="identity">
+					<option value="customer" style="color:black;">Customer</option>
+					<option value="saler" style="color:black">Saler</option>
+					<!--		<option value="admin">Admin</option> -->
+				</select>
+				<button type="button" id="signup" style="position:relative;top:-3px;left:32px;">Sign Up</button>
+			</div>
+
 		</p>
 	</form>
 	<script src='~/Scripts/jquery.js'></script>
@@ -121,7 +122,7 @@
 	</div>-->
 	<div id="bglayer" style="position: absolute;top:0px;width:100%;z-index: -1">
 		<img src="../Images/images/register.jpg" height="100%" width="100%">
-		
+
 	</div>
 </body>
 </html>

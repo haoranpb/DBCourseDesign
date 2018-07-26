@@ -466,6 +466,7 @@
     <Content Include="Views\Admininfo\Order.cshtml" />
     <Content Include="Views\Admininfo\Saler.cshtml" />
     <None Include="Views\HomePage\Index.cshtml" />
+    <Content Include="Views\Login\AdminRegister.cshtml" />
     <None Include="Views\Login\Register.cshtml" />
     <None Include="Views\Personalinfo\Index.cshtml" />
     <None Include="Views\Order\Index.cshtml" />

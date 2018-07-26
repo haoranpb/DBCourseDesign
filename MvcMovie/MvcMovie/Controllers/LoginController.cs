@@ -24,6 +24,12 @@ namespace MvcMovie.Controllers
             return PartialView();
         }
 
+        public ActionResult AdminRegister()//注册页面
+        {
+            return PartialView();
+        }
+
+
         //get:/Login/ConfirmRegister?id=xx&age=xx&psw=xx&gender=xx&phone=xx&credit=xx&role=xx
         public ActionResult ConfirmRegister()//传入注册的参数
         {
@@ -31,7 +37,7 @@ namespace MvcMovie.Controllers
             string phone = Request.QueryString["phonenum"];
             string psw = Request.QueryString["password"];
             string role = Request.QueryString["role"];
-            
+
             //这里如果前端改的有了credit和gender传入的话把这里改成request.querystring[xxx]
             string credit = "1";
             string gender = "(empty)";
@@ -42,7 +48,7 @@ namespace MvcMovie.Controllers
             Customer customer = db.Customers.Find(id);//在数据库中查找id
             Admin admin = db.Admins.Find(id);
             Saler saler = db.Salers.Find(id);
-            if (customer != null||admin != null||saler!=null) return Content("failed") ;//找到的话，以前注册过，注册失败
+            if (customer != null || admin != null || saler != null) return Content("failed");//找到的话，以前注册过，注册失败
             //加入数据库
             if (role == "Customer")
             {
@@ -56,17 +62,6 @@ namespace MvcMovie.Controllers
                     CustomerCredit = credit,
                 };
                 db.Customers.Add(cus);
-                db.SaveChanges();
-            }
-            else if (role == "Admin")
-            {
-                Admin adm = new Admin()
-                {
-                    AdminID = id,
-                    AdminInfo = phone,
-                    AdminPassword = psw,
-                };
-                db.Admins.Add(adm);
                 db.SaveChanges();
             }
             else
@@ -85,6 +80,24 @@ namespace MvcMovie.Controllers
 
         }
 
+        public ActionResult ConfirmAdminRegister()
+        {
+            string id = Request.QueryString["username"];
+            string psw = Request.QueryString["password"];
+            //这里如果前端改的有了credit和gender传入的话把这里改成request.querystring[xxx]
+            //判断id是否重复
+            Customer customer = db.Customers.Find(id);//在数据库中查找id
+            Admin admin = db.Admins.Find(id);
+            Saler saler = db.Salers.Find(id);
+            if (customer != null || admin != null || saler != null) return Content("failed");//找到的话，以前注册过，注册失败
+            //加入数据库
+            Admin a = new Admin();
+            a.AdminID = id;
+            a.AdminInfo = " ";
+            a.AdminPassword = psw;
+            return Content("success"); ;//跳转到主界面，这个逻辑在前端实现
+        }
+
         ///Login
         public ActionResult Index()//返回登录的界面
         {
@@ -98,11 +111,13 @@ namespace MvcMovie.Controllers
             string psw = Request.QueryString["psw"];
             //localdb方法
             Customer customer1 = db.Customers.Find(id);//在数据库中查找id
-            if (customer1 == null) {
+            if (customer1 == null)
+            {
                 Admin admin = db.Admins.Find(id);
-                if(admin == null){
+                if (admin == null)
+                {
                     Saler saler = db.Salers.Find(id);
-                    if(saler==null)
+                    if (saler == null)
                         return Content("failed");//没找到错误提示，登录失败
                     if (psw == saler.SalerPassword)
                     {
@@ -122,12 +137,12 @@ namespace MvcMovie.Controllers
             {
                 ViewBag.ID = id;
                 return Content("success1"); ;
-                     
+
             }//成功的话切换到主页面
 
             return Content("failed");//密码错误？登录失败
         }
-        
+
         /// Login/Edit
         public ActionResult Edit()//更改密码
         {
@@ -143,12 +158,12 @@ namespace MvcMovie.Controllers
         }
 
         //get:/Login/ConfirmEdit?id=xx&newPsw1=xx&newPsw2=xx&inputCode=xx
-        public ActionResult ConfirmEdit(string id,string newPsw1,string newPsw2,int inputCode)
+        public ActionResult ConfirmEdit(string id, string newPsw1, string newPsw2, int inputCode)
         {
-            if(checkCode!=inputCode )return Content("fail1");//验证码错误
-            if(newPsw1!=newPsw2)return Content("fail2");//密码不匹配
+            if (checkCode != inputCode) return Content("fail1");//验证码错误
+            if (newPsw1 != newPsw2) return Content("fail2");//密码不匹配
             Customer customer = db.Customers.Find(id);//在数据库中查找id
-            if(customer==null)return HttpNotFound();
+            if (customer == null) return HttpNotFound();
             customer.CustomerPassword = newPsw1;
             db.SaveChanges();
             return RedirectToAction("Login");//成功返回登录界面
