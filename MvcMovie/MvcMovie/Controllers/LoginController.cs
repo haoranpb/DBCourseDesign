@@ -95,6 +95,8 @@ namespace MvcMovie.Controllers
             a.AdminID = id;
             a.AdminInfo = " ";
             a.AdminPassword = psw;
+            db.Admins.Add(a);
+            db.SaveChanges();
             return Content("success"); ;//跳转到主界面，这个逻辑在前端实现
         }
 
