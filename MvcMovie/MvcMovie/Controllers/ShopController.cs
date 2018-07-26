@@ -110,7 +110,6 @@ namespace MvcMovie.Controllers
         public ActionResult Edititem()
         {
             Item p = db.Items.Find(Request.QueryString["ItemId"]);
-            p.ItemInfo = Request.QueryString["ItemInfo"];
             p.ItemName = Request.QueryString["ItemName"];
             p.ItemPic = Request.QueryString["ItemPic"];
             string PATH = Request.QueryString["PATH"];
@@ -142,11 +141,19 @@ namespace MvcMovie.Controllers
         public ActionResult Additem()
         {
             Item p = new Item();
+            string itemid = "";
+            while (true)
+            {
+                Random rd = new Random();
+                itemid = rd.Next(1, 1000000).ToString();
+                if (db.Shops.Find(itemid) == null)
+                    break;
+            }
             p.ItemInfo = Request.QueryString["ItemInfo"];
             p.ItemName = Request.QueryString["ItemName"];
-            p.ItemPic = Request.QueryString["ItemPic"];
-            string PATH = Request.QueryString["PATH"];
-            System.IO.File.Copy(PATH, "~/Images/img/images+" + p.ItemPic + ".jpg", true);
+            //p.ItemPic = Request.QueryString["ItemPic"];
+            //string PATH = Request.QueryString["PATH"];
+            //System.IO.File.Copy(PATH, "~/Images/img/images+" + p.ItemPic + ".jpg", true);
             //这里注释与上面edit那里的相同，先看这个的话记得把上面edit的也删了
             //前端看完下面这个注释记得删了，别让袁阿姨看见
             //这里注意一下，我们的逻辑上是，将图片从本地的一个地方移动道本地的服务器images文件夹下面，然后就可以调用图片了
@@ -156,6 +163,7 @@ namespace MvcMovie.Controllers
             p.ItemPrice = int.Parse(Request.QueryString["ItemPrice"]);
             p.ItemRemain = int.Parse(Request.QueryString["ItemRemain"]);
             p.ShopID = Request.QueryString["ShopID"];
+            p.ItemID = itemid;
             //Itemsales默认为0
             p.ItemSales = 0;
             db.Items.Add(p);

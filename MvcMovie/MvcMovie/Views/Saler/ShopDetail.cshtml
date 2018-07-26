@@ -44,7 +44,9 @@
         //  alert(itemstr); successfully get itemlist
         var itemList=itemstr.split(" "); // get item list
         //加载信息
-        for(var i=1;i<itemList.length;i++){
+          console.log(itemList.length);
+          console.log(itemstr);
+        for(var i=1;i<Math.min(13,itemList.length);i++){
             var item_urlstr ="/Shop/ItemInfo?itemid=" + itemList[i] + "&itemnum=" + i + "&itemcount=1";
     		  //获取商品信息
             $.get(item_urlstr,function(itemjson)
@@ -60,7 +62,10 @@
           	        var price=itemObj.ItemPrice;
 
           	        itemsid[parseInt(num)]=id;
-
+                $("#item" + num + "a").attr("id", "item" + num + "e");
+                $("#item" + num + "e").text("Edit");
+                $("#item" + num + "d").show();
+                //xiugaihide
           	        $("#item"+num+"p").attr("src","../Images/img/images/"+id+".jpg");   //图片
           	        $("#item"+num+"p").attr("alt",name);  //图片无法显示时的文字
           	        $("#item"+num+"t").text(name);        //名称
@@ -82,49 +87,68 @@
   			//从数组中获得数据库中的商品id
   			var itemid=itemsid[num];
 
-   			if(type=='e'){
-  				var item_urlstr="/Shop/Iteminfo?itemid="+itemid+"&itemnum=1&itemcount=1";
-    		  //获取商品信息
-               $.get(item_urlstr,function(itemjson)
-    			{
-    				//解析json
-    				var itemObj=eval(itemjson);
+                if (type == 'e') {
+                    var item_urlstr = "/Shop/Iteminfo?itemid=" + itemid + "&itemnum=1&itemcount=1";
+                    //获取商品信息
+                    $.get(item_urlstr, function (itemjson) {
+                        //解析json
+                        var itemObj = eval(itemjson);
 
-          	        var id=itemObj.ItemID;
-          	        var info=itemObj.ItemInfo;
-          	        var name=itemObj.ItemName;
-          	        var pic=itemObj.ItemPic;
-          	        var price=itemObj.ItemPrice;
+                        var id = itemObj.ItemID;
+                        var info = itemObj.ItemInfo;
+                        var name = itemObj.ItemName;
+                        var pic = itemObj.ItemPic;
+                        var price = itemObj.ItemPrice;
 
-          	        $("#picname").attr("value",pic);		//表单图片名称
-          	        $("#picpath").attr("value","~/Images/img/images/");		//表单图片路径
-          	        $("#name").attr("value",name);		//表单商品名称
-          	        $("#price").attr("value",price);	//表单商品价格
-  				});
+                        $("#picname").attr("value", pic);		//表单图片名称
+                        $("#picpath").attr("value", "~/Images/img/images/");		//表单图片路径
+                        $("#name").attr("value", name);		//表单商品名称
+                        $("#price").attr("value", price);	//表单商品价格
+                    });
 
-  				/*---------------------提交修改---------------------*/
-    			$("#confirm").click(function()
-    			{
-    				var picname=$("#picname").val();
-    				var picpath=$("#picpath").val();
-    				var name=$("#name").val();
-    				var price=$("#price").val();
+                    /*---------------------提交修改---------------------*/
+                    $("#confirm").click(function () {
+                        var picname = $("#picname").val();
+                        var picpath = $("#picpath").val();
+                        var name = $("#name").val();
+                        var price = $("#price").val();
 
-                    //没有iteminfo和shopid
-                    var modify_url = "/Shop/Edititem?ItemId=" + itemid + "&ItemInfo="+ name+"&ItemName=" + name + "&ItemPic=" + picname + "&PATH=" + picpath + "&ItemPrice=" + price + "&ItemRemain=500&ShopID=" + shopid;
-    				$.get(modify_url,function(data)
-    				{
-    					if(data=="success"){
-    						alert("Edited Successfully");
-    						//刷新 跳转到当前页面 url不知道
-                            window.location.reload();
-    					}
-    					else{
-    						alert("Failed to Edit");
-    					}
-    				});
-    			});
-    		}
+                        //没有iteminfo和shopid
+                        var modify_url = "/Shop/Edititem?ItemId=" + itemid + "&ItemInfo=" + name + "&ItemName=" + name + "&ItemPic=" + picname + "&PATH=" + picpath + "&ItemPrice=" + price + "&ItemRemain=500&ShopID=" + shopid;
+                        $.get(modify_url, function (data) {
+                            if (data == "success") {
+                                alert("Edited Successfully");
+                                //刷新 跳转到当前页面 url不知道
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Failed to Edit");
+                            }
+                        });
+                    });
+                }
+                else if(type=="a"){
+                    $("#confirm").click(function () {
+                        var picname = $("#picname").val();
+                        var picpath = $("#picpath").val();
+                        var name = $("#name").val();
+                        var price = $("#price").val();
+                        
+                        var modify_url = "/Shop/Additem?ItemId=" + itemid + "&ItemInfo=" + name + "&ItemName=" + name + "&ItemPic=" + picname + "&PATH=" + picpath + "&ItemPrice=" + price + "&ItemRemain=500&ShopID=" + shopid;
+                        $.get(modify_url, function (data) {
+                            if (data == "success") {
+                                alert("Added Successfully");
+                                //刷新 跳转到当前页面 url不知道
+                                window.location.reload();
+                            }
+                            else {
+                                alert("Failed to Edit");
+                            }
+                        });
+                    });
+
+
+                }
     	});
 
 			/*---------------------删除商品---------------------*/
@@ -153,7 +177,7 @@
   					}
   				});
   			}
-			});
+		});
 
 			$("#2").click(function () {
 				$.get("/Saler/SearchItem?ShopID=@ViewBag.shopid&Keyword=" + $("#1").val(), function (list) {
@@ -169,17 +193,24 @@
 							var info = itemObj.ItemInfo;
 							var name = itemObj.ItemName;
 							var pic = itemObj.ItemPic;
-							var price = itemObj.ItemPrice;
-							console.log(id);
-							$("#item" + num + "p").attr("src", "../Images/img/images/" + id + ".jpg");   //图片
-							
-							$("#item" + num + "p").attr("alt", name);  //图片无法显示时的文字
-							$("#item" + num + "t").text(name);        //名称
-							$("#item" + num + "pr").text("$" + price);	//价格
+                            var price = itemObj.ItemPrice;
+                            var num1 = parseInt(num) + 1;
+							console.log(id+"num="+num1);
+							$("#item" + num1 + "p").attr("src", "../Images/img/images/" + id + ".jpg");   //图片
+                            $("#item" + num1 + "a").attr("id", "item" + num + "e");
+                            $("#item" + num1 + "e").text("Edit");
+                            $("#item" + num1 + "d").show();
+							$("#item" + num1 + "p").attr("alt", name);  //图片无法显示时的文字
+							$("#item" + num1 + "t").text(name);        //名称
+							$("#item" + num1 + "pr").text("$" + price);	//价格
 						});
 					}
 					if (12 > j.length) {
-						for (var p = j.length; p <= 12; p++) {
+                        for (var p = j.length; p <= 12; p++) {
+                            $("#item" + p + "e").attr("id", "item" + p + "a");
+                            $("#item" + p + "a").text("Add");
+                            $("#item" + p + "d").hide();
+
 							$("#item" + p + "p").attr("src", "../Images/empty.jpg");   //图片
 							$("#item" + p + "p").attr("alt", "no name");  //图片无法显示时的文字
 							$("#item" + p + "t").text("empty");        //名称
@@ -380,14 +411,14 @@
 
 							<div class="product__details">
 								<a id="item1t" href="">no more item ...</a>
-								<button class="edit" id="item1e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item1a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item1pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item1d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item1d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -401,14 +432,14 @@
 
 							<div class="product__details">
 								<a id="item2t" href="">no more item ...</a>
-								<button class="edit" id="item2e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item2a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item2pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item2d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item2d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -422,14 +453,14 @@
 
 							<div class="product__details">
 								<a id="item3t" href="">no more item ...</a>
-								<button class="edit" id="item3e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item3a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item3pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item3d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item3d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -443,14 +474,14 @@
 
 							<div class="product__details">
 								<a id="item4t" href="">no more item ...</a>
-								<button class="edit" id="item4e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item4a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item4pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item4d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item4d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -464,14 +495,14 @@
 
 							<div class="product__details">
 								<a id="item5t" href="">no more item ...</a>
-								<button class="edit" id="item5e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item5a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item5pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item5d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item5d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -485,14 +516,14 @@
 
 							<div class="product__details">
 								<a id="item6t" href="">no more item ...</a>
-								<button class="edit" id="item6e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item6a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item6pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item6d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item6d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -519,14 +550,14 @@
 
 							<div class="product__details">
 								<a id="item7t" href="">no more item ...</a>
-								<button class="edit" id="item7e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item7a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item7pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item7d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item7d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -539,14 +570,14 @@
 
 							<div class="product__details">
 								<a id="item8t" href="">no more item ...</a>
-								<button class="edit" id="item8e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item8a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item8pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item8d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item8d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -560,14 +591,14 @@
 
 							<div class="product__details">
 								<a id="item9t" href="">no more item ...</a>
-								<button class="edit" id="item9e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item9a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item9pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item9d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item9d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -581,14 +612,14 @@
 
 							<div class="product__details">
 								<a id="item10t" href="">no more item ...</a>
-								<button class="edit" id="item10e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item10a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item10pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item10d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item10d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -602,14 +633,14 @@
 
 							<div class="product__details">
 								<a id="item11t" href="">no more item ...</a>
-								<button class="edit" id="item11e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item11a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
 
 							<span class="product__price">
 								<ins>
 									<span id="item11pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item11d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item11d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
@@ -623,14 +654,14 @@
 
 							<div class="product__details">
 								<a id="item12t" href="">no more item ...</a>
-								<button class="edit" id="item12e" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
+								<button class="edit" id="item12a" style="position:absolute;left:160px;width: 40px;font-size: 10px" type="button" onclick="document.getElementById('msform').style.display='block';document.getElementById('fade').style.display='block'">Edit</button>
 							</div>
-
-							<span class="product__price">
+                            
+                            <span class="product__price">
 								<ins>
 									<span id="item12pr" class="amount">$0.00</span>
 								</ins>
-								<button class="delete" id="item12d" style="position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
+								<button class="delete" id="item12d" style="display:none;position: absolute;left:160px;width: 40px;font-size: 10px" type="button">Delete</button>
 							</span>
 						</div>
 						<!-- end product -->
