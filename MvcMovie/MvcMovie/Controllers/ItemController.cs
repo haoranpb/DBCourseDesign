@@ -53,7 +53,8 @@ namespace MvcMovie.Controllers
             Browsing b = new Browsing();
             b.ID = user_ID;
             b.ItemID = itemID;
-            b.BrowsingTime = Convert.ToDateTime(System.DateTime.Now.ToString());
+            string datetime = System.DateTime.Now.ToString();
+            b.BrowsingTime = Convert.ToDateTime(datetime);
             //b.RealBrowsingTime = System.DateTime.Now.ToString("f");
             db.Browsings.Add(b);
             db.SaveChanges();
