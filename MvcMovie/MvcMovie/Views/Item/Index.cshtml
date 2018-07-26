@@ -25,7 +25,7 @@
     <script src=" ~/Scripts/jquery-3.3.1.js"></script>
     <script>
         $(document).ready(function () {
-            $("#personal").attr("href", "../Personalinfo/Index/" + "@ViewBag.user_id");
+            $("#personal").attr("href", "../Personalinfo/Index?id=" + "@ViewBag.user_id");
 
             $(".fixurl").attr("href", function (i, origValue) {
                 return origValue + "@ViewBag.user_id";
@@ -100,7 +100,7 @@
               <div class="top-cart-contain pull-right"> 
                 <!-- Top Cart -->
                 <div class="mini-cart">
-                  <div class="basket dropdown-toggle"><a class="fixurl" href="../Cart/Index?id=">  My Cart </a></div>
+                  <div class="basket dropdown-toggle"><a class="fixurl" href="../HomePage/Index?id=">  Home Page </a></div>
                   </div>
                   <!-- Top Cart -->
                   <div id="ajaxconfig_info" style="display:none"><a href="#/"></a>
@@ -111,35 +111,12 @@
                   </div>
                 </div>
           
-                <div class="top-search">
-                  <div class="block-icon pull-right"> <a data-target=".bs-example-modal-lg" data-toggle="modal" class="search-focus dropdown-toggle links"> <i class="fa fa-search"></i> </a>
-                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><img src="../Images/images/interstitial-close.png" alt="close"> </button>
-                          </div>
-                          <div class="modal-body">
-                            <form class="navbar-form">
-                              <div id="search">
-                                <div class="input-group">
-                                  <input name="search" placeholder="Search" class="form-control" type="text">
-                                  <!-- SEARCH BUTTON. SWITCH TO INPUT TYPE PRODUCTS -->
-                                  <button type="button" class="btn-search"><i class="fa fa-search"></i></button>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>                 
+                                
                  <!-- Header Top Links -->
                 <div class="toplinks">
                   <div class="links">    
                     <!-- SWITCH TO MY ACCOUNT DETAILS. -->          
-                    <div class="myaccount"><a title="My Account" id="personal" href="../Personalinfo/Index/"><span class="hidden-xs">My Account</span></a></div>
+                    <div class="myaccount"><a title="My Account" id="personal" href="../Personalinfo/Index?id="><span class="hidden-xs"> My Account </span></a></div>
                   </div>           
                 </div>
                 <!-- End Header Top Links -->      
@@ -522,70 +499,6 @@
   <!-- Footer -->
   <footer>
     <div class="footer-inner">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12 col-xs-12 col-lg-8">
-            <div class="footer-column pull-left">
-              <h4>CUSTOMMER SERVICE</h4>
-              <ul class="links">
-                <li class="first"><a href="#" title="Contact us">My Account</a></li>
-                <li><a href="#" title="About us">Order History</a></li>
-                <li><a href="#" title="faq">FAQ</a></li>
-                <li><a href="#" title="Popular Searches">Specials</a></li>
-                <li class="last"><a href="#" title="Where is my order?">Help Center</a></li>
-              </ul>
-            </div>
-            <div class="footer-column pull-left">
-              <h4>Corporation</h4>
-              <ul class="links">
-                <li class="first"><a title="Your Account" href="#">About us</a></li>
-                <li><a title="Information" href="#">Customer Service</a></li>
-                <li><a title="Addresses" href="#">Company</a></li>
-                <li><a title="Addresses" href="#">Investor Relations</a></li>
-                <li class="last"><a title="Orders History" href="#">Advanced Search</a></li>             
-              </ul>
-            </div>
-            <div class="footer-column pull-left">
-              <h4>Why choose Us</h4>
-              <ul class="links">
-                <li class="first"><a href="#" title="About us">Shopping Guide</a></li>
-                <li><a href="#" title="Company">Company</a></li>
-                <li><a href="#" title="Investor Relations">Investor Relations</a></li>
-                <li class=" last"><a href="contact-us.html" title="Suppliers">Contact Us</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-xs-12 col-lg-4">
-            <div class="footer-column-last">
-              <div class="newsletter-wrap">
-                <h4>Sign up for emails</h4>
-                <form id="newsletter-validate-detail" method="post" action="#">
-                  <div id="container_form_news">
-                    <div id="container_form_news2">
-                      <input type="text" class="input-text required-entry validate-email" value="Enter your email address" onFocus=" this.value='' " title="Sign up for our newsletter" id="newsletter" name="email">
-                      <!-- HERE. ONE BOX OR WINDOW NEEDED. SHOW SOME REACTION. -->
-                      <button class="button subscribe" title="Subscribe" type="submit"><span>Subscribe</span></button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <br>
-              <div class="social">
-                <h4>Follow Us</h4>
-                <ul class="link">
-                  <li class="fb pull-left"><a href="#"></a></li>
-                  <li class="tw pull-left"><a href="#"></a></li>
-                  <li class="googleplus pull-left"><a href="#"></a></li>
-                  <li class="rss pull-left"><a href="#"></a></li>
-                  <li class="pintrest pull-left"><a href="#"></a></li>
-                  <li class="linkedin pull-left"><a href="#"></a></li>
-                  <li class="youtube pull-left"><a href="#"></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <div class="container">
         <div class="col-sm-12 col-xs-12 footer-logo"><img alt="Datson" src="../Images/images/logo.png"></div>
         <address>

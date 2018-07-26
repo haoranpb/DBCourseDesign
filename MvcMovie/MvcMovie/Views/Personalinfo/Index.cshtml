@@ -73,10 +73,15 @@
                 })
 
             })
-				var ID = "@ViewBag.id";
-				$("#2").click(function () {
-				var id = $("#1").val();
-				$(window).attr("location", "/Personalinfo/SearchOrder?id=" + ID + "&orderid=" + id);
+			var ID = "@ViewBag.id";
+			$("#2").click(function () {
+                var id = $("#1").val();
+                $.get("/Personalinfo/ExistOrder?id=" + ID + "&orderid=" + id, function (data) {
+                    if (data == "success")
+                        $(window).attr("location", "/Personalinfo/SearchOrder?id=" + ID + "&orderid=" + id);
+                    else
+                        alert("Orderid not exist");
+                });
 			});
             var orderSelected = "";
             var bankCardSelected = "";
