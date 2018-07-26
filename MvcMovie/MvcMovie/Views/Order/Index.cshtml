@@ -130,13 +130,13 @@
       $("#createorder").click(function()
       {
         //用户填写的信息
-        var phone=$("#phone").val();
+		  var phone = $("#phone").val();
         var address=$("#addr").val();
         var userid="@ViewBag.ID";
 
-        if(phone==null||phone==""){
-          alert("Please enter your phone number");
-        }if(address==null||address==""){
+		  if (phone == null || phone == "" || phone.length > 15){
+          alert("Please enter correct phone number");
+        }else if(address==null||address==""){
           alert("Please enter your address");
         }
         else{
@@ -328,7 +328,7 @@
                 </div>
                 <div class="box-bd">
                   <form>
-                    <input id="phone" type="text" value="" style="width: 256px;height: 48px;font-size: 28px">
+                    <input id="phone" type="text" value="" style="width: 256px;height: 24px;font-size: 14px">
                   </form>
                 </div>
               </div>
@@ -339,7 +339,7 @@
               </div>
               <div class="box-bd">
                 <form>
-                  <input id="addr" type="text" value="" style="width: 512px;height: 48px;font-size: 28px">
+                  <input id="addr" type="text" value="" style="width: 512px;height: 24px;font-size: 14px">
                 </form>
               </div>
             </div>
@@ -385,7 +385,7 @@
                         <img id="item2p" src="../Images/empty.jpg" width="40" height="40" />
                       </div>
                       <div class="g-info">
-                        <a id="item2t" href="#">no more item ...</a><
+                        <a id="item2t" href="#">no more item ...</a>
                       </div>
                     </div>
                     <div id="item2pr" class="col col-2"></div>
