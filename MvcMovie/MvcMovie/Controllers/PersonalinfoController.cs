@@ -211,6 +211,19 @@ namespace MvcMovie.Controllers
             return Content(phone);
         }
 
+        public ActionResult AddCard() {
+            string id = Request.QueryString["id"];
+            string cardid = Request.QueryString["cardid"];
+            if(cardid.Length>20) return Content("failed");
+            if (db.CreditCards.Find("id") != null) return Content("failed");
+            CreditCard card = new CreditCard();
+            card.CreditCardID = cardid;
+            card.CustomerID = id;
+            db.CreditCards.Add(card);
+            db.SaveChanges();
+            return Content("success");
+        }
+
         public ActionResult EditCard()
         {
             string pre = Request.QueryString["pre"];
@@ -219,14 +232,12 @@ namespace MvcMovie.Controllers
             //var card = db.CreditCards.SingleOrDefault<CreditCard>(s => s.CustomerID == ID);
             CreditCard cd = db.CreditCards.Find(pre);
             db.CreditCards.Remove(cd);
-
-
+            if (db.CreditCards.Find(fut) != null) return Content("false");
             CreditCard newcd = new CreditCard()
             {
                 CustomerID = id,
                 CreditCardID = fut,
             };
-
             db.CreditCards.Add(newcd);
             db.SaveChanges();
             //card.CreditCardID = cardValue;
