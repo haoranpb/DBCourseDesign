@@ -144,7 +144,6 @@ namespace MvcMovie.Controllers
                 // 修改Item数量
                 Item itemp = db.Items.Find(itemx.ItemID);
                 itemp.ItemRemain = itemp.ItemRemain - itemx.OrderDetailCount;
-                if (itemp.ItemRemain < 0) return Content("failed");
                 itemp.ItemSales = itemp.ItemSales + itemx.OrderDetailCount;
                 db.Entry(itemp).State = EntityState.Modified;
                 db.SaveChanges();
@@ -220,7 +219,6 @@ namespace MvcMovie.Controllers
                         //修改item表内数量
                         Item itemp = db.Items.Find(od.ItemID);
                         itemp.ItemRemain = itemp.ItemRemain - od.OrderDetailCount;
-                        if (itemp.ItemRemain < 0) return Content("failed");
                         itemp.ItemSales = itemp.ItemSales + od.OrderDetailCount;
                         db.Entry(itemp).State = EntityState.Modified;
 
@@ -232,7 +230,7 @@ namespace MvcMovie.Controllers
                 }
             db.Entry(order).State = EntityState.Modified;
             db.SaveChanges();
-            return Content("success");
+            return Content(order.OrderID);
         }
 
 
@@ -276,12 +274,13 @@ namespace MvcMovie.Controllers
                                   join od in db.OrderDetails on o.OrderID equals od.OrderID
                                   where od.OrderID == OrderID
                                   select od;
-
+            
             //viewbag传送orderdetail连成字符串，格式为 *id=num*id=num*
             string odListString = "*";
             foreach(var od in orderDetailList)
             {
-                odListString = odListString + od.ItemID + "=" + od.OrderDetailCount + "*";
+                string c = db.Items.Find(od.ItemID).ItemName;
+                odListString = odListString + c + "=" + od.OrderDetailCount + "*";
             }
 
             ViewBag.odListString = odListString;

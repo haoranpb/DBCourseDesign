@@ -47,7 +47,8 @@ namespace MvcMovie.Controllers
                                         select dd.ItemID);
             foreach (var c in anotherBrowsingQuery)
             {
-                ViewBag.BrowserItem += c;
+               string d = db.Items.Find(c).ItemName;
+                ViewBag.BrowserItem += d;
                 ViewBag.BrowserItem += "*";
             }
 

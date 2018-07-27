@@ -172,19 +172,16 @@
             var create_url="../Order/CartCreate?OrderPhone="+phone+"&OrderAddress="+address+"&user_id="+userid+"&shop_id="+shopid;
             $.get(create_url,function(data)
             {
-              if(data=="success"){
+              
                 //订单创建成功
-                alert("Order Successfully Submitted!");
+                alert("Order Successfully Submitted! Orderid is "+data);
                 //三秒后跳转
                 function delay()
                 {
 					$(window).attr('location', '../HomePage/Index?id=' + userid);
                 }
                 setTimeout(delay,3000);
-              }
-              else{
-                alert("Failed to submit order");
-              }
+             
             })
 
           }     
