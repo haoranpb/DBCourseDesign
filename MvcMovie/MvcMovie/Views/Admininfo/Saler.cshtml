@@ -33,7 +33,7 @@
 					var j = $(this).attr("id");
 					console.log(j);
 					$.get("/AdminInfo/DeleteSaler?id=" + $("#s" + j).text(), function (data) {
-						if (data == "success") location.reload();
+						if (data == "success")  $(window).attr("location", "../AdminInfo/Saler?ID=@ViewBag.ID");
 					});
 				});
 			}

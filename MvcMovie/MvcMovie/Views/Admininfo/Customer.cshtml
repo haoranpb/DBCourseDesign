@@ -31,7 +31,7 @@
 					var j = $(this).attr("id");
 					console.log(j);
 					$.get("/AdminInfo/DeleteCustomer?id=" + $("#c" + j).text(), function (data) {
-						if (data == "success") location.reload();
+						if (data == "success") $(window).attr("location", "../AdminInfo/Customer?ID=@ViewBag.ID");
 					});
 				});
 			}

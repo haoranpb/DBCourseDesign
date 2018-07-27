@@ -33,7 +33,7 @@
 					var j = $(this).attr("id");
 					console.log(j);
 					$.get("/AdminInfo/DeleteItem?id=" + $("#i" + j).text(), function (data) {
-						if (data == "success") location.reload();
+						if (data == "success")  $(window).attr("location", "../AdminInfo/Item?ID=@ViewBag.ID");
 					});
 				});
 			}

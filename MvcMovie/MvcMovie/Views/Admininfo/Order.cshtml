@@ -41,7 +41,7 @@
 					var j = $(this).attr("id");
 					console.log(j);
 					$.get("/AdminInfo/DeleteOrder?id=" + $("#o" + j).text(), function (data) {
-						if (data == "success") location.reload();
+						if (data == "success")  $(window).attr("location", "../AdminInfo/Order?ID=@ViewBag.ID");
 					});
 				});
 			}
